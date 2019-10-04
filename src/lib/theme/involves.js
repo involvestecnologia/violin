@@ -4,7 +4,13 @@ const involves = {
   typography: {
     fontFamily: "'Open Sans', sans-serif",
     htmlFontSize: "100%",
-    fontSize: rem(14),
+    fontSize: {
+      small: rem(12),
+      regular: rem(14),
+      medium: rem(16),
+      large: rem(18),
+      xlarge: rem(24)
+    },
     fontWeight: {
       light: "300",
       regular: "400",
@@ -57,6 +63,9 @@ const involves = {
     border12: "12px",
     border20: "20px",
     border24: "24px"
+  },
+  common: {
+    transition: "all 0.2s ease"
   },
   palette: {
     primary: {
@@ -118,9 +127,6 @@ const involves = {
       light: "#AFDDEA",
       white: "#EFF8FB",
       shadow: transparentize(0.75, "#46829B")
-    },
-    white: {
-      regular: "#FFFFFF"
     }
   }
 };

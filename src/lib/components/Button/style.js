@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { theme as involves } from "../../theme";
-import { rem } from "polished";
 import { ifProp, ifNotProp, switchProp, theme } from "styled-tools";
 
 const defaultPalette = type => ({
@@ -22,11 +21,13 @@ export const StyledButton = styled.button`
     align-items: center;
     padding: 0 16px;
     outline: none;
+    font-family: ${theme("typography.fontFamily", involves.typography.fontFamily)};
     font-weight: bold;
     text-align: center;
     text-decoration: none;
     cursor: pointer;
-    transition: all 0.2s ease;
+    box-sizing: border-box;
+    transition: ${theme("common.transition", involves.common.transition)};
     border-radius: ${theme("borderRadius.border4", involves.borderRadius.border4)};
     height: ${switchProp("size", {
         small: "32px",
@@ -34,9 +35,9 @@ export const StyledButton = styled.button`
         large: "60px"
     })};
     font-size: ${switchProp("size", {
-        small: rem(14),
-        normal: rem(14),
-        large: rem(16)
+        small: theme("typography.fontSize.regular", involves.typography.fontSize.regular),
+        normal: theme("typography.fontSize.regular", involves.typography.fontSize.regular),
+        large: theme("typography.fontSize.medium", involves.typography.fontSize.medium)
     })};
     display: ${ifProp("block", "flex", "inline-flex")};
     width: ${ifProp("block", "100%", "auto")};
@@ -51,22 +52,35 @@ export const StyledButton = styled.button`
         switchProp("color", regularPalette),
         involves.palette.system.white
     )};
-    border: ${ifProp(
-        "outline", 
-        ifProp(
-            { size: "large" },
-            "2px",
-            "1px"
-        ), 
-        "0"
-    )} solid ${switchProp("color", regularPalette)};
+    border: 0;
+    --regular: ${ifProp(
+        "outline",
+        switchProp("color", regularPalette),
+        "transparent"
+    )};
+    --active: ${ifProp(
+        "outline",
+        switchProp("color", darkPalette),
+        "transparent"
+    )};
+    --outline: inset
+        ${ifProp(
+            "outline",
+            ifProp(
+                { size: "large" },
+                theme("shadow.shadowBorder2", involves.shadow.shadowBorder2),
+                theme("shadow.shadowBorder1", involves.shadow.shadowBorder1)
+            ),
+            "0 0 0 0"
+        )};
+    box-shadow: var(--outline) var(--regular);
     
     &:hover {
-        box-shadow: ${theme("shadow.shadow12", involves.shadow.shadow12)} ${switchProp("color", shadowPalette)};
+        box-shadow: var(--outline) var(--regular), ${theme("shadow.shadow12", involves.shadow.shadow12)} ${switchProp("color", shadowPalette)};
     }
     
     &:active {
-        box-shadow: ${theme("shadow.shadow3", involves.shadow.shadow3)} ${switchProp("color", shadowPalette)};
+        box-shadow: var(--outline) var(--active), ${theme("shadow.shadow3", involves.shadow.shadow3)} ${switchProp("color", shadowPalette)};
         background-color: ${ifNotProp(
             "outline",
             switchProp("color", darkPalette)

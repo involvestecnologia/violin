@@ -8,7 +8,7 @@ const GlobalStyle = createGlobalStyle`
     body {
         margin: 0;
         font-family: ${({ theme }) => theme.typography.fontFamily};
-        font-size: ${({ theme }) => theme.typography.fontSize};
+        font-size: ${({ theme }) => theme.typography.fontSize.regular};
         line-height: ${({ theme }) => theme.typography.lineHeight};
         color: ${({ theme }) => theme.palette.system.dark};
     }

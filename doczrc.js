@@ -1,5 +1,5 @@
 export default {
     port: "8888",
-    src: './src/docs',
+    src: './src',
     dest: './docs'
 }

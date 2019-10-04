@@ -4,7 +4,7 @@ menu: Components
 route: /components/button
 ---
 
-import { Button } from '../lib';
+import { Button } from './Button';
 import { Playground, Props } from "docz";
 
 # Button
@@ -13,6 +13,7 @@ import { Playground, Props } from "docz";
     <Button style={{ margin: 5 }}>Default</Button>
     <Button color="primary" style={{ margin: 5 }}>Primary</Button>
     <Button color="accent" style={{ margin: 5 }}>Accent</Button>
+    <Button color="primary" disabled style={{ margin: 5 }}>Disabled</Button>
 </Playground>
 
 ## Props
@@ -42,6 +43,10 @@ import { Playground, Props } from "docz";
     <Button color="accent" size="small" style={{ margin: 5 }}>Small</Button>
     <Button color="accent" style={{ margin: 5 }}>Normal</Button>
     <Button color="accent" size="large" style={{ margin: 5 }}>Large</Button>
+    <br />
+    <Button color="primary" outline size="small" style={{ margin: 5 }}>Small</Button>
+    <Button color="primary" outline style={{ margin: 5 }}>Normal</Button>
+    <Button color="primary" outline size="large" style={{ margin: 5 }}>Large</Button>
 </Playground>
 
 ## block
@@ -49,4 +54,12 @@ import { Playground, Props } from "docz";
 <Playground>
     <Button color="primary" style={{ margin: 5 }}>Normal</Button>
     <Button color="primary" block style={{ margin: 5 }}>Block</Button>
+</Playground>
+
+## as 'a' element
+
+As any other component you can change the html element of component with prop `as`.
+
+<Playground>
+    <Button as="a" color="primary" style={{ margin: 5 }}>With anchor</Button>
 </Playground>
