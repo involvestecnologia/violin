@@ -7,9 +7,12 @@
   "author": "Felipe Campos <felipecamposdev@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "polished": "^3.4.1",
+    "prop-types": "^15.7.2",
     "react": "^16.10.1",
     "react-dom": "^16.10.1",
-    "styled-components": "^4.4.0"
+    "styled-components": "^4.4.0",
+    "styled-tools": "^1.7.1"
   },
   "scripts": {
     "start": "rm -rf ./.docz && docz dev",

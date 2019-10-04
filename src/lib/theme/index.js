@@ -1,2 +1,1 @@
-export { GlobalStyles } from "./GlobalStyles";
-export { involves } from "./involves";
+export { involves as theme } from "./involves";

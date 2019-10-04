@@ -5,12 +5,48 @@ route: /components/button
 ---
 
 import { Button } from '../lib';
-import { Playground } from "docz";
+import { Playground, Props } from "docz";
 
 # Button
 
-Hello, I'm still a mdx file, but now I have a button component!
+<Playground>
+    <Button style={{ margin: 5 }}>Default</Button>
+    <Button color="primary" style={{ margin: 5 }}>Primary</Button>
+    <Button color="accent" style={{ margin: 5 }}>Accent</Button>
+</Playground>
+
+## Props
+
+<Props of={Button} />
+
+## color
 
 <Playground>
-    <Button>Click</Button>
+    <Button color="done" style={{ margin: 5 }}>Done</Button>
+    <Button color="error" style={{ margin: 5 }}>Error</Button>
+    <Button color="alert" style={{ margin: 5 }}>Alert</Button>
+    <Button color="progress" style={{ margin: 5 }}>Progress</Button>
+</Playground>
+
+## outline
+
+<Playground>
+    <Button outline style={{ margin: 5 }}>Outline Default</Button>
+    <Button color="primary" outline style={{ margin: 5 }}>Outline Primary</Button>
+    <Button color="accent" outline style={{ margin: 5 }}>Outline Accent</Button>
+</Playground>
+
+## size
+
+<Playground>
+    <Button color="accent" size="small" style={{ margin: 5 }}>Small</Button>
+    <Button color="accent" style={{ margin: 5 }}>Normal</Button>
+    <Button color="accent" size="large" style={{ margin: 5 }}>Large</Button>
+</Playground>
+
+## block
+
+<Playground>
+    <Button color="primary" style={{ margin: 5 }}>Normal</Button>
+    <Button color="primary" block style={{ margin: 5 }}>Block</Button>
 </Playground>
