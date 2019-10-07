@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { theme as involves } from "../../theme";
 import { theme, switchProp } from "styled-tools";
 
-export const Text = styled.label`
+export const Text = styled.div`
     display: block;
     font-family: ${theme("typography.fontFamily", involves.typography.fontFamily)};
     font-size: ${theme("typography.fontSize.size12", involves.typography.fontSize.size12)};
