@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import { theme as involves } from "../theme";
-import { theme } from "styled-tools";
+import { theme, prop } from "styled-tools";
 
 const GlobalStyle = createGlobalStyle`
     @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,600i,700&display=swap');
@@ -24,7 +24,7 @@ const GlobalStyle = createGlobalStyle`
         font-family: ${theme("typography.fontFamily", involves.typography.fontFamily)};
     }
 
-    ${({ include }) => include && include}
+    ${prop("include")}
 `
 
 export { GlobalStyle };
