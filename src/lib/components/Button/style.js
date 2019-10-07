@@ -35,8 +35,8 @@ export const StyledButton = styled.button`
         large: "60px"
     })};
     font-size: ${switchProp("size", {
-        small: theme("typography.fontSize.size14", involves.typography.fontSize.size14),
-        normal: theme("typography.fontSize.size14", involves.typography.fontSize.size14),
+        small: theme("typography.fontSize.size12", involves.typography.fontSize.size12),
+        normal: theme("typography.fontSize.size12", involves.typography.fontSize.size12),
         large: theme("typography.fontSize.size16", involves.typography.fontSize.size16)
     })};
     display: ${ifProp("block", "flex", "inline-flex")};
