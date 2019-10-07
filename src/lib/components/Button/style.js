@@ -35,9 +35,9 @@ export const StyledButton = styled.button`
         large: "60px"
     })};
     font-size: ${switchProp("size", {
-        small: theme("typography.fontSize.regular", involves.typography.fontSize.regular),
-        normal: theme("typography.fontSize.regular", involves.typography.fontSize.regular),
-        large: theme("typography.fontSize.medium", involves.typography.fontSize.medium)
+        small: theme("typography.fontSize.size14", involves.typography.fontSize.size14),
+        normal: theme("typography.fontSize.size14", involves.typography.fontSize.size14),
+        large: theme("typography.fontSize.size16", involves.typography.fontSize.size16)
     })};
     display: ${ifProp("block", "flex", "inline-flex")};
     width: ${ifProp("block", "100%", "auto")};

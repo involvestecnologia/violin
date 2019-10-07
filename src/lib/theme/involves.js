@@ -5,11 +5,11 @@ const involves = {
     fontFamily: "'Open Sans', sans-serif",
     htmlFontSize: "100%",
     fontSize: {
-      small: rem(12),
-      regular: rem(14),
-      medium: rem(16),
-      large: rem(18),
-      xlarge: rem(24)
+      size12: rem(12),
+      size14: rem(14),
+      size16: rem(16),
+      size18: rem(18),
+      size24: rem(24)
     },
     fontWeight: {
       light: "300",

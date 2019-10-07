@@ -18,7 +18,7 @@ export const StyledInput = styled.input`
     transition: ${theme("common.transition", involves.common.transition)};
     outline: none;
     font-family: ${theme("typography.fontFamily", involves.typography.fontFamily)};
-    font-size: ${theme("typography.fontSize.regular", involves.typography.fontSize.regular)};
+    font-size: ${theme("typography.fontSize.size14", involves.typography.fontSize.size14)};
     color: ${theme("palette.system.dark", involves.palette.system.dark)};
     box-shadow: inset ${ifProp(
         "error",
