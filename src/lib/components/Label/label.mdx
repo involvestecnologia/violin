@@ -1,0 +1,28 @@
+---
+name: Label
+menu: Components
+route: /components/label
+---
+
+import { Label } from './Label';
+import { Input } from "../Input";
+import { Playground, Props } from "docz";
+
+# Label
+
+<Playground>
+    <Label>Input label</Label>
+    <Label description="Obrigatório">Input label required</Label>
+    <Label description="Obrigatório" disabled>Input label disabled</Label>
+</Playground>
+
+## Props
+
+<Props of={Label} />
+
+## Example
+
+<Playground>
+    <Label description="Obrigatório" htmlFor="input">Input label</Label>
+    <Input id="input" />
+</Playground>

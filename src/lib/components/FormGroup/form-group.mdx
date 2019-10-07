@@ -1,0 +1,30 @@
+---
+name: FormGroup
+menu: Components
+route: /components/form-group
+---
+
+import { FormGroup } from "./FormGroup";
+import { TextForm } from "../TextForm";
+import { Label } from '../Label';
+import { Input } from "../Input";
+import { Playground, Props } from "docz";
+
+# FormGroup
+
+<Playground>
+    <FormGroup>
+        <Label description="Obrigatório" htmlFor="user">Usuário</Label>
+        <Input type="password" id="user" />
+        <TextForm>Digite no mínimo 6 caracteres.</TextForm>
+    </FormGroup>
+    <FormGroup noMargin>
+        <Label description="Obrigatório" htmlFor="pass">Senha</Label>
+        <Input type="password" id="pass" />
+        <TextForm>Digite no mínimo 6 caracteres.</TextForm>
+    </FormGroup>
+</Playground>
+
+## Props
+
+<Props of={FormGroup} />

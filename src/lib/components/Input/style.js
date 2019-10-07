@@ -3,6 +3,7 @@ import { theme as involves } from "../../theme";
 import { ifProp, theme } from "styled-tools";
 
 export const StyledInput = styled.input`
+    display: inline-block;
     width: 100%;
     min-height: 40px;
     border: 0;

@@ -36,15 +36,15 @@ const involves = {
     z9: 900, 
   },
   spacing: {
-    space4: 4,
-    space8: 8,
-    space16: 16,
-    space24: 24,
-    space32: 32,
-    space40: 40,
-    space48: 48,
-    space56: 56,
-    space64: 64
+    space4: "4px",
+    space8: "8px",
+    space16: "16px",
+    space24: "24px",
+    space32: "32px",
+    space40: "40px",
+    space48: "48px",
+    space56: "56px",
+    space64: "64px"
   },
   shadow: {
     shadowBorder1: "0 0 0 1px",
