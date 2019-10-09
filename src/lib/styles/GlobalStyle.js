@@ -11,7 +11,7 @@ const GlobalStyle = createGlobalStyle`
     
     body {
         margin: 0;
-        font-family: 'Open Sans', sans-serif
+        font-family: 'Open Sans', sans-serif;
         font-size: ${theme("typography.fontSize.size2", involves.typography.fontSize.size2)};
         line-height: ${theme("typography.lineHeight", involves.typography.lineHeight)};
         color: ${theme("palette.system.dark", involves.palette.system.dark)};
