@@ -40,7 +40,7 @@ export const StyledButton = styled.button`
     })};
     display: ${ifProp("block", "flex", "inline-flex")};
     width: ${ifProp("block", "100%", "auto")};
-    min-width: ${ifProp({ size: "large" }, "288px")};
+    min-width: ${ifProp({ size: "large" }, "240px")};
     background-color: ${ifProp(
         "outline", 
         "transparent",
