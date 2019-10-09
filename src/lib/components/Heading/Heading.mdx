@@ -1,0 +1,30 @@
+---
+name: Heading
+menu: Components
+route: /components/Heading
+---
+
+import { Heading } from './Heading';
+import { Playground, Props } from "docz";
+
+# Heading
+
+<Playground>
+    <Heading>Lorem ipsum dolor</Heading>
+    <Heading title="sub">Lorem ipsum dolor</Heading>
+    <Heading title="section">Lorem ipsum dolor</Heading>
+</Playground>
+
+## Props
+
+<Props of={Heading} />
+
+## Use as another element
+
+By default `Heading` is used with `h2` element, to change use `as` prop:
+
+<Playground>
+    <Heading as="h1">Lorem ipsum dolor</Heading>
+    <Heading as="h3" title="sub">Lorem ipsum dolor</Heading>
+    <Heading as="h4" title="section">Lorem ipsum dolor</Heading>
+</Playground>

@@ -6,5 +6,8 @@ export default {
         "Getting started",
         "Components",
         "Styles"
-    ]
+    ],
+    themeConfig: {
+        fontFamily: "'Open Sans', sans-serif"
+    }
 }

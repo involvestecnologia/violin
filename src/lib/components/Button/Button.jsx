@@ -6,6 +6,7 @@ export const Button = props => <StyledButton {...props} />
 
 Button.propTypes = {
     color: PropTypes.oneOf(["default", "primary", "accent", "done", "error", "alert", "progress"]),
+    /** Apply width 100% */
     block: PropTypes.bool,
     size: PropTypes.oneOf(["small", "normal", "large"]),
     outline: PropTypes.bool

@@ -7,6 +7,6 @@ export const Wrapper = styled.div`
     margin-bottom: ${ifProp(
         "noMargin",
         "0",
-        theme("spacing.space24", involves.spacing.space24)
+        theme("spacing.space4", involves.spacing.space4)
     )};
 `;

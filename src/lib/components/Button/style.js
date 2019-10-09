@@ -21,23 +21,22 @@ export const StyledButton = styled.button`
     align-items: center;
     padding: 0 16px;
     outline: none;
-    font-family: ${theme("typography.fontFamily", involves.typography.fontFamily)};
     font-weight: bold;
     text-align: center;
     text-decoration: none;
     cursor: pointer;
     box-sizing: border-box;
     transition: ${theme("common.transition", involves.common.transition)};
-    border-radius: ${theme("borderRadius.border4", involves.borderRadius.border4)};
+    border-radius: ${theme("borderRadius.border1", involves.borderRadius.border1)};
     height: ${switchProp("size", {
         small: "32px",
         normal: "40px",
         large: "60px"
     })};
     font-size: ${switchProp("size", {
-        small: theme("typography.fontSize.size12", involves.typography.fontSize.size12),
-        normal: theme("typography.fontSize.size12", involves.typography.fontSize.size12),
-        large: theme("typography.fontSize.size16", involves.typography.fontSize.size16)
+        small: theme("typography.fontSize.size1", involves.typography.fontSize.size1),
+        normal: theme("typography.fontSize.size1", involves.typography.fontSize.size1),
+        large: theme("typography.fontSize.size3", involves.typography.fontSize.size3)
     })};
     display: ${ifProp("block", "flex", "inline-flex")};
     width: ${ifProp("block", "100%", "auto")};

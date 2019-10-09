@@ -2,14 +2,13 @@ import { rem, transparentize } from "polished";
 
 const involves = {
   typography: {
-    fontFamily: "'Open Sans', sans-serif",
     htmlFontSize: "100%",
     fontSize: {
-      size12: rem(12),
-      size14: rem(14),
-      size16: rem(16),
-      size18: rem(18),
-      size24: rem(24)
+      size1: rem(12),
+      size2: rem(14),
+      size3: rem(16),
+      size4: rem(18),
+      size5: rem(24)
     },
     fontWeight: {
       light: "300",
@@ -36,15 +35,15 @@ const involves = {
     z9: 900, 
   },
   spacing: {
-    space4: "4px",
-    space8: "8px",
-    space16: "16px",
-    space24: "24px",
-    space32: "32px",
-    space40: "40px",
-    space48: "48px",
-    space56: "56px",
-    space64: "64px"
+    space1: "4px",
+    space2: "8px",
+    space3: "16px",
+    space4: "24px",
+    space5: "32px",
+    space6: "40px",
+    space7: "48px",
+    space8: "56px",
+    space9: "64px"
   },
   shadow: {
     shadowBorder1: "0 0 0 1px",
@@ -58,11 +57,11 @@ const involves = {
     shadow24: "0 10px 24px"
   },
   borderRadius: {
-    border4: "4px",
-    border8: "8px",
-    border12: "12px",
-    border20: "20px",
-    border24: "24px"
+    border1: "4px",
+    border2: "8px",
+    border3: "12px",
+    border4: "20px",
+    border5: "24px"
   },
   common: {
     transition: "all 0.2s ease"

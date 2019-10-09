@@ -10,6 +10,7 @@ export const Label = ({ children, description, ...props }) => (
 );
 
 Label.propTypes = {
+    /** Additional text label */
     description: PropTypes.string,
     disabled: PropTypes.bool
 };

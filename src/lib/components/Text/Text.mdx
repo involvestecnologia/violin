@@ -1,0 +1,44 @@
+---
+name: Text
+menu: Components
+route: /components/Text
+---
+
+import { Text } from './Text';
+import { Playground, Props } from "docz";
+
+# Text
+
+<Playground>
+    <Text size="small" margin>Lorem ipsum dolor</Text>
+    <Text margin>Lorem ipsum dolor</Text>
+    <Text size="lead" margin>Lorem ipsum dolor</Text>
+
+    <Text margin bold>Lorem ipsum dolor</Text>
+    <Text margin italic>Lorem ipsum dolor</Text>
+</Playground>
+
+## Props
+
+<Props of={Text} />
+
+## color
+
+<Playground>
+    <Text color="white" margin>Lorem ipsum dolor</Text>
+    <Text color="default" margin>Lorem ipsum dolor</Text>
+    <Text color="primary" margin>Lorem ipsum dolor</Text>
+    <Text color="accent" margin>Lorem ipsum dolor</Text>
+    <Text color="error" margin>Lorem ipsum dolor</Text>
+    <Text color="alert" margin>Lorem ipsum dolor</Text>
+    <Text color="done" margin>Lorem ipsum dolor</Text>
+    <Text color="progress">Lorem ipsum dolor</Text>
+</Playground>
+
+## Use with another element
+
+By default `Text` is used with `p` element, to change use `as` prop:
+
+<Playground>
+    <Text as="span">Lorem ipsum dolor</Text>
+</Playground>

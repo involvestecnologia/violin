@@ -4,8 +4,7 @@ import { theme, ifProp } from "styled-tools";
 
 export const StyledLabel = styled.label`
     display: block;
-    font-family: ${theme("typography.fontFamily", involves.typography.fontFamily)};
-    font-size: ${theme("typography.fontSize.size14", involves.typography.fontSize.size14)};
+    font-size: ${theme("typography.fontSize.size2", involves.typography.fontSize.size2)};
     font-weight: ${theme("typography.fontWeight.semiBold", involves.typography.fontWeight.semiBold)};
     color: ${ifProp(
         "disabled",
@@ -15,7 +14,7 @@ export const StyledLabel = styled.label`
 `;
 
 export const Description = styled.small`
-    font-size: ${theme("typography.fontSize.size12", involves.typography.fontSize.size12)};
+    font-size: ${theme("typography.fontSize.size1", involves.typography.fontSize.size1)};
     font-style: italic;
     color: ${theme("palette.default.regular", involves.palette.default.regular)};
     margin-left: 4px;

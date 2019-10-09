@@ -13,12 +13,11 @@ export const StyledInput = styled.input`
         theme("palette.error.white", involves.palette.error.white),
         theme("palette.default.white", involves.palette.default.white)
     )};
-    border-radius: ${theme("borderRadius.border4", involves.borderRadius.border4)};
+    border-radius: ${theme("borderRadius.border1", involves.borderRadius.border1)};
     padding: 0 16px;
     transition: ${theme("common.transition", involves.common.transition)};
     outline: none;
-    font-family: ${theme("typography.fontFamily", involves.typography.fontFamily)};
-    font-size: ${theme("typography.fontSize.size14", involves.typography.fontSize.size14)};
+    font-size: ${theme("typography.fontSize.size2", involves.typography.fontSize.size2)};
     color: ${theme("palette.system.dark", involves.palette.system.dark)};
     box-shadow: inset ${ifProp(
         "error",

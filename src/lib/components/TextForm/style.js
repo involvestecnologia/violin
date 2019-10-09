@@ -4,8 +4,7 @@ import { theme, switchProp } from "styled-tools";
 
 export const Text = styled.div`
     display: block;
-    font-family: ${theme("typography.fontFamily", involves.typography.fontFamily)};
-    font-size: ${theme("typography.fontSize.size12", involves.typography.fontSize.size12)};
+    font-size: ${theme("typography.fontSize.size1", involves.typography.fontSize.size1)};
     color: ${switchProp("validate", {
         regular: theme("palette.default.dark", involves.palette.default.dark),
         alert: theme("palette.alert.regular", involves.palette.alert.regular),
