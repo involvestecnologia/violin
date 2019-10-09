@@ -8,13 +8,13 @@ export const Heading = props => (
 
 Heading.propTypes = {
     /** Defines kind heading */
-    title: PropTypes.oneOf(["title", "sub", "section"]),
+    type: PropTypes.oneOf(["title", "sub", "section"]),
     /** Removes all margins */
     noMargin: PropTypes.bool
 };
 
 Heading.defaultProps = {
-    title: "title",
+    type: "title",
     noMargin: false
 };
 
