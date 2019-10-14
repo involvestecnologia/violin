@@ -19,6 +19,8 @@ const shadowPalette = defaultPalette("shadow");
 export const StyledButton = styled.button`
     justify-content: center;
     align-items: center;
+    flex-wrap: nowrap;
+    white-space: nowrap;
     padding: 0 16px;
     outline: none;
     font-weight: bold;
