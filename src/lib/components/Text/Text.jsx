@@ -14,7 +14,7 @@ Text.propTypes = {
     /** Apply margin bottom */
     margin: PropTypes.bool,
     /** Avoid text to break  */
-    nowrap: PropTypes.oneOf
+    nowrap: PropTypes.bool
 };
 
 Text.defaultProps = {
