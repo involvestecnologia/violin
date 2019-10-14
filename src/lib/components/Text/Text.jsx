@@ -12,7 +12,9 @@ Text.propTypes = {
     bold: PropTypes.bool,
     italic: PropTypes.bool,
     /** Apply margin bottom */
-    margin: PropTypes.bool
+    margin: PropTypes.bool,
+    /** Avoid text to break  */
+    nowrap: PropTypes.oneOf
 };
 
 Text.defaultProps = {
@@ -20,6 +22,7 @@ Text.defaultProps = {
     color: null,
     bold: false,
     italic: false,
-    margin: false
+    margin: false,
+    nowrap: false
 };
 

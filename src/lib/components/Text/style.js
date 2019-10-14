@@ -33,7 +33,8 @@ export const StyledText = styled.p`
             done: theme("palette.done.regular", involves.palette.done.regular),
             progress: theme("palette.progress.regular", involves.palette.progress.regular)
         })
-    )}
+    )};
+    white-space: ${ifProp("nowrap", "nowrap")};
 `;
 
 
