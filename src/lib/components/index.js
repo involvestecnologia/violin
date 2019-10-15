@@ -7,3 +7,4 @@ export { ButtonLink } from "./ButtonLink";
 export { Text } from "./Text";
 export { Heading } from "./Heading";
 export { Icon } from "./Icon";
+export { Select } from "./Select";
