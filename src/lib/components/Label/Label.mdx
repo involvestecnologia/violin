@@ -12,8 +12,8 @@ import { Playground, Props } from "docz";
 
 <Playground>
     <Label>Input label</Label>
-    <Label description="Obrigatório">Input label required</Label>
-    <Label description="Obrigatório" disabled>Input label disabled</Label>
+    <Label hasDescription="Obrigatório">Input label required</Label>
+    <Label hasDescription="Obrigatório" disabled>Input label disabled</Label>
 </Playground>
 
 ## Props
@@ -23,6 +23,6 @@ import { Playground, Props } from "docz";
 ## Example
 
 <Playground>
-    <Label description="Obrigatório" htmlFor="input">Input label</Label>
+    <Label hasDescription="Obrigatório" htmlFor="input">Input label</Label>
     <Input id="input" />
 </Playground>

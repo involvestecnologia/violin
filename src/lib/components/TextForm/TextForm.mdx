@@ -13,9 +13,9 @@ import { Playground, Props } from "docz";
 
 <Playground>
     <TextForm>Digite uma senha segura.</TextForm>
-    <TextForm validate="alert">Senha segura.</TextForm>
-    <TextForm validate="success">Senha segura.</TextForm>
-    <TextForm validate="error">Cara, nunca vi uma senha menos segura.</TextForm>
+    <TextForm hasValidate="alert">Senha segura.</TextForm>
+    <TextForm hasValidate="success">Senha segura.</TextForm>
+    <TextForm hasValidate="error">Cara, nunca vi uma senha menos segura.</TextForm>
 </Playground>
 
 ## Props
@@ -25,7 +25,7 @@ import { Playground, Props } from "docz";
 ## Example
 
 <Playground>
-    <Label description="Obrigatório" htmlFor="input">Senha</Label>
-    <Input type="password" id="input" error />
-    <TextForm validate="error">Digite uma senha segura.</TextForm>
+    <Label hasDescription="Obrigatório" htmlFor="input">Senha</Label>
+    <Input type="password" id="input" isError />
+    <TextForm hasValidate="error">Digite uma senha segura.</TextForm>
 </Playground>

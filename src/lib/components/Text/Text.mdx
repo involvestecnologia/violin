@@ -10,12 +10,12 @@ import { Playground, Props } from "docz";
 # Text
 
 <Playground>
-    <Text size="small" margin>Lorem ipsum dolor</Text>
-    <Text margin>Lorem ipsum dolor</Text>
-    <Text size="lead" margin>Lorem ipsum dolor</Text>
+    <Text hasSize="small" isMargin>Lorem ipsum dolor</Text>
+    <Text isMargin>Lorem ipsum dolor</Text>
+    <Text hasSize="lead" isMargin>Lorem ipsum dolor</Text>
 
-    <Text margin bold>Lorem ipsum dolor</Text>
-    <Text margin italic>Lorem ipsum dolor</Text>
+    <Text isMargin isBold>Lorem ipsum dolor</Text>
+    <Text isMargin isItalic>Lorem ipsum dolor</Text>
 </Playground>
 
 ## Props
@@ -25,14 +25,14 @@ import { Playground, Props } from "docz";
 ## color
 
 <Playground>
-    <Text color="white" margin>Lorem ipsum dolor</Text>
-    <Text color="default" margin>Lorem ipsum dolor</Text>
-    <Text color="primary" margin>Lorem ipsum dolor</Text>
-    <Text color="accent" margin>Lorem ipsum dolor</Text>
-    <Text color="error" margin>Lorem ipsum dolor</Text>
-    <Text color="alert" margin>Lorem ipsum dolor</Text>
-    <Text color="done" margin>Lorem ipsum dolor</Text>
-    <Text color="progress">Lorem ipsum dolor</Text>
+    <Text hasColor="white" isMargin style={{ background: "gray" }}>Lorem ipsum dolor</Text>
+    <Text hasColor="default" isMargin>Lorem ipsum dolor</Text>
+    <Text hasColor="primary" isMargin>Lorem ipsum dolor</Text>
+    <Text hasColor="accent" isMargin>Lorem ipsum dolor</Text>
+    <Text hasColor="error" isMargin>Lorem ipsum dolor</Text>
+    <Text hasColor="alert" isMargin>Lorem ipsum dolor</Text>
+    <Text hasColor="done" isMargin>Lorem ipsum dolor</Text>
+    <Text hasColor="progress">Lorem ipsum dolor</Text>
 </Playground>
 
 ## Use with another element

@@ -7,22 +7,22 @@ export const Text = props => (
 );
 
 Text.propTypes = {
-    size: PropTypes.oneOf(["small", "body", "lead"]),
-    color: PropTypes.oneOf(["white", "default", "primary", "accent", "error", "alert", "done", "progress"]),
-    bold: PropTypes.bool,
-    italic: PropTypes.bool,
+    hasSize: PropTypes.oneOf(["small", "body", "lead"]),
+    hasColor: PropTypes.oneOf(["white", "default", "primary", "accent", "error", "alert", "done", "progress"]),
+    isBold: PropTypes.bool,
+    isItalic: PropTypes.bool,
     /** Apply margin bottom */
-    margin: PropTypes.bool,
+    isMargin: PropTypes.bool,
     /** Avoid text to break  */
-    nowrap: PropTypes.bool
+    isNowrap: PropTypes.bool
 };
 
 Text.defaultProps = {
-    size: "body",
-    color: null,
-    bold: false,
-    italic: false,
-    margin: false,
-    nowrap: false
+    hasSize: "body",
+    hasColor: null,
+    isBold: false,
+    isItalic: false,
+    isMargin: false,
+    isNowrap: false
 };
 

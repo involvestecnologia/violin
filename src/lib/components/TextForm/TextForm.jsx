@@ -5,10 +5,10 @@ import { Text } from "./style";
 export const TextForm = props => <Text {...props} />;
 
 TextForm.propTypes = {
-    validate: PropTypes.oneOf(["regular", "alert", "success", "error"])
+    hasValidate: PropTypes.oneOf(["regular", "alert", "success", "error"])
 };
 
 TextForm.defaultProps = {
-    validate: "regular"
+    hasValidate: "regular"
 };
 

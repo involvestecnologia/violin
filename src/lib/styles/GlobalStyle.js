@@ -4,6 +4,7 @@ import { theme } from "styled-tools";
 
 const GlobalStyle = createGlobalStyle`
     @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,600i,700&display=swap');
+    @import url('https://fonts.googleapis.com/icon?family=Material+Icons+Round');
 
     html {
         font-size: ${theme("typography.htmlFontSize", involves.typography.htmlFontSize)};

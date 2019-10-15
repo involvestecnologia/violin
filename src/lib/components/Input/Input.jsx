@@ -1,13 +1,24 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { StyledInput } from "./style";
+import { StyledInput, Wrapper, StyledIcon } from "./style";
 
-export const Input = props => <StyledInput {...props} />
+export const Input = ({ className, style, hasIcon, isError, onClickIcon, ...props }) => {
+    return (
+        <Wrapper className={className} style={style}>
+            <StyledInput isError={isError} {...props} />
+            {hasIcon && <StyledIcon hasIcon={hasIcon} isError={isError} onClick={onClickIcon} />}
+        </Wrapper>
+    )
+}
 
 Input.propTypes = {
-    error: PropTypes.bool
+    isError: PropTypes.bool,
+    hasIcon: PropTypes.string,
+    onClickIcon: PropTypes.func
 };
 
 Input.defaultProps = {
-    error: false
+    isError: false,
+    hasIcon: null,
+    onClickIcon: null
 };
