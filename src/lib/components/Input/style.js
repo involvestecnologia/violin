@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ifProp, ifNotProp, theme } from "styled-tools";
+import { ifProp, ifNotProp, theme, switchProp } from "styled-tools";
 import { rem } from "polished";
 import { theme as involves } from "../../theme";
 import { Icon } from "../Icon";
@@ -18,7 +18,11 @@ export const StyledIcon = styled(Icon)`
     display: flex;
     align-items: center;
     padding: 0 10px;
-    font-size: ${rem(24)};
+    font-size: ${ifProp(
+        "isLarge",
+        rem(32),
+        rem(24)
+    )};
     color: ${ifProp(
         "isError",
         theme("palette.error.regular", involves.palette.error.regular),
@@ -31,7 +35,11 @@ export const StyledIcon = styled(Icon)`
 export const StyledInput = styled.input`
     display: block;
     width: 100%;
-    min-height: 40px;
+    min-height: ${switchProp("hasSize", {
+        small: "32px",
+        normal: "40px",
+        large: "60px"
+    }, "40px")};
     border: 0;
     box-sizing: border-box;
     background-color: ${ifProp(
@@ -43,7 +51,11 @@ export const StyledInput = styled.input`
     padding: 0 16px;
     transition: ${theme("common.transition", involves.common.transition)};
     outline: none;
-    font-size: ${theme("typography.fontSize.size2", involves.typography.fontSize.size2)};
+    font-size: ${ifProp(
+        { hasSize: "large" },
+        theme("typography.fontSize.size3", involves.typography.fontSize.size3),
+        theme("typography.fontSize.size2", involves.typography.fontSize.size2),
+    )};
     color: ${theme("palette.system.dark", involves.palette.system.dark)};
     box-shadow: inset ${ifProp(
         "isError",

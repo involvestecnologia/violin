@@ -2,11 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import { StyledInput, Wrapper, StyledIcon } from "./style";
 
-export const Input = ({ className, style, hasIcon, isError, onClickIcon, ...props }) => {
+export const Input = ({ className, style, hasSize, hasIcon, isError, onClickIcon, ...props }) => {
     return (
         <Wrapper className={className} style={style}>
-            <StyledInput isError={isError} {...props} />
-            {hasIcon && <StyledIcon hasIcon={hasIcon} isError={isError} onClick={onClickIcon} />}
+            <StyledInput isError={isError} hasSize={hasSize} {...props} />
+            {hasIcon && <StyledIcon hasIcon={hasIcon} isLarge={hasSize === "large"} isError={isError} onClick={onClickIcon} />}
         </Wrapper>
     )
 }
@@ -14,11 +14,13 @@ export const Input = ({ className, style, hasIcon, isError, onClickIcon, ...prop
 Input.propTypes = {
     isError: PropTypes.bool,
     hasIcon: PropTypes.string,
+    hasSize: PropTypes.oneOf(["small", "normal", "large"]),
     onClickIcon: PropTypes.func
 };
 
 Input.defaultProps = {
     isError: false,
     hasIcon: null,
+    hasSize: "normal",
     onClickIcon: null
 };

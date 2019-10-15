@@ -21,7 +21,7 @@ export const WrapperIcon = styled.i`
         prop => rem(prop.hasSize),
         "inherit"
     )};
-    cursor: ${ifProp("onClick", "pointer", "default")};
+    cursor: ${ifProp("onClick", "pointer")};
     color: ${switchProp("hasColor", switchPalette())};
     transition: ${theme("common.transition")};
     

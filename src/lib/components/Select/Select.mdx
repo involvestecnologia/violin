@@ -1,0 +1,25 @@
+---
+name: Select
+menu: Components
+route: /components/Select
+---
+
+import { Select } from './Select';
+import { Playground, Props } from "docz";
+
+# Select
+
+<Playground>
+    <Select 
+        value={2}
+        options={[
+            { label: "Item 1", value: 1 },
+            { label: "Item 2", value: 2 },
+            { label: "Item 3", value: 3 }
+        ]}
+    />
+</Playground>
+
+## Props
+
+<Props of={Select} />
