@@ -5,7 +5,7 @@ import { StyledSelect, Wrapper, StyledIcon } from "./style";
 export const Select = ({ options, defaultValue, className, style, isError, ...props }) => {
     return (
         <Wrapper className={className} style={style}>
-            <StyledSelect defaultValue={defaultValue} hasIcon="arrow_drop_down" isError={isError} {...props}>
+            <StyledSelect defaultValue={defaultValue} key={defaultValue} hasIcon="arrow_drop_down" isError={isError} {...props}>
                 {options.map(item => (
                     <option key={item.value} value={item.value}>{item.label}</option>
                 ))} 
