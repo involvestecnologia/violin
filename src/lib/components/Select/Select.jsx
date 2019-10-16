@@ -17,11 +17,11 @@ export const Select = ({ options, defaultValue, className, style, isError, ...pr
 
 Select.propTypes = {
     options: PropTypes.array.isRequired,
-    value: PropTypes.any,
+    defaultValue: PropTypes.any,
     hasSize: PropTypes.oneOf(["small", "normal", "large"])
 };
 
 Select.defaultProps = {
-    value: "",
+    defaultValue: "",
     hasSize: "normal"
 };
