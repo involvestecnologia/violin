@@ -11,24 +11,14 @@ import { Playground, Props } from "docz";
 # Select
 
 <Playground>
-    {() => {
-        const [value, setValue] = useState("Item 3");
-        console.log(value);
-        return (
-            <>
-            <Select 
-                defaultValue={value}
-                options={[
-                    { label: "---", value: 0 },
-                    { label: "Item 1", value: "Item 1" },
-                    { label: "Item 2", value: "Item 2" },
-                    { label: "Item 3", value: "Item 3" }
-                ]}
-            />
-            <button onClick={() => setValue("Item 2")}>change</button>
-            </>
-        )
-    }}
+    <Select 
+        options={[
+            { label: "---", value: 0 },
+            { label: "Item 1", value: "Item 1" },
+            { label: "Item 2", value: "Item 2" },
+            { label: "Item 3", value: "Item 3" }
+        ]}
+    />
     
 </Playground>
 
