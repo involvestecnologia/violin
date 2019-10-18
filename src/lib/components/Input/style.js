@@ -24,7 +24,7 @@ export const StyledIcon = styled(Icon)`
         rem(24)
     )};
     color: ${ifProp(
-        "isError",
+        "error",
         theme("palette.error.regular", involves.palette.error.regular),
         theme("palette.default.dark", involves.palette.default.regular)
     )};
@@ -35,7 +35,7 @@ export const StyledIcon = styled(Icon)`
 export const StyledInput = styled.input`
     display: block;
     width: 100%;
-    min-height: ${switchProp("hasSize", {
+    min-height: ${switchProp("size", {
         small: "32px",
         normal: "40px",
         large: "60px"
@@ -43,7 +43,7 @@ export const StyledInput = styled.input`
     border: 0;
     box-sizing: border-box;
     background-color: ${ifProp(
-        "isError",
+        "error",
         theme("palette.error.white", involves.palette.error.white),
         theme("palette.default.white", involves.palette.default.white)
     )};
@@ -52,16 +52,16 @@ export const StyledInput = styled.input`
     transition: ${theme("common.transition", involves.common.transition)};
     outline: none;
     font-size: ${ifProp(
-        { hasSize: "large" },
+        { size: "large" },
         theme("typography.fontSize.size3", involves.typography.fontSize.size3),
         theme("typography.fontSize.size2", involves.typography.fontSize.size2),
     )};
     color: ${theme("palette.system.dark", involves.palette.system.dark)};
     box-shadow: inset ${ifProp(
-        "isError",
+        "error",
         theme("shadow.shadowBorder2", involves.shadow.shadowBorder2)
     )} ${ifProp(
-        "isError",
+        "error",
         theme("palette.error.regular", involves.palette.error.regular)
     )};
 
@@ -71,18 +71,18 @@ export const StyledInput = styled.input`
     
     &:focus {
         box-shadow: inset ${theme("shadow.shadowBorder2", involves.shadow.shadowBorder2)} ${ifProp(
-            "isError",
+            "error",
             theme("palette.error.regular", involves.palette.error.regular),
             theme("palette.primary.regular", involves.palette.primary.regular)
         )};
         background-color: ${ifProp(
-            "isError",
+            "error",
             theme("palette.error.white", involves.palette.error.white),
             theme("palette.system.white", involves.palette.system.white)
         )};
         ~ ${StyledIcon} {
             color: ${ifProp(
-                "isError",
+                "error",
                 theme("palette.error.regular", involves.palette.error.regular),
                 theme("palette.primary.regular", involves.palette.primary.regular)
             )};

@@ -2,21 +2,21 @@ import React from 'react';
 import PropTypes from "prop-types";
 import { WrapperIcon } from "./style";
 
-export const Icon = ({ hasIcon, ...props }) => {
+export const Icon = ({ icon, color, size, ...props }) => {
     return (
-        <WrapperIcon {...props}>{hasIcon}</WrapperIcon>
+        <WrapperIcon hasColor={color} hasSize={size} {...props}>{icon}</WrapperIcon>
     );
 }
 
 Icon.propTypes = {
     /** Icon name from [Material Icons](https://material.io/resources/icons/?style=round) library */
-    hasIcon: PropTypes.string.isRequired,
-    hasColor: PropTypes.oneOf(["default", "primary", "accent", "done", "error", "alert", "progress"]),
+    icon: PropTypes.string.isRequired,
+    color: PropTypes.oneOf(["default", "primary", "accent", "done", "error", "alert", "progress"]),
     /** Choose a size based in font-size */
-    hasSize: PropTypes.number
+    size: PropTypes.number
 };
 
 Icon.defaultProps = {
-    hasColor: null,
-    hasSize: null
+    color: null,
+    size: null
 };

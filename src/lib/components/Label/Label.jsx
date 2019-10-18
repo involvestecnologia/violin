@@ -2,21 +2,21 @@ import React from "react";
 import PropTypes from "prop-types";
 import { StyledLabel, Description } from "./style";
 
-export const Label = ({ children, hasDescription, ...props }) => (
+export const Label = ({ children, description, ...props }) => (
     <StyledLabel {...props}>
         {children} 
-        {hasDescription && <Description> - {hasDescription}</Description>}
+        {description && <Description> - {description}</Description>}
     </StyledLabel>
 );
 
 Label.propTypes = {
     /** Additional text label */
-    hasDescription: PropTypes.string,
+    description: PropTypes.string,
     disabled: PropTypes.bool
 };
 
 Label.defaultProps = {
-    hasDescription: null,
+    description: null,
     disabled: false
 };
 

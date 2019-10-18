@@ -11,9 +11,9 @@ import { Playground, Props } from "docz";
 
 <Playground>
     <Button style={{ margin: 5 }}>Default</Button>
-    <Button hasColor="primary" style={{ margin: 5 }}>Primary</Button>
-    <Button hasColor="accent" style={{ margin: 5 }}>Accent</Button>
-    <Button hasColor="primary" disabled style={{ margin: 5 }}>Disabled</Button>
+    <Button color="primary" style={{ margin: 5 }}>Primary</Button>
+    <Button color="accent" style={{ margin: 5 }}>Accent</Button>
+    <Button color="primary" disabled style={{ margin: 5 }}>Disabled</Button>
 </Playground>
 
 ## Props
@@ -23,46 +23,46 @@ import { Playground, Props } from "docz";
 ## color
 
 <Playground>
-    <Button hasColor="done" style={{ margin: 5 }}>Done</Button>
-    <Button hasColor="error" style={{ margin: 5 }}>Error</Button>
-    <Button hasColor="alert" style={{ margin: 5 }}>Alert</Button>
-    <Button hasColor="progress" style={{ margin: 5 }}>Progress</Button>
+    <Button color="done" style={{ margin: 5 }}>Done</Button>
+    <Button color="error" style={{ margin: 5 }}>Error</Button>
+    <Button color="alert" style={{ margin: 5 }}>Alert</Button>
+    <Button color="progress" style={{ margin: 5 }}>Progress</Button>
 </Playground>
 
 ## outline
 
 <Playground>
-    <Button isOutline style={{ margin: 5 }}>Outline Default</Button>
-    <Button hasColor="primary" isOutline style={{ margin: 5 }}>Outline Primary</Button>
-    <Button hasColor="accent" isOutline style={{ margin: 5 }}>Outline Accent</Button>
+    <Button outline style={{ margin: 5 }}>Outline Default</Button>
+    <Button color="primary" outline style={{ margin: 5 }}>Outline Primary</Button>
+    <Button color="accent" outline style={{ margin: 5 }}>Outline Accent</Button>
 </Playground>
 
 ## size
 
 <Playground>
-    <Button hasColor="accent" hasSize="small" style={{ margin: 5 }}>Small</Button>
-    <Button hasColor="accent" style={{ margin: 5 }}>Normal</Button>
-    <Button hasColor="accent" hasSize="large" style={{ margin: 5 }}>Large</Button>
+    <Button color="accent" size="small" style={{ margin: 5 }}>Small</Button>
+    <Button color="accent" style={{ margin: 5 }}>Normal</Button>
+    <Button color="accent" size="large" style={{ margin: 5 }}>Large</Button>
     <br />
-    <Button hasColor="primary" isOutline hasSize="small" style={{ margin: 5 }}>Small</Button>
-    <Button hasColor="primary" isOutline style={{ margin: 5 }}>Normal</Button>
-    <Button hasColor="primary" isOutline hasSize="large" style={{ margin: 5 }}>Large</Button>
+    <Button color="primary" outline size="small" style={{ margin: 5 }}>Small</Button>
+    <Button color="primary" outline style={{ margin: 5 }}>Normal</Button>
+    <Button color="primary" outline size="large" style={{ margin: 5 }}>Large</Button>
 </Playground>
 
 ## block
 
 <Playground>
-    <Button hasColor="primary" style={{ margin: 5 }}>Normal</Button>
-    <Button hasColor="primary" block style={{ margin: 5 }}>Block</Button>
+    <Button color="primary" style={{ margin: 5 }}>Normal</Button>
+    <Button color="primary" block style={{ margin: 5 }}>Block</Button>
 </Playground>
 
 ## icon
 
 <Playground>
-    <Button hasIcon="edit" hasSize="small" style={{ margin: 5 }}>Small</Button>
-    <Button hasColor="primary" hasIcon="edit" isOutline style={{ margin: 5 }}>Normal</Button>
-    <Button hasColor="accent" hasIcon="edit" hasSize="large" style={{ margin: 5 }}>Large</Button>
-    <Button hasColor="accent" hasIcon="edit" hasSize="large" style={{ margin: 5 }} disabled>Disabled</Button>
+    <Button icon="edit" size="small" style={{ margin: 5 }}>Small</Button>
+    <Button color="primary" icon="edit" outline style={{ margin: 5 }}>Normal</Button>
+    <Button color="accent" icon="edit" size="large" style={{ margin: 5 }}>Large</Button>
+    <Button color="accent" icon="edit" size="large" style={{ margin: 5 }} disabled>Disabled</Button>
 </Playground>
 
 ## as 'a' element
@@ -70,5 +70,5 @@ import { Playground, Props } from "docz";
 As any other component you can change the html element of component with prop `as`.
 
 <Playground>
-    <Button as="a" hasColor="primary" style={{ margin: 5 }}>With anchor</Button>
+    <Button as="a" color="primary" style={{ margin: 5 }}>With anchor</Button>
 </Playground>

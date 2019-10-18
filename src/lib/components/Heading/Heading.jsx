@@ -2,19 +2,19 @@ import React from "react";
 import PropTypes from "prop-types";
 import { StyledHeading } from "./style";
 
-export const Heading = props => (
-    <StyledHeading {...props} />
+export const Heading = ({type, ...props}) => (
+    <StyledHeading hasType={type} {...props} />
 );
 
 Heading.propTypes = {
     /** Defines kind heading */
-    hasType: PropTypes.oneOf(["title", "sub", "section"]),
+    type: PropTypes.oneOf(["title", "sub", "section"]),
     /** Removes all margins */
     noMargin: PropTypes.bool
 };
 
 Heading.defaultProps = {
-    hasType: "title",
+    type: "title",
     noMargin: false
 };
 

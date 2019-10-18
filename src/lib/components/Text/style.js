@@ -6,20 +6,20 @@ import switchPalette from "../../utils/switchPalette";
 export const StyledText = styled.p`
     margin: 0;
     margin-bottom: ${ifProp(
-        "isMargin",
+        "margin",
         theme("spacing.space3", involves.spacing.space3)
     )};
-    font-size: ${switchProp("hasSize", {
+    font-size: ${switchProp("size", {
         small: theme("typography.fontSize.size1", involves.typography.fontSize.size1),
         body: theme("typography.fontSize.size2", involves.typography.fontSize.size2),
         lead: theme("typography.fontSize.size3", involves.typography.fontSize.size3)
     })};
     font-weight: ${ifProp(
-        "isBold",
+        "bold",
         theme("typography.fontWeight.bold", involves.typography.fontWeight.bold)
     )};
     font-style: ${ifProp(
-        "isItalic",
+        "italic",
         "italic"
     )};
     color: ${ifProp(

@@ -11,7 +11,7 @@ import { Playground, Props } from "docz";
 
 <Playground>
     <Input placeholder="Input placeholder" style={{ margin: 5 }} />
-    <Input placeholder="Input placeholder" isError style={{ margin: 5 }} />
+    <Input placeholder="Input placeholder" error style={{ margin: 5 }} />
     <Input placeholder="Input placeholder" disabled style={{ margin: 5 }} />
 </Playground>
 
@@ -19,17 +19,17 @@ import { Playground, Props } from "docz";
 
 <Props of={Input} />
 
-## hasIcon
+## icon
 
 <Playground>
-    <Input placeholder="Input with icon" hasIcon="search" style={{ margin: 5 }} />
-    <Input placeholder="Input with action icon" hasIcon="favorite" onClickIcon={() => alert("Icon clicked!")} style={{ margin: 5 }} />
+    <Input placeholder="Input with icon" icon="search" style={{ margin: 5 }} />
+    <Input placeholder="Input with action icon" icon="favorite" onClickIcon={() => alert("Icon clicked!")} style={{ margin: 5 }} />
 </Playground>
 
-## hasSize
+## size
 
 <Playground>
-    <Input placeholder="Input size" hasSize="small" hasIcon="favorite" style={{ margin: 5 }} />
-    <Input placeholder="Input normal" hasIcon="favorite" style={{ margin: 5 }} />
-    <Input placeholder="Input large" hasSize="large" hasIcon="favorite" style={{ margin: 5 }} />
+    <Input placeholder="Input size" size="small" icon="favorite" style={{ margin: 5 }} />
+    <Input placeholder="Input normal" icon="favorite" style={{ margin: 5 }} />
+    <Input placeholder="Input large" size="large" icon="favorite" style={{ margin: 5 }} />
 </Playground>
