@@ -1,5 +1,6 @@
 import React from 'react';
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle, ThemeProvider } from 'styled-components';
+import { createTheme } from "lib/theme";
 
 const GlobalStyleDocz = createGlobalStyle`
     @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,600i,700&display=swap');
@@ -10,9 +11,17 @@ const GlobalStyleDocz = createGlobalStyle`
     }
 `;
 
+const customTheme = createTheme({
+    // palette: {
+    //     primary: {
+    //         regular: "green"
+    //     }
+    // }
+});
+
 export default ({ children }) => (
-    <>
+    <ThemeProvider theme={customTheme}>
         <GlobalStyleDocz />
         {children}
-    </>
+    </ThemeProvider>
 )
