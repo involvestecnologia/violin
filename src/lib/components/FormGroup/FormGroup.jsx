@@ -5,10 +5,10 @@ import { Wrapper } from "./style";
 export const FormGroup = props => <Wrapper {...props} />;
 
 FormGroup.propTypes = {
-    noMargin: PropTypes.bool
+  noMargin: PropTypes.bool
 };
 
 FormGroup.defaultProps = {
-    noMargin: false
+  noMargin: false
 };
 
