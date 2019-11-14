@@ -19,7 +19,7 @@
     "build": "./node_modules/.bin/webpack --mode=production",
     "build:docs": "docz build",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watchAll"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",
