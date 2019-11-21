@@ -18,7 +18,7 @@
     "start": "rm -rf ./.docz && docz dev",
     "build": "webpack --mode=production",
     "build:docs": "docz build",
-    "lint": "eslint './src/**/*.jsx'",
+    "lint": "eslint './src/**/*.jsx' './src/**/*.js'",
     "lint:css": "stylelint './src/**/*.js'",
     "test": "jest",
     "test:watch": "jest --watchAll"
