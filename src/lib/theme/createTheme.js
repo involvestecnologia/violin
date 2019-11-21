@@ -9,4 +9,7 @@ const merge = (target, source) => {
   return target
 };
 
-export const createTheme = (theme) => merge(involves, theme);
+// eslint-disable-next-line arrow-body-style
+export const createTheme = (theme) => {
+  return merge(involves, theme);
+};
