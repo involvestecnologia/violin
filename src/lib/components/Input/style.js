@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import { ifProp, ifNotProp, theme, switchProp } from 'styled-tools';
+import { ifProp, ifNotProp, switchProp } from 'styled-tools';
 import { rem } from 'polished';
-import { theme as involves } from '../../theme';
 import { Icon } from '../Icon';
+import getFromTheme from '../../utils/getFromTheme';
 
 export const Wrapper = styled.div`
   position: relative;
@@ -25,11 +25,11 @@ export const StyledIcon = styled(Icon)`
   )};
   color: ${ifProp(
     'error',
-    theme('palette.error.regular', involves.palette.error.regular),
-    theme('palette.default.dark', involves.palette.default.regular)
+    getFromTheme('palette.error.regular'),
+    getFromTheme('palette.default.dark')
   )};
   pointer-events: ${ifNotProp('onClick', 'none', 'auto')};
-  transition: ${theme('common.transition', involves.common.transition)};
+  transition: ${getFromTheme('common.transition')};
 `;
 
 export const StyledInput = styled.input`
@@ -44,58 +44,58 @@ export const StyledInput = styled.input`
   box-sizing: border-box;
   background-color: ${ifProp(
     'error',
-    theme('palette.error.white', involves.palette.error.white),
-    theme('palette.default.white', involves.palette.default.white)
+    getFromTheme('palette.error.white'),
+    getFromTheme('palette.default.white')
   )};
-  border-radius: ${theme('borderRadius.border1', involves.borderRadius.border1)};
+  border-radius: ${getFromTheme('borderRadius.border1')};
   padding: 0 16px;
-  transition: ${theme('common.transition', involves.common.transition)};
+  transition: ${getFromTheme('common.transition')};
   outline: none;
   font-size: ${ifProp(
     { size: 'large' },
-    theme('typography.fontSize.size3', involves.typography.fontSize.size3),
-    theme('typography.fontSize.size2', involves.typography.fontSize.size2),
+    getFromTheme('typography.fontSize.size3'),
+    getFromTheme('typography.fontSize.size2'),
   )};
-  color: ${theme('palette.system.dark', involves.palette.system.dark)};
+  color: ${getFromTheme('palette.system.dark')};
   box-shadow: inset ${ifProp(
     'error',
-    theme('shadow.shadowBorder2', involves.shadow.shadowBorder2)
+    getFromTheme('shadow.shadowBorder2')
   )} ${ifProp(
     'error',
-    theme('palette.error.regular', involves.palette.error.regular)
+    getFromTheme('palette.error.regular')
   )};
 
   &::placeholder {
-    color: ${theme('palette.default.dark', involves.palette.default.dark)};
+    color: ${getFromTheme('palette.default.dark')};
   }
 
   &:focus {
-    box-shadow: inset ${theme('shadow.shadowBorder2', involves.shadow.shadowBorder2)} ${ifProp(
+    box-shadow: inset ${getFromTheme('shadow.shadowBorder2')} ${ifProp(
       'error',
-      theme('palette.error.regular', involves.palette.error.regular),
-      theme('palette.primary.regular', involves.palette.primary.regular)
+      getFromTheme('palette.error.regular'),
+      getFromTheme('palette.primary.regular')
     )};
     background-color: ${ifProp(
       'error',
-      theme('palette.error.white', involves.palette.error.white),
-      theme('palette.system.white', involves.palette.system.white)
+      getFromTheme('palette.error.white'),
+      getFromTheme('palette.system.white')
     )};
     ~ ${StyledIcon} {
       color: ${ifProp(
         'error',
-        theme('palette.error.regular', involves.palette.error.regular),
-        theme('palette.primary.regular', involves.palette.primary.regular)
+        getFromTheme('palette.error.regular'),
+        getFromTheme('palette.primary.regular')
       )};
     }
   }
 
   &:disabled {
-    background-color: ${theme('palette.system.light', involves.palette.system.light)};
-    color: ${theme('palette.default.regular', involves.palette.default.regular)};
+    background-color: ${getFromTheme('palette.system.light')};
+    color: ${getFromTheme('palette.default.regular')};
     cursor: not-allowed;
 
     &::placeholder {
-      color: ${theme('palette.default.regular', involves.palette.default.regular)};
+      color: ${getFromTheme('palette.default.regular')};
     }
   }
 `;

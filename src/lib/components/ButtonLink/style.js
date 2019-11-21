@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { switchProp, theme } from 'styled-tools';
-import { theme as involves } from '../../theme';
+import { switchProp } from 'styled-tools';
 import switchPalette from '../../utils/switchPalette';
+import getFromTheme from '../../utils/getFromTheme';
 
 export const StyledLink = styled.a`
   font-weight: bold;
@@ -10,7 +10,7 @@ export const StyledLink = styled.a`
   padding: 0;
   border: none;
   background-color: transparent;
-  transition: ${theme('common.transition', involves.common.transition)};
+  transition: ${getFromTheme('common.transition')};
   color: ${switchProp('hasColor', switchPalette())};
 
   &:hover {
@@ -19,7 +19,7 @@ export const StyledLink = styled.a`
 
   &:disabled,
   &:disabled:hover {
-    color: ${theme('palette.default.light', involves.palette.default.light)};
+    color: ${getFromTheme('palette.default.light')};
     cursor: not-allowed;
   }
 `;
