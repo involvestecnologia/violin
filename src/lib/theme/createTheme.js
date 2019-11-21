@@ -1,4 +1,4 @@
-import { involves } from "./involves";
+import { involves } from './involves';
 
 const merge = (target, source) => {
   for (const key of Object.keys(source)) {
@@ -9,6 +9,7 @@ const merge = (target, source) => {
   return target
 };
 
-export const createTheme = theme => {
+// eslint-disable-next-line arrow-body-style
+export const createTheme = (theme) => {
   return merge(involves, theme);
-}
+};
