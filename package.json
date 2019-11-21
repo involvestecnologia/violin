@@ -17,7 +17,8 @@
   "scripts": {
     "start": "rm -rf ./.docz && docz dev",
     "build": "webpack --mode=production",
-    "build:docs": "docz build"
+    "build:docs": "docz build",
+    "lint:css": "stylelint './src/**/*.js'"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",
@@ -25,6 +26,10 @@
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.6",
     "docz": "^2.0.0-rc.56",
+    "stylelint": "^12.0.0",
+    "stylelint-config-recommended": "^3.0.0",
+    "stylelint-config-styled-components": "^0.1.1",
+    "stylelint-processor-styled-components": "^1.8.0",
     "webpack": "^4.41.0",
     "webpack-cli": "^3.3.9",
     "webpack-node-externals": "^1.7.2"

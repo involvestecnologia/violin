@@ -4,7 +4,7 @@ import { ifProp, switchProp, theme } from "styled-tools";
 import switchPalette from "../../utils/switchPalette";
 
 export const WrapperIcon = styled.i`
-  font-family: 'Material Icons Round';
+  font-family: 'Material Icons Round', sans-serif;
   font-weight: normal;
   font-style: normal;
   line-height: 1;
@@ -14,7 +14,7 @@ export const WrapperIcon = styled.i`
   white-space: nowrap;
   word-wrap: normal;
   direction: ltr;
-  -webkit-font-feature-settings: 'liga';
+  font-feature-settings: 'liga';
   -webkit-font-smoothing: antialiased;
   font-size: ${ifProp(
     "hasSize",
