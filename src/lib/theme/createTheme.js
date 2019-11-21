@@ -9,6 +9,4 @@ const merge = (target, source) => {
   return target
 };
 
-export const createTheme = theme => {
-  return merge(involves, theme);
-}
+export const createTheme = (theme) => merge(involves, theme);

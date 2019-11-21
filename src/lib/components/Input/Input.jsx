@@ -2,14 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { StyledInput, Wrapper, StyledIcon } from './style';
 
-export const Input = ({ className, style, size, icon, error, onClickIcon, ...props }) => {
-  return (
-    <Wrapper className={className} style={style}>
-      <StyledInput error={error} size={size} {...props} />
-      {icon && <StyledIcon icon={icon} isLarge={size === 'large'} error={error} onClick={onClickIcon} />}
-    </Wrapper>
-  )
-}
+export const Input = ({ className, style, size, icon, error, onClickIcon, ...props }) => (
+  <Wrapper className={className} style={style}>
+    <StyledInput error={error} size={size} {...props} />
+    {icon && <StyledIcon icon={icon} isLarge={size === 'large'} error={error} onClick={onClickIcon} />}
+  </Wrapper>
+)
 
 Input.propTypes = {
   error: PropTypes.bool,
