@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import { rem } from 'polished';
-import { ifProp, switchProp, theme } from 'styled-tools';
+import { ifProp, switchProp } from 'styled-tools';
 import switchPalette from '../../utils/switchPalette';
+import getFromTheme from '../../utils/getFromTheme';
 
 export const WrapperIcon = styled.i`
   font-family: 'Material Icons Round', sans-serif;
@@ -23,7 +24,7 @@ export const WrapperIcon = styled.i`
   )};
   cursor: ${ifProp('onClick', 'pointer')};
   color: ${switchProp('hasColor', switchPalette())};
-  transition: ${theme('common.transition')};
+  transition: ${getFromTheme('common.transition')};
 
   &:hover {
     color: ${ifProp(
