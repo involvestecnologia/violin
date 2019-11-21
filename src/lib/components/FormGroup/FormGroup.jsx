@@ -1,8 +1,8 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Wrapper } from "./style";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Wrapper } from './style';
 
-export const FormGroup = props => <Wrapper {...props} />;
+export const FormGroup = (props) => <Wrapper {...props} />;
 
 FormGroup.propTypes = {
   noMargin: PropTypes.bool
@@ -11,4 +11,3 @@ FormGroup.propTypes = {
 FormGroup.defaultProps = {
   noMargin: false
 };
-

@@ -1,6 +1,6 @@
 import React from 'react';
-import { theme } from "../../lib";
-import styled from "styled-components";
+import styled from 'styled-components';
+import { theme } from '../../lib';
 
 const Code = styled.pre`
   padding: 16px;
@@ -9,13 +9,11 @@ const Code = styled.pre`
   font-size: 85%;
   margin-top: 32px;
   margin-bottom: 32px;
-  font-family: Inconsolata;
+  font-family: Inconsolata, sans-serif;
 `;
 
-export const ObjectTheme = () => {
-  return (
-    <Code>
-      {JSON.stringify(theme, null, 2)}
-    </Code>
-  )
-}
+export const ObjectTheme = () => (
+  <Code>
+    {JSON.stringify(theme, null, 2)}
+  </Code>
+)

@@ -1,1 +1,1 @@
-export { TextForm } from "./TextForm";
+export { TextForm } from './TextForm';
