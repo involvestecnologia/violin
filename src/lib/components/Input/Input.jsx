@@ -15,12 +15,14 @@ Input.propTypes = {
   error: PropTypes.bool,
   icon: PropTypes.string,
   size: PropTypes.oneOf(["small", "normal", "large"]),
-  onClickIcon: PropTypes.func
+  onClickIcon: PropTypes.func,
+  type: PropTypes.oneOf(["text", "email", "number", "password", "tel", "url"])
 };
 
 Input.defaultProps = {
   error: false,
   icon: "",
   size: "normal",
-  onClickIcon: null
+  onClickIcon: null,
+  type: "text"
 };
