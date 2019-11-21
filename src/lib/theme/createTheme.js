@@ -1,4 +1,4 @@
-import { involves } from "./involves";
+import { involves } from './involves';
 
 const merge = (target, source) => {
   for (const key of Object.keys(source)) {
