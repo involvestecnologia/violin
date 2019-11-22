@@ -1,7 +1,5 @@
 import React from 'react';
-import { createGlobalStyle, ThemeProvider } from 'styled-components';
-// eslint-disable-next-line import/no-unresolved
-import { createTheme } from 'lib/theme';
+import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyleDocz = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,600i,700&display=swap');
@@ -12,20 +10,9 @@ const GlobalStyleDocz = createGlobalStyle`
   }
 `;
 
-const customTheme = createTheme({
-  // palette: {
-  //     primary: {
-  //         regular: "green"
-  //     }
-  // }
-});
-
-// eslint-disable-next-line arrow-body-style
-export default ({ children }) => {
-  return (
-    <ThemeProvider theme={customTheme}>
-      <GlobalStyleDocz />
-      {children}
-    </ThemeProvider>
-  )
-}
+export default ({ children }) => (
+  <>
+    <GlobalStyleDocz />
+    {children}
+  </>
+)
