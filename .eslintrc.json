@@ -1,0 +1,37 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true,
+    "jest": true
+  },
+  "extends": ["airbnb"],
+  "globals": {},
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "plugins": ["react"],
+  "overrides": [{
+    "files": "./src/**/**/style.js",
+    "rules": {
+      "indent": "off"
+    }
+  }],
+  "rules": {
+    "react/jsx-filename-extension": [
+      "error",
+      { "extensions": [".js", ".jsx"] }
+    ],
+    "react/jsx-props-no-spreading": "off",
+    "global-require": "error",
+    "import/prefer-default-export": "off",
+    "no-unused-expressions": ["error", { "allowTaggedTemplates": true }],
+    "semi": "off",
+    "object-curly-newline": "off",
+    "comma-dangle": "off",
+    "react/prop-types": [2, { "ignore": ["children", "className", "style"] }]
+  }
+}

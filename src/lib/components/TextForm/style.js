@@ -1,14 +1,14 @@
-import styled from "styled-components";
-import { theme as involves } from "../../theme";
-import { theme, switchProp } from "styled-tools";
+import styled from 'styled-components';
+import { switchProp } from 'styled-tools';
+import getFromTheme from '../../utils/getFromTheme';
 
 export const Text = styled.div`
   display: block;
-  font-size: ${theme("typography.fontSize.size1", involves.typography.fontSize.size1)};
-  color: ${switchProp("validate", {
-    regular: theme("palette.default.dark", involves.palette.default.dark),
-    alert: theme("palette.alert.regular", involves.palette.alert.regular),
-    success: theme("palette.done.regular", involves.palette.done.regular),
-    error: theme("palette.error.dark", involves.palette.error.dark)
+  font-size: ${getFromTheme('typography.fontSize.size1')};
+  color: ${switchProp('validate', {
+    regular: getFromTheme('palette.default.dark'),
+    alert: getFromTheme('palette.alert.regular'),
+    success: getFromTheme('palette.done.regular'),
+    error: getFromTheme('palette.error.dark')
   })};
 `;

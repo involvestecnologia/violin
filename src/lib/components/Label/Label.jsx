@@ -1,6 +1,6 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { StyledLabel, Description } from "./style";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { StyledLabel, Description } from './style';
 
 export const Label = ({ children, description, ...props }) => (
   <StyledLabel {...props}>
@@ -19,4 +19,3 @@ Label.defaultProps = {
   description: null,
   disabled: false
 };
-

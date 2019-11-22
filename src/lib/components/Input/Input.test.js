@@ -6,15 +6,15 @@ import { theme } from '../../theme';
 afterEach(cleanup);
 
 describe('Input', () => {
-  test('renders with placeholder', () => {
-    const placeholder = "Lorem ipsum";
+  test('should render correctly', () => {
+    const placeholder = 'Lorem ipsum';
     const { getByPlaceholderText } = render(<Input placeholder={placeholder} />);
     const component = getByPlaceholderText(placeholder);
     expect(component).toBeInTheDocument();
   })
 
-  test('renders error style when has error prop', () => {
-    const placeholder = "Lorem ipsum";
+  test('should apply error style', () => {
+    const placeholder = 'Lorem ipsum';
     const { getByPlaceholderText } = render(<Input placeholder={placeholder} error />);
     const component = getByPlaceholderText(placeholder);
     expect(component).toHaveStyle(`

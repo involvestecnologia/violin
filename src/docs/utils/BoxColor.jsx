@@ -1,6 +1,6 @@
 import React from 'react';
-import { theme, Text } from "../../lib";
-import styled from "styled-components";
+import styled from 'styled-components';
+import { theme, Text } from '../../lib';
 
 export const Grid = styled.div`
   display: grid;
@@ -32,15 +32,15 @@ const Info = styled.div`
   background: white;
   min-width: 50%;
   box-shadow: ${theme.shadow.shadow4} rgba(0,0,0,.1);
-`; 
+`;
 
-export default props => {
-  return (
-    <Card {...props}>
-      <Info>
-        <Text small bold style={{ color: theme.palette.default.dark }}>{theme.palette[props.color][props.variant]}</Text>
-        <Text small color="default">{props.variant}</Text>
-      </Info>
-    </Card>
-  )
-};
+export default ({ variant, color, ...props }) => (
+  <Card {...props}>
+    <Info>
+      <Text small bold style={{ color: theme.palette.default.dark }}>
+        {theme.palette[color][variant]}
+      </Text>
+      <Text small color="default">{variant}</Text>
+    </Info>
+  </Card>
+)
