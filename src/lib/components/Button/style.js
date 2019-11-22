@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import { ifProp, ifNotProp, switchProp } from 'styled-tools';
 import { rem } from 'polished';
 import { Icon } from '../Icon';
-import switchPalette from '../../utils/switchPalette';
 import { theme as involves } from '../../theme';
+import switchPalette from '../../utils/switchPalette';
 import getFromTheme from '../../utils/getFromTheme';
 
 const regularPalette = switchPalette('regular');
