@@ -1,6 +1,8 @@
 <br/><br/>
 <p align="center">
-  <a href="https://material-ui.com/" rel="noopener" target="_blank"><img width="200" src="https://involves.com/wp-content/uploads/2019/09/involves-logo-color.png" alt="Material-UI logo"></a></p>
+  <a href="https://material-ui.com/" rel="noopener" target="_blank">
+    <img width="200" src="https://involves.com/wp-content/uploads/2019/09/involves-logo-color.png" alt="Material-UI logo"/>
+  </a>
 </p>
 
 <h1 align="center">Violin-UI</h1>

@@ -1,12 +1,15 @@
-import getFromTheme from './getFromTheme';
+import { theme } from 'styled-tools';
+import { theme as involves } from '../theme';
 
-export default (type = 'regular') => ({
-  default: getFromTheme(`palette.default.${type}`),
-  primary: getFromTheme(`palette.primary.${type}`),
-  accent: getFromTheme(`palette.accent.${type}`),
-  done: getFromTheme(`palette.done.${type}`),
-  error: getFromTheme(`palette.error.${type}`),
-  alert: getFromTheme(`palette.alert.${type}`),
-  progress: getFromTheme(`palette.progress.${type}`),
-  white: getFromTheme('palette.system.white')
+const switchPalette = (type = 'regular') => ({
+  default: theme(`palette.default.${type}`, involves.palette.default[type]),
+  primary: theme(`palette.primary.${type}`, involves.palette.primary[type]),
+  accent: theme(`palette.accent.${type}`, involves.palette.accent[type]),
+  done: theme(`palette.done.${type}`, involves.palette.done[type]),
+  error: theme(`palette.error.${type}`, involves.palette.error[type]),
+  alert: theme(`palette.alert.${type}`, involves.palette.alert[type]),
+  progress: theme(`palette.progress.${type}`, involves.palette.progress[type]),
+  white: theme('palette.system.white', involves.palette.system.white)
 });
+
+export default switchPalette;
