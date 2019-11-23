@@ -32,6 +32,6 @@
     "semi": "off",
     "object-curly-newline": "off",
     "comma-dangle": "off",
-    "react/prop-types": [2, { "ignore": ["children"] }]
+    "react/prop-types": [2, { "ignore": ["children", "className", "style"] }]
   }
 }
