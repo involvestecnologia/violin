@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import { theme, Text } from '../../lib';
 
 export const Grid = styled.div`
@@ -34,8 +35,8 @@ const Info = styled.div`
   box-shadow: ${theme.shadow.shadow4} rgba(0,0,0,.1);
 `;
 
-export default ({ variant, color, ...props }) => (
-  <Card {...props}>
+export const BoxColor = ({ variant, color }) => (
+  <Card variant={variant} color={color}>
     <Info>
       <Text small bold style={{ color: theme.palette.default.dark }}>
         {theme.palette[color][variant]}
@@ -44,3 +45,8 @@ export default ({ variant, color, ...props }) => (
     </Info>
   </Card>
 )
+
+BoxColor.propTypes = {
+  variant: PropTypes.string.isRequired,
+  color: PropTypes.string.isRequired
+};
