@@ -26,5 +26,5 @@ export const StyledText = styled.p`
     'hasColor',
     switchProp('hasColor', switchPalette())
   )};
-  white-space: ${ifProp('isNowrap', 'nowrap')};
+  white-space: ${ifProp('nowrap', 'nowrap')};
 `;

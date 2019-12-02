@@ -13,7 +13,7 @@ describe('Input', () => {
     expect(getByPlaceholderText(placeholder)).toBeInTheDocument();
   })
 
-  test('should has correctly type', () => {
+  test('should have correctly type', () => {
     const { getByPlaceholderText, rerender } = render(<Input type="number" placeholder={placeholder} />);
     expect(getByPlaceholderText(placeholder).type).toBe('number');
 
@@ -35,7 +35,7 @@ describe('Input', () => {
     expect(getByPlaceholderText(placeholder)).toBeDisabled();
   })
 
-  test('should has correctly size style', () => {
+  test('should have size style correctly', () => {
     const { getByPlaceholderText, rerender } = render(<Input placeholder={placeholder} size="small" />);
     expect(getByPlaceholderText(placeholder)).toHaveStyle(`
       min-height: 32px;
@@ -47,7 +47,7 @@ describe('Input', () => {
     `);
   })
 
-  test('should apply error style', () => {
+  test('should have error style', () => {
     const { getByPlaceholderText } = render(<Input placeholder={placeholder} error />);
     expect(getByPlaceholderText(placeholder)).toHaveStyle(`
       background-color: ${theme.palette.error.white};

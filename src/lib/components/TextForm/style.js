@@ -8,7 +8,7 @@ export const Text = styled.div`
   color: ${switchProp('validate', {
     regular: getFromTheme('palette.default.dark'),
     alert: getFromTheme('palette.alert.regular'),
-    success: getFromTheme('palette.done.regular'),
+    done: getFromTheme('palette.done.regular'),
     error: getFromTheme('palette.error.dark')
   })};
 `;
