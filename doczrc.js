@@ -8,6 +8,8 @@ export default {
     "Styles"
   ],
   themeConfig: {
-    fontFamily: "'Open Sans', sans-serif"
+    fonts: {
+      body: 'Open Sans, sans-serif'
+    }
   }
 }
