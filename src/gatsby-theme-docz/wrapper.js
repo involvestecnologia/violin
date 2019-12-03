@@ -10,7 +10,7 @@ const GlobalStyleDocz = createGlobalStyle`
 
 export default ({ children }) => (
   <>
-    {children}
     <GlobalStyleDocz />
+    {children}
   </>
 )
