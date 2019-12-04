@@ -5,7 +5,7 @@ import { Text } from './style';
 export const TextForm = (props) => <Text {...props} />;
 
 TextForm.propTypes = {
-  validate: PropTypes.oneOf(['regular', 'alert', 'success', 'error'])
+  validate: PropTypes.oneOf(['regular', 'alert', 'done', 'error'])
 };
 
 TextForm.defaultProps = {

@@ -16,10 +16,12 @@ export const Select = ({ options, className, style, error, ...props }) => {
 }
 
 Select.propTypes = {
-  options: PropTypes.array.isRequired,
+  options: PropTypes.arrayOf(PropTypes.object).isRequired,
+  error: PropTypes.bool,
   size: PropTypes.oneOf(['small', 'normal', 'large'])
 };
 
 Select.defaultProps = {
+  error: false,
   size: 'normal'
 };
