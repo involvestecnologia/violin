@@ -17,6 +17,7 @@ export const StyledButton = styled.button`
   white-space: nowrap;
   padding: 0 16px;
   outline: none;
+  font-family: ${getFromTheme('typography.fontFamily')};
   font-weight: bold;
   text-align: center;
   text-decoration: none;

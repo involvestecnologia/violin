@@ -21,8 +21,43 @@ Install with Yarn:
 yarn add styled-components https://github.com/involvestecnologia/violin.git
 ```
 
-Import components
+## Open Sans font
+
+Violin was designed with the Open Sans font in mind. You can load via Google Web Fonts:
+
+```xml
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap" />
+```
+
+## Font Icons
+
+In order to use the font Icon component, you must first add the [Material icons](https://material.io/tools/icons/) font with *Round* style. You can load via Google Web Fonts:
+
+```xml
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" />
+```
+
+## Global styles (optional)
+
+`GlobalStyle` component adds global setting styles as default font family, font sizes and color:
 
 ```javascript
+import { GlobalStyle } from "violin";
+
+const App = () => {
+  return (
+    <>
+      <GlobalStyle />
+      { /** */ }
+    </>
+  )
+}
+```
+
+## Using components
+
+```jsx
 import { Button, Input } from "violin";
+
+<Button>Enjoy!</Button>
 ```
