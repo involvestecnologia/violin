@@ -10,22 +10,10 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    margin: 0;
-    font-family: 'Open Sans', sans-serif;
+    font-family: ${getFromTheme('typography.fontFamily')};
     font-size: ${getFromTheme('typography.fontSize.size2')};
     line-height: ${getFromTheme('typography.lineHeight')};
     color: ${getFromTheme('palette.system.dark')};
-  }
-
-  button,
-  input,
-  textarea,
-  select {
-    font-family: 'Open Sans', sans-serif
-  }
-
-  * {
-    box-sizing: border-box;
   }
 `
 

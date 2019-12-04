@@ -51,6 +51,7 @@ export const StyledInput = styled.input`
   padding: 0 16px;
   transition: ${getFromTheme('common.transition')};
   outline: none;
+  font-family: ${getFromTheme('typography.fontFamily')};
   font-size: ${ifProp(
     { size: 'large' },
     getFromTheme('typography.fontSize.size3'),

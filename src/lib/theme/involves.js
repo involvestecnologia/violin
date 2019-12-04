@@ -3,6 +3,8 @@ import { rem, transparentize } from 'polished';
 const involves = {
   typography: {
     htmlFontSize: '100%',
+    fontFamily: 'Open Sans, sans-serif',
+    fontFamilyIcon: 'Material Icons Round',
     fontSize: {
       size1: rem(12),
       size2: rem(14),
