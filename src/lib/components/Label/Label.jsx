@@ -5,7 +5,7 @@ import { StyledLabel, Description } from './style';
 export const Label = ({ children, description, ...props }) => (
   <StyledLabel {...props}>
     {children}
-    {description && <Description> - {description}</Description>}
+    {description && <Description> - { description }</Description>}
   </StyledLabel>
 );
 

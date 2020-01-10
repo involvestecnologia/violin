@@ -1,6 +1,7 @@
 import { involves } from './involves';
 
 const merge = (target, source) => {
+  // eslint-disable-next-line no-restricted-syntax
   for (const key of Object.keys(source)) {
     if (source[key] instanceof Object) Object.assign(source[key], merge(target[key], source[key]))
   }
