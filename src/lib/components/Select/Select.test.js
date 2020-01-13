@@ -1,7 +1,6 @@
 import React from 'react';
 import { render, cleanup } from '@testing-library/react';
 import { Select } from './Select';
-import { theme } from '../../theme';
 
 afterEach(cleanup);
 
