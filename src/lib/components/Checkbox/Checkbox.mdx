@@ -1,0 +1,36 @@
+---
+name: Checkbox
+menu: Components
+route: /components/Checkbox
+---
+
+import { Checkbox } from './Checkbox';
+import { Text } from '../Text';
+import { Heading } from '../Heading';
+import { Playground, Props } from "docz";
+
+# Checkbox
+
+<Playground>
+	<Checkbox label='Lorem ipsum dolor sit' style={{ margin: 5 }} />
+	<br />
+	<Checkbox label='Duis aute irure dolor in reprehenderit' disabled style={{ margin: 5 }} />
+</Playground>
+
+## Props
+
+<Props of={Checkbox} />
+
+> Native props as disabled and checked also works.
+
+## label
+
+<Playground>
+	<Checkbox label='Width string label' style={{ margin: 5, display: 'flex' }} />
+</Playground>
+
+## customLabel
+
+<Playground>
+	<Checkbox customLabel={<Heading noMargin>With a component label</Heading>} style={{ margin: 5, display: 'flex' }} />
+</Playground>
