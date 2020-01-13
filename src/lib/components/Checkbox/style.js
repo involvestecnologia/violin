@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import { ifProp } from 'styled-tools';
 import getFromTheme from '../../utils/getFromTheme';
 
 export const Wrapper = styled.label`
