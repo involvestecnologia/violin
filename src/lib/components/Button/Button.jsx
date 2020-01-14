@@ -2,26 +2,37 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { StyledButton, StyledIcon } from './style';
 
-export const Button = ({ children, icon, color, ...props }) => (
-  <StyledButton hasColor={color} {...props}>
-    {icon && <StyledIcon icon={icon} />}
+export const Button = ({ children, icon, ...props }) => (
+  <StyledButton {...props} iconOnly={!!icon && !children}>
+    {icon && <StyledIcon icon={icon} hasChildren={!!children} />}
     {children}
   </StyledButton>
 );
 
 Button.propTypes = {
-  color: PropTypes.oneOf(['default', 'primary', 'accent', 'done', 'error', 'alert', 'progress']),
+  /** Apply primary style */
+  primary: PropTypes.bool,
+  /** Apply secondary style */
+  secondary: PropTypes.bool,
+  /** Apply danger style */
+  danger: PropTypes.bool,
+  /** Apply small size */
+  small: PropTypes.bool,
+  /** Apply large size */
+  large: PropTypes.bool,
   /** Apply width 100% */
   block: PropTypes.bool,
-  size: PropTypes.oneOf(['small', 'normal', 'large']),
-  outline: PropTypes.bool,
-  icon: PropTypes.string
+  icon: PropTypes.string,
+  invert: PropTypes.bool
 };
 
 Button.defaultProps = {
-  color: 'default',
+  primary: null,
+  secondary: null,
+  danger: null,
+  small: null,
+  large: null,
   block: false,
-  size: 'normal',
-  outline: false,
-  icon: null
+  icon: null,
+  invert: false
 };
