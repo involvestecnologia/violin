@@ -3,7 +3,7 @@ export { Input } from './Input';
 export { Label } from './Label';
 export { TextForm } from './TextForm';
 export { FormGroup } from './FormGroup';
-export { ButtonLink } from './ButtonLink';
+export { Link } from './Link';
 export { Text } from './Text';
 export { Heading } from './Heading';
 export { Icon } from './Icon';

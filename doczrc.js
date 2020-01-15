@@ -1,11 +1,11 @@
 export default {
-  port: "8888",
+  port: '8888',
   src: './src',
   dest: './docs',
   menu: [
-    "Getting started",
-    "Components",
-    "Styles"
+    'Getting started',
+    'Components',
+    'Styles'
   ],
   themeConfig: {
     fonts: {
