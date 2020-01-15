@@ -1,0 +1,34 @@
+---
+name: Subheading
+menu: Components
+route: /components/Subheading
+---
+
+import { Subheading } from './Subheading';
+import { Playground, Props } from "docz";
+
+# Subheading
+
+<Playground>
+    <Subheading>Lorem ipsum dolor</Subheading>
+</Playground>
+
+## Props
+
+<Props of={Subheading} />
+
+## size
+
+<Playground>
+    <Subheading>Subheading</Subheading>
+    <Subheading small>Small subheading</Subheading>
+    <Subheading overline>Overline style</Subheading>
+</Playground>
+
+## Use as another element
+
+By default `Subheading` is used with `h3` element, to change use `as` prop:
+
+<Playground>
+    <Subheading as="h5" size="h5">Lorem ipsum dolor</Subheading>
+</Playground>

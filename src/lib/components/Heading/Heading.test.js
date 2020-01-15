@@ -11,35 +11,35 @@ describe('Heading', () => {
     expect(getByText('Lorem ipsum')).toBeInTheDocument();
   });
 
-  test('should have style type correctly', () => {
-    const { getByText, rerender } = render(<Heading>Lorem ipsum</Heading>);
-    expect(getByText('Lorem ipsum')).toHaveStyle(`
-      font-size: ${theme.typography.fontSize.size5};
-      font-weight: ${theme.typography.fontWeight.bold};
-      color: ${theme.palette.system.dark};
+  test('should have style size correctly', () => {
+    const { getByText, rerender } = render(<Heading size="h1">Heading</Heading>);
+    expect(getByText('Heading')).toHaveStyle(`
+      font-size: ${theme.typography.fontSize.h1};
     `);
-    rerender(<Heading type="sub">Lorem ipsum</Heading>);
-    expect(getByText('Lorem ipsum')).toHaveStyle(`
-      font-size: ${theme.typography.fontSize.size3};
-      font-weight: ${theme.typography.fontWeight.semiBold};
-      color: ${theme.palette.default.dark};
-    `);
-    rerender(<Heading type="section">Lorem ipsum</Heading>);
-    expect(getByText('Lorem ipsum')).toHaveStyle(`
-      font-size: ${theme.typography.fontSize.size2};
-      font-weight: ${theme.typography.fontWeight.bold};
-      color: ${theme.palette.system.dark};
-    `);
-  });
 
-  test('should have margin style correctly', () => {
-    const { getByText, rerender } = render(<Heading>Lorem ipsum</Heading>);
+    rerender(<Heading size="h2">Lorem ipsum</Heading>);
     expect(getByText('Lorem ipsum')).toHaveStyle(`
-      margin: 0 0 ${theme.spacing.space3};
+      font-size: ${theme.typography.fontSize.h2};
     `);
-    rerender(<Heading noMargin>Lorem ipsum</Heading>);
+
+    rerender(<Heading size="h3">Lorem ipsum</Heading>);
     expect(getByText('Lorem ipsum')).toHaveStyle(`
-      margin: 0 0 0;
+      font-size: ${theme.typography.fontSize.h3};
+    `);
+
+    rerender(<Heading size="h4">Lorem ipsum</Heading>);
+    expect(getByText('Lorem ipsum')).toHaveStyle(`
+      font-size: ${theme.typography.fontSize.h4};
+    `);
+
+    rerender(<Heading size="h5">Lorem ipsum</Heading>);
+    expect(getByText('Lorem ipsum')).toHaveStyle(`
+      font-size: ${theme.typography.fontSize.h5};
+    `);
+
+    rerender(<Heading size="h6">Lorem ipsum</Heading>);
+    expect(getByText('Lorem ipsum')).toHaveStyle(`
+      font-size: ${theme.typography.fontSize.h6};
     `);
   });
 });
