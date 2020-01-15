@@ -27,7 +27,7 @@ const typography = {
     semiBold: '600',
     bold: '700'
   },
-  lineHeight: '1.5'
+  lineHeight: '1.4'
 }
 
 const breakpoint = {

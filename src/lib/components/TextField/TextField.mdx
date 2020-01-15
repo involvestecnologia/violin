@@ -1,0 +1,44 @@
+---
+name: TextField
+menu: Components
+route: /components/TextField
+---
+
+import { TextField } from './TextField';
+import { Playground, Props } from "docz";
+
+# TextField
+
+<Playground>
+	<TextField id="text1" placeholder="Placeholder" label="Label" />
+</Playground>
+
+## Props
+
+<Props of={TextField} />
+
+> Native props as disabled, maxLength also works.
+
+## helpLabel
+
+<Playground>
+	<TextField id="text2" placeholder="Placeholder" label="Label" helpLabel="required" />
+</Playground>
+
+## helpText
+
+<Playground>
+	<TextField id="text3" label="Label" helpText="Lorem ipsum dolor sit amet" />
+</Playground>
+
+## error
+
+<Playground>
+	<TextField id="text4" label="Label" helpText="Lorem ipsum dolor sit amet" error />
+</Playground>
+
+## disabled
+
+<Playground>
+	<TextField id="text5" placeholder="Disabled field" label="Label" helpLabel="required" helpText="Lorem ipsum dolor sit amet" disabled />
+</Playground>
