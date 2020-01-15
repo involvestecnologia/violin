@@ -6,7 +6,7 @@ export const TextField = ({ label, helpLabel, helpText, id, error, disabled, ...
   <div>
     {(label || helpLabel) && (
       <LabelContainer>
-        <Label for={id}>
+        <Label htmlFor={id}>
           <LabelText isDisabled={disabled}>{label}</LabelText>
           {helpLabel && <HelpLabel>{helpLabel}</HelpLabel>}
         </Label>

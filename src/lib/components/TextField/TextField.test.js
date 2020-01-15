@@ -1,70 +1,57 @@
 import React from 'react';
-import { render, cleanup, fireEvent } from '@testing-library/react';
-import { Input } from './Input';
-import { theme } from '../../theme';
+import { render, cleanup } from '@testing-library/react';
+import { TextField } from './TextField';
 
 afterEach(cleanup);
 
 const placeholder = 'Lorem ipsum';
 
-describe('Input', () => {
+describe('TextField', () => {
   test('should render correctly', () => {
-    const { getByPlaceholderText } = render(<Input placeholder={placeholder} />);
+    const { getByPlaceholderText } = render(<TextField placeholder={placeholder} />);
     expect(getByPlaceholderText(placeholder)).toBeInTheDocument();
   })
 
   test('should have correctly type', () => {
-    const { getByPlaceholderText, rerender } = render(<Input type="number" placeholder={placeholder} />);
+    const { getByPlaceholderText, rerender } = render(<TextField type="number" placeholder={placeholder} />);
     expect(getByPlaceholderText(placeholder).type).toBe('number');
 
-    rerender(<Input type="email" placeholder={placeholder} />);
+    rerender(<TextField type="email" placeholder={placeholder} />);
     expect(getByPlaceholderText(placeholder).type).toBe('email');
+  })
 
-    rerender(<Input type="password" placeholder={placeholder} />);
-    expect(getByPlaceholderText(placeholder).type).toBe('password');
+  test('should render label', () => {
+    const { getByText } = render(<TextField label="Label" />);
+    expect(getByText('Label')).toBeInTheDocument();
+  })
 
-    rerender(<Input type="tel" placeholder={placeholder} />);
-    expect(getByPlaceholderText(placeholder).type).toBe('tel');
+  test('should render label help', () => {
+    const { getByText } = render(<TextField label="Label" helpLabel="required" />);
+    expect(getByText('required')).toBeInTheDocument();
+  })
 
-    rerender(<Input type="url" placeholder={placeholder} />);
-    expect(getByPlaceholderText(placeholder).type).toBe('url');
+  test('should render label help', () => {
+    const { getByText } = render(<TextField label="Label" helpLabel="required" helpText="Help text" />);
+    expect(getByText('Help text')).toBeInTheDocument();
   })
 
   test('should be disabled', () => {
-    const { getByPlaceholderText } = render(<Input placeholder={placeholder} disabled />);
+    const { getByPlaceholderText } = render(<TextField placeholder={placeholder} disabled />);
     expect(getByPlaceholderText(placeholder)).toBeDisabled();
   })
 
   test('should have size style correctly', () => {
-    const { getByPlaceholderText, rerender } = render(<Input placeholder={placeholder} size="small" />);
+    const {
+      getByPlaceholderText,
+      rerender
+    } = render(<TextField placeholder={placeholder} small />);
     expect(getByPlaceholderText(placeholder)).toHaveStyle(`
-      min-height: 32px;
+      height: 30px;
     `);
 
-    rerender(<Input placeholder={placeholder} size="large" />);
+    rerender(<TextField placeholder={placeholder} large />);
     expect(getByPlaceholderText(placeholder)).toHaveStyle(`
-      min-height: 60px;
+      height: 52px;
     `);
-  })
-
-  test('should have error style', () => {
-    const { getByPlaceholderText } = render(<Input placeholder={placeholder} error />);
-    expect(getByPlaceholderText(placeholder)).toHaveStyle(`
-      background-color: ${theme.palette.error.white};
-      box-shadow: inset ${theme.shadow.shadowBorder2} ${theme.palette.error.regular};
-    `);
-  })
-
-  test('should render icon', () => {
-    const { getByText } = render(<Input icon="favorite" />);
-    expect(getByText('favorite')).toBeInTheDocument();
-  })
-
-  test('should call onClickIcon', () => {
-    const onClickIcon = jest.fn();
-    const { getByText } = render(<Input icon="favorite" onClickIcon={onClickIcon} />);
-    const component = getByText('favorite');
-    fireEvent.click(component);
-    expect(onClickIcon).toHaveBeenCalled();
   })
 });
