@@ -1,7 +1,5 @@
 import styled from 'styled-components';
-import { rem } from 'polished';
-import { ifProp, switchProp } from 'styled-tools';
-import switchPalette from '../../utils/switchPalette';
+import { ifProp } from 'styled-tools';
 import getFromTheme from '../../utils/getFromTheme';
 
 export const WrapperIcon = styled.i`
@@ -17,19 +15,8 @@ export const WrapperIcon = styled.i`
   direction: ltr;
   font-feature-settings: 'liga';
   -webkit-font-smoothing: antialiased;
-  font-size: ${ifProp(
-    'hasSize',
-    (prop) => rem(prop.hasSize),
-    'inherit'
-  )};
+  font-size: inherit;
   cursor: ${ifProp('onClick', 'pointer')};
-  color: ${switchProp('hasColor', switchPalette())};
+  color: inherit;
   transition: ${getFromTheme('common.transition')};
-
-  &:hover {
-    color: ${ifProp(
-      'onClick',
-      switchProp('hasColor', switchPalette('dark'))
-    )};
-  }
 `;
