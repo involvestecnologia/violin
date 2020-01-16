@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { ifProp, withProp, ifNotProp } from 'styled-tools';
+import { ifProp, withProp } from 'styled-tools';
 import { rem, transparentize } from 'polished';
 import { Icon } from '../Icon';
 import getFromTheme from '../../utils/getFromTheme';

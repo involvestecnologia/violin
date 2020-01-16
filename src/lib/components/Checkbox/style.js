@@ -1,4 +1,6 @@
 import styled, { css } from 'styled-components';
+import { withProp } from 'styled-tools';
+import { transparentize } from 'polished';
 import getFromTheme from '../../utils/getFromTheme';
 
 export const Wrapper = styled.label`
@@ -13,7 +15,7 @@ export const Rect = styled.rect`
   height: 16px;
   fill: none;
   stroke-width: 2px;
-  stroke: ${getFromTheme('palette.default.regular')};
+  stroke: ${getFromTheme('palette.black.400')};
 `;
 
 export const Svg = styled.svg`
@@ -24,7 +26,7 @@ export const Svg = styled.svg`
 
   &:hover {
     ${Rect} {
-      stroke: ${getFromTheme('palette.primary.regular')};
+      stroke: ${getFromTheme('palette.primary.500')};
     }
   }
 `;
@@ -57,29 +59,29 @@ export const InputStyled = styled.input`
   &:checked ~ ${Svg},
   &:indeterminate ~ ${Svg} {
     ${Rect} {
-      stroke: ${getFromTheme('palette.primary.regular')};
-      fill: ${getFromTheme('palette.primary.regular')};
+      stroke: ${getFromTheme('palette.primary.500')};
+      fill: ${getFromTheme('palette.primary.500')};
     }
 
     &:hover {
       ${Rect} {
-        stroke: ${getFromTheme('palette.primary.dark')};
-        fill: ${getFromTheme('palette.primary.dark')};
+        stroke: ${getFromTheme('palette.primary.700')};
+        fill: ${getFromTheme('palette.primary.700')};
       }
     }
   }
 
   &:focus ~ ${Svg} {
     ${Rect} {
-      stroke: ${getFromTheme('palette.primary.regular')};
+      stroke: ${getFromTheme('palette.primary.500')};
     }
   }
 
   &:focus:checked ~ ${Svg},
   &:focus:indeterminate ~ ${Svg} {
     ${Rect} {
-      stroke: ${getFromTheme('palette.primary.dark')};
-      fill: ${getFromTheme('palette.primary.dark')};
+      stroke: ${getFromTheme('palette.primary.700')};
+      fill: ${getFromTheme('palette.primary.700')};
     }
   }
 
@@ -103,14 +105,14 @@ export const InputStyled = styled.input`
 
   &:disabled ~ ${Svg} > ${Rect},
   &:indeterminate ~ ${Svg} > ${Rect} {
-    stroke: ${getFromTheme('palette.default.white')};
+    stroke: ${withProp(getFromTheme('palette.misc.black'), transparentize(0.85))};
     cursor: not-allowed;
   }
 
   &:disabled:checked ~ ${Svg} > ${Rect},
   &:disabled:indeterminate ~ ${Svg} > ${Rect} {
-    stroke: ${getFromTheme('palette.default.white')};
-    fill: ${getFromTheme('palette.default.white')};
+    stroke: ${withProp(getFromTheme('palette.misc.black'), transparentize(0.85))};
+    fill: ${withProp(getFromTheme('palette.misc.black'), transparentize(0.85))};
   }
   
   &:disabled ~ ${Label} {
