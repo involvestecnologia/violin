@@ -10,29 +10,50 @@ import { Playground, Props } from "docz";
 # Text
 
 <Playground>
-    <Text size="small" margin>Lorem ipsum dolor</Text>
-    <Text margin>Lorem ipsum dolor</Text>
-    <Text size="lead" margin>Lorem ipsum dolor</Text>
-
-    <Text margin bold>Lorem ipsum dolor</Text>
-    <Text margin italic>Lorem ipsum dolor</Text>
+    <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</Text>
 </Playground>
 
 ## Props
 
 <Props of={Text} />
 
-## color
+## small
 
 <Playground>
-    <Text color="white" noMargin style={{ background: "gray" }}>Lorem ipsum dolor</Text>
-    <Text color="default" noMargin>Lorem ipsum dolor</Text>
-    <Text color="primary" noMargin>Lorem ipsum dolor</Text>
-    <Text color="accent" noMargin>Lorem ipsum dolor</Text>
-    <Text color="error" noMargin>Lorem ipsum dolor</Text>
-    <Text color="alert" noMargin>Lorem ipsum dolor</Text>
-    <Text color="done" noMargin>Lorem ipsum dolor</Text>
-    <Text color="progress">Lorem ipsum dolor</Text>
+    <Text>This is normal size</Text>
+    <Text small>This is small size.</Text>
+</Playground>
+
+## caption
+
+<Playground>
+    <Text caption>This is a caption style.</Text>
+</Playground>
+
+## error
+
+<Playground>
+    <Text error>This is an error style.</Text>
+</Playground>
+
+## bold
+
+<Playground>
+    <Text bold>This is a bold style.</Text>
+</Playground>
+
+## italic
+
+<Playground>
+    <Text italic>This is an italic style.</Text>
+</Playground>
+
+## disabled
+
+<Playground>
+    <Text disabled>This is a disable style.</Text>
+    <Text error disabled>This is a disable error style.</Text>
+    <Text caption disabled>This is a disable caption style.</Text>
 </Playground>
 
 ## Use with another element

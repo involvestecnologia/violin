@@ -2,26 +2,24 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { StyledText } from './style';
 
-export const Text = ({ color, ...props }) => (
-  <StyledText hasColor={color} {...props} />
+export const Text = (props) => (
+  <StyledText {...props} />
 );
 
 Text.propTypes = {
-  size: PropTypes.oneOf(['small', 'body', 'lead']),
-  color: PropTypes.oneOf(['white', 'default', 'primary', 'accent', 'error', 'alert', 'done', 'progress']),
+  small: PropTypes.bool,
+  caption: PropTypes.bool,
+  disabled: PropTypes.bool,
+  error: PropTypes.bool,
   bold: PropTypes.bool,
-  italic: PropTypes.bool,
-  /** Apply margin bottom */
-  margin: PropTypes.bool,
-  /** Avoid text to break  */
-  nowrap: PropTypes.bool
+  italic: PropTypes.bool
 };
 
 Text.defaultProps = {
-  size: 'body',
-  color: null,
+  small: false,
+  caption: false,
+  disabled: false,
+  error: false,
   bold: false,
-  italic: false,
-  margin: false,
-  nowrap: false
+  italic: false
 };

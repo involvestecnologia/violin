@@ -1,19 +1,29 @@
-import styled from 'styled-components';
-import { ifProp, switchProp } from 'styled-tools';
-import switchPalette from '../../utils/switchPalette';
+import styled, { css } from 'styled-components';
+import { ifProp } from 'styled-tools';
 import getFromTheme from '../../utils/getFromTheme';
+
+const captionStyle = css`
+  color: ${getFromTheme('palette.black.400')};
+  font-size: ${getFromTheme('typography.fontSize.small')};
+`;
+
+const disabledStyle = css`
+  opacity: 0.25;
+`;
+
+const errorStyle = css`
+  color: ${getFromTheme('palette.red.700')};
+  font-size: ${getFromTheme('typography.fontSize.small')};
+  font-weight: ${getFromTheme('typography.fontWeight.bold')};
+`;
+
+const smallStyle = css`
+  font-size: ${getFromTheme('typography.fontSize.small')};
+`;
 
 export const StyledText = styled.p`
   margin: 0;
-  margin-bottom: ${ifProp(
-    'margin',
-    getFromTheme('spacing.space3')
-  )};
-  font-size: ${switchProp('size', {
-    small: getFromTheme('typography.fontSize.size1'),
-    body: getFromTheme('typography.fontSize.size2'),
-    lead: getFromTheme('typography.fontSize.size3')
-  })};
+  font-size: ${getFromTheme('typography.fontSize.body')};
   font-weight: ${ifProp(
     'bold',
     getFromTheme('typography.fontWeight.bold')
@@ -22,9 +32,8 @@ export const StyledText = styled.p`
     'italic',
     'italic'
   )};
-  color: ${ifProp(
-    'hasColor',
-    switchProp('hasColor', switchPalette())
-  )};
-  white-space: ${ifProp('nowrap', 'nowrap')};
+  ${(props) => props.caption && captionStyle}
+  ${(props) => props.error && errorStyle}
+  ${(props) => props.disabled && disabledStyle}
+  ${(props) => props.small && smallStyle}
 `;
