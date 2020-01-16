@@ -6,24 +6,24 @@ import getFromTheme from '../../utils/getFromTheme';
 
 const primaryStyle = css`
   color: ${ifProp('invert', getFromTheme('palette.black.900'), getFromTheme('palette.misc.white'))};
-  background-color: ${ifProp('invert', getFromTheme('palette.misc.white'), getFromTheme('palette.primaryxpto.500'))};
-  border: 1px solid ${ifProp('invert', getFromTheme('palette.misc.white'), getFromTheme('palette.primaryxpto.500'))};
+  background-color: ${ifProp('invert', getFromTheme('palette.misc.white'), getFromTheme('palette.primary.500'))};
+  border: 1px solid ${ifProp('invert', getFromTheme('palette.misc.white'), getFromTheme('palette.primary.500'))};
 
   &:hover,
   &:focus {
-    background-color: ${ifProp('invert', getFromTheme('palette.misc.white'), getFromTheme('palette.primaryxpto.400'))};
+    background-color: ${ifProp('invert', getFromTheme('palette.misc.white'), getFromTheme('palette.primary.400'))};
     border-color: ${ifProp('invert', getFromTheme('palette.black.900'), getFromTheme('palette.misc.white'))};
-    box-shadow: 0 0 0 2px ${ifProp('invert', withProp(getFromTheme('palette.misc.white'), transparentize(0.5)), withProp(getFromTheme('palette.primaryxpto.400'), transparentize(0.5)))};
+    box-shadow: 0 0 0 2px ${ifProp('invert', withProp(getFromTheme('palette.misc.white'), transparentize(0.5)), withProp(getFromTheme('palette.primary.400'), transparentize(0.5)))};
   }
 
   &:active {
-    background-color: ${ifProp('invert', withProp(getFromTheme('palette.misc.white'), transparentize(0.3)), getFromTheme('palette.primaryxpto.600'))};
-    border-color: ${ifProp('invert', getFromTheme('palette.black.900'), getFromTheme('palette.primaryxpto.600'))};
+    background-color: ${ifProp('invert', withProp(getFromTheme('palette.misc.white'), transparentize(0.3)), getFromTheme('palette.primary.600'))};
+    border-color: ${ifProp('invert', getFromTheme('palette.black.900'), getFromTheme('palette.primary.600'))};
     box-shadow: 0 0 0 transparent;
   }
 
   &:disabled {
-    background-color: ${withProp(ifProp('invert', getFromTheme('palette.misc.white'), getFromTheme('palette.primaryxpto.400')), transparentize(0.7))};
+    background-color: ${withProp(ifProp('invert', getFromTheme('palette.misc.white'), getFromTheme('palette.primary.400')), transparentize(0.7))};
     border: none;
     box-shadow: 0 0 0 transparent;
   }
@@ -55,32 +55,32 @@ const dangerStyle = css`
 `;
 
 const defaultStyle = css`
-  color: ${ifProp('invert', getFromTheme('palette.misc.white'), getFromTheme('palette.primaryxpto.500'))};
+  color: ${ifProp('invert', getFromTheme('palette.misc.white'), getFromTheme('palette.primary.500'))};
   background-color: transparent;
-  border: 1px solid ${ifProp('invert', getFromTheme('palette.misc.white'), getFromTheme('palette.primaryxpto.500'))};
+  border: 1px solid ${ifProp('invert', getFromTheme('palette.misc.white'), getFromTheme('palette.primary.500'))};
 
   &:hover,
   &:focus {
     background-color: transparent;
-    box-shadow: 0 0 0 2px ${withProp(ifProp('invert', getFromTheme('palette.misc.white'), getFromTheme('palette.primaryxpto.500')), transparentize(0.5))},
-                inset 0 0 0 1px ${ifProp('invert', getFromTheme('palette.misc.white'), getFromTheme('palette.primaryxpto.500'))};
+    box-shadow: 0 0 0 2px ${withProp(ifProp('invert', getFromTheme('palette.misc.white'), getFromTheme('palette.primary.500')), transparentize(0.5))},
+                inset 0 0 0 1px ${ifProp('invert', getFromTheme('palette.misc.white'), getFromTheme('palette.primary.500'))};
   }
 
   &:active {
-    background-color: ${withProp(ifProp('invert', getFromTheme('palette.misc.white'), getFromTheme('palette.primaryxpto.900')), transparentize(0.92))};
+    background-color: ${withProp(ifProp('invert', getFromTheme('palette.misc.white'), getFromTheme('palette.primary.900')), transparentize(0.92))};
     box-shadow: 0 0 0 transparent;
   }
 
   &:disabled {
     background-color: transparent;
-    border-color: ${withProp(ifProp('invert', getFromTheme('palette.misc.white'), getFromTheme('palette.primaryxpto.900')), transparentize(0.9))};
+    border-color: ${withProp(ifProp('invert', getFromTheme('palette.misc.white'), getFromTheme('palette.primary.900')), transparentize(0.9))};
     box-shadow: 0 0 0 transparent;
-    color: ${withProp(ifProp('invert', getFromTheme('palette.misc.white'), getFromTheme('palette.primaryxpto.900')), transparentize(0.75))};
+    color: ${withProp(ifProp('invert', getFromTheme('palette.misc.white'), getFromTheme('palette.primary.900')), transparentize(0.75))};
   }
 `;
 
 const secondaryStyle = css`
-  color: ${ifProp('iconOnly', ifProp('invert', getFromTheme('palette.misc.white'), getFromTheme('palette.black.600')), ifProp('invert', getFromTheme('palette.misc.white'), getFromTheme('palette.primaryxpto.500')))};
+  color: ${ifProp('iconOnly', ifProp('invert', getFromTheme('palette.misc.white'), getFromTheme('palette.black.600')), ifProp('invert', getFromTheme('palette.misc.white'), getFromTheme('palette.primary.500')))};
   background-color: transparent;
   border: none;
   ${(props) => props.iconOnly && 'border-radius: 50%;'}
@@ -104,7 +104,7 @@ const secondaryStyle = css`
       ifProp(
         'invert',
         getFromTheme('palette.misc.white'),
-        getFromTheme('palette.primaryxpto.900')
+        getFromTheme('palette.primary.900')
       ),
       transparentize(0.92)
     )};
@@ -115,7 +115,7 @@ const secondaryStyle = css`
       ifProp(
         'invert',
         getFromTheme('palette.misc.white'),
-        getFromTheme('palette.primaryxpto.900')
+        getFromTheme('palette.primary.900')
       ),
       ifProp(
         'invert',
@@ -129,7 +129,7 @@ const secondaryStyle = css`
     background-color: transparent;
     border: none;
     box-shadow: 0 0 0 transparent;
-    color: ${withProp(ifProp('invert', getFromTheme('palette.misc.white'), getFromTheme('palette.primaryxpto.900')), transparentize(0.75))};
+    color: ${withProp(ifProp('invert', getFromTheme('palette.misc.white'), getFromTheme('palette.primary.900')), transparentize(0.75))};
   }
 `;
 

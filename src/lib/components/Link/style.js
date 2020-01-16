@@ -7,7 +7,7 @@ export const StyledLink = styled.a`
   text-decoration: ${ifProp('invert', 'underline', 'none')};
   cursor: pointer;
   transition: ${getFromTheme('common.transition')};
-  color: ${ifProp('invert', getFromTheme('palette.misc.white'), getFromTheme('palette.primaryxpto.500'))};
+  color: ${ifProp('invert', getFromTheme('palette.misc.white'), getFromTheme('palette.primary.500'))};
 
   &:hover {
     text-decoration: ${ifProp('invert', 'none', 'underline')};

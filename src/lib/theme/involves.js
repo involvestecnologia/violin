@@ -5,11 +5,6 @@ const typography = {
   fontFamily: 'Open Sans, sans-serif',
   fontFamilyIcon: 'Material Icons Round',
   fontSize: {
-    "size1": "0.75rem",
-    "size2": "0.875rem",
-    "size3": "1rem",
-    "size4": "1.125rem",
-    "size5": "1.5rem",
     h1: rem(40),
     h2: rem(34),
     h3: rem(28),
@@ -207,66 +202,6 @@ const colors = {
     700: '#845D36',
     800: '#694838',
     900: '#4E323A'
-  },
-  "primary": {
-    "dark": "#3864B7",
-    "regular": "#4693F8",
-    "light": "#C7DFFD",
-    "white": "#F6FAFF",
-    "shadow": "rgba(56,100,183,0.25)"
-  },
-  "primaryAcid": {
-    "regular": "#5E78FF",
-    "dark": "#4865FC"
-  },
-  "accent": {
-    "dark": "#A33E47",
-    "regular": "#FC4949",
-    "light": "#FDA4A4",
-    "white": "#FFECEC",
-    "shadow": "rgba(163,62,71,0.25)"
-  },
-  "system": {
-    "dark": "#10213E",
-    "regular": "",
-    "light": "#F4F5F6",
-    "white": "#FFFFFF",
-    "shadow": "rgba(16,33,62,0.25)"
-  },
-  "default": {
-    "dark": "#68778C",
-    "regular": "#9AA9BC",
-    "light": "#CCD4DD",
-    "white": "#E5E8EB",
-    "shadow": "rgba(104,119,140,0.25)"
-  },
-  "done": {
-    "dark": "#219B81",
-    "regular": "#27C499",
-    "light": "#B3EADB",
-    "white": "#E9F9F5",
-    "shadow": "rgba(33,155,129,0.25)"
-  },
-  "error": {
-    "dark": "#B64458",
-    "regular": "#ED4759",
-    "light": "#F9C2C8",
-    "white": "#FDEDEF",
-    "shadow": "rgba(182,68,88,0.25)"
-  },
-  "alert": {
-    "dark": "#9B8E51",
-    "regular": "#EECE5A",
-    "light": "#F6E6AC",
-    "white": "#FDFAEE",
-    "shadow": "rgba(155,142,81,0.25)"
-  },
-  "progress": {
-    "dark": "#46829B",
-    "regular": "#60BBD6",
-    "light": "#AFDDEA",
-    "white": "#EFF8FB",
-    "shadow": "rgba(70,130,155,0.25)"
   }
 }
 
@@ -280,7 +215,7 @@ const involves = {
   common,
   palette: {
     ...colors,
-    primaryxpto: colors.blue
+    primary: colors.blue
   }
 };
 

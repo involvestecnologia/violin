@@ -44,7 +44,7 @@ export const Input = styled.input`
   height: ${ifProp('small', '30px', ifProp('large', '52px', '40px'))};
   box-sizing: border-box;
   border: none;
-  background-color: ${withProp(getFromTheme('palette.primaryxpto.900'), transparentize(0.9))};
+  background-color: ${withProp(getFromTheme('palette.primary.900'), transparentize(0.9))};
   border-radius: ${getFromTheme('borderRadius.border1')};
   padding: 0 ${ifProp('large', '16px', '10px')};
   outline: none;
@@ -60,7 +60,7 @@ export const Input = styled.input`
 
   &:focus {
     background-color: ${getFromTheme('palette.misc.white')};
-    box-shadow: 0 0 0 2px ${getFromTheme('palette.primaryxpto.500')};
+    box-shadow: 0 0 0 2px ${getFromTheme('palette.primary.500')};
   }
 
   &:disabled {
