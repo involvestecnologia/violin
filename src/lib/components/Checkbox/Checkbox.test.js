@@ -20,11 +20,6 @@ describe('Checkbox', () => {
     expect(getByText('Lorem ipsum')).toHaveTextContent('Lorem ipsum');
   });
 
-  test('should have label with custom component', () => {
-    const { getByTestId } = render(<Checkbox customLabel={<h2 data-testid="checkbox">Lorem ipsum</h2>} />);
-    expect(getByTestId('checkbox')).toHaveTextContent('Lorem ipsum');
-  });
-
   test('should have checked style when is checked', () => {
     const { container, getByTestId } = render(<Checkbox />);
     expect(getByTestId('checked-icon')).not.toBeVisible();

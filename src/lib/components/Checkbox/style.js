@@ -7,7 +7,6 @@ export const Wrapper = styled.label`
   position: relative;
   display: inline-flex;
   align-items: center;
-  cursor: pointer;
 `;
 
 export const Rect = styled.rect`
@@ -50,6 +49,8 @@ export const IndeterminateIcon = styled.path`
 
 export const Label = styled.span`
   margin-left: 6px;
+  font-size: ${getFromTheme('typography.fontSize.body')};
+  cursor: pointer;
 `;
 
 export const InputStyled = styled.input`
@@ -117,5 +118,10 @@ export const InputStyled = styled.input`
   
   &:disabled ~ ${Label} {
     opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  &:disabled ~ ${Svg} {
+    cursor: not-allowed;
   }
 `;

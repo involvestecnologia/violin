@@ -1,0 +1,30 @@
+---
+name: RadioButton
+menu: Components
+route: /components/RadioButton
+---
+
+import { RadioButton } from './RadioButton';
+import { Playground, Props } from "docz";
+
+# RadioButton
+
+<Playground>
+	<RadioButton />
+</Playground>
+
+## Props
+
+<Props of={RadioButton} />
+
+> Native props as disabled and checked also works.
+
+## label
+
+<Playground>
+	<RadioButton name="option" label='Option 1' />
+	<br />
+	<RadioButton name="option" label='Option 2' />
+	<br />
+	<RadioButton name="option" label='Option 3' />
+</Playground>
