@@ -26,6 +26,5 @@ describe('RadioButton', () => {
 
     fireEvent.click(container.firstChild);
     expect(container.querySelector('input')).toBeChecked();
-    expect(getByTestId('checked-circle')).toBeVisible();
   });
 });
