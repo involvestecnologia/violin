@@ -5,7 +5,7 @@ route: /components/Checkbox
 ---
 
 import { Checkbox } from './Checkbox';
-import { Text } from '../Text';
+import { Heading } from '../Heading';
 import { Playground, Props } from "docz";
 
 # Checkbox
@@ -24,4 +24,8 @@ import { Playground, Props } from "docz";
 
 <Playground>
 	<Checkbox label='With string label' />
+	<br />
+	<Checkbox label='Disabled' disabled />
+	<br />
+	<Checkbox label={<Heading>With a custom component</Heading>} />
 </Playground>
