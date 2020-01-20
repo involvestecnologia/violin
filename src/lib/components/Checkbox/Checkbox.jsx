@@ -22,10 +22,12 @@ export const Checkbox = ({ className, style, label, customLabel, disabled, ...pr
 
 Checkbox.propTypes = {
   label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
-  customLabel: PropTypes.node
+  customLabel: PropTypes.node,
+  disabled: PropTypes.bool
 };
 
 Checkbox.defaultProps = {
   label: null,
-  customLabel: null
+  customLabel: null,
+  disabled: false
 };
