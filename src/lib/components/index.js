@@ -3,4 +3,8 @@ export { TextField } from './TextField';
 export { Link } from './Link';
 export { Text } from './Text';
 export { Heading } from './Heading';
+export { Subheading } from './Subheading';
 export { Icon } from './Icon';
+export { Checkbox } from './Checkbox';
+export { RadioButton } from './RadioButton';
+export { Tooltip } from './Tooltip';
