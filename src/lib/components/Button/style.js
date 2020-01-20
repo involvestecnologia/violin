@@ -146,8 +146,8 @@ export const StyledButton = styled.button`
   text-decoration: none;
   cursor: pointer;
   box-sizing: border-box;
+  border-radius: 4px;
   transition: ${getFromTheme('common.transition')};
-  border-radius: ${getFromTheme('borderRadius.border1')};
   height: ${ifProp('small', '30px', ifProp('large', '52px', '40px'))};
   font-size: ${ifProp('small', rem(13), ifProp('large', rem(18), rem(14)))};
   display: ${ifProp('block', 'flex', 'inline-flex')};

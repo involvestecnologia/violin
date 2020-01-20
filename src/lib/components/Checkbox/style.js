@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { withProp } from 'styled-tools';
+import { withProp, ifProp } from 'styled-tools';
 import { transparentize } from 'polished';
 import getFromTheme from '../../utils/getFromTheme';
 
@@ -7,6 +7,7 @@ export const Wrapper = styled.label`
   position: relative;
   display: inline-flex;
   align-items: center;
+  cursor: ${ifProp('disabled', 'not-allowed', 'pointer')};
 `;
 
 export const Rect = styled.rect`
@@ -21,7 +22,6 @@ export const Svg = styled.svg`
   position: relative;
   width: 18px;
   height: 18px;
-  cursor: pointer;
 
   &:hover {
     ${Rect} {
@@ -107,7 +107,6 @@ export const InputStyled = styled.input`
   &:disabled ~ ${Svg} > ${Rect},
   &:indeterminate ~ ${Svg} > ${Rect} {
     stroke: ${withProp(getFromTheme('palette.misc.black'), transparentize(0.85))};
-    cursor: not-allowed;
   }
 
   &:disabled:checked ~ ${Svg} > ${Rect},
