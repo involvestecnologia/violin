@@ -19,7 +19,7 @@ const Card = styled.div`
   width: 100%;
   height: 120px;
   border-radius: 8px;
-  box-shadow: ${theme.shadow.shadow6} rgba(0,0,0,.1);
+  box-shadow: 0 1px 3px rgba(0,0,0,.2);
   background-color: ${({ color, variant }) => theme.palette[color][variant]};
   padding: 10px;
   display: flex;
@@ -32,16 +32,16 @@ const Info = styled.div`
   border-radius: 6px;
   background: white;
   min-width: 50%;
-  box-shadow: ${theme.shadow.shadow4} rgba(0,0,0,.1);
+  box-shadow: 0 2px 5px rgba(0,0,0,.2);
 `;
 
 export const BoxColor = ({ variant, color }) => (
   <Card variant={variant} color={color}>
     <Info>
-      <Text small bold style={{ color: theme.palette.default.dark }}>
+      <Text small bold style={{ color: theme.palette.black[900] }}>
         {theme.palette[color][variant]}
       </Text>
-      <Text small color="default">{variant}</Text>
+      <Text small color="default">{color}.{variant}</Text>
     </Info>
   </Card>
 )

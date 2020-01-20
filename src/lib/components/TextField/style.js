@@ -45,7 +45,7 @@ export const Input = styled.input`
   box-sizing: border-box;
   border: none;
   background-color: ${withProp(getFromTheme('palette.primary.900'), transparentize(0.9))};
-  border-radius: ${getFromTheme('borderRadius.border1')};
+  border-radius: 4px;
   padding: 0 ${ifProp('large', '16px', '10px')};
   outline: none;
   transition: ${getFromTheme('common.transition')};

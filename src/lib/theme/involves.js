@@ -43,37 +43,6 @@ const zIndex = {
   z9: 900,
 }
 
-const spacing = {
-  space1: '4px',
-  space2: '8px',
-  space3: '16px',
-  space4: '24px',
-  space5: '32px',
-  space6: '40px',
-  space7: '48px',
-  space8: '56px',
-  space9: '64px'
-}
-
-const shadow = {
-  shadowBorder1: '0 0 0 1px',
-  shadowBorder2: '0 0 0 2px',
-  shadow3: '0 2px 3px',
-  shadow4: '0 1px 4px',
-  shadow6: '0 3px 6px',
-  shadow8: '0 4px 8px',
-  shadow12: '0 6px 12px',
-  shadow16: '0 8px 16px',
-  shadow24: '0 10px 24px'
-}
-const borderRadius = {
-  border1: '4px',
-  border2: '8px',
-  border3: '12px',
-  border4: '20px',
-  border5: '24px'
-}
-
 const common = {
   transition: 'all 0.2s ease'
 }
@@ -209,13 +178,10 @@ const involves = {
   typography,
   breakpoint,
   zIndex,
-  spacing,
-  shadow,
-  borderRadius,
   common,
   palette: {
-    ...colors,
-    primary: colors.blue
+    primary: colors.blue,
+    ...colors
   }
 };
 
