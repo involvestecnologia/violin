@@ -3,24 +3,50 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { Ballon, Trigger } from './style';
 
-export const Tooltip = ({ content, children }) => {
+export const Tooltip = ({ content, placement, children }) => {
   const [open, setOpen] = useState(false);
   const [isTriggerHovered, setIsTriggerHovered] = useState(false);
   const [isTipHovered, setIsTipHovered] = useState(false);
   const [position, setPosition] = useState({});
   const triggerEl = useRef(null);
+  const [timerShowTip, setTimerShowTip] = useState(null);
+  const [timerHideTip, setTimerHideTip] = useState(null);
 
   useEffect(() => {
-    setPosition(triggerEl.current.getBoundingClientRect())
+    setTimeout(() => setPosition(triggerEl.current.firstChild.getBoundingClientRect()), 300);
   }, []);
+
+  const stopHiddenTimer = () => {
+    clearTimeout(timerHideTip);
+  }
+
+  const stopShowTimer = () => {
+    clearTimeout(timerShowTip);
+  }
 
   useEffect(() => {
     if (isTriggerHovered || isTipHovered) {
-      setOpen(true);
+      stopHiddenTimer();
+
+      if (isTipHovered) {
+        setOpen(true);
+      } else {
+        const showTip = setTimeout(() => {
+          setOpen(true);
+        }, 100);
+        setTimerShowTip(showTip);
+      }
     }
 
     if (!isTriggerHovered && !isTipHovered) {
-      setOpen(false);
+      stopShowTimer();
+      const hideTip = setTimeout(() => setOpen(false), 200);
+      setTimerHideTip(hideTip);
+    }
+
+    return () => {
+      stopShowTimer();
+      stopHiddenTimer();
     }
   }, [isTriggerHovered, isTipHovered]);
 
@@ -28,17 +54,18 @@ export const Tooltip = ({ content, children }) => {
     <>
       <Trigger
         ref={triggerEl}
-        onMouseEnter={() => setTimeout(() => setIsTriggerHovered(true), 100)}
-        onMouseLeave={() => setTimeout(() => setIsTriggerHovered(false), 300)}
+        onMouseEnter={() => setIsTriggerHovered(true)}
+        onMouseLeave={() => setIsTriggerHovered(false)}
       >
         {children}
       </Trigger>
 
       {open && (
         <Tip
-          onMouseEnter={() => setTimeout(() => setIsTipHovered(true), 100)}
-          onMouseLeave={() => setTimeout(() => setIsTipHovered(false), 300)}
+          onMouseEnter={() => setIsTipHovered(true)}
+          onMouseLeave={() => setIsTipHovered(false)}
           position={position}
+          placement={placement}
         >
           {content}
         </Tip>
@@ -48,14 +75,23 @@ export const Tooltip = ({ content, children }) => {
 }
 
 Tooltip.propTypes = {
-  content: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired
+  content: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
+  placement: PropTypes.oneOf(['top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight', 'leftTop', 'leftBottom', 'rightTop', 'rightBottom'])
 };
 
-Tooltip.defaultProps = {};
+Tooltip.defaultProps = {
+  placement: 'bottom'
+};
 
 const Tip = (props) => {
+  const [fade, setFade] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => setFade(true), 50);
+  }, []);
+
   const component = (
-    <Ballon {...props} />
+    <Ballon fade={fade} {...props} />
   );
 
   return ReactDOM.createPortal(component, document.querySelector('body'));

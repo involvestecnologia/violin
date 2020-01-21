@@ -5,15 +5,82 @@ route: /components/Tooltip
 ---
 
 import { Tooltip } from './Tooltip';
+import { Text } from '../Text';
+import { Link } from '../Link';
+import { Button } from '../Button';
 import { Playground, Props } from "docz";
 
 # Tooltip
 
 <Playground>
-	<Tooltip content="Lorem ipsum dolor">Lorem</Tooltip>
+	<Tooltip content="Lorem ipsum dolor sit amet">
+		<Button>Hover me</Button>
+	</Tooltip>
 </Playground>
 
 ## Props
 
 <Props of={Tooltip} />
 
+## content
+
+<Playground>
+	<Tooltip content="This is a simple text content">
+		<Button>Text content</Button>
+	</Tooltip>
+	<Tooltip content={<Text>This is a custom content with <Link invert href="#">component</Link>.</Text>}>
+		<Button>Component content</Button>
+	</Tooltip>
+</Playground>
+
+## placement 
+
+<Playground>
+	<Tooltip placement="top" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit">
+		<Button>Top</Button>
+	</Tooltip>
+
+	<Tooltip placement="left" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit">
+		<Button>Left</Button>
+	</Tooltip>
+
+	<Tooltip placement="right" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit">
+		<Button>Right</Button>
+	</Tooltip>
+
+	<Tooltip placement="bottom" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit">
+		<Button>Bottom</Button>
+	</Tooltip>
+
+	<Tooltip placement="topLeft" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit">
+		<Button>Top left</Button>
+	</Tooltip>
+
+	<Tooltip placement="topRight" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit">
+		<Button>Top right</Button>
+	</Tooltip>
+
+	<Tooltip placement="leftTop" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit">
+		<Button>Left top</Button>
+	</Tooltip>
+
+	<Tooltip placement="leftBottom" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit">
+		<Button>Left bottom</Button>
+	</Tooltip>
+
+	<Tooltip placement="bottomLeft" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit">
+		<Button>Bottom left</Button>
+	</Tooltip>
+
+	<Tooltip placement="bottomRight" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit">
+		<Button>Bottom right</Button>
+	</Tooltip>
+
+	<Tooltip placement="rightTop" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit">
+		<Button>Right top</Button>
+	</Tooltip>
+
+	<Tooltip placement="rightBottom" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit">
+		<Button>Right bottom</Button>
+	</Tooltip>
+</Playground>
