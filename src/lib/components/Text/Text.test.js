@@ -11,53 +11,26 @@ describe('Text', () => {
     expect(getByText('Lorem ipsum')).toBeInTheDocument();
   });
 
-  test('shoud have size style correctly', () => {
+  test('shoud have correctly style', () => {
     const { getByText, rerender } = render(<Text>Lorem ipsum</Text>);
     expect(getByText('Lorem ipsum')).toHaveStyle(`
-      font-size: ${theme.typography.fontSize.size2};
+      font-size: ${theme.typography.fontSize.body};
     `);
-    rerender(<Text size="small">Lorem ipsum</Text>);
+    rerender(<Text small>Lorem ipsum</Text>);
     expect(getByText('Lorem ipsum')).toHaveStyle(`
-      font-size: ${theme.typography.fontSize.size1};
+      font-size: ${theme.typography.fontSize.small};
     `);
-    rerender(<Text size="lead">Lorem ipsum</Text>);
+    rerender(<Text caption>Lorem ipsum</Text>);
     expect(getByText('Lorem ipsum')).toHaveStyle(`
-      font-size: ${theme.typography.fontSize.size3};
+      font-size: ${theme.typography.fontSize.small};
     `);
-  });
-
-  test('should have color style correctly', () => {
-    const { getByText, rerender } = render(<Text color="white">Lorem ipsum</Text>);
+    rerender(<Text disabled>Lorem ipsum</Text>);
     expect(getByText('Lorem ipsum')).toHaveStyle(`
-      color: ${theme.palette.system.white};
+      opacity: 0.25;
     `);
-    rerender(<Text color="default">Lorem ipsum</Text>);
+    rerender(<Text error>Lorem ipsum</Text>);
     expect(getByText('Lorem ipsum')).toHaveStyle(`
-      color: ${theme.palette.default.regular};
-    `);
-    rerender(<Text color="primary">Lorem ipsum</Text>);
-    expect(getByText('Lorem ipsum')).toHaveStyle(`
-      color: ${theme.palette.primary.regular};
-    `);
-    rerender(<Text color="accent">Lorem ipsum</Text>);
-    expect(getByText('Lorem ipsum')).toHaveStyle(`
-      color: ${theme.palette.accent.regular};
-    `);
-    rerender(<Text color="error">Lorem ipsum</Text>);
-    expect(getByText('Lorem ipsum')).toHaveStyle(`
-      color: ${theme.palette.error.regular};
-    `);
-    rerender(<Text color="alert">Lorem ipsum</Text>);
-    expect(getByText('Lorem ipsum')).toHaveStyle(`
-      color: ${theme.palette.alert.regular};
-    `);
-    rerender(<Text color="done">Lorem ipsum</Text>);
-    expect(getByText('Lorem ipsum')).toHaveStyle(`
-      color: ${theme.palette.done.regular};
-    `);
-    rerender(<Text color="progress">Lorem ipsum</Text>);
-    expect(getByText('Lorem ipsum')).toHaveStyle(`
-      color: ${theme.palette.progress.regular};
+      color: ${theme.palette.red[700]};
     `);
   });
 
@@ -72,20 +45,6 @@ describe('Text', () => {
     const { getByText } = render(<Text italic>Lorem ipsum</Text>);
     expect(getByText('Lorem ipsum')).toHaveStyle(`
       font-style: italic;
-    `);
-  });
-
-  test('shoud have margin style', () => {
-    const { getByText } = render(<Text margin>Lorem ipsum</Text>);
-    expect(getByText('Lorem ipsum')).toHaveStyle(`
-      margin-bottom: ${theme.spacing.space3};
-    `);
-  });
-
-  test('shoud have nowrap style', () => {
-    const { getByText } = render(<Text nowrap>Lorem ipsum</Text>);
-    expect(getByText('Lorem ipsum')).toHaveStyle(`
-      white-space: nowrap;
     `);
   });
 });

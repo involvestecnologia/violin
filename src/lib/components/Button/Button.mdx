@@ -11,58 +11,64 @@ import { Playground, Props } from "docz";
 
 <Playground>
     <Button style={{ margin: 5 }}>Default</Button>
-    <Button color="primary" style={{ margin: 5 }}>Primary</Button>
-    <Button color="accent" style={{ margin: 5 }}>Accent</Button>
-    <Button color="primary" disabled style={{ margin: 5 }}>Disabled</Button>
+    <Button primary style={{ margin: 5 }}>Primary</Button>
+    <Button secondary style={{ margin: 5 }}>Secondary</Button>
+    <Button danger style={{ margin: 5 }}>Danger</Button>
 </Playground>
 
 ## Props
 
 <Props of={Button} />
 
-## color
+## disabled
 
 <Playground>
-    <Button color="done" style={{ margin: 5 }}>Done</Button>
-    <Button color="error" style={{ margin: 5 }}>Error</Button>
-    <Button color="alert" style={{ margin: 5 }}>Alert</Button>
-    <Button color="progress" style={{ margin: 5 }}>Progress</Button>
+    <Button disabled style={{ margin: 5 }}>Default</Button>
+    <Button primary disabled style={{ margin: 5 }}>Primary</Button>
+    <Button secondary disabled style={{ margin: 5 }}>Secondary</Button>
+    <Button danger disabled style={{ margin: 5 }}>Danger</Button>
 </Playground>
 
-## outline
+## invert
 
 <Playground>
-    <Button outline style={{ margin: 5 }}>Outline Default</Button>
-    <Button color="primary" outline style={{ margin: 5 }}>Outline Primary</Button>
-    <Button color="accent" outline style={{ margin: 5 }}>Outline Accent</Button>
+    <div style={{ background: '#1F0E3D', padding: 20 }}>
+        <Button invert style={{ margin: 5 }}>Default</Button>
+        <Button invert primary style={{ margin: 5 }}>Primary</Button>
+        <Button invert secondary style={{ margin: 5 }}>Secondary</Button>
+        <Button invert danger style={{ margin: 5 }}>Danger</Button>
+    </div>
 </Playground>
 
 ## size
 
 <Playground>
-    <Button color="accent" size="small" style={{ margin: 5 }}>Small</Button>
-    <Button color="accent" style={{ margin: 5 }}>Normal</Button>
-    <Button color="accent" size="large" style={{ margin: 5 }}>Large</Button>
-    <br />
-    <Button color="primary" outline size="small" style={{ margin: 5 }}>Small</Button>
-    <Button color="primary" outline style={{ margin: 5 }}>Normal</Button>
-    <Button color="primary" outline size="large" style={{ margin: 5 }}>Large</Button>
+    <Button primary small style={{ margin: 5 }}>Small</Button>
+    <Button primary style={{ margin: 5 }}>Normal</Button>
+    <Button primary large style={{ margin: 5 }}>Large</Button>
 </Playground>
 
 ## block
 
 <Playground>
-    <Button color="primary" style={{ margin: 5 }}>Normal</Button>
-    <Button color="primary" block style={{ margin: 5 }}>Block</Button>
+    <Button primary style={{ margin: 5 }}>Normal</Button>
+    <Button primary block style={{ margin: 5 }}>Block</Button>
 </Playground>
 
 ## icon
 
 <Playground>
-    <Button icon="edit" size="small" style={{ margin: 5 }}>Small</Button>
-    <Button color="primary" icon="edit" outline style={{ margin: 5 }}>Normal</Button>
-    <Button color="accent" icon="edit" size="large" style={{ margin: 5 }}>Large</Button>
-    <Button color="accent" icon="edit" size="large" style={{ margin: 5 }} disabled>Disabled</Button>
+    <Button secondary small icon="edit" style={{ margin: 5 }}>Small</Button>
+    <Button icon="edit" style={{ margin: 5 }}>Normal</Button>
+    <Button primary large icon="edit" style={{ margin: 5 }}>Large</Button>
+    <br />
+    <Button primary small icon="edit" style={{ margin: 5 }} />
+    <Button primary icon="edit" style={{ margin: 5 }} />
+    <Button primary large icon="edit" style={{ margin: 5 }} />
+    <br />
+    <Button secondary small icon="edit" style={{ margin: 5 }} />
+    <Button secondary icon="edit" style={{ margin: 5 }} />
+    <Button secondary large icon="edit" style={{ margin: 5 }} />
 </Playground>
 
 ## as 'a' element

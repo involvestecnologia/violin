@@ -11,20 +11,27 @@ import { Playground, Props } from "docz";
 
 <Playground>
     <Heading>Lorem ipsum dolor</Heading>
-    <Heading type="sub">Lorem ipsum dolor</Heading>
-    <Heading type="section">Lorem ipsum dolor</Heading>
 </Playground>
 
 ## Props
 
 <Props of={Heading} />
 
+## size
+
+<Playground>
+    <Heading size="h1">Heading 1</Heading>
+    <Heading size="h2">Heading 2</Heading>
+    <Heading size="h3">Heading 3</Heading>
+    <Heading size="h4">Heading 4</Heading>
+    <Heading size="h5">Heading 5</Heading>
+    <Heading size="h6">Heading 6</Heading>
+</Playground>
+
 ## Use as another element
 
 By default `Heading` is used with `h2` element, to change use `as` prop:
 
 <Playground>
-    <Heading as="h1">Lorem ipsum dolor</Heading>
-    <Heading as="h3" type="sub">Lorem ipsum dolor</Heading>
-    <Heading as="h4" type="section">Lorem ipsum dolor</Heading>
+    <Heading as="h1" size="h5">Lorem ipsum dolor</Heading>
 </Playground>
