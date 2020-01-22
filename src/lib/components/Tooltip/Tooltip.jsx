@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { Ballon, Trigger } from './style';
 
-export const Tooltip = ({ content, placement, children }) => {
-  const [open, setOpen] = useState(false);
+export const Tooltip = ({ content, placement, children, open }) => {
+  const [showTip, setShowTip] = useState(open);
   const [isTriggerHovered, setIsTriggerHovered] = useState(false);
   const [isTipHovered, setIsTipHovered] = useState(false);
   const [position, setPosition] = useState({});
@@ -29,18 +29,18 @@ export const Tooltip = ({ content, placement, children }) => {
       stopHiddenTimer();
 
       if (isTipHovered) {
-        setOpen(true);
+        setShowTip(true);
       } else {
-        const showTip = setTimeout(() => {
-          setOpen(true);
+        const showTimer = setTimeout(() => {
+          setShowTip(true);
         }, 100);
-        setTimerShowTip(showTip);
+        setTimerShowTip(showTimer);
       }
     }
 
     if (!isTriggerHovered && !isTipHovered) {
       stopShowTimer();
-      const hideTip = setTimeout(() => setOpen(false), 200);
+      const hideTip = setTimeout(() => setShowTip(false), 200);
       setTimerHideTip(hideTip);
     }
 
@@ -56,16 +56,18 @@ export const Tooltip = ({ content, placement, children }) => {
         ref={triggerEl}
         onMouseEnter={() => setIsTriggerHovered(true)}
         onMouseLeave={() => setIsTriggerHovered(false)}
+        data-testid="trigger"
       >
         {children}
       </Trigger>
 
-      {open && (
+      {showTip && (
         <Tip
           onMouseEnter={() => setIsTipHovered(true)}
           onMouseLeave={() => setIsTipHovered(false)}
           position={position}
           placement={placement}
+          data-testid="balloon"
         >
           {content}
         </Tip>
@@ -76,11 +78,13 @@ export const Tooltip = ({ content, placement, children }) => {
 
 Tooltip.propTypes = {
   content: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
-  placement: PropTypes.oneOf(['top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight', 'leftTop', 'leftBottom', 'rightTop', 'rightBottom'])
+  placement: PropTypes.oneOf(['top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight', 'leftTop', 'leftBottom', 'rightTop', 'rightBottom']),
+  open: PropTypes.bool
 };
 
 Tooltip.defaultProps = {
-  placement: 'bottom'
+  placement: 'bottom',
+  open: false
 };
 
 const Tip = (props) => {
