@@ -83,7 +83,7 @@ Tooltip.propTypes = {
 };
 
 Tooltip.defaultProps = {
-  placement: 'bottom',
+  placement: 'top',
   open: false
 };
 
