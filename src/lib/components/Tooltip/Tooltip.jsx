@@ -12,9 +12,30 @@ export const Tooltip = ({ content, placement, children, open }) => {
   const [timerShowTip, setTimerShowTip] = useState(null);
   const [timerHideTip, setTimerHideTip] = useState(null);
 
-  useEffect(() => {
-    setTimeout(() => setPosition(triggerEl.current.firstChild.getBoundingClientRect()), 300);
-  }, []);
+  const offsetPosition = (element) => {
+    const rect = element.current.firstChild.getBoundingClientRect();
+    const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    return { 
+      top: rect.top + scrollTop,
+      left: rect.left + scrollLeft,
+      width: rect.width,
+      height: rect.height
+    }
+  }
+
+  const onHovered = (elem, event) => {
+    setPosition(offsetPosition(triggerEl));
+
+    switch (elem) {
+      case 'trigger':
+        setIsTriggerHovered(event);
+        break;
+      case 'tip':
+        setIsTipHovered(event);
+        break;
+    }
+  }
 
   const stopHiddenTimer = () => {
     clearTimeout(timerHideTip);
@@ -54,8 +75,8 @@ export const Tooltip = ({ content, placement, children, open }) => {
     <>
       <Trigger
         ref={triggerEl}
-        onMouseEnter={() => setIsTriggerHovered(true)}
-        onMouseLeave={() => setIsTriggerHovered(false)}
+        onMouseEnter={() => onHovered('trigger', true)}
+        onMouseLeave={() => onHovered('trigger', false)}
         data-testid="trigger"
       >
         {children}
@@ -63,8 +84,8 @@ export const Tooltip = ({ content, placement, children, open }) => {
 
       {showTip && (
         <Tip
-          onMouseEnter={() => setIsTipHovered(true)}
-          onMouseLeave={() => setIsTipHovered(false)}
+          onMouseEnter={() => onHovered('tip', true)}
+          onMouseLeave={() => onHovered('tip', false)}
           position={position}
           placement={placement}
           data-testid="balloon"
