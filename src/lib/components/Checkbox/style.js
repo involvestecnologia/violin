@@ -49,6 +49,8 @@ export const IndeterminateIcon = styled.path`
 
 export const Label = styled.span`
   margin-left: 6px;
+  font-size: ${getFromTheme('typography.fontSize.body')};
+  cursor: pointer;
 `;
 
 export const InputStyled = styled.input`
@@ -115,5 +117,10 @@ export const InputStyled = styled.input`
   
   &:disabled ~ ${Label} {
     opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  &:disabled ~ ${Svg} {
+    cursor: not-allowed;
   }
 `;
