@@ -196,6 +196,7 @@ export const Ballon = styled.div`
   ${(props) => props.placement === 'rightTop' && rightTop}
   ${(props) => props.placement === 'rightBottom' && rightBottom}
   max-width: 250px;
+  min-width: 180px;
   padding: 6px 10px;
   background: ${getFromTheme('palette.black.900')};
   color: ${getFromTheme('palette.misc.white')};

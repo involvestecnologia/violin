@@ -1,39 +1,26 @@
 import React, { useState, useRef, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import { Ballon, Trigger } from './style';
+import { Ballon } from './style';
 
 export const Tooltip = ({ content, placement, children, open }) => {
   const [showTip, setShowTip] = useState(open);
   const [isTriggerHovered, setIsTriggerHovered] = useState(false);
   const [isTipHovered, setIsTipHovered] = useState(false);
   const [position, setPosition] = useState({});
-  const triggerEl = useRef(null);
   const [timerShowTip, setTimerShowTip] = useState(null);
   const [timerHideTip, setTimerHideTip] = useState(null);
+  const [triggerElement, setTriggerElement] = useState(null);
 
   const offsetPosition = (element) => {
-    const rect = element.current.firstChild.getBoundingClientRect();
+    const rect = element.getBoundingClientRect();
     const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    return { 
+    return {
       top: rect.top + scrollTop,
       left: rect.left + scrollLeft,
       width: rect.width,
       height: rect.height
-    }
-  }
-
-  const onHovered = (elem, event) => {
-    setPosition(offsetPosition(triggerEl));
-
-    switch (elem) {
-      case 'trigger':
-        setIsTriggerHovered(event);
-        break;
-      case 'tip':
-        setIsTipHovered(event);
-        break;
     }
   }
 
@@ -71,16 +58,36 @@ export const Tooltip = ({ content, placement, children, open }) => {
     }
   }, [isTriggerHovered, isTipHovered]);
 
+  const onHovered = (elem, value, event) => {
+    if (event) {
+      setPosition(offsetPosition(event.target));
+    }
+    switch (elem) {
+      case 'trigger':
+        setIsTriggerHovered(value);
+        break;
+      case 'tip':
+        setIsTipHovered(value);
+        break;
+      default:
+        break;
+    }
+  }
+
+  useEffect(() => {
+    const Elem = () => React.cloneElement(children, {
+      onMouseEnter: (event) => onHovered('trigger', true, event),
+      onMouseLeave: (event) => onHovered('trigger', false, event),
+      onFocus: (event) => onHovered('trigger', true, event),
+      onBlur: (event) => onHovered('trigger', false, event),
+      'data-testid': 'trigger'
+    });
+    setTriggerElement(Elem);
+  }, []);
+
   return (
     <>
-      <Trigger
-        ref={triggerEl}
-        onMouseEnter={() => onHovered('trigger', true)}
-        onMouseLeave={() => onHovered('trigger', false)}
-        data-testid="trigger"
-      >
-        {children}
-      </Trigger>
+      {triggerElement}
 
       {showTip && (
         <Tip
@@ -100,7 +107,8 @@ export const Tooltip = ({ content, placement, children, open }) => {
 Tooltip.propTypes = {
   content: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
   placement: PropTypes.oneOf(['top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight', 'leftTop', 'leftBottom', 'rightTop', 'rightBottom']),
-  open: PropTypes.bool
+  open: PropTypes.bool,
+  children: PropTypes.node.isRequired
 };
 
 Tooltip.defaultProps = {
@@ -108,15 +116,38 @@ Tooltip.defaultProps = {
   open: false
 };
 
-const Tip = (props) => {
+const Tip = ({ placement, ...props }) => {
   const [fade, setFade] = useState(false);
+  const [place, setPlace] = useState(placement);
+  const ballonEl = useRef(null);
 
   useEffect(() => {
     setTimeout(() => setFade(true), 50);
+    const balloonPosition = ballonEl.current.getBoundingClientRect();
+
+    switch (placement) {
+      case 'top':
+        if (balloonPosition.left < 0) {
+          setPlace('topLeft');
+        }
+        break;
+      case 'left':
+        if (balloonPosition.left < 0) {
+          setPlace('right');
+        }
+        break;
+      case 'right':
+        if (balloonPosition.left < 0) {
+          setPlace('right');
+        }
+        break;
+      default:
+        break;
+    }
   }, []);
 
   const component = (
-    <Ballon fade={fade} {...props} />
+    <Ballon ref={ballonEl} fade={fade} placement={place} {...props} />
   );
 
   return ReactDOM.createPortal(component, document.querySelector('body'));
