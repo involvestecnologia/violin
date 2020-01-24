@@ -13,9 +13,8 @@ const arrow = css`
 `;
 
 const top = css`
-  left: ${({ position }) => position.left + (position.width / 2)}px;
-  top: ${({ position }) => position.top - 10}px;
-  transform: translate(-50%, -100%);
+  left: ${({ position }) => position.left}px;
+  top: ${({ position }) => position.top}px;
   margin-top: ${ifProp('fade', '0', '5px')};
 
   &::after {

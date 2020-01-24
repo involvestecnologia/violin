@@ -8,13 +8,18 @@ import { Tooltip } from './Tooltip';
 import { Text } from '../Text';
 import { Link } from '../Link';
 import { Button } from '../Button';
+import { TextField } from '../TextField';
 import { Playground, Props } from "docz";
 
 # Tooltip
 
 <Playground>
+	<Tooltip content="Lorem ipsum ">
+		<TextField />
+	</Tooltip>
+	
 	<Tooltip content="Lorem ipsum dolor sit amet">
-		<Button primary>Hover me</Button>
+		<TextField />
 	</Tooltip>
 </Playground>
 

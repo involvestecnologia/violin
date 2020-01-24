@@ -3,16 +3,16 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { Ballon } from './style';
 
-export const Tooltip = ({ content, placement, children, open }) => {
+export const Tooltip = ({ content, placement, children, disableFocus, disableHover, open }) => {
   const [showTip, setShowTip] = useState(open);
   const [isTriggerHovered, setIsTriggerHovered] = useState(false);
   const [isTipHovered, setIsTipHovered] = useState(false);
-  const [position, setPosition] = useState({});
-  const [timerShowTip, setTimerShowTip] = useState(null);
-  const [timerHideTip, setTimerHideTip] = useState(null);
+  const [triggerPosition, setTriggerPosition] = useState({});
   const [triggerElement, setTriggerElement] = useState(null);
+  const timerShowTip = useRef();
+  const timerHideTip = useRef();
 
-  const offsetPosition = (element) => {
+  const offsetTriggerPosition = (element) => {
     const rect = element.getBoundingClientRect();
     const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -25,11 +25,11 @@ export const Tooltip = ({ content, placement, children, open }) => {
   }
 
   const stopHiddenTimer = () => {
-    clearTimeout(timerHideTip);
+    clearTimeout(timerHideTip.current);
   }
 
   const stopShowTimer = () => {
-    clearTimeout(timerShowTip);
+    clearTimeout(timerShowTip.current);
   }
 
   useEffect(() => {
@@ -39,17 +39,15 @@ export const Tooltip = ({ content, placement, children, open }) => {
       if (isTipHovered) {
         setShowTip(true);
       } else {
-        const showTimer = setTimeout(() => {
+        timerShowTip.current = setTimeout(() => {
           setShowTip(true);
         }, 100);
-        setTimerShowTip(showTimer);
       }
     }
 
     if (!isTriggerHovered && !isTipHovered) {
       stopShowTimer();
-      const hideTip = setTimeout(() => setShowTip(false), 200);
-      setTimerHideTip(hideTip);
+      timerHideTip.current = setTimeout(() => setShowTip(false), 200);
     }
 
     return () => {
@@ -60,7 +58,7 @@ export const Tooltip = ({ content, placement, children, open }) => {
 
   const onHovered = (elem, value, event) => {
     if (event) {
-      setPosition(offsetPosition(event.target));
+      setTriggerPosition(offsetTriggerPosition(event.target));
     }
     switch (elem) {
       case 'trigger':
@@ -76,14 +74,15 @@ export const Tooltip = ({ content, placement, children, open }) => {
 
   useEffect(() => {
     const Elem = () => React.cloneElement(children, {
-      onMouseEnter: (event) => onHovered('trigger', true, event),
-      onMouseLeave: (event) => onHovered('trigger', false, event),
-      onFocus: (event) => onHovered('trigger', true, event),
-      onBlur: (event) => onHovered('trigger', false, event),
-      'data-testid': 'trigger'
+      onMouseEnter: (event) => !disableHover && onHovered('trigger', true, event),
+      onMouseLeave: (event) => !disableHover && onHovered('trigger', false, event),
+      onFocus: (event) => !disableFocus && onHovered('trigger', true, event),
+      onBlur: (event) => !disableFocus && onHovered('trigger', false, event),
+      'data-testid': 'trigger',
+      ...children.props
     });
     setTriggerElement(Elem);
-  }, []);
+  }, [disableHover, disableFocus]);
 
   return (
     <>
@@ -93,7 +92,7 @@ export const Tooltip = ({ content, placement, children, open }) => {
         <Tip
           onMouseEnter={() => onHovered('tip', true)}
           onMouseLeave={() => onHovered('tip', false)}
-          position={position}
+          triggerPosition={triggerPosition}
           placement={placement}
           data-testid="balloon"
         >
@@ -108,46 +107,48 @@ Tooltip.propTypes = {
   content: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
   placement: PropTypes.oneOf(['top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight', 'leftTop', 'leftBottom', 'rightTop', 'rightBottom']),
   open: PropTypes.bool,
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
+  /** Doesn't show Tooltip when hover children */
+  disableFocus: PropTypes.bool,
+  /** Doesn't show Tooltip when focus children */
+  disableHover: PropTypes.bool,
+  open: PropTypes.bool
 };
 
 Tooltip.defaultProps = {
   placement: 'top',
+  open: false,
+  disableFocus: false,
+  disableHover: false,
   open: false
 };
 
-const Tip = ({ placement, ...props }) => {
+const Tip = ({ placement, triggerPosition, ...props }) => {
   const [fade, setFade] = useState(false);
   const [place, setPlace] = useState(placement);
+  const [position, setPosition] = useState(null);
   const ballonEl = useRef(null);
 
   useEffect(() => {
     setTimeout(() => setFade(true), 50);
-    const balloonPosition = ballonEl.current.getBoundingClientRect();
+    const {width, height} = ballonEl.current.getBoundingClientRect();
+    console.log(width, height);
 
     switch (placement) {
       case 'top':
-        if (balloonPosition.left < 0) {
-          setPlace('topLeft');
-        }
-        break;
-      case 'left':
-        if (balloonPosition.left < 0) {
-          setPlace('right');
-        }
-        break;
-      case 'right':
-        if (balloonPosition.left < 0) {
-          setPlace('right');
-        }
+        setPosition({
+          top: triggerPosition.top - height - 10,
+          left: (triggerPosition.left + (triggerPosition.width / 2)) - (width / 2)
+        })
+        
         break;
       default:
         break;
     }
-  }, []);
-
+  }, [triggerPosition, placement]);
+  
   const component = (
-    <Ballon ref={ballonEl} fade={fade} placement={place} {...props} />
+    <Ballon ref={ballonEl} fade={fade} position={position} placement={place} {...props} />
   );
 
   return ReactDOM.createPortal(component, document.querySelector('body'));
