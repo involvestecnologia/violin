@@ -92,7 +92,7 @@ export const Tooltip = ({ content, placement, children, disableFocus, disableHov
         <Tip
           onMouseEnter={() => onHovered('tip', true)}
           onMouseLeave={() => onHovered('tip', false)}
-          triggerPosition={triggerPosition}
+          position={triggerPosition}
           placement={placement}
           data-testid="balloon"
         >
@@ -123,33 +123,133 @@ Tooltip.defaultProps = {
   open: false
 };
 
-const Tip = ({ placement, triggerPosition, ...props }) => {
+const Tip = ({ placement, ...props }) => {
   const [fade, setFade] = useState(false);
-  const [place, setPlace] = useState(placement);
-  const [position, setPosition] = useState(null);
-  const ballonEl = useRef(null);
+  const [dynamicPlacement, setDynamicPlacement] = useState(placement);
+  const tooltipElement = useRef(null);
 
   useEffect(() => {
     setTimeout(() => setFade(true), 50);
-    const {width, height} = ballonEl.current.getBoundingClientRect();
-    console.log(width, height);
-
-    switch (placement) {
-      case 'top':
-        setPosition({
-          top: triggerPosition.top - height - 10,
-          left: (triggerPosition.left + (triggerPosition.width / 2)) - (width / 2)
-        })
-        
-        break;
-      default:
-        break;
+    const tooltipPosition = tooltipElement.current.getBoundingClientRect();
+    const repositionTooltip = (pos) => {
+      setDynamicPlacement(pos);
     }
-  }, [triggerPosition, placement]);
+    dynamicPositionTooltip(dynamicPlacement, tooltipPosition, repositionTooltip);
+  }, [dynamicPlacement]);
   
   const component = (
-    <Ballon ref={ballonEl} fade={fade} position={position} placement={place} {...props} />
+    <Ballon ref={tooltipElement} fade={fade} placement={dynamicPlacement} {...props} />
   );
 
   return ReactDOM.createPortal(component, document.querySelector('body'));
 };
+
+const dynamicPositionTooltip = (placement, tooltip, setCallback) => {
+  console.log(tooltip)
+
+  if (tooltip.top < 0) {
+    switch (placement) {
+      case 'top':
+        setCallback('bottom');   
+        break;
+      case 'topLeft':
+        setCallback('bottomLeft');   
+        break;
+      case 'topRight':
+        setCallback('bottomRight');   
+        break;
+      case 'left':
+        setCallback('leftTop');   
+        break;
+      case 'right':
+        setCallback('rightTop');   
+        break;
+      case 'leftTop':
+        setCallback('leftBottom');   
+        break;
+      case 'rightTop':
+        setCallback('rightBottom');   
+        break;
+      default:
+        break;
+    }
+  }
+
+  if (tooltip.left < 0) {
+    switch (placement) {
+      case 'top':
+        setCallback('topLeft');   
+        break;
+      case 'bottom':
+        setCallback('bottomLeft');   
+        break;
+      case 'left':
+        setCallback('bottomLeft');   
+        break;
+      case 'leftTop':
+        setCallback('topLeft');   
+        break;
+      case 'leftBottom':
+        setCallback('bottomLeft');   
+        break;
+      case 'topRight':
+        setCallback('topLeft');   
+        break;
+      case 'bottomRight':
+        setCallback('bottomLeft');   
+        break;
+      default:
+        break;
+    }
+  }
+
+  if (tooltip.right > window.innerWidth) {
+    switch (placement) {
+      case 'top':
+        setCallback('topRight');   
+        break;
+      case 'bottom':
+        setCallback('bottomRight');   
+        break;
+      case 'right':
+        setCallback('bottomRight');   
+        break;
+      case 'rightTop':
+        setCallback('topRight');
+        break;
+      case 'rightBottom':
+        setCallback('bottomRight');   
+        break;
+      default:
+        break;
+    }
+  }
+  
+  if (tooltip.bottom > window.innerHeight) {
+    switch (placement) {
+      case 'bottom':
+        setCallback('top');   
+        break;
+      case 'bottomLeft':
+        setCallback('topLeft');   
+        break;
+      case 'bottomRight':
+        setCallback('topRight');   
+        break;
+      case 'right':
+        setCallback('rightBottom');   
+        break;
+      case 'left':
+        setCallback('leftBottom');   
+        break;
+      case 'leftTop':
+        setCallback('leftBottom');   
+        break;
+      case 'rightTop':
+        setCallback('rightBottom');
+        break;
+      default:
+        break;
+    }
+  }
+}

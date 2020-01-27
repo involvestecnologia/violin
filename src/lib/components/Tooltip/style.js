@@ -13,9 +13,11 @@ const arrow = css`
 `;
 
 const top = css`
-  left: ${({ position }) => position.left}px;
-  top: ${({ position }) => position.top}px;
+  left: ${({ position }) => position.left + (position.width / 2)}px;
+  top: ${({ position }) => position.top - 10}px;
+  transform: translate(-50%, -100%);
   margin-top: ${ifProp('fade', '0', '5px')};
+  transition-property: opacity, margin-top;
 
   &::after {
     ${arrow}
@@ -30,6 +32,7 @@ const topLeft = css`
   top: ${({ position }) => position.top - 10}px;
   transform: translate(0, -100%);
   margin-top: ${ifProp('fade', '0', '5px')};
+  transition-property: opacity, margin-top;
 
   &::after {
     ${arrow}
@@ -44,6 +47,7 @@ const topRight = css`
   top: ${({ position }) => position.top - 10}px;
   transform: translate(-100%, -100%);
   margin-top: ${ifProp('fade', '0', '5px')};
+  transition-property: opacity, margin-top;
 
   &::after {
     ${arrow}
@@ -58,6 +62,7 @@ const bottom = css`
   top: ${({ position }) => position.top + position.height + 10}px;
   transform: translate(-50%, 0);
   margin-top: ${ifProp('fade', '0', '-5px')};
+  transition-property: opacity, margin-top;
 
   &::after {
     ${arrow}
@@ -72,6 +77,7 @@ const bottomLeft = css`
   top: ${({ position }) => position.top + position.height + 10}px;
   transform: translate(0, 0);
   margin-top: ${ifProp('fade', '0', '-5px')};
+  transition-property: opacity, margin-top;
 
   &::after {
     ${arrow}
@@ -86,6 +92,7 @@ const bottomRight = css`
   top: ${({ position }) => position.top + position.height + 10}px;
   transform: translate(-100%, 0);
   margin-top: ${ifProp('fade', '0', '-5px')};
+  transition-property: opacity, margin-top;
 
   &::after {
     ${arrow}
@@ -100,6 +107,7 @@ const left = css`
   top: ${({ position }) => position.top + (position.height / 2)}px;
   transform: translate(-100%, -50%);
   margin-left: ${ifProp('fade', '0', '5px')};
+  transition-property: opacity, margin-left;
 
   &::after {
     ${arrow}
@@ -114,6 +122,7 @@ const leftTop = css`
   top: ${({ position }) => position.top}px;
   transform: translate(-100%, 0);
   margin-left: ${ifProp('fade', '0', '5px')};
+  transition-property: opacity, margin-left;
 
   &::after {
     ${arrow}
@@ -128,6 +137,7 @@ const leftBottom = css`
   top: ${({ position }) => position.top + position.height}px;
   transform: translate(-100%, -100%);
   margin-left: ${ifProp('fade', '0', '5px')};
+  transition-property: opacity, margin-left;
 
   &::after {
     ${arrow}
@@ -142,6 +152,7 @@ const right = css`
   top: ${({ position }) => position.top + (position.height / 2)}px;
   transform: translate(0, -50%);
   margin-left: ${ifProp('fade', '0', '-5px')};
+  transition-property: opacity, margin-left;
 
   &::after {
     ${arrow}
@@ -156,6 +167,7 @@ const rightTop = css`
   top: ${({ position }) => position.top}px;
   transform: translate(0, 0);
   margin-left: ${ifProp('fade', '0', '-5px')};
+  transition-property: opacity, margin-left;
 
   &::after {
     ${arrow}
@@ -170,6 +182,7 @@ const rightBottom = css`
   top: ${({ position }) => position.top + position.height}px;
   transform: translate(0, -100%);
   margin-left: ${ifProp('fade', '0', '-5px')};
+  transition-property: opacity, margin-left;
 
   &::after {
     ${arrow}
@@ -195,7 +208,7 @@ export const Ballon = styled.div`
   ${(props) => props.placement === 'rightTop' && rightTop}
   ${(props) => props.placement === 'rightBottom' && rightBottom}
   max-width: 250px;
-  min-width: 180px;
+  min-width: 150px;
   padding: 6px 10px;
   background: ${getFromTheme('palette.black.900')};
   color: ${getFromTheme('palette.misc.white')};
@@ -204,7 +217,8 @@ export const Ballon = styled.div`
   box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.25);
   box-sizing: border-box;
   opacity: ${ifProp('fade', '1', '0')};
-  transition: all 0.2s ease;
+  transition-duration: .2s;
+  transition-timing-function: linear;
 `;
 
 export const Trigger = styled.span``;
