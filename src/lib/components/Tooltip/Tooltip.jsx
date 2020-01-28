@@ -56,7 +56,7 @@ export const Tooltip = ({ content, placement, children, disableFocus, disableHov
     }
   }, [isTriggerHovered, isTipHovered]);
 
-  const onHovered = (elem, value, event) => {
+  const onHovered = (elem, value, event, propEvent) => {
     if (event) {
       setTriggerPosition(offsetTriggerPosition(event.target));
     }
@@ -70,16 +70,20 @@ export const Tooltip = ({ content, placement, children, disableFocus, disableHov
       default:
         break;
     }
+    if (propEvent) {
+      propEvent();
+    }
   }
 
   useEffect(() => {
+    const { onMouseEnter, onMouseLeave, onFocus, onBlur } = children.props;
     const Elem = () => React.cloneElement(children, {
-      onMouseEnter: (event) => !disableHover && onHovered('trigger', true, event),
-      onMouseLeave: (event) => !disableHover && onHovered('trigger', false, event),
-      onFocus: (event) => !disableFocus && onHovered('trigger', true, event),
-      onBlur: (event) => !disableFocus && onHovered('trigger', false, event),
-      'data-testid': 'trigger',
-      ...children.props
+      ...children.props,
+      onMouseEnter: (event) => !disableHover && onHovered('trigger', true, event, onMouseEnter),
+      onMouseLeave: (event) => !disableHover && onHovered('trigger', false, event, onMouseLeave),
+      onFocus: (event) => !disableFocus && onHovered('trigger', true, event, onFocus),
+      onBlur: (event) => !disableFocus && onHovered('trigger', false, event, onBlur),
+      'data-testid': 'trigger'
     });
     setTriggerElement(Elem);
   }, [disableHover, disableFocus]);
@@ -111,17 +115,123 @@ Tooltip.propTypes = {
   /** Doesn't show Tooltip when hover children */
   disableFocus: PropTypes.bool,
   /** Doesn't show Tooltip when focus children */
-  disableHover: PropTypes.bool,
-  open: PropTypes.bool
+  disableHover: PropTypes.bool
 };
 
 Tooltip.defaultProps = {
   placement: 'top',
   open: false,
   disableFocus: false,
-  disableHover: false,
-  open: false
+  disableHover: false
 };
+
+const dynamicPositionTooltip = (placement, tooltip, setCallback) => {
+  if (tooltip.top + 20 < 0) {
+    switch (placement) {
+      case 'top':
+        setCallback('bottom');
+        break;
+      case 'topLeft':
+        setCallback('bottomLeft');
+        break;
+      case 'topRight':
+        setCallback('bottomRight');
+        break;
+      case 'left':
+        setCallback('leftTop');
+        break;
+      case 'right':
+        setCallback('rightTop');
+        break;
+      case 'leftTop':
+        setCallback('leftBottom');
+        break;
+      case 'rightTop':
+        setCallback('rightBottom');
+        break;
+      default:
+        break;
+    }
+  }
+
+  if (tooltip.left - 20 < 0) {
+    switch (placement) {
+      case 'top':
+        setCallback('topLeft');
+        break;
+      case 'bottom':
+        setCallback('bottomLeft');
+        break;
+      case 'left':
+        setCallback('bottomLeft');
+        break;
+      case 'leftTop':
+        setCallback('topLeft');
+        break;
+      case 'leftBottom':
+        setCallback('bottomLeft');
+        break;
+      case 'topRight':
+        setCallback('topLeft');
+        break;
+      case 'bottomRight':
+        setCallback('bottomLeft');
+        break;
+      default:
+        break;
+    }
+  }
+
+  if (tooltip.right + 20 > window.innerWidth) {
+    switch (placement) {
+      case 'top':
+        setCallback('topRight');
+        break;
+      case 'bottom':
+        setCallback('bottomRight');
+        break;
+      case 'right':
+        setCallback('bottomRight');
+        break;
+      case 'rightTop':
+        setCallback('topRight');
+        break;
+      case 'rightBottom':
+        setCallback('bottomRight');
+        break;
+      default:
+        break;
+    }
+  }
+
+  if (tooltip.bottom + 20 > window.innerHeight) {
+    switch (placement) {
+      case 'bottom':
+        setCallback('top');
+        break;
+      case 'bottomLeft':
+        setCallback('topLeft');
+        break;
+      case 'bottomRight':
+        setCallback('topRight');
+        break;
+      case 'right':
+        setCallback('rightBottom');
+        break;
+      case 'left':
+        setCallback('leftBottom');
+        break;
+      case 'leftTop':
+        setCallback('leftBottom');
+        break;
+      case 'rightTop':
+        setCallback('rightBottom');
+        break;
+      default:
+        break;
+    }
+  }
+}
 
 const Tip = ({ placement, ...props }) => {
   const [fade, setFade] = useState(false);
@@ -136,120 +246,10 @@ const Tip = ({ placement, ...props }) => {
     }
     dynamicPositionTooltip(dynamicPlacement, tooltipPosition, repositionTooltip);
   }, [dynamicPlacement]);
-  
+
   const component = (
     <Ballon ref={tooltipElement} fade={fade} placement={dynamicPlacement} {...props} />
   );
 
   return ReactDOM.createPortal(component, document.querySelector('body'));
 };
-
-const dynamicPositionTooltip = (placement, tooltip, setCallback) => {
-  console.log(tooltip)
-
-  if (tooltip.top < 0) {
-    switch (placement) {
-      case 'top':
-        setCallback('bottom');   
-        break;
-      case 'topLeft':
-        setCallback('bottomLeft');   
-        break;
-      case 'topRight':
-        setCallback('bottomRight');   
-        break;
-      case 'left':
-        setCallback('leftTop');   
-        break;
-      case 'right':
-        setCallback('rightTop');   
-        break;
-      case 'leftTop':
-        setCallback('leftBottom');   
-        break;
-      case 'rightTop':
-        setCallback('rightBottom');   
-        break;
-      default:
-        break;
-    }
-  }
-
-  if (tooltip.left < 0) {
-    switch (placement) {
-      case 'top':
-        setCallback('topLeft');   
-        break;
-      case 'bottom':
-        setCallback('bottomLeft');   
-        break;
-      case 'left':
-        setCallback('bottomLeft');   
-        break;
-      case 'leftTop':
-        setCallback('topLeft');   
-        break;
-      case 'leftBottom':
-        setCallback('bottomLeft');   
-        break;
-      case 'topRight':
-        setCallback('topLeft');   
-        break;
-      case 'bottomRight':
-        setCallback('bottomLeft');   
-        break;
-      default:
-        break;
-    }
-  }
-
-  if (tooltip.right > window.innerWidth) {
-    switch (placement) {
-      case 'top':
-        setCallback('topRight');   
-        break;
-      case 'bottom':
-        setCallback('bottomRight');   
-        break;
-      case 'right':
-        setCallback('bottomRight');   
-        break;
-      case 'rightTop':
-        setCallback('topRight');
-        break;
-      case 'rightBottom':
-        setCallback('bottomRight');   
-        break;
-      default:
-        break;
-    }
-  }
-  
-  if (tooltip.bottom > window.innerHeight) {
-    switch (placement) {
-      case 'bottom':
-        setCallback('top');   
-        break;
-      case 'bottomLeft':
-        setCallback('topLeft');   
-        break;
-      case 'bottomRight':
-        setCallback('topRight');   
-        break;
-      case 'right':
-        setCallback('rightBottom');   
-        break;
-      case 'left':
-        setCallback('leftBottom');   
-        break;
-      case 'leftTop':
-        setCallback('leftBottom');   
-        break;
-      case 'rightTop':
-        setCallback('rightBottom');
-        break;
-      default:
-        break;
-    }
-  }
-}

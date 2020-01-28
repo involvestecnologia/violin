@@ -14,8 +14,8 @@ import { Playground, Props } from "docz";
 # Tooltip
 
 <Playground>
-	<Tooltip placement="left" content="This is a simple text content with lorem ipsum dolor Lorem ipsum dolor sit amet, consec tetur adipiscing elit Lorem ipsum dolor sit amet, consec tetur adipiscing elit">
-		<Button primary>A</Button>
+	<Tooltip content="This is a simple text">
+		<Button primary>Hover me</Button>
 	</Tooltip>
 </Playground>
 
@@ -34,12 +34,42 @@ import { Playground, Props } from "docz";
 	</Tooltip>
 </Playground>
 
+## disableHover
+
+<Playground>
+	<Tooltip content="Show tooltip when focus" placement="bottomLeft" disableHover>
+		<TextField />
+	</Tooltip>
+</Playground>
+
+> The Tooltip is activated from onMouseEnter and onFocus event.
+
 ## placement 
 
 <Playground>
+	<Tooltip placement="topLeft" content="Lorem ipsum dolor sit amet, consec tetur adipiscing elit">
+		<Button>Top left</Button>
+	</Tooltip>
+
 	<Tooltip placement="top" content="Lorem ipsum dolor sit amet, consec tetur adipiscing elit">
 		<Button>Top</Button>
 	</Tooltip>
+
+	<Tooltip placement="topRight" content="Lorem ipsum dolor sit amet, consec tetur adipiscing elit">
+		<Button>Top right</Button>
+	</Tooltip>
+
+	<br />
+
+	<Tooltip placement="leftTop" content="Lorem ipsum dolor sit amet, consec tetur adipiscing elit">
+		<Button>Left top</Button>
+	</Tooltip>
+
+	<Tooltip placement="rightTop" content="Lorem ipsum dolor sit amet, consec tetur adipiscing elit">
+		<Button>Right top</Button>
+	</Tooltip>
+
+	<br />
 
 	<Tooltip placement="left" content="Lorem ipsum dolor sit amet, consec tetur adipiscing elit">
 		<Button>Left</Button>
@@ -49,39 +79,27 @@ import { Playground, Props } from "docz";
 		<Button>Right</Button>
 	</Tooltip>
 
-	<Tooltip placement="bottom" content="Lorem ipsum dolor sit amet, consec tetur adipiscing elit">
-		<Button>Bottom</Button>
-	</Tooltip>
-
-	<Tooltip placement="topLeft" content="Lorem ipsum dolor sit amet, consec tetur adipiscing elit">
-		<Button>Top left</Button>
-	</Tooltip>
-
-	<Tooltip placement="topRight" content="Lorem ipsum dolor sit amet, consec tetur adipiscing elit">
-		<Button>Top right</Button>
-	</Tooltip>
-
-	<Tooltip placement="leftTop" content="Lorem ipsum dolor sit amet, consec tetur adipiscing elit">
-		<Button>Left top</Button>
-	</Tooltip>
+	<br />
 
 	<Tooltip placement="leftBottom" content="Lorem ipsum dolor sit amet, consec tetur adipiscing elit">
 		<Button>Left bottom</Button>
 	</Tooltip>
 
+	<Tooltip placement="rightBottom" content="Lorem ipsum dolor sit amet, consec tetur adipiscing elit">
+		<Button>Right bottom</Button>
+	</Tooltip>
+
+	<br />
+
 	<Tooltip placement="bottomLeft" content="Lorem ipsum dolor sit amet, consec tetur adipiscing elit">
 		<Button>Bottom left</Button>
 	</Tooltip>
 
+	<Tooltip placement="bottom" content="Lorem ipsum dolor sit amet, consec tetur adipiscing elit">
+		<Button>Bottom</Button>
+	</Tooltip>
+
 	<Tooltip placement="bottomRight" content="Lorem ipsum dolor sit amet, consec tetur adipiscing elit">
 		<Button>Bottom right</Button>
-	</Tooltip>
-
-	<Tooltip placement="rightTop" content="Lorem ipsum dolor sit amet, consec tetur adipiscing elit">
-		<Button>Right top</Button>
-	</Tooltip>
-
-	<Tooltip placement="rightBottom" content="Lorem ipsum dolor sit amet, consec tetur adipiscing elit">
-		<Button>Right bottom</Button>
 	</Tooltip>
 </Playground>
