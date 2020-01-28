@@ -76,13 +76,12 @@ export const Tooltip = ({ content, placement, children, disableFocus, disableHov
   }
 
   useEffect(() => {
-    const { onMouseEnter, onMouseLeave, onFocus, onBlur } = children.props;
     const Elem = () => React.cloneElement(children, {
       ...children.props,
-      onMouseEnter: (event) => !disableHover && onHovered('trigger', true, event, onMouseEnter),
-      onMouseLeave: (event) => !disableHover && onHovered('trigger', false, event, onMouseLeave),
-      onFocus: (event) => !disableFocus && onHovered('trigger', true, event, onFocus),
-      onBlur: (event) => !disableFocus && onHovered('trigger', false, event, onBlur),
+      onMouseEnter: (event) => !disableHover && onHovered('trigger', true, event, children.props.onMouseEnter),
+      onMouseLeave: (event) => !disableHover && onHovered('trigger', false, event, children.props.onMouseLeave),
+      onFocus: (event) => !disableFocus && onHovered('trigger', true, event, children.props.onFocus),
+      onBlur: (event) => !disableFocus && onHovered('trigger', false, event, children.props.onBlur),
       'data-testid': 'trigger'
     });
     setTriggerElement(Elem);
@@ -235,14 +234,19 @@ const Tip = ({ placement, ...props }) => {
   const [fade, setFade] = useState(false);
   const [dynamicPlacement, setDynamicPlacement] = useState(placement);
   const tooltipElement = useRef(null);
+  const timerShow = useRef();
 
   useEffect(() => {
-    setTimeout(() => setFade(true), 50);
+    timerShow.current = setTimeout(() => setFade(true), 50);
     const tooltipPosition = tooltipElement.current.getBoundingClientRect();
     const repositionTooltip = (pos) => {
       setDynamicPlacement(pos);
     }
     dynamicPositionTooltip(dynamicPlacement, tooltipPosition, repositionTooltip);
+
+    return () => {
+      clearTimeout(timerShow.current);
+    }
   }, [dynamicPlacement]);
 
   const component = (

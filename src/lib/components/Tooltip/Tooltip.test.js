@@ -1,27 +1,39 @@
 import React from 'react';
-import { render, cleanup } from '@testing-library/react';
+import { render, cleanup, fireEvent } from '@testing-library/react';
+import { act } from 'react-dom/test-utils';
 import { Tooltip } from './Tooltip';
+import { TextField } from '../TextField';
 
 afterEach(cleanup);
+jest.useFakeTimers();
 
-describe('RadioButton', () => {
-  test('should render correctly', () => {
-    const { getByText } = render(<Tooltip content="Lorem ipsum">A</Tooltip>);
-    expect(getByText('A')).toBeInTheDocument();
+describe('Tooltip', () => {
+  test('children should render correctly', () => {
+    const { getByTestId } = render(<Tooltip content="Lorem ipsum"><span>Trigger</span></Tooltip>);
+    expect(getByTestId('trigger')).toBeInTheDocument();
   });
 
-  test('should not render tooltip in default state', () => {
-    const { queryByTestId } = render(<Tooltip content="Lorem ipsum">A</Tooltip>);
-    expect(queryByTestId('balloon')).not.toBeInTheDocument();
+  test('should render when mouse enter', () => {
+    const { getByTestId } = render(<Tooltip content="Lorem ipsum"><span>Trigger</span></Tooltip>);
+
+    act(() => {
+      fireEvent.mouseOver(getByTestId('trigger'));
+      jest.advanceTimersByTime(100);
+    });
+
+    expect(getByTestId('balloon')).toBeInTheDocument();
+    expect(getByTestId('balloon')).toContainElement(getByTestId('balloon'));
   });
 
-  test('should render tooltip', () => {
-    const { queryByTestId } = render(<Tooltip content="Lorem ipsum" open>A</Tooltip>);
-    expect(queryByTestId('balloon')).toBeInTheDocument();
-  });
+  test('should render when trigger has focus', () => {
+    const { getByTestId } = render(<Tooltip content="Lorem ipsum"><TextField /></Tooltip>);
 
-  test('should render correctly content tooltip', () => {
-    const { getByTestId } = render(<Tooltip content="Lorem ipsum" open>A</Tooltip>);
-    expect(getByTestId('balloon')).toHaveTextContent('Lorem ipsum');
+    act(() => {
+      fireEvent.focus(getByTestId('trigger'));
+      jest.advanceTimersByTime(100);
+    });
+
+    expect(getByTestId('balloon')).toBeInTheDocument();
+    expect(getByTestId('balloon')).toContainElement(getByTestId('balloon'));
   });
 });
