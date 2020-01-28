@@ -192,7 +192,7 @@ const rightBottom = css`
   }
 `;
 
-export const Ballon = styled.div`
+export const Balloon = styled.div`
   position: absolute;
   z-index: ${getFromTheme('zIndex.z6')};
   ${(props) => props.placement === 'top' && top}

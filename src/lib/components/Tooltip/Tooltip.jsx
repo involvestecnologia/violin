@@ -1,10 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import { Ballon } from './style';
+import { Balloon } from './style';
 
-export const Tooltip = ({ content, placement, children, disableFocus, disableHover, open }) => {
-  const [showTip, setShowTip] = useState(open);
+export const Tooltip = ({ content, placement, children, disableFocus, disableHover }) => {
+  const [showTip, setShowTip] = useState(false);
   const [isTriggerHovered, setIsTriggerHovered] = useState(false);
   const [isTipHovered, setIsTipHovered] = useState(false);
   const [triggerPosition, setTriggerPosition] = useState({});
@@ -110,7 +110,6 @@ export const Tooltip = ({ content, placement, children, disableFocus, disableHov
 Tooltip.propTypes = {
   content: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
   placement: PropTypes.oneOf(['top', 'left', 'right', 'bottom', 'topLeft', 'topRight', 'bottomLeft', 'bottomRight', 'leftTop', 'leftBottom', 'rightTop', 'rightBottom']),
-  open: PropTypes.bool,
   children: PropTypes.node.isRequired,
   /** Doesn't show Tooltip when hover children */
   disableFocus: PropTypes.bool,
@@ -120,13 +119,12 @@ Tooltip.propTypes = {
 
 Tooltip.defaultProps = {
   placement: 'top',
-  open: false,
   disableFocus: false,
   disableHover: false
 };
 
 const dynamicPositionTooltip = (placement, tooltip, setCallback) => {
-  if (tooltip.top + 20 < 0) {
+  if (tooltip.top - 5 < 0) {
     switch (placement) {
       case 'top':
         setCallback('bottom');
@@ -154,7 +152,7 @@ const dynamicPositionTooltip = (placement, tooltip, setCallback) => {
     }
   }
 
-  if (tooltip.left - 20 < 0) {
+  if (tooltip.left - 5 < 0) {
     switch (placement) {
       case 'top':
         setCallback('topLeft');
@@ -204,7 +202,7 @@ const dynamicPositionTooltip = (placement, tooltip, setCallback) => {
     }
   }
 
-  if (tooltip.bottom + 20 > window.innerHeight) {
+  if (tooltip.bottom + 5 > window.innerHeight) {
     switch (placement) {
       case 'bottom':
         setCallback('top');
@@ -248,7 +246,7 @@ const Tip = ({ placement, ...props }) => {
   }, [dynamicPlacement]);
 
   const component = (
-    <Ballon ref={tooltipElement} fade={fade} placement={dynamicPlacement} {...props} />
+    <Balloon ref={tooltipElement} fade={fade} placement={dynamicPlacement} {...props} />
   );
 
   return ReactDOM.createPortal(component, document.querySelector('body'));
