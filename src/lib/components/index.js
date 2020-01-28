@@ -1,10 +1,10 @@
 export { Button } from './Button';
-export { TextField } from './TextField';
-export { Link } from './Link';
-export { Text } from './Text';
-export { Heading } from './Heading';
-export { Subheading } from './Subheading';
-export { Icon } from './Icon';
 export { Checkbox } from './Checkbox';
+export { Heading } from './Heading';
+export { Icon } from './Icon';
+export { Link } from './Link';
 export { RadioButton } from './RadioButton';
+export { Subheading } from './Subheading';
+export { Text } from './Text';
+export { TextField } from './TextField';
 export { Tooltip } from './Tooltip';
