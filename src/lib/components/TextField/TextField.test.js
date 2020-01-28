@@ -54,4 +54,9 @@ describe('TextField', () => {
       height: 52px;
     `);
   })
+
+  test('should render info icon of tooltip', () => {
+    const { getByTestId } = render(<TextField tooltip="Lorem ipsum" />);
+    expect(getByTestId('trigger')).toBeInTheDocument();
+  })
 });
