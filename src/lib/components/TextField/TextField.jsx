@@ -1,15 +1,41 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Input, Label, HelpLabel, HelpText, LabelContainer, LabelText } from './style';
+import { Tooltip } from '../index';
+import {
+  Input,
+  Label,
+  HelpLabel,
+  HelpText,
+  LabelContainer,
+  LabelText,
+  InfoIcon
+} from './style';
 
-export const TextField = ({ label, helpLabel, helpText, id, error, disabled, ...props }) => (
+export const TextField = (
+  {
+    label,
+    helpLabel,
+    helpText,
+    id,
+    error,
+    disabled,
+    tooltip,
+    ...props
+  }
+) => (
   <div>
-    {(label || helpLabel) && (
+    {(label || helpLabel || tooltip) && (
       <LabelContainer>
         <Label htmlFor={id}>
           <LabelText isDisabled={disabled}>{label}</LabelText>
           {helpLabel && <HelpLabel>{helpLabel}</HelpLabel>}
         </Label>
+
+        {tooltip && (
+          <Tooltip placement="topRight" content={tooltip}>
+            <InfoIcon icon="error_outline" />
+          </Tooltip>
+        )}
       </LabelContainer>
     )}
     <Input id={id} error={error} disabled={disabled} {...props} />
@@ -27,7 +53,9 @@ TextField.propTypes = {
   large: PropTypes.bool,
   id: PropTypes.string,
   error: PropTypes.bool,
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
+  /** Shows an icon width tooltip info */
+  tooltip: PropTypes.oneOfType([PropTypes.string, PropTypes.node])
 };
 
 TextField.defaultProps = {
@@ -40,5 +68,6 @@ TextField.defaultProps = {
   large: false,
   id: null,
   error: false,
-  disabled: false
+  disabled: false,
+  tooltip: null
 };

@@ -1,12 +1,13 @@
 import styled, { css } from 'styled-components';
 import { ifProp, withProp } from 'styled-tools';
-import { transparentize } from 'polished';
+import { transparentize, rem } from 'polished';
 import getFromTheme from '../../utils/getFromTheme';
+import { Icon } from '../Icon';
 
 export const LabelContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: flex-end;
   margin-bottom: 6px;
 `;
 
@@ -81,4 +82,12 @@ export const HelpText = styled.div`
   color: ${ifProp('error', getFromTheme('palette.red.700'), getFromTheme('palette.black.500'))};
   font-weight: ${ifProp('error', getFromTheme('typography.fontWeight.semiBold'), getFromTheme('typography.fontWeight.regular'))};
   margin-top: 6px;
+`;
+
+export const InfoIcon = styled(Icon)`
+  padding: 0 4px;
+  font-size: ${rem(20)};
+  color: ${getFromTheme('palette.black.300')};
+  transform: rotate(180deg);
+  cursor: default;
 `;
