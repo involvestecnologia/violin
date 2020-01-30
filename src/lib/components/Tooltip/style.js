@@ -218,7 +218,7 @@ export const Balloon = styled.div`
   box-sizing: border-box;
   opacity: ${ifProp('fade', '1', '0')};
   transition-duration: .2s;
-  transition-timing-function: linear;
+  transition-timing-function: ease;
 `;
 
 export const Trigger = styled.span``;
