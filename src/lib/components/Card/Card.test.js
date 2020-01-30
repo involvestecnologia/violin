@@ -13,10 +13,12 @@ describe('Card', () => {
 
   test('should render actions elements', () => {
     const { getByText } = render(
-      <Card actions={[
-        <span key={1}>action 1</span>,
-        <span key={2}>action 2</span>
-      ]}
+      <Card actions={(
+        <>
+          <span key={1}>action 1</span>
+          <span key={2}>action 2</span>
+        </>
+        )}
       >
         {contentCard}
       </Card>

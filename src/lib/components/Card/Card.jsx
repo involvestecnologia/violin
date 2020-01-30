@@ -4,10 +4,11 @@ import {
   CardWrapper,
   CardHeader,
   CardTitles,
+  CardTitle,
+  CardSubTitle,
   CardActions,
+  CardContent,
 } from './style';
-import { Subheading } from '../Subheading';
-import { Text } from '../Text';
 
 export const Card = ({ children, title, subTitle, actions }) => (
   <CardWrapper>
@@ -15,21 +16,21 @@ export const Card = ({ children, title, subTitle, actions }) => (
       <CardHeader>
         {(title || subTitle) && (
           <CardTitles>
-            {title && <Subheading size="h6">{title}</Subheading>}
-            {subTitle && <Text>{subTitle}</Text>}
+            {title && <CardTitle title={title} size="h6">{title}</CardTitle>}
+            {subTitle && <CardSubTitle title={subTitle} overline>{subTitle}</CardSubTitle>}
           </CardTitles>
         )}
-        {actions && <CardActions>{actions.map((action) => action)}</CardActions>}
+        {actions && <CardActions>{actions}</CardActions>}
       </CardHeader>
     )}
-    <Text>{children}</Text>
+    <CardContent>{children}</CardContent>
   </CardWrapper>
 );
 
 Card.propTypes = {
   title: PropTypes.string,
   subTitle: PropTypes.string,
-  actions: PropTypes.arrayOf(PropTypes.element)
+  actions: PropTypes.element,
 };
 
 Card.defaultProps = {

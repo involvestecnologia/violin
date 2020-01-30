@@ -5,20 +5,24 @@ route: /components/Card
 ---
 
 import { Card } from './Card';
-import { Button } from '../Button'
+import { Button } from '../Button';
+import { Text } from '../Text';
 import { Playground, Props } from "docz";
 
 # Card
 
 <Playground>
     <Card
-        title="Titulo"
-        actions={[
-            <Button icon="edit" key={1}></Button>,
-            <Button icon="delete" danger key={2}></Button>
-        ]}
+        title="Titulo muito grande grande grande grande grande grande grande grande grande grande grande grande grande grande grande grande grande grande grande grande grande grande grande grande"
+        subTitle="Sub Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title "
+        actions={
+            <>
+                <Button secondary icon="edit"></Button>
+                <Button secondary icon="delete"></Button>
+            </>
+        }
     >
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+        <Text>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</Text>
     </Card>
 </Playground>
 
