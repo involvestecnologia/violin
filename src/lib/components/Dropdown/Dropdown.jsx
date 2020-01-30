@@ -7,6 +7,7 @@ import offsetElementPosition from '../../utils/offsetElementPosition';
 export const Dropdown = ({ children, trigger, preventClose }) => {
   const [open, setOpen] = useState(false);
   const [triggerPosition, setTriggerPosition] = useState({});
+  const triggerRef = useRef(null);
 
   const handleClick = (event, propEvent) => {
     const position = offsetElementPosition(event.target);
@@ -28,7 +29,7 @@ export const Dropdown = ({ children, trigger, preventClose }) => {
 
   return (
     <>
-      <Trigger />
+      <Trigger ref={triggerRef} />
       {open && (
         <DropdownCard
           closeDropdown={() => setOpen(false)}

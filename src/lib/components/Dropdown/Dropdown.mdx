@@ -39,6 +39,8 @@ import { Playground, Props } from "docz";
 
 ## DropdownItem
 
+`DropdownItem` component is a complementary component from `Dropdown` to create a menu list into `Dropdown`. 
+
 <Playground>
 	<Dropdown trigger={<Button secondary icon="more_vert" />}>
 		<DropdownItem icon="account_circle" onClick={() => alert('My account was clicked')}>My account</DropdownItem>
@@ -52,6 +54,8 @@ import { Playground, Props } from "docz";
 <Props of={DropdownItem} />
 
 ## DropdownItem as link
+
+You can use `DropdownItem` as an `a` element to use `href`, `target` and others native attributes.
 
 <Playground>
 	<Dropdown trigger={<Button secondary icon="more_vert" />}>
