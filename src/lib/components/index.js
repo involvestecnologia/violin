@@ -3,6 +3,7 @@ export { Checkbox } from './Checkbox';
 export { Heading } from './Heading';
 export { Icon } from './Icon';
 export { Link } from './Link';
+export { Modal } from './Modal';
 export { RadioButton } from './RadioButton';
 export { Subheading } from './Subheading';
 export { Text } from './Text';
