@@ -15,6 +15,19 @@ export const ModalWrapper = styled.div`
   flex-direction: column;
   justify-content: space-between;
   overflow: hidden;
+
+  @media(min-width: 540px) {
+    width: 500px;
+    height: calc(100vh - 20px);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 8px;
+  }
+
+  @media(min-width: 780px) {
+    width: 700px;
+  }
 `;
 
 export const ModalBackdrop = styled.div`
@@ -22,7 +35,7 @@ export const ModalBackdrop = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  background: #6F7390;
+  background: ${getFromTheme('palette.black.500')};;
   opacity: 0.6;
   height: 100%;
   width: 100%;
@@ -64,14 +77,37 @@ export const ModalContentWrapper = styled.div`
   justify-content: space-between;
   height: 100%;
   overflow: auto;
+
+  @media(min-width: 540px) {
+    overflow: hidden;
+  }
 `;
 
 export const ModalContent = styled.div`
   padding: 20px 20px 30px;
+
+  @media(min-width: 540px) {
+    overflow: auto;
+  }
 `;
 
 export const ModalFooter = styled.footer`
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: auto;
+  grid-row-gap: 10px;
   padding: 20px 16px 16px 16px;
+
+  @media(min-width: 540px) {
+    display: grid;
+    grid-auto-flow: column;
+    grid-column-gap: 5px;
+    grid-template-rows: 70px;
+    padding: 0 16px 0 16px;
+    justify-content: flex-end;
+    align-items: center;
+    max-height: 70px;
+    min-height: 70px;
+    height: 70px;
+    background-color: ${getFromTheme('palette.black.50')};
+  }
 `;

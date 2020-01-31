@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import {
   ModalWrapper,
@@ -10,6 +10,7 @@ import {
   ModalFooter,
 } from './style';
 import { Button } from '../Button';
+import idgen from '../../utils/idgen';
 
 export const Modal = ({
   isOpen,
@@ -29,12 +30,13 @@ export const Modal = ({
               <Button icon="close" secondary onClick={onClose} />
             </ModalHeader>
             <ModalContentWrapper>
-              <ModalContent>
-                {children}
-              </ModalContent>
-              <ModalFooter>
-                {actions}
-              </ModalFooter>
+              <ModalContent>{children}</ModalContent>
+              {actions && (
+                <ModalFooter>{actions.map((action) => (
+                  <Fragment key={`modal-action-${idgen()}`}>{action}</Fragment>
+                ))}
+                </ModalFooter>
+              )}
             </ModalContentWrapper>
           </ModalWrapper>
         </>

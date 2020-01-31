@@ -31,13 +31,10 @@ export const PlaygroundTest = () => {
         title="Confirmação"
         isOpen={showModal}
         onClose={() => setShowModal(false)}
-        actions={(
-          <>
-            <Button block primary>Salvar</Button>
-            <div style={{ height: '10px' }} />
-            <Button block>Cancelar</Button>
-          </>
-        )}
+        actions={[
+          <Button>Cancelar</Button>,
+          <Button primary>Salvar</Button>,
+        ]}
       >
         <Text>
           {content}
