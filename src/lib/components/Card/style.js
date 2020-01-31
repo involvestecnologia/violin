@@ -7,8 +7,8 @@ export const CardWrapper = styled.div`
   border-radius: 4px;
   box-sizing: border-box;
   box-shadow: 0px 2px 8px rgba(31, 14, 61, 0.05);
-  display: grid;
-  grid-template-rows: auto auto;
+  display: flex;
+  flex-direction: column;
   background: ${getFromTheme('palette.misc.white')};
 `;
 
