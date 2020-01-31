@@ -7,7 +7,7 @@ import offsetElementPosition from '../../utils/offsetElementPosition';
 export const Dropdown = ({ children, trigger, preventClose }) => {
   const [open, setOpen] = useState(false);
   const [triggerPosition, setTriggerPosition] = useState({});
-  const triggerRef = useRef(null);
+  const triggerRef = useRef({});
 
   const handleClick = (event, propEvent) => {
     const position = offsetElementPosition(event.target);
@@ -16,20 +16,24 @@ export const Dropdown = ({ children, trigger, preventClose }) => {
     if (propEvent) propEvent();
   };
 
-  const Trigger = () => React.cloneElement(trigger, {
-    ...trigger.props,
-    onClick: (event) => handleClick(event, trigger.props.onClick)
-  });
-
   const closeDropdown = () => {
     if (!preventClose) {
       setOpen(false);
     }
   }
 
+  const Trigger = () => React.cloneElement(trigger, {
+    ...trigger.props,
+    refTrigger: () => triggerRef.current = trigger.props.ref,
+    onClick: (event) => handleClick(event, trigger.props.onClick)
+  });
+
+  console.log(triggerRef.current)
+  
   return (
     <>
-      <Trigger ref={triggerRef} />
+      <Trigger />
+
       {open && (
         <DropdownCard
           closeDropdown={() => setOpen(false)}
