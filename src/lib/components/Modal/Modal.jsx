@@ -5,6 +5,7 @@ import {
   ModalBackdrop,
   ModalHeader,
   ModalTitle,
+  ModalContentWrapper,
   ModalContent,
   ModalFooter,
 } from './style';
@@ -27,12 +28,14 @@ export const Modal = ({
               <ModalTitle size="h6">{title}</ModalTitle>
               <Button icon="close" secondary onClick={onClose} />
             </ModalHeader>
-            <ModalContent>
-              {children}
-            </ModalContent>
-            <ModalFooter>
-              {actions}
-            </ModalFooter>
+            <ModalContentWrapper>
+              <ModalContent>
+                {children}
+              </ModalContent>
+              <ModalFooter>
+                {actions}
+              </ModalFooter>
+            </ModalContentWrapper>
           </ModalWrapper>
         </>
       )}

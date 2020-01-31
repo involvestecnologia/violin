@@ -11,8 +11,10 @@ export const ModalWrapper = styled.div`
   background: ${getFromTheme('palette.misc.white')};
   height: 100%;
   width: 100%;
-  display: grid;
-  grid-template-rows: 70px 1fr 1fr;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
 `;
 
 export const ModalBackdrop = styled.div`
@@ -38,6 +40,7 @@ export const ModalHeader = styled.header`
   box-sizing: border-box;
   border: 1px solid transparent;
   border-bottom-color: #E5E8EB;
+  height: 70px;
 `;
 
 const ellipsisStyle = css`
@@ -56,10 +59,20 @@ export const ModalCloseButton = styled(Button)`
   color: ${getFromTheme('palette.black.500')};
 `;
 
+export const ModalContentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  overflow: auto;
+`;
+
 export const ModalContent = styled.div`
   padding: 20px 30px 0 30px;
 `;
 
 export const ModalFooter = styled.footer`
+  display: flex;
+  flex-direction: column;
   padding: 20px 16px 16px 16px;
 `;
