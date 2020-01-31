@@ -35,7 +35,7 @@ export const ModalBackdrop = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  background: ${getFromTheme('palette.black.500')};;
+  background: ${getFromTheme('palette.black.500')};
   opacity: 0.6;
   height: 100%;
   width: 100%;
