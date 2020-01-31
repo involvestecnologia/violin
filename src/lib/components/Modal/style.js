@@ -31,12 +31,11 @@ export const ModalBackdrop = styled.div`
   align-items: center;
 `;
 
-
 export const ModalHeader = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 30px 0 30px;
+  padding: 0 10px 0 20px;
   box-sizing: border-box;
   border: 1px solid transparent;
   border-bottom-color: #E5E8EB;
@@ -68,7 +67,7 @@ export const ModalContentWrapper = styled.div`
 `;
 
 export const ModalContent = styled.div`
-  padding: 20px 30px 0 30px;
+  padding: 20px 20px 30px;
 `;
 
 export const ModalFooter = styled.footer`
