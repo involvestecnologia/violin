@@ -7,10 +7,31 @@ route: /components/Card
 import { Card } from './Card';
 import { Button } from '../Button';
 import { Text } from '../Text';
+import { Icon } from '../Icon';
 import { Playground, Props } from "docz";
 
 # Card
 
+<Playground>
+    <Card
+        title={'Title'}
+        subTitle={'Subtitle'}
+        actions={
+            <>
+                <Button secondary icon="edit" onClick={() => alert('Editing content')}></Button>
+                <Button secondary icon="delete" onClick={() => alert('Deleting content')}></Button>
+            </>
+        }
+    >
+        <Text>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</Text>
+    </Card>
+</Playground>
+
+## Props
+
+<Props of={Card} />
+
+## long title and subtitle
 <Playground>
     <Card
         title="Titulo muito grande grande grande grande grande grande grande grande grande grande grande grande grande grande grande grande grande grande grande grande grande grande grande grande"
@@ -26,6 +47,46 @@ import { Playground, Props } from "docz";
     </Card>
 </Playground>
 
-## Props
+## no actions
+<Playground>
+    <Card title={'Title'} subTitle={'Subtitle'}>
+        <Text>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</Text>
+    </Card>
+</Playground>
 
-<Props of={Card} />
+## no header
+<Playground>
+    <Card>
+        <Text>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</Text>
+    </Card>
+</Playground>
+
+## custom content
+<Playground>
+    <Card title={'Custom content'}>
+        <div>
+            <Text>You can use whataver you want as content <Icon icon="sports_esports" /></Text>
+            <br />
+            <div style={{ display: 'flex' }}>
+                <div>
+                    <Text>Like a charmander:</Text>
+                    <img
+                        alt="Charmander Image"
+                        src="https://http2.mlstatic.com/pokemon-charmander-16-mini-4cm-moncolle-original-takara-tomy-D_NQ_NP_652261-MLB26559760859_122017-F.jpg"
+                        height="256"
+                        width="256"
+                    />
+                </div>
+                <div>
+                    <Text>Or a Rick and Morty gif:</Text>
+                    <img
+                        alt="Charmander Image"
+                        src="https://media1.giphy.com/media/JtMvYd1OFqdOpl09Qa/giphy.gif?cid=790b7611f149b4fb5d11ddd27ff272afe3db35627e3f44a6&rid=giphy.gif"
+                        height="256"
+                        width="256"
+                    />
+                </div>
+            </div>
+        </div>
+    </Card>
+</Playground>
