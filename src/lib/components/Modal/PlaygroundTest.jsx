@@ -34,7 +34,7 @@ export const PlaygroundTest = () => {
         actions={(
           <>
             <Button block primary>Salvar</Button>
-            <div style={{ height: '10px' }}>...</div>
+            <div style={{ height: '10px' }} />
             <Button block>Cancelar</Button>
           </>
         )}
