@@ -28,8 +28,11 @@ export const Card = ({ children, title, subTitle, actions }) => (
 );
 
 Card.propTypes = {
+  /** Apply card title */
   title: PropTypes.string,
+  /** Apply card subtitle */
   subTitle: PropTypes.string,
+  /** Apply card actions, like a button or a set of buttons */
   actions: PropTypes.element,
 };
 
