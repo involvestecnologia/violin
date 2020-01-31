@@ -14,8 +14,8 @@ import { Playground, Props } from "docz";
 
 <Playground>
     <Card
-        title={'Title'}
-        subTitle={'Subtitle'}
+        title={'Lorem Ipsum'}
+        subTitle={'Contrary to popular belief, Lorem Ipsum is not simply random text'}
         actions={
             <>
                 <Button secondary icon="edit" onClick={() => alert('Editing content')}></Button>
@@ -23,7 +23,7 @@ import { Playground, Props } from "docz";
             </>
         }
     >
-        <Text>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</Text>
+        <Text>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </Text>
     </Card>
 </Playground>
 
@@ -31,62 +31,39 @@ import { Playground, Props } from "docz";
 
 <Props of={Card} />
 
-## long title and subtitle
+## title
 <Playground>
-    <Card
-        title="Titulo muito grande grande grande grande grande grande grande grande grande grande grande grande grande grande grande grande grande grande grande grande grande grande grande grande"
-        subTitle="Sub Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title Title "
-        actions={
-            <>
-                <Button secondary icon="edit"></Button>
-                <Button secondary icon="delete"></Button>
-            </>
-        }
-    >
-        <Text>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</Text>
+    <Card title={'Lorem Ipsum'}>
+        <Text>My card with title</Text>
     </Card>
 </Playground>
 
-## no actions
+## subTitle
 <Playground>
-    <Card title={'Title'} subTitle={'Subtitle'}>
-        <Text>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</Text>
+    <Card subTitle={'Contrary to popular belief, Lorem Ipsum is not simply random text'}>
+        <Text>My card with subTitle</Text>
+    </Card>
+</Playground>
+
+## actions
+<Playground>
+    <Card
+        title={'Lorem Ipsum'}
+        subTitle={'Contrary to popular belief, Lorem Ipsum is not simply random text'}
+        actions={
+            <>
+                <Button secondary icon="edit" onClick={() => alert('Editing content')}></Button>
+                <Button secondary icon="delete" onClick={() => alert('Deleting content')}></Button>
+            </>
+        }
+    >
+        <Text>My card with actions</Text>
     </Card>
 </Playground>
 
 ## no header
 <Playground>
     <Card>
-        <Text>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</Text>
-    </Card>
-</Playground>
-
-## custom content
-<Playground>
-    <Card title={'Custom content'}>
-        <div>
-            <Text>You can use whataver you want as content <Icon icon="sports_esports" /></Text>
-            <br />
-            <div style={{ display: 'flex' }}>
-                <div>
-                    <Text>Like a charmander:</Text>
-                    <img
-                        alt="Charmander Image"
-                        src="https://http2.mlstatic.com/pokemon-charmander-16-mini-4cm-moncolle-original-takara-tomy-D_NQ_NP_652261-MLB26559760859_122017-F.jpg"
-                        height="256"
-                        width="256"
-                    />
-                </div>
-                <div>
-                    <Text>Or a Rick and Morty gif:</Text>
-                    <img
-                        alt="Charmander Image"
-                        src="https://media1.giphy.com/media/JtMvYd1OFqdOpl09Qa/giphy.gif?cid=790b7611f149b4fb5d11ddd27ff272afe3db35627e3f44a6&rid=giphy.gif"
-                        height="256"
-                        width="256"
-                    />
-                </div>
-            </div>
-        </div>
+        <Text>No header here, but I'm still a card.</Text>
     </Card>
 </Playground>
