@@ -4,15 +4,33 @@ menu: Components
 route: /components/Modal
 ---
 
-import { Modal } from './Modal';
-import { PlaygroundTest } from './PlaygroundTest';
 import { Playground, Props } from "docz";
+import { State, Toggle } from 'react-powerplug'
+import { Modal } from './Modal';
+import { Button } from '../Button';
+import { Text } from '../Text';
 
 # Modal
 
 <Playground>
     <div>
-        <PlaygroundTest />
+        <State initial={{ isOpen: false }}>
+            {({ state, setState }) => (
+                <>
+                    <Button onClick={() => setState({isOpen: true})}>Open Modal</Button>
+                    <Modal
+                        title={'What is Lorem Ipsum?'}
+                        isOpen={state.isOpen}
+                        onClose={() => setState({isOpen: false})}
+                        actions={[
+                            <Button onClick={() => setState({isOpen: false})}>Close</Button>,
+                        ]}
+                    >
+                        <Text>{`Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.`}</Text>
+                    </Modal>
+                </>
+            )}
+        </State>
     </div>
 </Playground>
 
