@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import {
   ModalWrapper,
@@ -19,6 +19,10 @@ export const Modal = ({
   actions,
   title,
 }) => {
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? 'hidden' : 'unset';
+  }, [isOpen]);
+
   const component = (
     <>
       {isOpen && (

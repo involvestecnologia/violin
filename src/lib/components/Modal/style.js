@@ -5,7 +5,7 @@ import { Button } from '../Button';
 
 export const ModalWrapper = styled.div`
   z-index: ${getFromTheme('zIndex.z1')};
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   background: ${getFromTheme('palette.misc.white')};
@@ -32,7 +32,7 @@ export const ModalWrapper = styled.div`
 
 export const ModalBackdrop = styled.div`
   z-index: ${getFromTheme('zIndex.z1')};
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   background: ${getFromTheme('palette.black.500')};
