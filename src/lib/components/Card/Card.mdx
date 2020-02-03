@@ -1,0 +1,69 @@
+---
+name: Card
+menu: Components
+route: /components/Card
+---
+
+import { Card } from './Card';
+import { Button } from '../Button';
+import { Text } from '../Text';
+import { Icon } from '../Icon';
+import { Playground, Props } from "docz";
+
+# Card
+
+<Playground>
+    <Card
+        title={'Lorem Ipsum'}
+        subTitle={'Where does it come from?'}
+        actions={
+            <>
+                <Button secondary icon="edit" onClick={() => alert('Editing content')}></Button>
+                <Button secondary icon="delete" onClick={() => alert('Deleting content')}></Button>
+            </>
+        }
+    >
+        <Text>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</Text>
+    </Card>
+</Playground>
+
+## Props
+
+<Props of={Card} />
+
+## title
+<Playground>
+    <Card title={'Lorem Ipsum'}>
+        <Text>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</Text>
+    </Card>
+</Playground>
+
+## subTitle
+<Playground>
+    <Card subTitle={'Contrary to popular belief, Lorem Ipsum is not simply random text'}>
+        <Text>It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</Text>
+    </Card>
+</Playground>
+
+## actions
+<Playground>
+    <Card
+        title={'Lorem Ipsum'}
+        subTitle={'Why do we use it?'}
+        actions={
+            <>
+                <Button secondary icon="edit" onClick={() => alert('Editing content')}></Button>
+                <Button secondary icon="delete" onClick={() => alert('Deleting content')}></Button>
+            </>
+        }
+    >
+        <Text>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</Text>
+    </Card>
+</Playground>
+
+## no header
+<Playground>
+    <Card>
+        <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</Text>
+    </Card>
+</Playground>
