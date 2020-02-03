@@ -62,7 +62,7 @@ export const ModalHeader = styled.header`
   padding: 0 10px 0 20px;
   box-sizing: border-box;
   border: 1px solid transparent;
-  border-bottom-color: #E5E8EB;
+  border-bottom-color: rgba(31, 14, 61, .1);
   height: 70px;
 `;
 
