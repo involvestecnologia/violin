@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useMemo } from 'react';
 import ReactDOM from 'react-dom';
 import {
   ModalWrapper,
@@ -19,34 +19,37 @@ export const Modal = ({
   actions,
   title,
 }) => {
+  const onEscPress = ({ key }) => {
+    if (key === 'Escape') onClose()
+  }
+
   useEffect(() => {
     document.body.style.overflow = isOpen ? 'hidden' : 'unset';
+    document.body.onkeydown = onEscPress
   }, [isOpen]);
+
+  const targetElement = useMemo(() => document.querySelector('body'));
 
   const component = (
     <>
-      {isOpen && (
-        <>
-          <ModalBackdrop onClick={onClose} />
-          <ModalWrapper>
-            <ModalHeader>
-              <ModalTitle size="h6">{title}</ModalTitle>
-              <Button icon="close" secondary onClick={onClose} />
-            </ModalHeader>
-            <ModalContentWrapper>
-              <ModalContent>{children}</ModalContent>
-              {actions && (
-                <ModalFooter>{actions.map((action) => (
-                  <Fragment key={`modal-action-${idgen()}`}>{action}</Fragment>
-                ))}
-                </ModalFooter>
-              )}
-            </ModalContentWrapper>
-          </ModalWrapper>
-        </>
-      )}
+      <ModalBackdrop onClick={onClose} isOpen={isOpen} />
+      <ModalWrapper isOpen={isOpen}>
+        <ModalHeader>
+          <ModalTitle size="h6">{title}</ModalTitle>
+          <Button icon="close" secondary onClick={onClose} />
+        </ModalHeader>
+        <ModalContentWrapper>
+          <ModalContent>{children}</ModalContent>
+          {actions && (
+            <ModalFooter>{actions.map((action) => (
+              <Fragment key={`modal-action-${idgen()}`}>{action}</Fragment>
+            ))}
+            </ModalFooter>
+          )}
+        </ModalContentWrapper>
+      </ModalWrapper>
     </>
   );
 
-  return ReactDOM.createPortal(component, document.querySelector('body'));
+  return ReactDOM.createPortal(component, targetElement);
 }

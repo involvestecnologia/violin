@@ -3,6 +3,13 @@ import getFromTheme from '../../utils/getFromTheme';
 import { Heading } from '../Heading';
 import { Button } from '../Button';
 
+const transition = css`
+  transition: 'all 0.2 ease';
+  transition-duration: .2s;
+  visibility: hidden;
+  opacity: 0;
+`;
+
 export const ModalWrapper = styled.div`
   z-index: ${getFromTheme('zIndex.z1')};
   position: fixed;
@@ -15,6 +22,8 @@ export const ModalWrapper = styled.div`
   flex-direction: column;
   justify-content: space-between;
   overflow: hidden;
+  ${transition}
+  ${(props) => props.isOpen && css`visibility: visible; opacity: 1;`}
 
   @media(min-width: 540px) {
     width: 500px;
@@ -37,12 +46,13 @@ export const ModalBackdrop = styled.div`
   top: 0;
   left: 0;
   background: ${getFromTheme('palette.black.500')};
-  opacity: 0.6;
   height: 100%;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  ${transition}
+  ${(props) => props.isOpen && css`visibility: visible; opacity: 0.6;`}
 `;
 
 export const ModalHeader = styled.header`
@@ -56,14 +66,10 @@ export const ModalHeader = styled.header`
   height: 70px;
 `;
 
-const ellipsisStyle = css`
+export const ModalTitle = styled(Heading)`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis; 
-`;
-
-export const ModalTitle = styled(Heading)`
-  ${ellipsisStyle}
   color: ${getFromTheme('palette.black.500')};
   font-weight: ${getFromTheme('typography.fontWeight.semiBold')};
 `;
