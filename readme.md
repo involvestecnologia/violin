@@ -14,9 +14,7 @@
 Made with :heart: by [Involves](https://involves.com/)
 
 [![npm package](https://img.shields.io/npm/v/@involves/violin/latest.svg)](https://www.npmjs.com/package/@involves/violin)
-[![npm downloads](https://img.shields.io/npm/dm/@involves/violin/core.svg)](https://www.npmjs.com/package/@involves/violin)
 [![CircleCI](https://img.shields.io/circleci/project/github/involvestecnologia/violin/master.svg)](https://circleci.com/gh/involvestecnologia/violin/tree/master)
-[![Coverage Status](https://img.shields.io/codecov/c/github/involvestecnologia/violin/master.svg)](https://codecov.io/gh/involvestecnologia/violin/branch/master)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/e51f2c75-0c37-4fec-9814-95cdd188a532/deploy-status)](https://app.netlify.com/sites/violin-ui/deploys)
 
 </div>
