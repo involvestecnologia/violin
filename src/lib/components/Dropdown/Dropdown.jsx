@@ -63,8 +63,9 @@ Dropdown.defaultProps = {
 
 const DropdownCard = ({ closeDropdown, ...props }) => {
   const [fadeIn, setFadeIn] = useState(false);
-  const timerShow = useRef();
-  const cardRef = useRef({});
+  const [placement, setPlacement] = useState({ x: 'left', y: 'bottom' });
+  const timerShow = useRef(null);
+  const cardRef = useRef(null);
 
   useEffect(() => {
     timerShow.current = setTimeout(() => setFadeIn(true), 50);
@@ -83,8 +84,21 @@ const DropdownCard = ({ closeDropdown, ...props }) => {
     }
   }, []);
 
+  useEffect(() => {
+    const cardProsition = cardRef.current.getBoundingClientRect();
+    if (cardProsition.bottom > window.innerHeight) {
+      setPlacement({ ...placement, y: 'top' });
+    }
+    console.log(cardProsition);
+  }, [placement]);
+
   const component = (
-    <StyledCard ref={cardRef} fadeIn={fadeIn} {...props} />
+    <StyledCard
+      ref={cardRef}
+      fadeIn={fadeIn}
+      placement={placement}
+      {...props}
+    />
   );
   return ReactDOM.createPortal(component, document.querySelector('body'));
 };
