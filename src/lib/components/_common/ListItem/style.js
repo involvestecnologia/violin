@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { rem } from 'polished';
+import { rem, transparentize } from 'polished';
+import { withProp } from 'styled-tools';
 import { Icon } from '../../Icon';
 import getFromTheme from '../../../utils/getFromTheme';
 
@@ -15,7 +16,7 @@ export const StyledItem = styled.div`
   cursor: pointer;
 
   &:hover {
-    background-color: ${getFromTheme('palette.black.100')};
+    background-color: ${withProp(getFromTheme('palette.black.100'), transparentize(0.5))};
   }
 `;
 

@@ -6,6 +6,7 @@ route: /components/Dropdown
 
 import { Dropdown } from './Dropdown';
 import { DropdownItem } from './DropdownItem';
+import { DropdownDivider } from './DropdownDivider';
 import DemoDropdown from './DemoDropdown';
 import { Button } from '../Button';
 import { Checkbox } from '../Checkbox';
@@ -54,7 +55,7 @@ export default DemoDropdown;
 
 ## DropdownItem
 
-`DropdownItem` component is a complementary component from `Dropdown` to create a menu list into `Dropdown`. 
+`DropdownItem` component is a complementary of `Dropdown` to create a menu list into `Dropdown`. 
 
 <Playground>
 	<Dropdown trigger={<Button secondary icon="more_vert" />}>
@@ -67,6 +68,19 @@ export default DemoDropdown;
 ## DropdownItem Props
 
 <Props of={DropdownItem} />
+
+## DropdownDivider
+
+`DropdownDivider` component add a line for separate content. 
+
+<Playground>
+	<Dropdown trigger={<Button secondary icon="more_vert" />}>
+		<DropdownItem icon="account_circle" onClick={() => alert('My account was clicked')}>My account</DropdownItem>
+		<DropdownItem icon="build" onClick={() => alert('Settings was clicked')}>Settings</DropdownItem>
+		<DropdownDivider />
+		<DropdownItem onClick={() => alert('Logout was clicked')}>Logout</DropdownItem>
+	</Dropdown>
+</Playground>
 
 ## DropdownItem as link
 

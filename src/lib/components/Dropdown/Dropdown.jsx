@@ -9,9 +9,13 @@ export const Dropdown = ({ children, trigger, preventClose, open }) => {
   const [triggerPosition, setTriggerPosition] = useState({});
   const triggerRef = useRef({});
 
-  const openDropdown = () => {
+  const handleTriggerPosition = () => {
     const position = offsetElementPosition(triggerRef.current);
     setTriggerPosition(position);
+  }
+
+  const openDropdown = () => {
+    handleTriggerPosition();
     setCollapsed(true);
   }
 
@@ -28,6 +32,13 @@ export const Dropdown = ({ children, trigger, preventClose, open }) => {
       setCollapsed(false);
     }
   }, [open]);
+
+  useEffect(() => {
+    window.addEventListener('resize', handleTriggerPosition);
+    return () => {
+      window.removeEventListener('resize', handleTriggerPosition);
+    }
+  }, []);
 
   return (
     <>
@@ -61,21 +72,34 @@ Dropdown.defaultProps = {
   open: false
 }
 
-const DropdownCard = ({ closeDropdown, ...props }) => {
+const DropdownCard = ({ closeDropdown, triggerPosition, ...props }) => {
   const [fadeIn, setFadeIn] = useState(false);
-  const [placement, setPlacement] = useState({ x: 'left', y: 'bottom' });
+  const [position, setPosition] = useState({});
   const timerShow = useRef(null);
   const cardRef = useRef(null);
 
+  const listenClose = (e) => {
+    if (!cardRef.current.contains(e.target)) {
+      closeDropdown()
+    }
+  };
+
+  const handlePosition = () => {
+    const trigger = triggerPosition;
+    const card = cardRef.current.getBoundingClientRect();
+    const dynamicPosition = {
+      top: trigger.bottom + card.height > window.scrollY + window.innerHeight
+        ? trigger.top - card.height
+        : trigger.bottom,
+      left: trigger.left + card.width > window.innerWidth
+        ? trigger.right - card.width
+        : trigger.left
+    };
+    setPosition(dynamicPosition);
+  };
+
   useEffect(() => {
     timerShow.current = setTimeout(() => setFadeIn(true), 50);
-
-    const listenClose = (e) => {
-      if (!cardRef.current.contains(e.target)) {
-        closeDropdown()
-      }
-    }
-
     document.addEventListener('click', listenClose);
 
     return () => {
@@ -85,18 +109,19 @@ const DropdownCard = ({ closeDropdown, ...props }) => {
   }, []);
 
   useEffect(() => {
-    const cardProsition = cardRef.current.getBoundingClientRect();
-    if (cardProsition.bottom > window.innerHeight) {
-      setPlacement({ ...placement, y: 'top' });
+    handlePosition();
+    window.addEventListener('scroll', handlePosition);
+
+    return () => {
+      window.removeEventListener('scroll', handlePosition);
     }
-    console.log(cardProsition);
-  }, [placement]);
+  }, [triggerPosition]);
 
   const component = (
     <StyledCard
       ref={cardRef}
       fadeIn={fadeIn}
-      placement={placement}
+      position={position}
       {...props}
     />
   );
