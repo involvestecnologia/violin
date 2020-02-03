@@ -6,6 +6,7 @@ route: /components/Dropdown
 
 import { Dropdown } from './Dropdown';
 import { DropdownItem } from './DropdownItem';
+import DemoDropdown from './DemoDropdown';
 import { Button } from '../Button';
 import { Checkbox } from '../Checkbox';
 import { Playground, Props } from "docz";
@@ -26,16 +27,30 @@ import { Playground, Props } from "docz";
 
 ## preventClose
 
+`preventClose` prop prevent close Dropdown when clicked over or out of component. For this you need manage the `Dropdown` state with `open` prop.
+
 <Playground>
-	<Dropdown preventClose trigger={<Button>Click me!</Button>}>
-		<div style={{ padding: 10 }}>
-			<Checkbox label="Lorem ipsum dolor sit" style={{ padding: '5px 0', display: 'flex' }} />
-			<Checkbox label="Duis aute irure dolor in reprehenderit" style={{ padding: '5px 0', display: 'flex' }} />
-			<Checkbox label="Excepteur sint occaecat" style={{ padding: '5px 0', marginBottom: 10, display: 'flex' }} />
-			<Button primary block>Apply</Button>
-		</div>
-	</Dropdown>
+	<DemoDropdown />
 </Playground>
+
+```javascript
+const DemoDropdown = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <Dropdown preventClose open={isOpen} trigger={<Button onClick={() => setIsOpen(true)}>Click me!</Button>}>
+      <div style={{ padding: 10 }}>
+        <Checkbox label="Lorem ipsum dolor sit" style={{ padding: '5px 0', display: 'flex' }} />
+        <Checkbox label="Duis aute irure dolor in reprehenderit" style={{ padding: '5px 0', display: 'flex' }} />
+        <Checkbox label="Excepteur sint occaecat" style={{ padding: '5px 0', marginBottom: 10, display: 'flex' }} />
+        <Button primary block onClick={() => setIsOpen(false)}>Apply</Button>
+      </div>
+    </Dropdown>
+  );
+};
+
+export default DemoDropdown;
+```
 
 ## DropdownItem
 

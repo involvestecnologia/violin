@@ -19,3 +19,7 @@ export const StyledCard = styled.div`
   padding: 4px 0;
   box-shadow: 0 2px 5px ${withProp(getFromTheme('palette.black.900'), transparentize(0.8))};
 `;
+
+export const Trigger = styled.div`
+  display: inline-block;
+`;
