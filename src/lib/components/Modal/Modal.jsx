@@ -5,7 +5,6 @@ import {
   ModalBackdrop,
   ModalHeader,
   ModalTitle,
-  ModalContentWrapper,
   ModalContent,
   ModalFooter,
 } from './style';
@@ -38,15 +37,13 @@ export const Modal = ({
           <ModalTitle size="h6">{title}</ModalTitle>
           <Button icon="close" secondary onClick={onClose} />
         </ModalHeader>
-        <ModalContentWrapper>
-          <ModalContent>{children}</ModalContent>
-          {actions && (
-            <ModalFooter>{actions.map((action) => (
-              <Fragment key={`modal-action-${idgen()}`}>{action}</Fragment>
-            ))}
-            </ModalFooter>
-          )}
-        </ModalContentWrapper>
+        <ModalContent>{children}</ModalContent>
+        {actions && (
+          <ModalFooter>{actions.map((action) => (
+            <Fragment key={`modal-action-${idgen()}`}>{action}</Fragment>
+          ))}
+          </ModalFooter>
+        )}
       </ModalWrapper>
     </>
   );

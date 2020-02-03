@@ -21,7 +21,7 @@ export const ModalWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  overflow: hidden;
+  overflow: auto;
   ${transition}
   ${(props) => props.isOpen && css`visibility: visible; opacity: 1;`}
 
@@ -33,6 +33,7 @@ export const ModalWrapper = styled.div`
     left: 50%;
     transform: translate(-50%, -50%);
     border-radius: 8px;
+    overflow: hidden;
   }
 
   @media(min-width: 780px) {
@@ -64,6 +65,7 @@ export const ModalHeader = styled.header`
   border: 1px solid transparent;
   border-bottom-color: rgba(31, 14, 61, .1);
   height: 70px;
+  min-height: 70px;
 `;
 
 export const ModalTitle = styled(Heading)`
@@ -76,18 +78,6 @@ export const ModalTitle = styled(Heading)`
 
 export const ModalCloseButton = styled(Button)`
   color: ${getFromTheme('palette.black.500')};
-`;
-
-export const ModalContentWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
-  overflow: auto;
-
-  @media(min-width: 540px) {
-    overflow: hidden;
-  }
 `;
 
 export const ModalContent = styled.div`
