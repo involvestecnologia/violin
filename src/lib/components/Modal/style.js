@@ -3,6 +3,17 @@ import getFromTheme from '../../utils/getFromTheme';
 import { Heading } from '../Heading';
 import { Button } from '../Button';
 
+export const ModalContainer = styled.div`
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  position: absolute;
+  top: 0;
+  visibility: hidden;
+  opacity: 0;
+  ${(props) => props.isOpen && css`visibility: visible; opacity: 1;`}
+`;
+
 const transition = css`
   transition: 'all 0.2 ease';
   transition-duration: .2s;
@@ -38,6 +49,14 @@ export const ModalWrapper = styled.div`
 
   @media(min-width: 780px) {
     width: 700px;
+  }
+
+  @media only screen and (min-width: 540px) and (max-height: 450px) {
+    max-height: none;
+    top: 0;
+    position: absolute;
+    transform: translate(-50%, 0);
+    margin: 10px 0;
   }
 `;
 
@@ -85,6 +104,14 @@ export const ModalContent = styled.div`
 
   @media(min-width: 540px) {
     overflow: auto;
+  }
+
+  @media(max-height: 450px) {
+    overflow: none;
+  }
+
+  @media only screen and (min-width: 540px) and (max-height: 450px) {
+    overflow: hidden;
   }
 `;
 

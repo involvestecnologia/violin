@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect, useMemo } from 'react';
 import ReactDOM from 'react-dom';
 import {
+  ModalContainer,
   ModalWrapper,
   ModalBackdrop,
   ModalHeader,
@@ -30,7 +31,7 @@ export const Modal = ({
   const targetElement = useMemo(() => document.querySelector('body'));
 
   const component = (
-    <>
+    <ModalContainer isOpen={isOpen}>
       <ModalBackdrop onClick={onClose} isOpen={isOpen} />
       <ModalWrapper isOpen={isOpen}>
         <ModalHeader>
@@ -45,7 +46,7 @@ export const Modal = ({
           </ModalFooter>
         )}
       </ModalWrapper>
-    </>
+    </ModalContainer>
   );
 
   return ReactDOM.createPortal(component, targetElement);
