@@ -4,13 +4,16 @@ import { Heading } from '../Heading';
 import { Button } from '../Button';
 
 export const ModalContainer = styled.div`
+  z-index: 999;
   height: 100%;
   width: 100%;
   overflow: auto;
-  position: absolute;
+  position: fixed;
   top: 0;
-  visibility: hidden;
+  left: 0;
   opacity: 0;
+  visibility: hidden;
+  background: transparent;
   ${(props) => props.isOpen && css`visibility: visible; opacity: 1;`}
 `;
 
@@ -68,9 +71,6 @@ export const ModalBackdrop = styled.div`
   background: ${getFromTheme('palette.black.500')};
   height: 100%;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   ${transition}
   ${(props) => props.isOpen && css`visibility: visible; opacity: 0.6;`}
 `;

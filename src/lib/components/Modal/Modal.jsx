@@ -31,22 +31,24 @@ export const Modal = ({
   const targetElement = useMemo(() => document.querySelector('body'));
 
   const component = (
-    <ModalContainer isOpen={isOpen}>
-      <ModalBackdrop onClick={onClose} isOpen={isOpen} />
-      <ModalWrapper isOpen={isOpen}>
-        <ModalHeader>
-          <ModalTitle size="h6">{title}</ModalTitle>
-          <Button icon="close" secondary onClick={onClose} />
-        </ModalHeader>
-        <ModalContent>{children}</ModalContent>
-        {actions && (
-          <ModalFooter>{actions.map((action) => (
-            <Fragment key={`modal-action-${idgen()}`}>{action}</Fragment>
-          ))}
-          </ModalFooter>
-        )}
-      </ModalWrapper>
-    </ModalContainer>
+    <>
+      <ModalBackdrop isOpen={isOpen} />
+      <ModalContainer isOpen={isOpen} onClick={onClose}>
+        <ModalWrapper isOpen={isOpen}>
+          <ModalHeader>
+            <ModalTitle size="h6">{title}</ModalTitle>
+            <Button icon="close" secondary onClick={onClose} />
+          </ModalHeader>
+          <ModalContent>{children}</ModalContent>
+          {actions && (
+            <ModalFooter>{actions.map((action) => (
+              <Fragment key={`modal-action-${idgen()}`}>{action}</Fragment>
+            ))}
+            </ModalFooter>
+          )}
+        </ModalWrapper>
+      </ModalContainer>
+    </>
   );
 
   return ReactDOM.createPortal(component, targetElement);
