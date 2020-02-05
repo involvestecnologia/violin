@@ -1,8 +1,8 @@
 import React, { Fragment, useEffect, useMemo } from 'react';
 import ReactDOM from 'react-dom';
 import {
-  ModalContainer,
   ModalWrapper,
+  ModalCard,
   ModalBackdrop,
   ModalHeader,
   ModalTitle,
@@ -31,24 +31,22 @@ export const Modal = ({
   const targetElement = useMemo(() => document.querySelector('body'));
 
   const component = (
-    <>
-      <ModalBackdrop isOpen={isOpen} />
-      <ModalContainer isOpen={isOpen} onClick={onClose}>
-        <ModalWrapper isOpen={isOpen}>
-          <ModalHeader>
-            <ModalTitle size="h6">{title}</ModalTitle>
-            <Button icon="close" secondary onClick={onClose} />
-          </ModalHeader>
-          <ModalContent>{children}</ModalContent>
-          {actions && (
-            <ModalFooter>{actions.map((action) => (
-              <Fragment key={`modal-action-${idgen()}`}>{action}</Fragment>
-            ))}
-            </ModalFooter>
-          )}
-        </ModalWrapper>
-      </ModalContainer>
-    </>
+    <ModalWrapper isOpen={isOpen}>
+      <ModalBackdrop isOpen={isOpen} onClick={onClose} />
+      <ModalCard isOpen={isOpen}>
+        <ModalHeader>
+          <ModalTitle size="h6">{title}</ModalTitle>
+          <Button icon="close" secondary onClick={onClose} />
+        </ModalHeader>
+        <ModalContent>{children}</ModalContent>
+        {actions && (
+          <ModalFooter>{actions.map((action) => (
+            <Fragment key={`modal-action-${idgen()}`}>{action}</Fragment>
+          ))}
+          </ModalFooter>
+        )}
+      </ModalCard>
+    </ModalWrapper>
   );
 
   return ReactDOM.createPortal(component, targetElement);

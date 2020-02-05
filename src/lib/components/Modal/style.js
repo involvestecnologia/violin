@@ -3,20 +3,6 @@ import getFromTheme from '../../utils/getFromTheme';
 import { Heading } from '../Heading';
 import { Button } from '../Button';
 
-export const ModalContainer = styled.div`
-  z-index: 999;
-  height: 100%;
-  width: 100%;
-  overflow: auto;
-  position: fixed;
-  top: 0;
-  left: 0;
-  opacity: 0;
-  visibility: hidden;
-  background: transparent;
-  ${(props) => props.isOpen && css`visibility: visible; opacity: 1;`}
-`;
-
 const transition = css`
   transition: 'all 0.2 ease';
   transition-duration: .2s;
@@ -27,6 +13,18 @@ const transition = css`
 export const ModalWrapper = styled.div`
   z-index: ${getFromTheme('zIndex.z1')};
   position: fixed;
+  overflow: auto;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  visibility: hidden;
+  opacity: 0;
+  ${(props) => props.isOpen && css`visibility: visible; opacity: 1;`}
+`;
+
+export const ModalCard = styled.div`
+  position: absolute;
   top: 0;
   left: 0;
   background: ${getFromTheme('palette.misc.white')};
@@ -55,7 +53,7 @@ export const ModalWrapper = styled.div`
   }
 
   @media only screen and (min-width: 540px) and (max-height: 450px) {
-    max-height: none;
+    max-height: fit-content;
     top: 0;
     position: absolute;
     transform: translate(-50%, 0);
@@ -64,8 +62,7 @@ export const ModalWrapper = styled.div`
 `;
 
 export const ModalBackdrop = styled.div`
-  z-index: ${getFromTheme('zIndex.z1')};
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   background: ${getFromTheme('palette.black.500')};
@@ -106,13 +103,13 @@ export const ModalContent = styled.div`
     overflow: auto;
   }
 
-  @media(max-height: 450px) {
+  /* @media(max-height: 450px) {
     overflow: none;
   }
-
+*/
   @media only screen and (min-width: 540px) and (max-height: 450px) {
     overflow: hidden;
-  }
+  } 
 `;
 
 export const ModalFooter = styled.footer`
