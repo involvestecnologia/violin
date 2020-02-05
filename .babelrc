@@ -1,29 +1,5 @@
 {
-  "presets": [
-    ["@babel/preset-env", { "loose": true }],
-    "@babel/preset-react"
-  ],
   "env": {
-    "cjs": {
-      "plugins": [
-        "inline-react-svg",
-        "dev-expression"
-      ],
-      "presets": [
-        ["@babel/preset-env", { "loose": true }],
-        "@babel/preset-react"
-      ]
-    },
-    "es": {
-      "plugins": [
-        "inline-react-svg",
-        "dev-expression"
-      ],
-      "presets": [
-        ["@babel/preset-env", { "loose": true, "modules": false }],
-        "@babel/preset-react"
-      ]
-    },
     "test": {
       "plugins": ["@babel/plugin-transform-runtime"]
     }
