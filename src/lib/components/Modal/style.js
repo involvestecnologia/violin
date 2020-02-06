@@ -32,7 +32,6 @@ export const ModalCard = styled.div`
   width: 100%;
   display: grid;
   grid-template-rows: 70px 1fr 70px;
-
   overflow: auto;
   ${transition}
   ${(props) => props.isOpen && css`visibility: visible; opacity: 1;`}
@@ -102,6 +101,7 @@ export const ModalContent = styled.div`
 
   @media(min-width: 540px) {
     overflow: auto;
+    align-self: unset;
   }
 
   @media only screen and (min-width: 540px) and (max-height: 450px) {
