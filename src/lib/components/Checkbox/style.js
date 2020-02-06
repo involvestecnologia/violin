@@ -22,6 +22,7 @@ export const Svg = styled.svg`
   position: relative;
   width: 18px;
   height: 18px;
+  flex-shrink: 0;
 
   &:hover {
     ${Rect} {
