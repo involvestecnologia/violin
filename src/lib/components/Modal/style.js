@@ -30,9 +30,9 @@ export const ModalCard = styled.div`
   background: ${getFromTheme('palette.misc.white')};
   height: 100%;
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  display: grid;
+  grid-template-rows: 70px 1fr 70px;
+
   overflow: auto;
   ${transition}
   ${(props) => props.isOpen && css`visibility: visible; opacity: 1;`}
@@ -98,15 +98,12 @@ export const ModalCloseButton = styled(Button)`
 
 export const ModalContent = styled.div`
   padding: 20px 20px 30px;
+  align-self: start;
 
   @media(min-width: 540px) {
     overflow: auto;
   }
 
-  /* @media(max-height: 450px) {
-    overflow: none;
-  }
-*/
   @media only screen and (min-width: 540px) and (max-height: 450px) {
     overflow: hidden;
   } 
