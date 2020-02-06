@@ -97,11 +97,9 @@ export const ModalCloseButton = styled(Button)`
 
 export const ModalContent = styled.div`
   padding: 20px 20px 30px;
-  align-self: start;
 
   @media(min-width: 540px) {
     overflow: auto;
-    align-self: unset;
   }
 
   @media only screen and (min-width: 540px) and (max-height: 450px) {
