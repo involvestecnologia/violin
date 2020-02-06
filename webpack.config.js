@@ -1,15 +1,20 @@
 const path = require('path');
-const nodeExternals = require('webpack-node-externals');
 
 module.exports = {
   entry: path.resolve(__dirname, './src/lib/index.js'),
   output: {
-    path: path.resolve(__dirname, './dist'),
+    path: path.resolve(__dirname, './lib'),
     filename: 'index.js',
     library: '',
     libraryTarget: 'commonjs'
   },
-  externals: [nodeExternals()],
+  externals: {
+    'styled-components': {
+      commonjs: 'styled-components',
+      commonjs2: 'styled-components',
+      amd: 'styled-components',
+    },
+  },
   module: {
     rules: [
       {
