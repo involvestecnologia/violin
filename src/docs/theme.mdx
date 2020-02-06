@@ -8,40 +8,7 @@ import { ObjectTheme } from "./utils/ObjectTheme";
 
 # Theme
 
-Use Violin theme in your project (optional): 
-
-```javascript
-import { ThemeProvider } from "styled-components";
-import { theme } from "violin";
-
-<ThemeProvider theme={theme}>
-  { /** root component */ }
-</ThemeProvider>
-```
-
-## Custom theme
-
-You can update an specific value from default [theme object](#base-theme-object) or create new properties and values.
-
-```javascript
-import { ThemeProvider } from "styled-components";
-import { createTheme } from "violin"; 
-
-const myCustomTheme = createTheme({
-  palette: {
-    primary: {
-      regular: "purple" // This changes primary color only
-    }
-  },
-  // customProperty: "some value" 
-});
-
-<ThemeProvider theme={myCustomTheme}>
-  { /** root component */ }
-</ThemeProvider>
-```
-
-## Global style
+Violin adds a default style with `GlobalStyle` component. It's recommended.
 
 ```javascript
 import { GlobalStyle } from "violin";
@@ -54,6 +21,26 @@ const App = () => {
     </>
   )
 }
+```
+
+## Custom theme
+
+You can update an specific value from default [theme object](#base-theme-object) or create new properties and values.
+
+```javascript
+import { ThemeProvider } from "styled-components";
+import { createTheme, theme } from "violin"; 
+
+const myCustomTheme = createTheme({
+  palette: {
+    primary: theme.palette.purple // This changes primary color only
+  },
+  customProperty: "some value" // Add new value for use from theme
+});
+
+<ThemeProvider theme={myCustomTheme}>
+  { /** root component */ }
+</ThemeProvider>
 ```
 
 ## Base theme object
