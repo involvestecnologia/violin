@@ -33,8 +33,8 @@ export const Modal = ({
 
   const component = (
     <ModalWrapper open={open}>
-      <ModalBackdrop open={open} onClick={onClose} />
-      <ModalCard open={open}>
+      <ModalBackdrop onClick={onClose} />
+      <ModalCard>
         <ModalHeader>
           <ModalTitle size="h6">{title}</ModalTitle>
           <Button icon="close" secondary onClick={onClose} />

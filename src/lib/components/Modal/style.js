@@ -2,28 +2,6 @@ import styled, { css } from 'styled-components';
 import getFromTheme from '../../utils/getFromTheme';
 import { Heading } from '../Heading';
 
-const transition = css`
-  transition: 'all 0.2 ease';
-  transition-duration: .2s;
-  visibility: hidden;
-  opacity: 0;
-`;
-
-export const ModalWrapper = styled.div`
-  z-index: ${getFromTheme('zIndex.z1')};
-  position: fixed;
-  overflow: auto;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 100%;
-  width: 100%;
-  opacity: 0;
-  visibility: hidden;
-  ${(props) => props.open && css`visibility: visible; opacity: 1;`}
-`;
-
 export const ModalCard = styled.div`
   position: absolute;
   top: 0;
@@ -34,8 +12,6 @@ export const ModalCard = styled.div`
   display: grid;
   grid-template-rows: 70px auto max-content;
   overflow: auto;
-  ${transition}
-  ${(props) => props.open && css`visibility: visible; opacity: 1;`}
 
   @media(min-width: 540px) {
     width: 500px;
@@ -56,7 +32,6 @@ export const ModalCard = styled.div`
   @media only screen and (min-width: 540px) and (max-height: 450px) {
     max-height: fit-content;
     top: 0;
-    position: absolute;
     transform: translate(-50%, 0);
     margin: 10px 0;
   }
@@ -69,8 +44,29 @@ export const ModalBackdrop = styled.div`
   background: ${getFromTheme('palette.black.500')};
   height: 100%;
   width: 100%;
-  ${transition}
-  ${(props) => props.open && css`visibility: visible; opacity: 0.6;`}
+`;
+
+export const ModalWrapper = styled.div`
+  z-index: ${getFromTheme('zIndex.z1')};
+  position: fixed;
+  overflow: auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  visibility: hidden;
+  ${(props) => props.open && css`visibility: visible; opacity: 1;`}
+
+  ${ModalBackdrop} {
+    transition: 'all 0.2 ease';
+    transition-duration: .2s;
+    visibility: hidden;
+    opacity: 0;
+    ${(props) => props.open && css`visibility: visible; opacity: 0.6;`}
+  }
 `;
 
 export const ModalHeader = styled.header`
