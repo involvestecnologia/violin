@@ -1,7 +1,6 @@
 import styled, { css } from 'styled-components';
 import getFromTheme from '../../utils/getFromTheme';
 import { Heading } from '../Heading';
-import { Button } from '../Button';
 
 const transition = css`
   transition: 'all 0.2 ease';
@@ -16,10 +15,12 @@ export const ModalWrapper = styled.div`
   overflow: auto;
   top: 0;
   left: 0;
+  right: 0;
+  bottom: 0;
   height: 100%;
   width: 100%;
-  visibility: hidden;
   opacity: 0;
+  visibility: hidden;
   ${(props) => props.isOpen && css`visibility: visible; opacity: 1;`}
 `;
 
@@ -31,7 +32,7 @@ export const ModalCard = styled.div`
   height: 100%;
   width: 100%;
   display: grid;
-  grid-template-rows: 70px 1fr 70px;
+  grid-template-rows: 70px auto max-content;
   overflow: auto;
   ${transition}
   ${(props) => props.isOpen && css`visibility: visible; opacity: 1;`}
@@ -45,6 +46,7 @@ export const ModalCard = styled.div`
     transform: translate(-50%, -50%);
     border-radius: 8px;
     overflow: hidden;
+    grid-template-rows: 70px 1fr;
   }
 
   @media(min-width: 780px) {
@@ -89,10 +91,6 @@ export const ModalTitle = styled(Heading)`
   text-overflow: ellipsis; 
   color: ${getFromTheme('palette.black.500')};
   font-weight: ${getFromTheme('typography.fontWeight.semiBold')};
-`;
-
-export const ModalCloseButton = styled(Button)`
-  color: ${getFromTheme('palette.black.500')};
 `;
 
 export const ModalContent = styled.div`
