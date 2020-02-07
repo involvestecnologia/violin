@@ -6,14 +6,27 @@ module.exports = {
     path: path.resolve(__dirname, './lib'),
     filename: 'index.js',
     library: '',
-    libraryTarget: 'commonjs'
+    libraryTarget: 'umd'
   },
   externals: {
     'styled-components': {
       commonjs: 'styled-components',
       commonjs2: 'styled-components',
       amd: 'styled-components',
+      root: 'styled-components'
     },
+    react: {
+      commonjs: 'react',
+      commonjs2: 'react',
+      amd: 'React',
+      root: 'React'
+    },
+    'react-dom': {
+      commonjs: 'react-dom',
+      commonjs2: 'react-dom',
+      amd: 'ReactDOM',
+      root: 'ReactDOM'
+    }
   },
   module: {
     rules: [
@@ -25,7 +38,10 @@ module.exports = {
           presets: ['@babel/preset-env', '@babel/preset-react'],
           plugins: [
             '@babel/plugin-proposal-class-properties',
-            'babel-plugin-styled-components'
+            ['babel-plugin-styled-components', {
+              minify: false,
+              transpileTemplateLiterals: false
+            }]
           ]
         }
       },
