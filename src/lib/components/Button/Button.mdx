@@ -10,10 +10,10 @@ import { Playground, Props } from "docz";
 # Button
 
 <Playground>
-    <Button style={{ margin: 5 }}>Default</Button>
-    <Button primary style={{ margin: 5 }}>Primary</Button>
-    <Button secondary style={{ margin: 5 }}>Secondary</Button>
-    <Button danger style={{ margin: 5 }}>Danger</Button>
+    <Button onClick={() => alert('Clicked!')} style={{ margin: 5 }}>Default</Button>
+    <Button primary onClick={() => alert('Clicked!')} style={{ margin: 5 }}>Primary</Button>
+    <Button secondary onClick={() => alert('Clicked!')} style={{ margin: 5 }}>Secondary</Button>
+    <Button danger onClick={() => alert('Clicked!')} style={{ margin: 5 }}>Danger</Button>
 </Playground>
 
 ## Props
