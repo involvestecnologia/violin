@@ -21,7 +21,7 @@ export const ModalWrapper = styled.div`
   width: 100%;
   opacity: 0;
   visibility: hidden;
-  ${(props) => props.isOpen && css`visibility: visible; opacity: 1;`}
+  ${(props) => props.open && css`visibility: visible; opacity: 1;`}
 `;
 
 export const ModalCard = styled.div`
@@ -35,7 +35,7 @@ export const ModalCard = styled.div`
   grid-template-rows: 70px auto max-content;
   overflow: auto;
   ${transition}
-  ${(props) => props.isOpen && css`visibility: visible; opacity: 1;`}
+  ${(props) => props.open && css`visibility: visible; opacity: 1;`}
 
   @media(min-width: 540px) {
     width: 500px;
@@ -70,7 +70,7 @@ export const ModalBackdrop = styled.div`
   height: 100%;
   width: 100%;
   ${transition}
-  ${(props) => props.isOpen && css`visibility: visible; opacity: 0.6;`}
+  ${(props) => props.open && css`visibility: visible; opacity: 0.6;`}
 `;
 
 export const ModalHeader = styled.header`

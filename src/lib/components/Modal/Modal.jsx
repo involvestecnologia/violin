@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect, useMemo } from 'react';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 import {
   ModalWrapper,
   ModalCard,
@@ -13,7 +14,7 @@ import { Button } from '../Button';
 import idgen from '../../utils/idgen';
 
 export const Modal = ({
-  isOpen,
+  open,
   onClose,
   children,
   actions,
@@ -24,16 +25,16 @@ export const Modal = ({
   }
 
   useEffect(() => {
-    document.body.style.overflow = isOpen ? 'hidden' : 'unset';
+    document.body.style.overflow = open ? 'hidden' : 'unset';
     document.body.onkeydown = onEscPress
-  }, [isOpen]);
+  }, [open]);
 
   const targetElement = useMemo(() => document.querySelector('body'));
 
   const component = (
-    <ModalWrapper isOpen={isOpen}>
-      <ModalBackdrop isOpen={isOpen} onClick={onClose} />
-      <ModalCard isOpen={isOpen}>
+    <ModalWrapper open={open}>
+      <ModalBackdrop open={open} onClick={onClose} />
+      <ModalCard open={open}>
         <ModalHeader>
           <ModalTitle size="h6">{title}</ModalTitle>
           <Button icon="close" secondary onClick={onClose} />
@@ -51,3 +52,21 @@ export const Modal = ({
 
   return ReactDOM.createPortal(component, targetElement);
 }
+
+Modal.propTypes = {
+  /** Makes modal visibile/hidden */
+  open: PropTypes.bool,
+  /** Updates modal state */
+  onClose: PropTypes.func,
+  /** Apply actions to modal footer */
+  actions: PropTypes.arrayOf(PropTypes.element),
+  /** Apply title to modal header */
+  title: PropTypes.string,
+};
+
+Modal.defaultProps = {
+  open: false,
+  onClose: null,
+  actions: null,
+  title: null,
+};
