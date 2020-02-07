@@ -57,6 +57,8 @@
   },
   "peerDependencies": {
     "styled-components": ">= 4",
-    "styled-tools": ">= 1"
+    "styled-tools": ">= 1",
+    "react": ">= 16",
+    "react-dom": ">= 16"
   }
 }
