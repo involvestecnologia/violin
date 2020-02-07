@@ -13,7 +13,7 @@ import {
 import { Button } from '../Button';
 import idgen from '../../utils/idgen';
 
-export const Modal = ({
+const ModalWithPortal = ({
   open,
   onClose,
   children,
@@ -54,6 +54,11 @@ export const Modal = ({
 
   return ReactDOM.createPortal(component, targetElement);
 }
+
+// this was necessary becausa docz doesn't understend
+// the props of a component from ReactDOM.createPortal
+// Ref: https://github.com/doczjs/docz/issues/942
+export const Modal = (props) => <ModalWithPortal {...props} />
 
 Modal.propTypes = {
   /** Makes modal visibile/hidden */
