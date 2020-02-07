@@ -35,10 +35,12 @@ export const Modal = ({
     <ModalWrapper open={open}>
       <ModalBackdrop onClick={onClose} />
       <ModalCard>
-        <ModalHeader>
-          <ModalTitle size="h6">{title}</ModalTitle>
-          <Button icon="close" secondary onClick={onClose} />
-        </ModalHeader>
+        {title && (
+          <ModalHeader>
+            <ModalTitle size="h6">{title}</ModalTitle>
+            <Button icon="close" secondary onClick={onClose} />
+          </ModalHeader>
+        )}
         <ModalContent>{children}</ModalContent>
         {actions && (
           <ModalFooter>{actions.map((action) => (

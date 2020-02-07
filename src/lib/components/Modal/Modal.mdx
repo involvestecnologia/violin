@@ -9,61 +9,107 @@ import { State, Toggle } from 'react-powerplug'
 import { Modal } from './Modal';
 import { Button } from '../Button';
 import { Text } from '../Text';
+import { Checkbox } from '../Checkbox';
+import { Link } from '../Link';
 
 # Modal
 
 <Playground>
-    <div>
-        <State initial={{ open: false }}>
-            {({ state, setState }) => (
-                <>
-                    <Button onClick={() => setState({open: true})}>Open Modal</Button>
-                    <Modal
-                        title={'What is Lorem Ipsum?'}
-                        open={state.open}
-                        onClose={() => setState({open: false})}
-                        actions={[
-                            <Button onClick={() => setState({open: false})}>Close</Button>,
-                            <Button onClick={() => setState({open: false})}>Close</Button>,
-                            <Button onClick={() => setState({open: false})}>Close</Button>,
-                            <Button onClick={() => setState({open: false})}>Close</Button>,
-                        ]}
-                    >
-                        {'oiii'}
-                    </Modal>
-                </>
-            )}
-        </State>
-    </div>
+    <State initial={{ open: false }}>
+        {({ state, setState }) => (
+            <>
+                <Button onClick={() => setState({open: true})}>Open Modal</Button>
+                <Modal
+                    title={'What is Lorem Ipsum?'}
+                    open={state.open}
+                    onClose={() => setState({open: false})}
+                    actions={[
+                        <Button onClick={() => setState({open: false})} primary>Save</Button>,
+                        <Button onClick={() => setState({open: false})}>Cancel</Button>,
+                    ]}
+                >
+                    <b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry.
+                </Modal>
+            </>
+        )}
+    </State>
 </Playground>
 
 ## Props
 
 <Props of={Modal} />
 
-## Large content
+## open
 
 <Playground>
-    <div>
-        <State initial={{ open: false }}>
-            {({ state, setState }) => (
-                <>
-                    <Button onClick={() => setState({open: true})}>Open Modal</Button>
-                    <Modal
-                        title={'What is Lorem Ipsum?'}
-                        open={state.open}
-                        onClose={() => setState({open: false})}
-                        actions={[
-                            <Button onClick={() => setState({open: false})}>Close</Button>,
-                            <Button onClick={() => setState({open: false})}>Close</Button>,
-                            <Button onClick={() => setState({open: false})}>Close</Button>,
-                        ]}
-                    >
-                        <Text>{`Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.`}</Text>
-                        <Text>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</Text>
-                    </Modal>
-                </>
-            )}
-        </State>
-    </div>
+    <State initial={{ open: false }}>
+        {({ state, setState }) => (
+            <>
+                <Button onClick={() => setState({open: true})}>Open Modal</Button>
+                <Modal
+                    open={state.open}
+                    onClose={() => setState({open: false})}
+                >
+                    Click on the backdrop to close
+                </Modal>
+            </>
+        )}
+    </State>
+</Playground>
+
+## onClose
+
+<Playground>
+    <State initial={{ open: false }}>
+        {({ state, setState }) => (
+            <>
+                <Button onClick={() => setState({open: true})}>Open Modal</Button>
+                <Modal
+                    open={state.open}
+                    onClose={() => setState({open: false})}
+                >
+                    <Link onClick={() => setState({open: false})}>Click here to close</Link>
+                </Modal>
+            </>
+        )}
+    </State>
+</Playground>
+
+## actions
+
+<Playground>
+    <State initial={{ open: false }}>
+        {({ state, setState }) => (
+            <>
+                <Button onClick={() => setState({open: true})}>Open Modal</Button>
+                <Modal
+                    open={state.open}
+                    onClose={() => setState({open: false})}
+                    actions={[
+                        <Button onClick={() => setState({open: false})} primary>Save</Button>,
+                        <Button onClick={() => setState({open: false})}>Cancel</Button>,
+                    ]}
+                >
+                </Modal>
+            </>
+        )}
+    </State>
+</Playground>
+
+## title
+
+<Playground>
+    <State initial={{ open: false }}>
+        {({ state, setState }) => (
+            <>
+                <Button onClick={() => setState({open: true})}>Open Modal</Button>
+                <Modal
+                    title={'What is Lorem Ipsum?'}
+                    open={state.open}
+                    onClose={() => setState({open: false})}
+                >
+                </Modal>
+            </>
+        )}
+    </State>
 </Playground>
