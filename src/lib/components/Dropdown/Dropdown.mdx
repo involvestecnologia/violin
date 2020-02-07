@@ -1,0 +1,93 @@
+---
+name: Dropdown
+menu: Components
+route: /components/Dropdown
+---
+
+import { Dropdown } from './Dropdown';
+import { DropdownItem } from './DropdownItem';
+import { DropdownDivider } from './DropdownDivider';
+import DemoDropdown from './DemoDropdown';
+import { Button } from '../Button';
+import { Checkbox } from '../Checkbox';
+import { Playground, Props } from "docz";
+
+# Dropdown
+
+<Playground>
+	<Dropdown trigger={<Button>Click me!</Button>}>
+		<div style={{ padding: 10 }}>
+			<Button primary>Custom dropdown content</Button>
+		</div>
+	</Dropdown>
+</Playground>
+
+## Props
+
+<Props of={Dropdown} />
+
+## preventClose
+
+`preventClose` prop prevent close Dropdown when clicked over or out of component. For this you need manage the `Dropdown` state with `open` prop.
+
+<Playground>
+	<DemoDropdown />
+</Playground>
+
+```javascript
+const DemoDropdown = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <Dropdown preventClose open={isOpen} trigger={<Button onClick={() => setIsOpen(true)}>Click me!</Button>}>
+      <div style={{ padding: 10 }}>
+        <Checkbox label="Lorem ipsum dolor sit" style={{ padding: '5px 0', display: 'flex' }} />
+        <Checkbox label="Duis aute irure dolor in reprehenderit" style={{ padding: '5px 0', display: 'flex' }} />
+        <Checkbox label="Excepteur sint occaecat" style={{ padding: '5px 0', marginBottom: 10, display: 'flex' }} />
+        <Button primary block onClick={() => setIsOpen(false)}>Apply</Button>
+      </div>
+    </Dropdown>
+  );
+};
+
+export default DemoDropdown;
+```
+
+## DropdownItem
+
+`DropdownItem` component is a complementary of `Dropdown` to create a menu list into `Dropdown`. 
+
+<Playground>
+	<Dropdown trigger={<Button secondary icon="more_vert" />}>
+		<DropdownItem icon="account_circle" onClick={() => alert('My account was clicked')}>My account</DropdownItem>
+		<DropdownItem icon="build" onClick={() => alert('Settings was clicked')}>Settings</DropdownItem>
+		<DropdownItem icon="power_settings_new" onClick={() => alert('Logout was clicked')}>Logout</DropdownItem>
+	</Dropdown>
+</Playground>
+
+## DropdownItem Props
+
+<Props of={DropdownItem} />
+
+## DropdownDivider
+
+`DropdownDivider` component add a line for separate content. 
+
+<Playground>
+	<Dropdown trigger={<Button secondary icon="more_vert" />}>
+		<DropdownItem icon="account_circle" onClick={() => alert('My account was clicked')}>My account</DropdownItem>
+		<DropdownItem icon="build" onClick={() => alert('Settings was clicked')}>Settings</DropdownItem>
+		<DropdownDivider />
+		<DropdownItem onClick={() => alert('Logout was clicked')}>Logout</DropdownItem>
+	</Dropdown>
+</Playground>
+
+## DropdownItem as link
+
+You can use `DropdownItem` as an `a` element to use `href`, `target` and others native attributes.
+
+<Playground>
+	<Dropdown trigger={<Button secondary icon="more_vert" />}>
+		<DropdownItem as="a" href="http://involves.com" target="_blank" icon="screen_share">External link</DropdownItem>
+	</Dropdown>
+</Playground>

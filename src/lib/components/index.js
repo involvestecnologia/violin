@@ -1,6 +1,7 @@
 export { Button } from './Button';
 export { Card } from './Card';
 export { Checkbox } from './Checkbox';
+export { Dropdown, DropdownItem, DropdownDivider } from './Dropdown';
 export { Heading } from './Heading';
 export { Icon } from './Icon';
 export { Link } from './Link';

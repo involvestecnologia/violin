@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { Balloon } from './style';
+import offsetElementPosition from '../../utils/offsetElementPosition';
 
 export const Tooltip = ({ content, placement, children, disableFocus, disableHover }) => {
   const [showTip, setShowTip] = useState(false);
@@ -11,18 +12,6 @@ export const Tooltip = ({ content, placement, children, disableFocus, disableHov
   const [triggerElement, setTriggerElement] = useState(null);
   const timerShowTip = useRef();
   const timerHideTip = useRef();
-
-  const offsetTriggerPosition = (element) => {
-    const rect = element.getBoundingClientRect();
-    const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    return {
-      top: rect.top + scrollTop,
-      left: rect.left + scrollLeft,
-      width: rect.width,
-      height: rect.height
-    }
-  }
 
   const stopHiddenTimer = () => {
     clearTimeout(timerHideTip.current);
@@ -58,7 +47,7 @@ export const Tooltip = ({ content, placement, children, disableFocus, disableHov
 
   const onHovered = (elem, value, event, propEvent) => {
     if (event) {
-      setTriggerPosition(offsetTriggerPosition(event.target));
+      setTriggerPosition(offsetElementPosition(event.target));
     }
     switch (elem) {
       case 'trigger':
