@@ -14,9 +14,9 @@
     "start": "rm -rf ./.docz && docz dev",
     "build": "rm -rf lib && webpack --mode=production",
     "build:docs": "docz build",
+    "test": "jest",
     "lint": "eslint './src/**/*.jsx' './src/**/*.js'",
     "lint:css": "stylelint './src/**/*.js'",
-    "test": "jest",
     "test:watch": "jest --watchAll"
   },
   "prepublish": "rm -rf lib && webpack --mode=production",
