@@ -7,6 +7,7 @@ route: /components/Dropdown
 import { Dropdown } from './Dropdown';
 import { DropdownItem } from './DropdownItem';
 import { DropdownDivider } from './DropdownDivider';
+import { DropdownTitle } from './DropdownTitle';
 import DemoDropdown from './DemoDropdown';
 import { Button } from '../Button';
 import { Checkbox } from '../Checkbox';
@@ -15,9 +16,9 @@ import { Playground, Props } from "docz";
 # Dropdown
 
 <Playground>
-	<Dropdown trigger={<Button>Click me!</Button>}>
+	<Dropdown trigger={<Button primary>Click me!</Button>}>
 		<div style={{ padding: 10 }}>
-			<Button primary>Custom dropdown content</Button>
+			<p>Custom content</p> 
 		</div>
 	</Dropdown>
 </Playground>
@@ -39,12 +40,12 @@ const DemoDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <Dropdown preventClose open={isOpen} trigger={<Button onClick={() => setIsOpen(true)}>Click me!</Button>}>
+    <Dropdown preventClose open={isOpen} trigger={<Button primary onClick={() => setIsOpen(true)}>Click me!</Button>}>
       <div style={{ padding: 10 }}>
         <Checkbox label="Lorem ipsum dolor sit" style={{ padding: '5px 0', display: 'flex' }} />
         <Checkbox label="Duis aute irure dolor in reprehenderit" style={{ padding: '5px 0', display: 'flex' }} />
         <Checkbox label="Excepteur sint occaecat" style={{ padding: '5px 0', marginBottom: 10, display: 'flex' }} />
-        <Button primary block onClick={() => setIsOpen(false)}>Apply</Button>
+        <Button block onClick={() => setIsOpen(false)}>Apply</Button>
       </div>
     </Dropdown>
   );
@@ -79,6 +80,18 @@ export default DemoDropdown;
 		<DropdownItem icon="build" onClick={() => alert('Settings was clicked')}>Settings</DropdownItem>
 		<DropdownDivider />
 		<DropdownItem onClick={() => alert('Logout was clicked')}>Logout</DropdownItem>
+	</Dropdown>
+</Playground>
+
+## DropdownTitle
+
+<Playground>
+	<Dropdown trigger={<Button secondary icon="more_vert" />}>
+		<DropdownItem icon="account_circle">My account</DropdownItem>
+		<DropdownItem icon="build">Settings</DropdownItem>
+		<DropdownDivider />
+		<DropdownTitle>Others</DropdownTitle>
+		<DropdownItem icon="power_settings_new">Logout</DropdownItem>
 	</Dropdown>
 </Playground>
 

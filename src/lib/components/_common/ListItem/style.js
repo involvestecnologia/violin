@@ -9,14 +9,14 @@ export const StyledItem = styled.div`
   align-items: center;
   box-sizing: border-box;
   width: 100%;
-  padding: 10px 16px;
+  padding: 12px 16px;
   font-size: ${getFromTheme('typography.fontSize.body')};
   color: ${getFromTheme('palette.black.900')};
   text-decoration: none;
   cursor: pointer;
 
   &:hover {
-    background-color: ${withProp(getFromTheme('palette.black.100'), transparentize(0.5))};
+    background-color: ${withProp(getFromTheme('palette.black.900'), transparentize(0.92))};
   }
 `;
 

@@ -89,8 +89,8 @@ const DropdownCard = ({ closeDropdown, triggerPosition, ...props }) => {
     const card = cardRef.current.getBoundingClientRect();
     const dynamicPosition = {
       top: trigger.bottom + card.height > window.scrollY + window.innerHeight
-        ? trigger.top - card.height
-        : trigger.bottom,
+        ? (trigger.top - card.height) + 2
+        : trigger.bottom - 2,
       left: trigger.left + card.width > window.innerWidth
         ? trigger.right - card.width
         : trigger.left
