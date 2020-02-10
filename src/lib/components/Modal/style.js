@@ -61,7 +61,7 @@ export const ModalWrapper = styled.div`
   ${(props) => props.open && css`visibility: visible; opacity: 1;`}
 
   ${ModalBackdrop} {
-    transition: ${getFromTheme('common.transition')};;
+    transition: ${getFromTheme('common.transition')};
     transition-duration: .2s;
     visibility: hidden;
     opacity: 0;
