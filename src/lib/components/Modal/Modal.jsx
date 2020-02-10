@@ -33,12 +33,12 @@ const ModalWithPortal = ({
 
   const component = (
     <ModalWrapper open={open}>
-      <ModalBackdrop onClick={onClose} />
+      <ModalBackdrop onClick={onClose} data-testid="modal-backdrop" />
       <ModalCard>
         {title && (
           <ModalHeader>
             <ModalTitle size="h6">{title}</ModalTitle>
-            <Button icon="close" secondary onClick={onClose} />
+            <Button icon="close" secondary onClick={onClose} data-testid="modal-close-button" />
           </ModalHeader>
         )}
         <ModalContent>{children}</ModalContent>

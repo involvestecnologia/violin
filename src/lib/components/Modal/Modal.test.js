@@ -1,9 +1,7 @@
 import React from 'react';
 import { render, cleanup } from '@testing-library/react';
-import { mount } from 'enzyme';
 import { Modal } from './Modal';
 import { Button } from '../Button'
-import { ModalBackdrop } from './style'
 
 afterEach(cleanup);
 const modalTitle = 'Modal Title';
@@ -21,15 +19,15 @@ describe('Modal', () => {
 
   test('should call onClose callback when backdrop is clicked', () => {
     const onClose = jest.fn();
-    const wrapper = mount(<Modal title={modalTitle} onClose={onClose} open />);
-    wrapper.find(ModalBackdrop).simulate('click');
+    const { getByTestId } = render(<Modal title={modalTitle} onClose={onClose} open />);
+    getByTestId('modal-backdrop').click()
     expect(onClose).toHaveBeenCalled()
   });
 
   test('should call onClose callback when close button is clicked', () => {
     const onClose = jest.fn();
-    const wrapper = mount(<Modal title={modalTitle} onClose={onClose} open />);
-    wrapper.find(Button).simulate('click');
+    const { getByTestId } = render(<Modal title={modalTitle} onClose={onClose} open />);
+    getByTestId('modal-close-button').click()
     expect(onClose).toHaveBeenCalled()
   });
 
