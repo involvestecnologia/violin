@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, cleanup } from '@testing-library/react';
+import { render, cleanup, fireEvent } from '@testing-library/react';
 import { Modal } from './Modal';
 import { Button } from '../Button'
 
@@ -53,5 +53,9 @@ describe('Modal', () => {
   })
 
   test('should disable esc keydown when disableEscapeKeyDown is true', () => {
+    const onClose = jest.fn();
+    const { container } = render(<Modal open onClose={onClose} disableEscapeKeyDown />);
+    fireEvent.keyDown(container.parentElement, { key: 'Escape', code: 27 })
+    expect(onClose).not.toHaveBeenCalled()
   })
 });

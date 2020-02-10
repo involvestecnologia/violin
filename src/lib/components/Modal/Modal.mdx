@@ -132,3 +132,22 @@ import { Link } from '../Link';
         )}
     </State>
 </Playground>
+
+## disableEscapeKeyDown
+
+<Playground>
+    <State initial={{ open: false }}>
+        {({ state, setState }) => (
+            <>
+                <Button onClick={() => setState({open: true})}>Open Modal</Button>
+                <Modal
+                    title={'What is Lorem Ipsum?'}
+                    open={state.open}
+                    disableEscapeKeyDown
+                    onClose={() => setState({open: false})}
+                >
+                </Modal>
+            </>
+        )}
+    </State>
+</Playground>

@@ -19,7 +19,8 @@ const ModalWithPortal = ({
   children,
   actions,
   title,
-  disableBackdropClick
+  disableBackdropClick,
+  disableEscapeKeyDown
 }) => {
   const onEscPress = ({ key }) => {
     if (key === 'Escape') onClose()
@@ -27,7 +28,7 @@ const ModalWithPortal = ({
 
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : 'unset';
-    document.body.onkeydown = open ? onEscPress : null;
+    document.body.onkeydown = (open && !disableEscapeKeyDown) ? onEscPress : null;
   }, [open]);
 
   const targetElement = useMemo(() => document.querySelector('body'));
@@ -74,7 +75,10 @@ Modal.propTypes = {
   actions: PropTypes.arrayOf(PropTypes.element),
   /** Apply title to modal header */
   title: PropTypes.string,
+  /** Prevent backdrop click from closing the modal */
   disableBackdropClick: PropTypes.bool,
+  /** Prevent ESC key from closing the modal */
+  disableEscapeKeyDown: PropTypes.bool,
 };
 
 Modal.defaultProps = {
@@ -83,4 +87,5 @@ Modal.defaultProps = {
   actions: null,
   title: null,
   disableBackdropClick: false,
+  disableEscapeKeyDown: false,
 };
