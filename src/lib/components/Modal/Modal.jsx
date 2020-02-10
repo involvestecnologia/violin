@@ -55,7 +55,7 @@ const ModalWithPortal = ({
   return ReactDOM.createPortal(component, targetElement);
 }
 
-// this was necessary becausa docz doesn't understend
+// this was necessary because docz doesn't understand
 // the props of a component from ReactDOM.createPortal
 // Ref: https://github.com/doczjs/docz/issues/942
 export const Modal = (props) => <ModalWithPortal {...props} />
