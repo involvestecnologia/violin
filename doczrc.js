@@ -5,6 +5,8 @@ export default {
   menu: [
     'Getting started',
     'Components',
+    'Colors',
+    'Theming'
   ],
   themeConfig: {
     fonts: {
