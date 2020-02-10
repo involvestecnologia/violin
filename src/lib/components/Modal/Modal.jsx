@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useMemo } from 'react';
+import React, { Fragment, useEffect, useMemo, useRef } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import {
@@ -22,6 +22,8 @@ const ModalWithPortal = ({
   disableBackdropClick,
   disableEscapeKeyDown
 }) => {
+  const modalCardElement = useRef(null)
+  const targetElement = useMemo(() => document.querySelector('body'));
   const onEscPress = ({ key }) => {
     if (key === 'Escape') onClose()
   }
@@ -29,9 +31,10 @@ const ModalWithPortal = ({
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : 'unset';
     document.body.onkeydown = (open && !disableEscapeKeyDown) ? onEscPress : null;
+    if (open) {
+      modalCardElement.current.focus()
+    }
   }, [open]);
-
-  const targetElement = useMemo(() => document.querySelector('body'));
 
   const component = (
     <ModalWrapper open={open}>
@@ -40,11 +43,16 @@ const ModalWithPortal = ({
         disableBackdropClick={disableBackdropClick}
         data-testid="modal-backdrop"
       />
-      <ModalCard>
+      <ModalCard ref={modalCardElement} tabIndex="0">
         {title && (
           <ModalHeader>
             <ModalTitle size="h6">{title}</ModalTitle>
-            <Button icon="close" secondary onClick={onClose} data-testid="modal-close-button" />
+            <Button
+              icon="close"
+              secondary
+              onClick={onClose}
+              data-testid="modal-close-button"
+            />
           </ModalHeader>
         )}
         <ModalContent>{children}</ModalContent>

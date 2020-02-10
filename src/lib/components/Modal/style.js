@@ -13,6 +13,7 @@ export const ModalCard = styled.div`
   display: grid;
   grid-template-rows: 70px auto max-content;
   overflow: auto;
+  outline: none;
   background: ${getFromTheme('palette.misc.white')};
 
   @media(min-width: 540px) {
