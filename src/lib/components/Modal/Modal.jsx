@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useMemo, useRef } from 'react';
+import React, { Fragment, useEffect, useMemo, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import {
@@ -12,6 +12,9 @@ import {
 } from './style';
 import { Button } from '../Button';
 import idgen from '../../utils/idgen';
+import activeElement from '../../utils/activeElement';
+import ownerDocument from '../../utils/ownerDocument';
+import contains from '../../utils/contains';
 
 const ModalWithPortal = ({
   open,
@@ -22,22 +25,45 @@ const ModalWithPortal = ({
   disableBackdropClick,
   disableEscapeKeyDown
 }) => {
-  const modalCardElement = useRef(null)
+  const modalWrapperElement = useRef(null);
+  const modalCardElement = useRef(null);
   const targetElement = useMemo(() => document.querySelector('body'));
+  const [triggerElement, setTriggerElement] = useState(null);
+
   const onEscPress = ({ key }) => {
     if (key === 'Escape') onClose()
+  }
+
+  const restoreLastFocus = () => {
+    if (triggerElement) {
+      triggerElement.focus();
+      setTriggerElement(null)
+    }
+  }
+
+  const autoFocus = () => {
+    const currentActiveElement = activeElement(ownerDocument(this));
+    if (modalWrapperElement && !contains(modalWrapperElement, currentActiveElement)) {
+      setTriggerElement(currentActiveElement)
+      modalCardElement.current.focus();
+    }
   }
 
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : 'unset';
     document.body.onkeydown = (open && !disableEscapeKeyDown) ? onEscPress : null;
+
     if (open) {
-      modalCardElement.current.focus()
+      autoFocus()
+    }
+
+    if (!open) {
+      restoreLastFocus()
     }
   }, [open]);
 
   const component = (
-    <ModalWrapper open={open}>
+    <ModalWrapper ref={modalWrapperElement} open={open}>
       <ModalBackdrop
         onClick={onClose}
         disableBackdropClick={disableBackdropClick}
