@@ -1,4 +1,6 @@
 import styled, { css } from 'styled-components';
+import { withProp } from 'styled-tools';
+import { transparentize } from 'polished';
 import getFromTheme from '../../utils/getFromTheme';
 import { Heading } from '../Heading';
 
@@ -23,6 +25,7 @@ export const ModalCard = styled.div`
     max-height: calc(100vh - 20px);
     transform: translate(-50%, -50%);
     border-radius: 8px;
+    box-shadow: 0px 5px 10px ${withProp(getFromTheme('palette.black.900'), transparentize(0.8))};
   }
 
   @media(min-width: 780px) {
