@@ -47,6 +47,7 @@ export const ModalBackdrop = styled.div`
   height: 100%;
   width: 100%;
   background: ${getFromTheme('palette.black.500')};
+  ${(props) => props.disableBackdropClick && css`pointer-events: none;`}
 `;
 
 export const ModalWrapper = styled.div`

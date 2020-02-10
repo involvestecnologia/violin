@@ -19,6 +19,7 @@ const ModalWithPortal = ({
   children,
   actions,
   title,
+  disableBackdropClick
 }) => {
   const onEscPress = ({ key }) => {
     if (key === 'Escape') onClose()
@@ -33,7 +34,11 @@ const ModalWithPortal = ({
 
   const component = (
     <ModalWrapper open={open}>
-      <ModalBackdrop onClick={onClose} data-testid="modal-backdrop" />
+      <ModalBackdrop
+        onClick={onClose}
+        disableBackdropClick={disableBackdropClick}
+        data-testid="modal-backdrop"
+      />
       <ModalCard>
         {title && (
           <ModalHeader>
@@ -69,6 +74,7 @@ Modal.propTypes = {
   actions: PropTypes.arrayOf(PropTypes.element),
   /** Apply title to modal header */
   title: PropTypes.string,
+  disableBackdropClick: PropTypes.bool,
 };
 
 Modal.defaultProps = {
@@ -76,4 +82,5 @@ Modal.defaultProps = {
   onClose: null,
   actions: null,
   title: null,
+  disableBackdropClick: false,
 };

@@ -113,3 +113,22 @@ import { Link } from '../Link';
         )}
     </State>
 </Playground>
+
+## disableBackdropClick
+
+<Playground>
+    <State initial={{ open: false }}>
+        {({ state, setState }) => (
+            <>
+                <Button onClick={() => setState({open: true})}>Open Modal</Button>
+                <Modal
+                    title={'What is Lorem Ipsum?'}
+                    open={state.open}
+                    disableBackdropClick
+                    onClose={() => setState({open: false})}
+                >
+                </Modal>
+            </>
+        )}
+    </State>
+</Playground>

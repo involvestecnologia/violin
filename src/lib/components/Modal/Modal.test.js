@@ -44,4 +44,14 @@ describe('Modal', () => {
     expect(getByText('action2')).toBeVisible();
     expect(getByText('action3')).toBeVisible();
   })
+
+  test('should disable backdrop when disableBackdropClick is true', () => {
+    const { getByTestId } = render(<Modal disableBackdropClick />);
+    expect(getByTestId('modal-backdrop')).toHaveStyle(`
+      pointer-events: none;
+    `);
+  })
+
+  test('should disable esc keydown when disableEscapeKeyDown is true', () => {
+  })
 });
