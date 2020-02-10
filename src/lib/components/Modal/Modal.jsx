@@ -26,7 +26,7 @@ const ModalWithPortal = ({
 
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : 'unset';
-    document.body.onkeydown = onEscPress
+    document.body.onkeydown = open ? onEscPress : null;
   }, [open]);
 
   const targetElement = useMemo(() => document.querySelector('body'));
