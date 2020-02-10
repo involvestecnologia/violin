@@ -4,9 +4,7 @@ export default {
   dest: './docs',
   menu: [
     'Getting started',
-    'Components',
-    'Colors',
-    'Theming'
+    'Components'
   ],
   themeConfig: {
     fonts: {
