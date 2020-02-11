@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import { withProp } from 'styled-tools';
 import { transparentize } from 'polished';
 import getFromTheme from '../../utils/getFromTheme';
-import { Heading } from '../Heading';
+import { Title } from '../Title';
 
 export const ModalCard = styled.div`
   position: absolute;
@@ -86,7 +86,7 @@ export const ModalHeader = styled.header`
   min-height: 70px;
 `;
 
-export const ModalTitle = styled(Heading)`
+export const ModalTitle = styled(Title)`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis; 
