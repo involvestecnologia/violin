@@ -51,6 +51,15 @@ export const ModalBackdrop = styled.div`
   ${(props) => props.disableBackdropClick && css`pointer-events: none;`}
 `;
 
+const transition = css`
+  transition: ${getFromTheme('common.transition')};
+  transition-duration: .2s;
+  transition-property: opacity;
+  transition-timing-function: ease;
+  visibility: hidden;
+  opacity: 0;
+`;
+
 export const ModalWrapper = styled.div`
   z-index: ${getFromTheme('zIndex.z1')};
   position: fixed;
@@ -63,14 +72,16 @@ export const ModalWrapper = styled.div`
   overflow: auto;
   opacity: 0;
   visibility: hidden;
-  ${(props) => props.open && css`visibility: visible; opacity: 1;`}
+  ${(props) => props.fadeIn && css`visibility: visible; opacity: 1;`}
 
   ${ModalBackdrop} {
-    transition: ${getFromTheme('common.transition')};
-    transition-duration: .2s;
-    visibility: hidden;
-    opacity: 0;
-    ${(props) => props.open && css`visibility: visible; opacity: 0.6;`}
+    ${transition}
+    ${(props) => props.fadeIn && css`visibility: visible; opacity: 0.6;`}
+  }
+
+  ${ModalCard} {
+    ${transition}
+    ${(props) => props.fadeIn && css`visibility: visible; opacity: 1;`}
   }
 `;
 

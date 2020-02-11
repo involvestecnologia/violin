@@ -27,8 +27,10 @@ const ModalWithPortal = ({
 }) => {
   const modalWrapperElement = useRef(null);
   const modalCardElement = useRef(null);
+  const timerShow = useRef(null);
   const targetElement = useMemo(() => document.querySelector('body'));
   const [triggerElement, setTriggerElement] = useState(null);
+  const [fadeIn, setFadeIn] = useState(false);
 
   const onEscPress = ({ key }) => {
     if (key === 'Escape') onClose()
@@ -49,47 +51,59 @@ const ModalWithPortal = ({
     }
   }
 
+  const enableFadeIn = () => {
+    timerShow.current = setTimeout(() => setFadeIn(true), 50);
+  }
+
+  const disableFadeIn = () => {
+    clearTimeout(timerShow.current);
+    setFadeIn(false);
+  }
+
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : 'unset';
     document.body.onkeydown = (open && !disableEscapeKeyDown) ? onEscPress : null;
 
     if (open) {
       autoFocus()
-    }
-
-    if (!open) {
+      enableFadeIn()
+    } else {
       restoreLastFocus()
     }
+
+    return () => disableFadeIn()
   }, [open]);
 
   const component = (
-    <ModalWrapper ref={modalWrapperElement} open={open}>
-      <ModalBackdrop
-        onClick={onClose}
-        disableBackdropClick={disableBackdropClick}
-        data-testid="modal-backdrop"
-      />
-      <ModalCard ref={modalCardElement} tabIndex="0" data-testid="modal-card">
-        {title && (
-          <ModalHeader>
-            <ModalTitle size="h6">{title}</ModalTitle>
-            <Button
-              icon="close"
-              secondary
-              onClick={onClose}
-              data-testid="modal-close-button"
-            />
-          </ModalHeader>
-        )}
-        <ModalContent>{children}</ModalContent>
-        {actions && (
-          <ModalFooter>{actions.map((action) => (
-            <Fragment key={`modal-action-${idgen()}`}>{action}</Fragment>
-          ))}
-          </ModalFooter>
-        )}
-      </ModalCard>
-    </ModalWrapper>
+    open && (
+      <ModalWrapper ref={modalWrapperElement} fadeIn={fadeIn} data-testid="modal-wrapper">
+        <ModalBackdrop
+          onClick={onClose}
+          disableBackdropClick={disableBackdropClick}
+          data-testid="modal-backdrop"
+        />
+        <ModalCard ref={modalCardElement} tabIndex="0" data-testid="modal-card">
+          {title && (
+            <ModalHeader>
+              <ModalTitle size="h6">{title}</ModalTitle>
+              <Button
+                icon="close"
+                secondary
+                onClick={onClose}
+                data-testid="modal-close-button"
+              />
+            </ModalHeader>
+          )}
+          <ModalContent>{children}</ModalContent>
+          {actions && (
+            <ModalFooter>{actions.map((action) => (
+              <Fragment key={`modal-action-${idgen()}`}>{action}</Fragment>
+            ))}
+            </ModalFooter>
+          )}
+        </ModalCard>
+      </ModalWrapper>
+    )
   );
 
   return ReactDOM.createPortal(component, targetElement);

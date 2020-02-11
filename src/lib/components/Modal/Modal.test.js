@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, cleanup, fireEvent } from '@testing-library/react';
+import { render, cleanup, fireEvent, wait } from '@testing-library/react';
 import { Modal } from './Modal';
 import { Button } from '../Button'
 
@@ -8,13 +8,13 @@ const modalTitle = 'Modal Title';
 
 describe('Modal', () => {
   test('should render correctly', () => {
-    const { getByText } = render(<Modal title={modalTitle} />);
+    const { getByText } = render(<Modal title={modalTitle} open />);
     expect(getByText(modalTitle)).toBeInTheDocument();
   });
 
-  test('should have visibility: visible when open attribute is true', () => {
-    const { getByText } = render(<Modal title={modalTitle} open />);
-    expect(getByText(modalTitle)).toBeVisible();
+  test('should have visibility: visible when open attribute is true', async () => {
+    const { getByTestId } = render(<Modal title={modalTitle} open />);
+    await wait(() => expect(getByTestId('modal-wrapper')).toBeVisible());
   });
 
   test('should call onClose callback when backdrop is clicked', () => {
@@ -31,7 +31,7 @@ describe('Modal', () => {
     expect(onClose).toHaveBeenCalled()
   });
 
-  test('should render actions', () => {
+  test('should render actions', async () => {
     const actions = [
       <Button>action1</Button>,
       <Button>action2</Button>,
@@ -40,13 +40,15 @@ describe('Modal', () => {
 
     const { getByText } = render(<Modal title={modalTitle} actions={actions} open />);
 
-    expect(getByText('action1')).toBeVisible();
-    expect(getByText('action2')).toBeVisible();
-    expect(getByText('action3')).toBeVisible();
+    await wait(() => {
+      expect(getByText('action1')).toBeVisible();
+      expect(getByText('action2')).toBeVisible();
+      expect(getByText('action3')).toBeVisible();
+    })
   })
 
   test('should disable backdrop when disableBackdropClick is true', () => {
-    const { getByTestId } = render(<Modal disableBackdropClick />);
+    const { getByTestId } = render(<Modal disableBackdropClick open />);
     expect(getByTestId('modal-backdrop')).toHaveStyle(`
       pointer-events: none;
     `);
