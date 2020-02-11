@@ -9,4 +9,5 @@ export { RadioButton } from './RadioButton';
 export { Subtitle } from './Subtitle';
 export { Text } from './Text';
 export { TextField } from './TextField';
+export { ToggleSwitch } from './ToggleSwitch';
 export { Tooltip } from './Tooltip';

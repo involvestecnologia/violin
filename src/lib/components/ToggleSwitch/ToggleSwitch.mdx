@@ -1,0 +1,31 @@
+---
+name: ToggleSwitch
+menu: Components
+route: /components/ToggleSwitch
+---
+
+import { ToggleSwitch } from './ToggleSwitch';
+import { Title } from '../Title';
+import { Playground, Props } from "docz";
+
+# ToggleSwitch
+
+<Playground>
+	<ToggleSwitch />
+</Playground>
+
+## Props
+
+<Props of={ToggleSwitch} />
+
+> Native props as disabled and checked also works.
+
+## label
+
+<Playground>
+	<ToggleSwitch label='With string label' />
+	<br />
+	<ToggleSwitch label='Disabled' disabled />
+	<br />
+	<ToggleSwitch label={<Title>With a custom component</Title>} />
+</Playground>
