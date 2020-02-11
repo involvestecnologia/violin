@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { StyledLink } from './style';
 
-export const Link = ({ external, ...props }) => <StyledLink {...props} target={external ? '_blank' : '_self'} />
+export const Link = (props) => <StyledLink {...props} />
 
 Link.propTypes = {
   invert: PropTypes.bool,
-  external: PropTypes.bool
+  target: PropTypes.oneOf(['_blank', '_self', '_parent', '_top'])
 };
 
 Link.defaultProps = {
   invert: false,
-  external: false
+  target: '_self'
 };

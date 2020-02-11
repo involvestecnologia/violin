@@ -22,6 +22,7 @@ export const Svg = styled.svg`
   position: relative;
   width: 18px;
   height: 18px;
+  flex-shrink: 0;
 
   &:hover {
     ${Rect} {
@@ -37,6 +38,7 @@ const iconCheck = css`
   stroke-linejoin: round;
   fill: none;
   opacity: 0;
+  user-select: none;
 `;
 
 export const CheckedIcon = styled.path`
@@ -104,8 +106,7 @@ export const InputStyled = styled.input`
     }
   }
 
-  &:disabled ~ ${Svg} > ${Rect},
-  &:indeterminate ~ ${Svg} > ${Rect} {
+  &:disabled ~ ${Svg} > ${Rect} {
     stroke: ${withProp(getFromTheme('palette.misc.black'), transparentize(0.85))};
   }
 

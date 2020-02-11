@@ -3,23 +3,25 @@ name: Getting started
 route: /
 ---
 
+[![npm package](https://img.shields.io/npm/v/@involves/violin/latest.svg)](https://www.npmjs.com/package/@involves/violin)
+[![CircleCI](https://img.shields.io/circleci/project/github/involvestecnologia/violin/master.svg)](https://circleci.com/gh/involvestecnologia/violin/tree/master)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/e51f2c75-0c37-4fec-9814-95cdd188a532/deploy-status)](https://app.netlify.com/sites/violin-ui/deploys)
+
 # Overview
 
-Libraries:
-
-* [styled-components](https://www.styled-components.com/)
-* [styled-tools](https://github.com/diegohaz/styled-tools)
-* [polished](https://polished.js.org)
+Violin is a components library to build UI faster with React.
 
 ## Install 
 
-> `styled-components` is required
-
-Install with Yarn:
-
 ```shell
-yarn add styled-components https://github.com/involvestecnologia/violin.git
+//with yarn
+yarn add styled-components @involves/violin
+
+// with npm
+npm install styled-components @involves/violin
 ```
+
+> `styled-components` is required
 
 ## Open Sans font
 
@@ -39,10 +41,10 @@ In order to use the font Icon component, you must first add the [Material icons]
 
 ## Global styles (recomended)
 
-`GlobalStyle` component adds global setting styles as default font family, font sizes, color and [normailze](https://necolas.github.io/normalize.css/):
+`GlobalStyle` component adds global setting styles as default font family, font sizes, colors and [normailze](https://necolas.github.io/normalize.css/):
 
 ```javascript
-import { GlobalStyle } from "violin";
+import { GlobalStyle } from "@involves/violin";
 
 const App = () => {
   return (
@@ -57,7 +59,7 @@ const App = () => {
 ## Using components
 
 ```jsx
-import { Button } from "violin";
+import { Button } from "@involves/violin";
 
 <Button>Enjoy!</Button>
 ```

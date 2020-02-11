@@ -1,11 +1,13 @@
 export { Button } from './Button';
+export { Card } from './Card';
 export { Checkbox } from './Checkbox';
-export { Heading } from './Heading';
+export { Dropdown, DropdownItem, DropdownDivider } from './Dropdown';
+export { Title } from './Title';
 export { Icon } from './Icon';
 export { Link } from './Link';
 export { Modal } from './Modal';
 export { RadioButton } from './RadioButton';
-export { Subheading } from './Subheading';
+export { Subtitle } from './Subtitle';
 export { Text } from './Text';
 export { TextField } from './TextField';
 export { Tooltip } from './Tooltip';

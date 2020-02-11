@@ -8,7 +8,7 @@ const overlineStyle = css`
   text-transform: uppercase;
 `;
 
-export const StyledHeading = styled.h2`
+export const StyledSubtitle = styled.h2`
   margin: 0;
   font-size: ${ifProp('small', getFromTheme('typography.fontSize.body'), getFromTheme('typography.fontSize.large'))};
   line-height: ${getFromTheme('typography.lineHeight')};
