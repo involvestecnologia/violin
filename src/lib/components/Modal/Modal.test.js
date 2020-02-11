@@ -58,4 +58,9 @@ describe('Modal', () => {
     fireEvent.keyDown(container.parentElement, { key: 'Escape', code: 27 })
     expect(onClose).not.toHaveBeenCalled()
   })
+
+  test('should have focus on modal when it is open', () => {
+    const { getByTestId } = render(<Modal open />);
+    expect(getByTestId('modal-card')).toEqual(document.activeElement)
+  })
 });

@@ -69,7 +69,7 @@ const ModalWithPortal = ({
         disableBackdropClick={disableBackdropClick}
         data-testid="modal-backdrop"
       />
-      <ModalCard ref={modalCardElement} tabIndex="0">
+      <ModalCard ref={modalCardElement} tabIndex="0" data-testid="modal-card">
         {title && (
           <ModalHeader>
             <ModalTitle size="h6">{title}</ModalTitle>
