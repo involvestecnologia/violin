@@ -1,0 +1,153 @@
+---
+name: Modal
+menu: Components
+route: /components/Modal
+---
+
+import { Playground, Props } from "docz";
+import { State, Toggle } from 'react-powerplug'
+import { Modal } from './Modal';
+import { Button } from '../Button';
+import { Text } from '../Text';
+import { Checkbox } from '../Checkbox';
+import { Link } from '../Link';
+
+# Modal
+
+<Playground>
+    <State initial={{ open: false }}>
+        {({ state, setState }) => (
+            <>
+                <Button onClick={() => setState({open: true})}>Open Modal</Button>
+                <Modal
+                    title={'What is Lorem Ipsum?'}
+                    open={state.open}
+                    onClose={() => setState({open: false})}
+                    actions={[
+                        <Button onClick={() => setState({open: false})} primary>Save</Button>,
+                        <Button onClick={() => setState({open: false})}>Cancel</Button>,
+                    ]}
+                >
+                    <b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry.
+                </Modal>
+            </>
+        )}
+    </State>
+</Playground>
+
+## Props
+
+<Props of={Modal} />
+
+## open
+
+<Playground>
+    <State initial={{ open: false }}>
+        {({ state, setState }) => (
+            <>
+                <Button onClick={() => setState({open: true})}>Open Modal</Button>
+                <Modal
+                    open={state.open}
+                    onClose={() => setState({open: false})}
+                >
+                    Click on the backdrop to close
+                </Modal>
+            </>
+        )}
+    </State>
+</Playground>
+
+## onClose
+
+<Playground>
+    <State initial={{ open: false }}>
+        {({ state, setState }) => (
+            <>
+                <Button onClick={() => setState({open: true})}>Open Modal</Button>
+                <Modal
+                    open={state.open}
+                    onClose={() => setState({open: false})}
+                >
+                    <Link onClick={() => setState({open: false})}>Click here to close</Link>
+                </Modal>
+            </>
+        )}
+    </State>
+</Playground>
+
+## actions
+
+<Playground>
+    <State initial={{ open: false }}>
+        {({ state, setState }) => (
+            <>
+                <Button onClick={() => setState({open: true})}>Open Modal</Button>
+                <Modal
+                    open={state.open}
+                    onClose={() => setState({open: false})}
+                    actions={[
+                        <Button onClick={() => setState({open: false})} primary>Save</Button>,
+                        <Button onClick={() => setState({open: false})}>Cancel</Button>,
+                    ]}
+                >
+                </Modal>
+            </>
+        )}
+    </State>
+</Playground>
+
+## title
+
+<Playground>
+    <State initial={{ open: false }}>
+        {({ state, setState }) => (
+            <>
+                <Button onClick={() => setState({open: true})}>Open Modal</Button>
+                <Modal
+                    title={'What is Lorem Ipsum?'}
+                    open={state.open}
+                    onClose={() => setState({open: false})}
+                >
+                </Modal>
+            </>
+        )}
+    </State>
+</Playground>
+
+## disableBackdropClick
+
+<Playground>
+    <State initial={{ open: false }}>
+        {({ state, setState }) => (
+            <>
+                <Button onClick={() => setState({open: true})}>Open Modal</Button>
+                <Modal
+                    title={'What is Lorem Ipsum?'}
+                    open={state.open}
+                    disableBackdropClick
+                    onClose={() => setState({open: false})}
+                >
+                </Modal>
+            </>
+        )}
+    </State>
+</Playground>
+
+## disableEscapeKeyDown
+
+<Playground>
+    <State initial={{ open: false }}>
+        {({ state, setState }) => (
+            <>
+                <Button onClick={() => setState({open: true})}>Open Modal</Button>
+                <Modal
+                    title={'What is Lorem Ipsum?'}
+                    open={state.open}
+                    disableEscapeKeyDown
+                    onClose={() => setState({open: false})}
+                >
+                </Modal>
+            </>
+        )}
+    </State>
+</Playground>

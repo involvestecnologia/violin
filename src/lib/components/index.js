@@ -5,6 +5,7 @@ export { Dropdown, DropdownItem, DropdownDivider } from './Dropdown';
 export { Title } from './Title';
 export { Icon } from './Icon';
 export { Link } from './Link';
+export { Modal } from './Modal';
 export { RadioButton } from './RadioButton';
 export { Subtitle } from './Subtitle';
 export { Text } from './Text';
