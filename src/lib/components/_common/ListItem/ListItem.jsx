@@ -10,9 +10,13 @@ export const ListItem = ({ children, icon, ...props }) => (
 );
 
 ListItem.propTypes = {
-  icon: PropTypes.string
+  /** Add an icon to left item */
+  icon: PropTypes.string,
+  /** Change style to disabled */
+  disabled: PropTypes.bool
 };
 
 ListItem.defaultProps = {
-  icon: null
+  icon: null,
+  disabled: false
 };

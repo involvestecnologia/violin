@@ -16,9 +16,9 @@ import { Playground, Props } from "docz";
 # Dropdown
 
 <Playground>
-	<Dropdown trigger={<Button primary>Click me!</Button>}>
+	<Dropdown trigger={<Button primary dropdownIcon>Click me!</Button>}>
 		<div style={{ padding: 10 }}>
-			<p>Custom content</p> 
+			Custom content 
 		</div>
 	</Dropdown>
 </Playground>
@@ -40,7 +40,7 @@ const DemoDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <Dropdown preventClose open={isOpen} trigger={<Button primary onClick={() => setIsOpen(true)}>Click me!</Button>}>
+    <Dropdown preventClose open={isOpen} trigger={<Button primary dropdownIcon onClick={() => setIsOpen(true)}>Click me!</Button>}>
       <div style={{ padding: 10 }}>
         <Checkbox label="Lorem ipsum dolor sit" style={{ padding: '5px 0', display: 'flex' }} />
         <Checkbox label="Duis aute irure dolor in reprehenderit" style={{ padding: '5px 0', display: 'flex' }} />
@@ -69,6 +69,18 @@ export default DemoDropdown;
 ## DropdownItem Props
 
 <Props of={DropdownItem} />
+
+## disabled
+
+`DropdownItem` component is a complementary of `Dropdown` to create a menu list into `Dropdown`. 
+
+<Playground>
+	<Dropdown trigger={<Button secondary icon="more_vert" />}>
+		<DropdownItem icon="account_circle" onClick={() => alert('My account was clicked')}>My account</DropdownItem>
+		<DropdownItem icon="build" disabled>Settings</DropdownItem>
+		<DropdownItem icon="power_settings_new" onClick={() => alert('Logout was clicked')}>Logout</DropdownItem>
+	</Dropdown>
+</Playground>
 
 ## DropdownDivider
 

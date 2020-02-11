@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { rem, transparentize } from 'polished';
-import { withProp } from 'styled-tools';
+import { withProp, ifProp } from 'styled-tools';
 import { Icon } from '../../Icon';
 import getFromTheme from '../../../utils/getFromTheme';
 
@@ -14,10 +14,15 @@ export const StyledItem = styled.div`
   font-size: ${getFromTheme('typography.fontSize.body')};
   color: ${getFromTheme('palette.black.900')};
   text-decoration: none;
-  cursor: pointer;
+  cursor: ${ifProp('disabled', 'not-allowed', 'pointer')};
+  opacity: ${ifProp('disabled', '0.2', '1')};
 
   &:hover {
-    background-color: ${withProp(getFromTheme('palette.black.900'), transparentize(0.92))};
+    background-color: ${ifProp(
+      'disabled',
+      'none',
+      withProp(getFromTheme('palette.black.900'), transparentize(0.92))
+    )};
   }
 `;
 

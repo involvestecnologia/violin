@@ -8,7 +8,7 @@ const DemoDropdown = () => {
     <Dropdown
       preventClose
       open={isOpen}
-      trigger={<Button primary onClick={() => setIsOpen(true)}>Click me!</Button>}
+      trigger={<Button primary dropdownIcon onClick={() => setIsOpen(true)}>Click me!</Button>}
     >
       <div style={{ padding: 10 }}>
         <Checkbox label="Lorem ipsum dolor sit" style={{ padding: '5px 0', display: 'flex' }} />

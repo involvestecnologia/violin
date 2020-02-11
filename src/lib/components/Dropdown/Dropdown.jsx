@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { StyledCard, Trigger } from './style';
 import offsetElementPosition from '../../utils/offsetElementPosition';
 
-export const Dropdown = ({ children, trigger, preventClose, open }) => {
+export const Dropdown = ({ children, trigger, preventClose, placement, open }) => {
   const [collapsed, setCollapsed] = useState(false);
   const [triggerPosition, setTriggerPosition] = useState({});
   const triggerRef = useRef({});
@@ -51,6 +51,7 @@ export const Dropdown = ({ children, trigger, preventClose, open }) => {
           closeDropdown={closeDropdown}
           triggerPosition={triggerPosition}
           onClick={closeDropdown}
+          placement={placement}
         >
           {children}
         </DropdownCard>
@@ -64,15 +65,18 @@ Dropdown.propTypes = {
   /** Prevent dropdown close when clicked */
   preventClose: PropTypes.bool,
   /** Use with preventClose for managing status Dropdown */
-  open: PropTypes.bool
+  open: PropTypes.bool,
+  /** Change position dropdown */
+  placement: PropTypes.oneOf(['left', 'right'])
 };
 
 Dropdown.defaultProps = {
   preventClose: false,
-  open: false
+  open: false,
+  placement: 'left'
 }
 
-const DropdownCard = ({ closeDropdown, triggerPosition, ...props }) => {
+const DropdownCard = ({ closeDropdown, triggerPosition, placement, ...props }) => {
   const [fadeIn, setFadeIn] = useState(false);
   const [position, setPosition] = useState({});
   const timerShow = useRef(null);
@@ -87,13 +91,11 @@ const DropdownCard = ({ closeDropdown, triggerPosition, ...props }) => {
   const handlePosition = () => {
     const trigger = triggerPosition;
     const card = cardRef.current.getBoundingClientRect();
+    const isTop = trigger.bottom + card.height > window.scrollY + window.innerHeight;
+    const isRight = (trigger.left + card.width > window.innerWidth) || placement === 'right';
     const dynamicPosition = {
-      top: trigger.bottom + card.height > window.scrollY + window.innerHeight
-        ? (trigger.top - card.height) + 2
-        : trigger.bottom - 2,
-      left: trigger.left + card.width > window.innerWidth
-        ? trigger.right - card.width
-        : trigger.left
+      top: isTop ? (trigger.top - card.height) + 2 : trigger.bottom - 2,
+      left: isRight ? trigger.right - card.width : trigger.left
     };
     setPosition(dynamicPosition);
   };

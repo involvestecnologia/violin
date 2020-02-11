@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { withProp, prop, ifProp } from 'styled-tools';
 import { transparentize } from 'polished';
 import getFromTheme from '../../utils/getFromTheme';
-import { Subheading } from '../Subheading';
+import { Subtitle } from '../Subtitle';
 
 export const StyledCard = styled.div`
   position: absolute;
@@ -16,9 +16,8 @@ export const StyledCard = styled.div`
   background-color: ${getFromTheme('palette.misc.white')};
   padding: 8px 0;
   box-shadow: 0 5px 10px ${withProp(getFromTheme('palette.black.900'), transparentize(0.8))};
-  margin-top: ${ifProp('fadeIn', '0', '-5px')};
-  transition-property: opacity, margin-top;
-  transition-duration: .2s;
+  transition-property: opacity;
+  transition-duration: .1s;
   transition-timing-function: ease;
 `;
 
@@ -34,7 +33,7 @@ export const Divider = styled.div`
   margin: 8px 0; 
 `;
 
-export const StyledTitle = styled(Subheading)`
+export const StyledTitle = styled(Subtitle)`
   margin: 0;
   padding: 8px 16px 4px;
   color: ${getFromTheme('palette.black.400')};
