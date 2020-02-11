@@ -25,10 +25,10 @@ Violin-UI is available as an [npm package](https://www.npmjs.com/package/@involv
 
 ```sh
 // with npm
-npm install @involves/violin
+npm install styled-components @involves/violin
 
 // with yarn
-yarn add @involves/violin
+yarn add styled-components @involves/violin
 ```
 
 ## Usage
@@ -38,11 +38,11 @@ Here is a quick example to get you started, **it's all you need**:
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Button from '@involves/violin/Button';
+import { Button } from '@involves/violin';
 
 function App() {
   return (
-    <Button color="primary">
+    <Button primary>
       Hello World
     </Button>
   );

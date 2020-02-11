@@ -10,10 +10,10 @@ import { Playground, Props } from "docz";
 # Button
 
 <Playground>
-    <Button style={{ margin: 5 }}>Default</Button>
-    <Button primary style={{ margin: 5 }}>Primary</Button>
-    <Button secondary style={{ margin: 5 }}>Secondary</Button>
-    <Button danger style={{ margin: 5 }}>Danger</Button>
+    <Button onClick={() => alert('Clicked!')} style={{ margin: 5 }}>Default</Button>
+    <Button primary onClick={() => alert('Clicked!')} style={{ margin: 5 }}>Primary</Button>
+    <Button secondary onClick={() => alert('Clicked!')} style={{ margin: 5 }}>Secondary</Button>
+    <Button danger onClick={() => alert('Clicked!')} style={{ margin: 5 }}>Danger</Button>
 </Playground>
 
 ## Props
@@ -102,5 +102,5 @@ Look like `iconRight`, this add a arrow icon to right for dropdown trigger.
 As any other component you can change the html element of component with prop `as`.
 
 <Playground>
-    <Button as="a" color="primary" style={{ margin: 5 }}>With anchor</Button>
+    <Button as="a" href="http://involves.com" color="primary" style={{ margin: 5 }}>With anchor</Button>
 </Playground>

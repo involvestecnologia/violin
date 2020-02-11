@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import getFromTheme from '../../utils/getFromTheme';
-import { Heading } from '../Heading';
-import { Subheading } from '../Subheading';
+import { Title } from '../Title';
+import { Subtitle } from '../Subtitle';
 
 export const CardWrapper = styled.div`
   border-radius: 4px;
@@ -33,13 +33,13 @@ const ellipsisStyle = css`
   text-overflow: ellipsis; 
 `;
 
-export const CardTitle = styled(Heading)`
+export const CardTitle = styled(Title)`
   ${ellipsisStyle}
   color: ${getFromTheme('palette.black.500')};
   font-weight: ${getFromTheme('typography.fontWeight.semiBold')};
 `;
 
-export const CardSubTitle = styled(Subheading)`
+export const CardSubTitle = styled(Subtitle)`
   ${ellipsisStyle}
 `;
 
