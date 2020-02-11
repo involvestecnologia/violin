@@ -2,28 +2,36 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { StyledButton, StyledIcon } from './style';
 
-export const Button = ({ children, icon, ...props }) => (
+export const Button = ({ children, icon, iconRight, dropdownIcon, ...props }) => (
   <StyledButton {...props} iconOnly={!!icon && !children}>
     {icon && <StyledIcon icon={icon} hasChildren={!!children} />}
     {children}
+    {children && iconRight && <StyledIcon icon={iconRight} right hasChildren={!!children} />}
+    {children && dropdownIcon && <StyledIcon icon="arrow_drop_down" right hasChildren={!!children} />}
   </StyledButton>
 );
 
 Button.propTypes = {
-  /** Apply primary style */
+  /** Change to primary style */
   primary: PropTypes.bool,
-  /** Apply secondary style */
+  /** Change to secondary style */
   secondary: PropTypes.bool,
-  /** Apply danger style */
+  /** Change to danger style */
   danger: PropTypes.bool,
-  /** Apply small size */
+  /** Change to small size */
   small: PropTypes.bool,
-  /** Apply large size */
+  /** Change to large size */
   large: PropTypes.bool,
-  /** Apply width 100% */
+  /** Change to width 100% */
   block: PropTypes.bool,
+  /** Add icon to left button */
   icon: PropTypes.string,
-  invert: PropTypes.bool
+  /** Add icon to right button */
+  iconRight: PropTypes.string,
+  /** Change to invert style */
+  invert: PropTypes.bool,
+  /** Add arrow icon for dropdown buttons */
+  dropdownIcon: PropTypes.bool
 };
 
 Button.defaultProps = {
@@ -34,5 +42,7 @@ Button.defaultProps = {
   large: null,
   block: false,
   icon: null,
-  invert: false
+  iconRight: null,
+  invert: false,
+  dropdownIcon: false
 };

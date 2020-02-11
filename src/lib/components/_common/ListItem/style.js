@@ -9,6 +9,7 @@ export const StyledItem = styled.div`
   align-items: center;
   box-sizing: border-box;
   width: 100%;
+  max-width: 300px;
   padding: 12px 16px;
   font-size: ${getFromTheme('typography.fontSize.body')};
   color: ${getFromTheme('palette.black.900')};
@@ -23,4 +24,5 @@ export const StyledItem = styled.div`
 export const StyledIcon = styled(Icon)`
   margin-right: 10px;
   font-size: ${rem(24)};
+  color: ${getFromTheme('palette.black.600')};
 `;

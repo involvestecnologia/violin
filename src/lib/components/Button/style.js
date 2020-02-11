@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { ifProp, withProp } from 'styled-tools';
+import { ifProp, withProp, ifNotProp } from 'styled-tools';
 import { rem, transparentize } from 'polished';
 import { Icon } from '../Icon';
 import getFromTheme from '../../utils/getFromTheme';
@@ -168,6 +168,11 @@ export const StyledButton = styled.button`
       'auto'
     )
   )};
+  min-width: ${ifNotProp(
+    'iconOnly',
+    '80px',
+    'auto'
+  )};
   box-shadow: 0 0 0 transparent;
   ${(props) => !props.primary && !props.secondary && !props.danger && defaultStyle}
   ${(props) => props.primary && primaryStyle}
@@ -185,5 +190,5 @@ export const StyledButton = styled.button`
 `;
 
 export const StyledIcon = styled(Icon)`
-  margin-right: ${ifProp('hasChildren', '5px', '0')};
+  margin: ${({ right }) => (right ? ifProp('hasChildren', '0 0 0 5px', '0') : ifProp('hasChildren', '0 5px 0 0', '0'))};
 `;

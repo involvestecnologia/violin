@@ -9,13 +9,12 @@ export const StyledCard = styled.div`
   z-index: ${getFromTheme('zIndex.z6')};
   top: ${prop('position.top')}px;
   left: ${prop('position.left')}px;
-  max-width: 300px;
-  min-width: 220px;
+  min-width: 160px;
   width: fit-content;
   opacity: ${ifProp('fadeIn', '1', '0')};
   border-radius: 4px;
   background-color: ${getFromTheme('palette.misc.white')};
-  padding: 4px 0;
+  padding: 8px 0;
   box-shadow: 0 5px 10px ${withProp(getFromTheme('palette.black.900'), transparentize(0.8))};
   margin-top: ${ifProp('fadeIn', '0', '-5px')};
   transition-property: opacity, margin-top;
@@ -37,5 +36,6 @@ export const Divider = styled.div`
 
 export const StyledTitle = styled(Subheading)`
   margin: 0;
-  padding: 8px 16px 0;
+  padding: 8px 16px 4px;
+  color: ${getFromTheme('palette.black.400')};
 `;
