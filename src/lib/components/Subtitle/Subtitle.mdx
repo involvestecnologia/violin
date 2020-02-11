@@ -1,0 +1,34 @@
+---
+name: Subtitle
+menu: Components
+route: /components/Subtitle
+---
+
+import { Subtitle } from './Subtitle';
+import { Playground, Props } from "docz";
+
+# Subtitle
+
+<Playground>
+    <Subtitle>Lorem ipsum dolor</Subtitle>
+</Playground>
+
+## Props
+
+<Props of={Subtitle} />
+
+## size
+
+<Playground>
+    <Subtitle>Subtitle</Subtitle>
+    <Subtitle small>Small subtitle</Subtitle>
+    <Subtitle overline>Overline style</Subtitle>
+</Playground>
+
+## Use as another element
+
+By default `Subtitle` is used with `h3` element, to change use `as` prop:
+
+<Playground>
+    <Subtitle as="h5" size="h5">Lorem ipsum dolor</Subtitle>
+</Playground>

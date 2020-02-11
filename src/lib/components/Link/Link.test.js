@@ -22,12 +22,4 @@ describe('Link', () => {
       text-decoration: underline;
     `);
   });
-
-  test('should have target correctly', () => {
-    const { getByText, rerender } = render(<Link href="http://involves.com">{contentButton}</Link>);
-    expect(getByText(contentButton)).toHaveAttribute('target', '_self');
-
-    rerender(<Link href="http://involves.com" external>{contentButton}</Link>);
-    expect(getByText(contentButton)).toHaveAttribute('target', '_blank');
-  });
 });
