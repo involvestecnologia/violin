@@ -22,6 +22,8 @@ import { Playground, Props } from "docz";
 
 ## disabled
 
+Apply native disabled attribute to button.
+
 <Playground>
     <Button disabled style={{ margin: 5 }}>Default</Button>
     <Button primary disabled style={{ margin: 5 }}>Primary</Button>
@@ -30,6 +32,8 @@ import { Playground, Props } from "docz";
 </Playground>
 
 ## invert
+
+Change color style for dark background.
 
 <Playground>
     <div style={{ background: '#1F0E3D', padding: 20 }}>
@@ -42,6 +46,8 @@ import { Playground, Props } from "docz";
 
 ## size
 
+Change style size (height). 
+
 <Playground>
     <Button primary small style={{ margin: 5 }}>Small</Button>
     <Button primary style={{ margin: 5 }}>Normal</Button>
@@ -50,12 +56,16 @@ import { Playground, Props } from "docz";
 
 ## block
 
+Apply width to 100%.
+
 <Playground>
     <Button primary style={{ margin: 5 }}>Normal</Button>
     <Button primary block style={{ margin: 5 }}>Block</Button>
 </Playground>
 
 ## icon
+
+Add a icon to left button from [Material Icons library](https://material.io/resources/icons/?style=round).
 
 <Playground>
     <Button secondary small icon="edit" style={{ margin: 5 }}>Small</Button>
@@ -69,6 +79,22 @@ import { Playground, Props } from "docz";
     <Button secondary small icon="edit" style={{ margin: 5 }} />
     <Button secondary icon="edit" style={{ margin: 5 }} />
     <Button secondary large icon="edit" style={{ margin: 5 }} />
+</Playground>
+
+## iconRight
+
+Add a icon to right button.
+
+<Playground>
+    <Button primary iconRight="arrow_right_alt" style={{ margin: 5 }}>Next step</Button>
+</Playground>
+
+## dropdownIcon
+
+Look like `iconRight`, this add a arrow icon to right for dropdown trigger. 
+
+<Playground>
+    <Button primary dropdownIcon style={{ margin: 5 }}>Dropdown</Button>
 </Playground>
 
 ## as 'a' element
