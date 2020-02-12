@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { Wrapper, StyledButton, HiddenInput } from './style';
 
 export const ToggleButton = ({ multiple, style, className, children, ...props }) => (
-  <Wrapper>
-    <HiddenInput type={multiple ? 'checkbox' : 'radio'} {...props} />
-    <StyledButton style={style} className={className}>{children}</StyledButton>
+  <Wrapper data-testid="wrapper">
+    <HiddenInput data-testid="hidden-input" type={multiple ? 'checkbox' : 'radio'} {...props} />
+    <StyledButton data-testid="styled-button" style={style} className={className}>{children}</StyledButton>
   </Wrapper>
 )
 
