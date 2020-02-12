@@ -48,4 +48,22 @@ export const HiddenInput = styled.input`
   &:checked ~ ${StyledButton} {
     ${activeStyle}
   }
+
+  &:disabled ~ ${StyledButton} {
+    background-color: ${getFromTheme('palette.black.200')};
+    border-color: ${getFromTheme('palette.black.200')};
+    color: ${getFromTheme('palette.black.900')};
+    opacity: 0.18;
+    cursor: not-allowed;
+    &:hover {
+      box-shadow: none;
+    }
+  }
+
+  &:disabled:checked ~ ${StyledButton} {
+    background-color: ${getFromTheme('palette.black.200')};
+    border-color: ${getFromTheme('palette.primary.700')};
+    color: ${getFromTheme('palette.primary.700')};
+    opacity: 0.26;
+  }
 `;

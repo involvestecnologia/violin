@@ -15,11 +15,15 @@ ToggleButton.propTypes = {
   /** Change style button */
   style: PropTypes.oneOfType([PropTypes.object]),
   /** Add css class to change button style */
-  className: PropTypes.string
+  className: PropTypes.string,
+  checked: PropTypes.bool,
+  disabled: PropTypes.bool
 }
 
 ToggleButton.defaultProps = {
   multiple: false,
   style: null,
-  className: null
+  className: null,
+  checked: null,
+  disabled: null
 }
