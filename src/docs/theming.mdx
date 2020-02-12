@@ -1,0 +1,52 @@
+---
+name: Theming
+route: /theming
+---
+
+import { ObjectTheme } from "./utils/ObjectTheme";
+
+# Theming
+
+Violin adds a default style with `GlobalStyle` component. It's recommended.
+
+```javascript
+import { GlobalStyle } from "violin";
+
+const App = () => {
+  return (
+    <>
+      <GlobalStyle />
+      { /** */ }
+    </>
+  )
+}
+```
+
+## Custom theme
+
+You can update an specific value from default [theme object](#base-theme-object) or create new properties and values.
+
+```javascript
+import styled, { ThemeProvider } from "styled-components";
+import { createTheme, theme } from "violin"; 
+
+const myCustomTheme = createTheme({
+  palette: {
+    primary: theme.palette.purple, // This changes primary color only
+    customcolor: "pink" // Add new value for use from theme
+  },
+});
+
+const CustomTitle = styled.h1`
+  color: ${({ theme }) => theme.palette.customcolor};
+`;
+
+<ThemeProvider theme={myCustomTheme}>
+  { /** root component */ }
+  <CustomTitle>Lorem ipsum</CustomTitle>
+</ThemeProvider>
+```
+
+## Base theme object
+
+<ObjectTheme />
