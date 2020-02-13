@@ -5,6 +5,7 @@ route: /components/Checkbox
 ---
 
 import { Checkbox } from './Checkbox';
+import { FormGroup } from '../FormGroup';
 import { Title } from '../Title';
 import { Playground, Props } from "docz";
 
@@ -28,4 +29,18 @@ import { Playground, Props } from "docz";
 	<Checkbox label='Disabled' disabled />
 	<br />
 	<Checkbox label={<Title>With a custom component</Title>} />
+</Playground>
+
+## FormGroup
+
+With [FormGroup](/components/FormGroup) component:
+
+<Playground>
+	<FormGroup label="Label" helpLabel="help label" tooltip="Lorem ipsum" helpText="Lorem ipsum dolor sit amet">
+		<Checkbox label='Item 1' />
+		<br />
+		<Checkbox label='Item 2' />
+		<br />
+		<Checkbox label='Item 3' />
+	</FormGroup>
 </Playground>

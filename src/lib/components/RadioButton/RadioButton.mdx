@@ -5,6 +5,7 @@ route: /components/RadioButton
 ---
 
 import { RadioButton } from './RadioButton';
+import { FormGroup } from '../FormGroup';
 import { Playground, Props } from "docz";
 
 # RadioButton
@@ -29,4 +30,20 @@ import { Playground, Props } from "docz";
 	<RadioButton name="option" label='Option 3' />
 	<br />
 	<RadioButton name="option" label='Option disabled' disabled />
+</Playground>
+
+## FormGroup
+
+With [FormGroup](/components/FormGroup) component:
+
+<Playground>
+	<FormGroup label="Label" helpLabel="help label" tooltip="Lorem ipsum" helpText="Lorem ipsum dolor sit amet">
+		<RadioButton name="option" label='Option 1' />
+		<br />
+		<RadioButton name="option" label='Option 2' />
+		<br />
+		<RadioButton name="option" label='Option 3' />
+		<br />
+		<RadioButton name="option" label='Option disabled' disabled />
+	</FormGroup>
 </Playground>

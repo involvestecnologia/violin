@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 import { ifProp, withProp } from 'styled-tools';
 import { transparentize, rem } from 'polished';
-import getFromTheme from '../../../utils/getFromTheme';
-import { Icon } from '../../Icon';
+import getFromTheme from '../../utils/getFromTheme';
+import { Icon } from '../Icon';
+
+export const Wrapper = styled.div``;
 
 export const LabelContainer = styled.div`
   display: flex;
@@ -22,7 +24,7 @@ export const LabelText = styled.span`
 
 export const HelpLabel = styled.small`
   font-size: ${getFromTheme('typography.fontSize.small')};
-  color: ${getFromTheme('palette.black.500')};
+  color: ${ifProp('isDisabled', withProp(getFromTheme('palette.black.900'), transparentize(0.75)), getFromTheme('palette.black.500'))};
   font-weight: ${getFromTheme('typography.fontWeight.regular')};
   &::before {
     content: ' - ';
@@ -35,4 +37,11 @@ export const InfoIcon = styled(Icon)`
   color: ${getFromTheme('palette.black.300')};
   transform: rotate(180deg);
   cursor: default;
+`;
+
+export const HelpText = styled.div`
+  font-size: ${getFromTheme('typography.fontSize.small')};
+  color: ${ifProp('error', getFromTheme('palette.red.700'), getFromTheme('palette.black.500'))};
+  font-weight: ${ifProp('error', getFromTheme('typography.fontWeight.semiBold'), getFromTheme('typography.fontWeight.regular'))};
+  margin-top: 6px;
 `;
