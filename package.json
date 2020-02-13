@@ -1,6 +1,6 @@
 {
   "name": "@involves/violin",
-  "version": "1.0.0-alpha.1.2",
+  "version": "1.0.0-alpha.1.3",
   "description": "React components for faster and easier web development",
   "main": "lib/index.js",
   "repository": "git@github.com:involvestecnologia/violin.git",
