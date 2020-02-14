@@ -1,0 +1,39 @@
+---
+name: FormGroup
+menu: Components
+route: /components/FormGroup
+---
+
+import { FormGroup } from './FormGroup';
+import { TextField } from '../TextField';
+import { Playground, Props } from "docz";
+
+# FormGroup
+
+`FormGroup` component is a container to encapsulate the fields forms that add labels, help text, error text and tooltips to hint.
+
+<Playground>
+	<FormGroup htmlFor="field1" label="Label" helpLabel="help label" tooltip="Lorem ipsum" helpText="Lorem ipsum dolor sit amet">
+    <TextField id="field1" />
+  </FormGroup>
+</Playground>
+
+## Props
+
+<Props of={FormGroup} />
+
+## error
+
+<Playground>
+	<FormGroup htmlFor="field_error" error label="Label" helpLabel="help label" tooltip="Lorem ipsum" helpText="Lorem ipsum dolor sit amet">
+    <TextField id="field_error" error />
+  </FormGroup>
+</Playground>
+
+## disabled
+
+<Playground>
+	<FormGroup disabled label="Label" helpLabel="help label" tooltip="Lorem ipsum" helpText="Lorem ipsum dolor sit amet">
+    <TextField disabled/>
+  </FormGroup>
+</Playground>

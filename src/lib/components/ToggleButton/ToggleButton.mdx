@@ -1,0 +1,62 @@
+---
+name: ToggleButton
+menu: Components
+route: /components/ToggleButton
+---
+
+import { ToggleButton } from './ToggleButton';
+import { FormGroup } from '../FormGroup';
+import { State, Toggle } from 'react-powerplug'
+import { Playground, Props } from "docz";
+
+# ToggleButton
+
+ToggleButton has two behavior, as radio (default) and cheackbox for select multiple options. 
+
+<Playground>
+	<ToggleButton name="option" style={{ margin: 5 }}>1</ToggleButton>
+	<ToggleButton name="option" style={{ margin: 5 }}>2</ToggleButton>
+	<ToggleButton name="option" style={{ margin: 5 }}>3</ToggleButton>
+</Playground>
+
+## Props
+
+<Props of={ToggleButton} />
+
+## multiple
+
+This prop makes possible select multiple itens
+
+<Playground>
+	<ToggleButton name="option" multiple style={{ margin: 5 }}>1</ToggleButton>
+	<ToggleButton name="option" multiple style={{ margin: 5 }}>2</ToggleButton>
+	<ToggleButton name="option" multiple style={{ margin: 5 }}>3</ToggleButton>
+</Playground>
+
+## checked
+
+Set checked item by default
+
+<Playground>
+	<State initial={{ option: "1" }}>
+		{({ state, setState }) => (
+			<form>
+				<ToggleButton name="option" value="1" checked={state.option === "1"} onChange={(e) => setState({option: e.target.value})} style={{ margin: 5 }}>1</ToggleButton>
+				<ToggleButton name="option" value="2" checked={state.option === "2"} onChange={(e) => setState({option: e.target.value})} style={{ margin: 5 }}>2</ToggleButton>
+				<ToggleButton name="option" value="3" checked={state.option === "3"} onChange={(e) => setState({option: e.target.value})} style={{ margin: 5 }}>3</ToggleButton>
+			</form>
+		)}
+	</State>
+</Playground>
+
+## FormGroup
+
+With [FormGroup](/components/FormGroup) component:
+
+<Playground>
+	<FormGroup label="Label" helpLabel="help label" tooltip="Lorem ipsum" helpText="Lorem ipsum dolor sit amet">
+		<ToggleButton name="option" multiple style={{ marginRight: 5 }}>HTML</ToggleButton>
+		<ToggleButton name="option" multiple style={{ marginRight: 5 }}>CSS</ToggleButton>
+		<ToggleButton name="option" multiple>Javascript</ToggleButton>
+	</FormGroup>
+</Playground>
