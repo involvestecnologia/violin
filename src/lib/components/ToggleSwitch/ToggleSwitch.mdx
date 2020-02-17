@@ -27,6 +27,8 @@ ToggleSwitch is as a checkbox component.
 
 <Props of={ToggleSwitch} />
 
+> Native props will apply in checkbox input.
+
 ## disabled
 
 <Playground>
@@ -34,7 +36,6 @@ ToggleSwitch is as a checkbox component.
 		{({ state, setState }) => (
 			<form>
 				<ToggleSwitch label="This is checked" checked={state.check} disabled onChange={e => setState({ check: e.target.checked })} />
-				<br />
 				<ToggleSwitch label="This isn't checked" disabled />
 			</form>
 		)}
