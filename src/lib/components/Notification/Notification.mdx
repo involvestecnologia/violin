@@ -1,0 +1,24 @@
+---
+name: Notification
+menu: Components
+route: /components/Notification
+---
+
+import { Playground, Props } from "docz";
+import { State, Toggle } from 'react-powerplug'
+import { Notification } from './Notification';
+import { Button } from '../Button';
+
+# Notification
+
+<Playground>
+    <State initial={{ open: false }}>
+        {({ state, setState }) => (
+            <>
+                <Notification open>
+                    <b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry.
+                </Notification>
+            </>
+        )}
+    </State>
+</Playground>
