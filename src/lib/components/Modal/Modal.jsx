@@ -74,36 +74,34 @@ const ModalWithPortal = ({
     return () => disableFadeIn()
   }, [open]);
 
-  const component = (
-    open && (
-      <ModalWrapper ref={modalWrapperElement} fadeIn={fadeIn} data-testid="modal-wrapper">
-        <ModalBackdrop
-          onClick={onClose}
-          disableBackdropClick={disableBackdropClick}
-          data-testid="modal-backdrop"
-        />
-        <ModalCard ref={modalCardElement} tabIndex="0" data-testid="modal-card">
-          {title && (
-            <ModalHeader>
-              <ModalTitle size="h6">{title}</ModalTitle>
-              <Button
-                icon="close"
-                secondary
-                onClick={onClose}
-                data-testid="modal-close-button"
-              />
-            </ModalHeader>
-          )}
-          <ModalContent>{children}</ModalContent>
-          {actions && (
-            <ModalFooter>{actions.map((action) => (
-              <Fragment key={`modal-action-${idgen()}`}>{action}</Fragment>
-            ))}
-            </ModalFooter>
-          )}
-        </ModalCard>
-      </ModalWrapper>
-    )
+  const component = open && (
+    <ModalWrapper ref={modalWrapperElement} fadeIn={fadeIn} data-testid="modal-wrapper">
+      <ModalBackdrop
+        onClick={onClose}
+        disableBackdropClick={disableBackdropClick}
+        data-testid="modal-backdrop"
+      />
+      <ModalCard ref={modalCardElement} tabIndex="0" data-testid="modal-card">
+        {title && (
+          <ModalHeader>
+            <ModalTitle size="h6">{title}</ModalTitle>
+            <Button
+              icon="close"
+              secondary
+              onClick={onClose}
+              data-testid="modal-close-button"
+            />
+          </ModalHeader>
+        )}
+        <ModalContent>{children}</ModalContent>
+        {actions && (
+          <ModalFooter>{actions.map((action) => (
+            <Fragment key={`modal-action-${idgen()}`}>{action}</Fragment>
+          ))}
+          </ModalFooter>
+        )}
+      </ModalCard>
+    </ModalWrapper>
   );
 
   return ReactDOM.createPortal(component, targetElement);

@@ -20,21 +20,6 @@ describe('TextField', () => {
     expect(getByPlaceholderText(placeholder).type).toBe('email');
   })
 
-  test('should render label', () => {
-    const { getByText } = render(<TextField label="Label" />);
-    expect(getByText('Label')).toBeInTheDocument();
-  })
-
-  test('should render label help', () => {
-    const { getByText } = render(<TextField label="Label" helpLabel="required" />);
-    expect(getByText('required')).toBeInTheDocument();
-  })
-
-  test('should render label help', () => {
-    const { getByText } = render(<TextField label="Label" helpLabel="required" helpText="Help text" />);
-    expect(getByText('Help text')).toBeInTheDocument();
-  })
-
   test('should be disabled', () => {
     const { getByPlaceholderText } = render(<TextField placeholder={placeholder} disabled />);
     expect(getByPlaceholderText(placeholder)).toBeDisabled();
@@ -53,10 +38,5 @@ describe('TextField', () => {
     expect(getByPlaceholderText(placeholder)).toHaveStyle(`
       height: 52px;
     `);
-  })
-
-  test('should render info icon of tooltip', () => {
-    const { getByTestId } = render(<TextField tooltip="Lorem ipsum" />);
-    expect(getByTestId('trigger')).toBeInTheDocument();
   })
 });

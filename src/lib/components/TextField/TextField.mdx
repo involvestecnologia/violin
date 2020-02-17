@@ -5,46 +5,39 @@ route: /components/TextField
 ---
 
 import { TextField } from './TextField';
+import { FormGroup } from '../FormGroup';
 import { Playground, Props } from "docz";
 
 # TextField
 
 <Playground>
-	<TextField id="text1" placeholder="Placeholder" label="Label" />
+	<TextField placeholder="Placeholder" />
 </Playground>
 
 ## Props
 
 <Props of={TextField} />
 
-> Native props as disabled, maxLength also works.
-
-## helpLabel
-
-<Playground>
-	<TextField id="text2" placeholder="Placeholder" label="Label" helpLabel="required" />
-</Playground>
-
-## helpText
-
-<Playground>
-	<TextField id="text3" label="Label" helpText="Lorem ipsum dolor sit amet" />
-</Playground>
-
-## tooltip
-
-<Playground>
-	<TextField id="text4" label="Label" tooltip="Lorem ipsum dolor" />
-</Playground>
+> Native props as maxLength also works.
 
 ## error
 
 <Playground>
-	<TextField id="text5" label="Label" helpText="Lorem ipsum dolor sit amet" error />
+	<TextField placeholder="Placeholder" error />
 </Playground>
 
 ## disabled
 
 <Playground>
-	<TextField id="text6" placeholder="Disabled field" label="Label" helpLabel="required" helpText="Lorem ipsum dolor sit amet" disabled />
+	<TextField placeholder="Placeholder" disabled />
+</Playground>
+
+## FormGroup
+
+With [FormGroup](/components/FormGroup) component:
+
+<Playground>
+	<FormGroup htmlFor="field" label="Label" helpLabel="help label" tooltip="Lorem ipsum" helpText="Lorem ipsum dolor sit amet">
+		<TextField id="field" placeholder="Placeholder" />
+	</FormGroup>
 </Playground>
