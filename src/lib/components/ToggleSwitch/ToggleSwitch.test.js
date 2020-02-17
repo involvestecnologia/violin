@@ -6,7 +6,7 @@ afterEach(cleanup);
 
 describe('ToggleSwitch', () => {
   test('should render correctly', () => {
-    const { getByTestId } = render(<ToggleSwitch>Option 1</ToggleSwitch>);
+    const { getByTestId } = render(<ToggleSwitch />);
     expect(getByTestId('wrapper')).toBeInTheDocument();
   });
 });
