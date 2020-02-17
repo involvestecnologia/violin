@@ -41,7 +41,13 @@ module.exports = {
             ['babel-plugin-styled-components', {
               minify: false,
               transpileTemplateLiterals: false
-            }]
+            }],
+            [
+              'babel-plugin-jsx-remove-data-test-id',
+              {
+                attributes: ['data-testid']
+              }
+            ]
           ]
         }
       },
