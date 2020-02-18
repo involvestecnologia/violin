@@ -1,33 +1,4 @@
-const path = require('path');
-
 module.exports = {
-  entry: path.resolve(__dirname, './src/lib/index.js'),
-  output: {
-    path: path.resolve(__dirname, './lib'),
-    filename: 'index.js',
-    library: '',
-    libraryTarget: 'umd'
-  },
-  externals: {
-    'styled-components': {
-      commonjs: 'styled-components',
-      commonjs2: 'styled-components',
-      amd: 'styled-components',
-      root: 'styled-components'
-    },
-    react: {
-      commonjs: 'react',
-      commonjs2: 'react',
-      amd: 'React',
-      root: 'React'
-    },
-    'react-dom': {
-      commonjs: 'react-dom',
-      commonjs2: 'react-dom',
-      amd: 'ReactDOM',
-      root: 'ReactDOM'
-    }
-  },
   module: {
     rules: [
       {
