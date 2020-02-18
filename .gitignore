@@ -2,5 +2,4 @@ node_modules
 .docz
 yarn.lock
 /docs
-/lib
 /docs
