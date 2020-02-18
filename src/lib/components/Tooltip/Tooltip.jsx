@@ -70,8 +70,7 @@ export const Tooltip = ({ content, placement, children, disableFocus, disableHov
       onMouseEnter: (event) => !disableHover && onHovered('trigger', true, event, children.props.onMouseEnter),
       onMouseLeave: (event) => !disableHover && onHovered('trigger', false, event, children.props.onMouseLeave),
       onFocus: (event) => !disableFocus && onHovered('trigger', true, event, children.props.onFocus),
-      onBlur: (event) => !disableFocus && onHovered('trigger', false, event, children.props.onBlur),
-      'data-testid': 'trigger'
+      onBlur: (event) => !disableFocus && onHovered('trigger', false, event, children.props.onBlur)
     });
     setTriggerElement(Elem);
   }, [disableHover, disableFocus]);

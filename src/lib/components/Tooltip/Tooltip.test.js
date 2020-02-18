@@ -9,12 +9,12 @@ jest.useFakeTimers();
 
 describe('Tooltip', () => {
   test('children should render correctly', () => {
-    const { getByTestId } = render(<Tooltip content="Lorem ipsum"><span>Trigger</span></Tooltip>);
+    const { getByTestId } = render(<Tooltip content="Lorem ipsum"><span data-testid="trigger">Trigger</span></Tooltip>);
     expect(getByTestId('trigger')).toBeInTheDocument();
   });
 
   test('should render when mouse enter', () => {
-    const { getByTestId } = render(<Tooltip content="Lorem ipsum"><span>Trigger</span></Tooltip>);
+    const { getByTestId } = render(<Tooltip content="Lorem ipsum"><span data-testid="trigger">Trigger</span></Tooltip>);
 
     act(() => {
       fireEvent.mouseOver(getByTestId('trigger'));
@@ -26,7 +26,7 @@ describe('Tooltip', () => {
   });
 
   test('should render when trigger has focus', () => {
-    const { getByTestId } = render(<Tooltip content="Lorem ipsum"><TextField /></Tooltip>);
+    const { getByTestId } = render(<Tooltip content="Lorem ipsum"><TextField data-testid="trigger" /></Tooltip>);
 
     act(() => {
       fireEvent.focus(getByTestId('trigger'));

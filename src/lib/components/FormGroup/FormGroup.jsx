@@ -23,7 +23,7 @@ export const FormGroup = ({
 
       {tooltip && (
         <Tooltip placement="topRight" content={tooltip}>
-          <InfoIcon icon="error_outline" />
+          <InfoIcon data-testid="info-icon" icon="error_outline" />
         </Tooltip>
       )}
     </LabelContainer>

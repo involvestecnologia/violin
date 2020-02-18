@@ -28,9 +28,9 @@ describe('FormGroup', () => {
 
   test('should display info icon with tooltip', () => {
     const { queryByTestId, getByTestId, rerender } = render(<FormGroup />);
-    expect(queryByTestId('trigger')).toBeNull();
+    expect(queryByTestId('info-icon')).toBeNull();
     rerender(<FormGroup tooltip="Lorem ipsum" />);
-    expect(getByTestId('trigger')).toBeInTheDocument();
+    expect(getByTestId('info-icon')).toBeInTheDocument();
   });
 
   test('should display content children', () => {
