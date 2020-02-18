@@ -9,7 +9,8 @@
     },
     "cjs": {
       "plugins": [
-        "inline-react-svg"
+        "inline-react-svg",
+        ["react-remove-properties", {"properties": ["data-testid"]}]
       ],
       "presets": [
         ["@babel/preset-env", { "loose": true }],
@@ -18,7 +19,8 @@
     },
     "es": {
       "plugins": [
-        "inline-react-svg"
+        "inline-react-svg",
+        ["react-remove-properties", {"properties": ["data-testid"]}]
       ],
       "presets": [
         ["@babel/preset-env", { "loose": true, "modules": false }],
