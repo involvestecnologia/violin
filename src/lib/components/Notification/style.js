@@ -22,6 +22,8 @@ const info = css`
   }
 
   a {
+    font-weight: bold;
+    text-decoration: underline;
     color: ${getFromTheme('palette.blue.800')};
     &:hover {
       color: ${getFromTheme('palette.blue.600')};
@@ -38,6 +40,8 @@ const warning = css`
   }
 
   a {
+    font-weight: bold;
+    text-decoration: underline;
     color: ${getFromTheme('palette.yellow.800')};
     &:hover {
       color: ${getFromTheme('palette.yellow.600')};
@@ -54,6 +58,8 @@ const success = css`
   }
 
   a {
+    font-weight: bold;
+    text-decoration: underline;
     color: ${getFromTheme('palette.green.800')};
     &:hover {
       color: ${getFromTheme('palette.green.500')};
@@ -70,6 +76,8 @@ const error = css`
   }
 
   a {
+    font-weight: bold;
+    text-decoration: underline;
     color: ${getFromTheme('palette.red.800')};
     &:hover {
       color: ${getFromTheme('palette.red.500')};
