@@ -1,0 +1,57 @@
+---
+name: ToggleSwitch
+menu: Components
+route: /components/ToggleSwitch
+---
+
+import { ToggleSwitch } from './ToggleSwitch';
+import { FormGroup } from '../FormGroup';
+import { State, Toggle } from 'react-powerplug'
+import { Playground, Props } from "docz";
+
+# ToggleSwitch
+
+ToggleSwitch is as a checkbox component.
+
+<Playground>
+	<State initial={{ check: false }}>
+		{({ state, setState }) => (
+			<form>
+				<ToggleSwitch label={state.check ? 'Activated' : 'Deactivated'} checked={state.check} onChange={e => setState({ check: e.target.checked })} />
+			</form>
+		)}
+	</State>
+</Playground>
+
+## Props
+
+<Props of={ToggleSwitch} />
+
+> Native props will apply in checkbox input.
+
+## disabled
+
+<Playground>
+	<State initial={{ check: true }}>
+		{({ state, setState }) => (
+			<form>
+				<ToggleSwitch label="This is checked" checked={state.check} disabled onChange={e => setState({ check: e.target.checked })} />
+				<ToggleSwitch label="This isn't checked" disabled />
+			</form>
+		)}
+	</State>
+</Playground>
+
+## FormGroup
+
+With [FormGroup](/components/FormGroup) component:
+
+<Playground>
+	<FormGroup label="Status" tooltip="Lorem ipsum" helpText="Active or deactive status">
+		<State initial={{ check: true }}>
+			{({ state, setState }) => (
+				<ToggleSwitch label={state.check ? 'Activated' : 'Deactivated'} checked={state.check} onChange={e => setState({ check: e.target.checked })} />
+			)}
+		</State>
+	</FormGroup>
+</Playground>
