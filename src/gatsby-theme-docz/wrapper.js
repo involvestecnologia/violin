@@ -22,7 +22,7 @@ export default ({ children }) => (
   <>
     <Helmet>
       <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap" />
-      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" />
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Round|Material+Icons+Outlined" />
     </Helmet>
     <GlobalGatsbyStyle />
     <GlobalStyle />
