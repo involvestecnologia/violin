@@ -2,8 +2,8 @@
   "name": "@involves/violin",
   "version": "1.0.0-alpha.1.5",
   "description": "React components for faster and easier web development",
-  "main": "index.js",
-  "module": "es/index.js",
+  "main": "lib/index.js",
+  "module": "lib/es/index.js",
   "repository": "git@github.com:involvestecnologia/violin.git",
   "homepage": "https://violin-ui.netlify.com",
   "bugs": {
