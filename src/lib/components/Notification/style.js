@@ -90,18 +90,30 @@ const error = css`
 `
 
 export const NotificationWrapper = styled.div`
-  ${(props) => props.type === 'info' && info}
-  ${(props) => props.type === 'warning' && warning}
-  ${(props) => props.type === 'success' && success}
-  ${(props) => props.type === 'error' && error}
-
   font-weight: ${getFromTheme('typography.fontWeight.semiBold')};
-  min-height: 52px;
   width: 100%;
   border-radius: 4px;
   box-sizing: border-box;
   display: grid;
   grid-template-columns: 48px auto 62px;
+
+  visibility: hidden;
+  opacity: 0;
+  height: 0;
+  min-height: 0;
+
+  transition: all 0.2s ease;
+  
+  ${(props) => props.type === 'info' && info}
+  ${(props) => props.type === 'warning' && warning}
+  ${(props) => props.type === 'success' && success}
+  ${(props) => props.type === 'error' && error}
+  ${(props) => props.fadeIn && css`
+    visibility: visible;
+    opacity: 1;
+    height: auto;
+    min-height: 52px;
+  `}
 `
 
 export const NotificationCloseButton = styled(Button)`

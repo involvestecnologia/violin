@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from 'react'
+import React, { Fragment, useState, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types';
 import idgen from '../../utils/idgen';
 import {
@@ -17,6 +17,23 @@ export const Notification = ({
   actions,
   ...rest
 }) => {
+  const timerShow = useRef(null);
+  const [fadeIn, setFadeIn] = useState(false);
+
+  const enableFadeIn = () => {
+    timerShow.current = setTimeout(() => setFadeIn(true), 50);
+  }
+
+  const disableFadeIn = () => {
+    clearTimeout(timerShow.current);
+    setFadeIn(false);
+  }
+
+  useEffect(() => {
+    if (open) enableFadeIn()
+    return () => disableFadeIn()
+  }, [open])
+
   const [icon, setIcon] = useState('info')
   useEffect(() => {
     if (type === 'warning' || type === 'error') {
@@ -27,7 +44,7 @@ export const Notification = ({
   }, [type])
 
   return (open && (
-    <NotificationWrapper type={type} {...rest}>
+    <NotificationWrapper type={type} fadeIn={fadeIn} {...rest}>
       <NotificationIcon icon={icon} outlined />
       <NotificationContent>
         <Text>{children}</Text>

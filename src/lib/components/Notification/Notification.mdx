@@ -16,8 +16,9 @@ import { Link } from '../Link';
     <State initial={{ open: false }}>
         {({ state, setState }) => (
             <div>
+                <Button onClick={() => setState({open: !state.open})}>Abrir/Fechar</Button>
                 <Notification
-                    open
+                    open={state.open}
                     actions={[
                         <Button onClick={() => setState({open: false})} small>Dismiss</Button>,
                         <Button onClick={() => setState({open: false})} small>Cancel</Button>,
