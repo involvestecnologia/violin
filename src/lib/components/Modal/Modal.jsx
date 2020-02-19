@@ -127,7 +127,7 @@ Modal.propTypes = {
   /** Prevent ESC key from closing the modal */
   disableEscapeKeyDown: PropTypes.bool,
   /** Apply z-index */
-  zindex: PropTypes.string
+  zindex: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
 };
 
 Modal.defaultProps = {
