@@ -2,20 +2,23 @@
   "name": "@involves/violin",
   "version": "1.0.0-alpha.1.3",
   "description": "React components for faster and easier web development",
-  "main": "lib/index.js",
+  "main": "index.js",
+  "module": "es/index.js",
   "repository": "git@github.com:involvestecnologia/violin.git",
   "author": "Involves - AsyncAwait Squad <asyncawait@involves.com>",
   "license": "MIT",
   "scripts": {
     "start": "rm -rf ./.docz && docz dev",
-    "build": "rm -rf lib && webpack --mode=production",
+    "build": "rm -rf lib && yarn build:cjs && yarn build:es",
+    "build:cjs": "cross-env BABEL_ENV=cjs babel src/lib --out-dir lib --ignore *.test.js,*.mdx",
+    "build:es": "cross-env BABEL_ENV=es babel src/lib --out-dir lib/es --ignore *.test.js,*.mdx",
     "build:docs": "docz build",
     "test": "jest",
     "lint": "eslint './src/**/*.jsx' './src/**/*.js'",
     "lint:css": "stylelint './src/**/*.js'",
     "test:watch": "jest --watchAll"
   },
-  "prepublish": "rm -rf lib && webpack --mode=production",
+  "prepublish": "rm -rf ./lib && yarn build:cjs && yarn build:es",
   "dependencies": {
     "polished": "^3.4.4",
     "prop-types": "^15.7.2",
@@ -24,7 +27,6 @@
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
-    "@babel/plugin-proposal-class-properties": "^7.8.3",
     "@babel/plugin-transform-runtime": "^7.8.3",
     "@babel/preset-env": "^7.8.4",
     "@babel/preset-react": "^7.8.3",
@@ -62,7 +64,12 @@
     "styled-components": ">=5"
   },
   "files": [
-    "lib",
+    "lib/components",
+    "lib/es",
+    "lib/styles",
+    "lib/theme",
+    "lib/utils",
+    "lib/index.js",
     "license",
     "package.json",
     "README.md"

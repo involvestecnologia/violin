@@ -6,6 +6,24 @@
         "@babel/preset-react"
       ],
       "plugins": ["@babel/plugin-transform-runtime"]
+    },
+    "cjs": {
+      "plugins": [
+        "inline-react-svg"
+      ],
+      "presets": [
+        ["@babel/preset-env", { "loose": true }],
+        "@babel/preset-react"
+      ]
+    },
+    "es": {
+      "plugins": [
+        "inline-react-svg"
+      ],
+      "presets": [
+        ["@babel/preset-env", { "loose": true, "modules": false }],
+        "@babel/preset-react"
+      ]
     }
   }
 }
