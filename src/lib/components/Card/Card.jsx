@@ -10,8 +10,8 @@ import {
   CardContent,
 } from './style';
 
-export const Card = ({ children, title, subTitle, actions }) => (
-  <CardWrapper>
+export const Card = ({ children, title, subTitle, actions, ...props }) => (
+  <CardWrapper {...props}>
     {(title || subTitle || actions) && (
       <CardHeader>
         {(title || subTitle) && (
