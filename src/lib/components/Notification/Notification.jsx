@@ -8,6 +8,7 @@ import {
   NotificationCloseButton,
   NotificationFooter,
 } from './style'
+import { Text } from '../Text'
 
 export const Notification = ({
   open,
@@ -29,7 +30,7 @@ export const Notification = ({
     <NotificationWrapper type={type} {...rest}>
       <NotificationIcon icon={icon} outlined />
       <NotificationContent>
-        {children}
+        <Text>{children}</Text>
         {(actions && actions.length > 0) && (
           <NotificationFooter>{actions.map((action) => (
             <Fragment key={`notification-action-button-${idgen()}`}>{action}</Fragment>

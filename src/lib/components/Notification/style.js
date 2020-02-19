@@ -4,7 +4,7 @@ import { Icon } from '../Icon';
 import { Button } from '../Button';
 
 export const NotificationIcon = styled(Icon)`
-  font-size: 25px;
+  font-size: 24px;
   padding: 14px 10px 14px 14px;
 `
 
@@ -15,6 +15,7 @@ export const NotificationContent = styled.div`
 
 const info = css`
   background-color: ${getFromTheme('palette.blue.100')};
+  border: 1px solid rgba(102, 166, 249, 0.15);
   color: ${getFromTheme('palette.blue.800')};
 
   ${NotificationIcon} {
@@ -33,6 +34,7 @@ const info = css`
 
 const warning = css`
   background-color: ${getFromTheme('palette.yellow.100')};
+  border: 1px solid rgba(211, 144, 7, 0.15);
   color: ${getFromTheme('palette.yellow.800')};
 
   ${NotificationIcon} {
@@ -51,6 +53,7 @@ const warning = css`
 
 const success = css`
   background-color: ${getFromTheme('palette.green.100')};
+  border: 1px solid rgba(46, 167, 95, 0.15);
   color: ${getFromTheme('palette.green.800')};
 
   ${NotificationIcon} {
@@ -69,6 +72,7 @@ const success = css`
 
 const error = css`
   background-color: ${getFromTheme('palette.red.100')};
+  border: 1px solid rgba(253, 105, 105, 0.15);
   color: ${getFromTheme('palette.red.700')};
 
   ${NotificationIcon} {
@@ -91,12 +95,11 @@ export const NotificationWrapper = styled.div`
   ${(props) => props.type === 'success' && success}
   ${(props) => props.type === 'error' && error}
 
-  font-size: ${getFromTheme('typography.fontSize.body')};
   font-weight: ${getFromTheme('typography.fontWeight.semiBold')};
-  line-height: 21px;
   min-height: 52px;
   width: 100%;
   border-radius: 4px;
+  box-sizing: border-box;
   display: grid;
   grid-template-columns: 48px auto 62px;
 `
