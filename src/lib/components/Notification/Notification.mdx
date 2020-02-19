@@ -8,6 +8,7 @@ import { Playground, Props } from "docz";
 import { State, Toggle } from 'react-powerplug'
 import { Notification } from './Notification';
 import { Button } from '../Button';
+import { Link } from '../Link';
 
 # Notification
 
@@ -22,7 +23,7 @@ import { Button } from '../Button';
                         <Button onClick={() => setState({open: false})} small>Cancel</Button>,
                     ]}
                 >
-                    <b>Lorem Ipsum.</b> <a href="#void">Click here to continue</a>
+                    <b>Lorem Ipsum.</b> <Link href="#void">Click here to continue</Link>
                 </Notification>
             </div>
         )}
@@ -39,7 +40,7 @@ import { Button } from '../Button';
                         <Button onClick={() => setState({open: false})} small>Cancel</Button>,
                     ]}
                 >
-                    <b>Lorem Ipsum.</b> <a href="#void">Click here to continue</a>
+                    <b>Lorem Ipsum.</b> <Link href="#void">Click here to continue</Link>
                 </Notification>
             </div>
         )}
@@ -56,7 +57,7 @@ import { Button } from '../Button';
                         <Button onClick={() => setState({open: false})} small>Cancel</Button>,
                     ]}
                 >
-                    <b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry. <a href="#void">Click here to continue</a>
+                    <b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry. <Link href="#void">Click here to continue</Link>
                 </Notification>
             </div>
         )}

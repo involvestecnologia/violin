@@ -19,6 +19,12 @@ const info = css`
   ${NotificationIcon} {
     color: ${getFromTheme('palette.blue.600')};
   }
+  a {
+    color: ${getFromTheme('palette.blue.800')};
+    &:hover {
+      color: ${getFromTheme('palette.blue.600')};
+    }
+  }
 `
 
 const warning = css`
