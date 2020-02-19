@@ -151,3 +151,22 @@ import { Link } from '../Link';
         )}
     </State>
 </Playground>
+
+## zindex
+
+<Playground>
+    <State initial={{ open: false }}>
+        {({ state, setState }) => (
+            <>
+                <Button onClick={() => setState({open: true})}>Open Modal</Button>
+                <Modal
+                    zindex="999"
+                    open={state.open}
+                    onClose={() => setState({open: false})}
+                >
+                    z-index of this modal is 999
+                </Modal>
+            </>
+        )}
+    </State>
+</Playground>

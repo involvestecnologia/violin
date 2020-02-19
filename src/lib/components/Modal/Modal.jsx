@@ -23,7 +23,8 @@ const ModalWithPortal = ({
   actions,
   title,
   disableBackdropClick,
-  disableEscapeKeyDown
+  disableEscapeKeyDown,
+  zindex
 }) => {
   const modalWrapperElement = useRef(null);
   const modalCardElement = useRef(null);
@@ -75,7 +76,7 @@ const ModalWithPortal = ({
   }, [open]);
 
   const component = open && (
-    <ModalWrapper ref={modalWrapperElement} fadeIn={fadeIn} data-testid="modal-wrapper">
+    <ModalWrapper ref={modalWrapperElement} fadeIn={fadeIn} zindex={zindex} data-testid="modal-wrapper">
       <ModalBackdrop
         onClick={onClose}
         disableBackdropClick={disableBackdropClick}
@@ -125,6 +126,8 @@ Modal.propTypes = {
   disableBackdropClick: PropTypes.bool,
   /** Prevent ESC key from closing the modal */
   disableEscapeKeyDown: PropTypes.bool,
+  /** Apply z-index */
+  zindex: PropTypes.string
 };
 
 Modal.defaultProps = {
@@ -134,4 +137,5 @@ Modal.defaultProps = {
   title: null,
   disableBackdropClick: false,
   disableEscapeKeyDown: false,
+  zindex: null,
 };

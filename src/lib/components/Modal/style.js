@@ -61,7 +61,7 @@ const transition = css`
 `;
 
 export const ModalWrapper = styled.div`
-  z-index: ${getFromTheme('zIndex.z1')};
+  z-index: ${({ zindex }) => (zindex || getFromTheme('zIndex.z9'))};
   position: fixed;
   top: 0;
   left: 0;
