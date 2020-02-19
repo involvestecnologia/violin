@@ -30,14 +30,14 @@ export const Notification = ({
       <NotificationIcon icon={icon} outlined />
       <NotificationContent>
         {children}
-        {actions && (
+        {(actions && actions.length > 0) && (
           <NotificationFooter>{actions.map((action) => (
             <Fragment key={`notification-action-button-${idgen()}`}>{action}</Fragment>
           ))}
           </NotificationFooter>
         )}
       </NotificationContent>
-      <NotificationCloseButton secondary small icon="close" />
+      <NotificationCloseButton secondary icon="close" />
     </NotificationWrapper>
   ))
 }

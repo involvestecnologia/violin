@@ -16,21 +16,33 @@ export const NotificationContent = styled.div`
 const info = css`
   background-color: ${getFromTheme('palette.blue.100')};
   color: ${getFromTheme('palette.blue.800')};
+  ${NotificationIcon} {
+    color: ${getFromTheme('palette.blue.600')};
+  }
 `
 
 const warning = css`
   background-color: ${getFromTheme('palette.yellow.100')};
   color: ${getFromTheme('palette.yellow.800')};
+  ${NotificationIcon} {
+    color: ${getFromTheme('palette.yellow.600')};
+  }
 `
 
 const success = css`
   background-color: ${getFromTheme('palette.green.100')};
   color: ${getFromTheme('palette.green.800')};
+  ${NotificationIcon} {
+    color: ${getFromTheme('palette.green.700')};
+  }
 `
 
 const error = css`
   background-color: ${getFromTheme('palette.red.100')};
   color: ${getFromTheme('palette.red.700')};
+  ${NotificationIcon} {
+    color: ${getFromTheme('palette.red.700')};
+  }
 `
 
 export const NotificationWrapper = styled.div`
