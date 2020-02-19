@@ -8,5 +8,10 @@ export const Icon = ({ icon, ...props }) => (
 
 Icon.propTypes = {
   /** Icon name from [Material Icons](https://material.io/resources/icons/?style=round) library */
-  icon: PropTypes.string.isRequired
+  icon: PropTypes.string.isRequired,
+  outlined: PropTypes.bool,
+};
+
+Icon.defaultProps = {
+  outlined: false
 };
