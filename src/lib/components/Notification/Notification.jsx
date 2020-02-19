@@ -1,45 +1,56 @@
-import React from 'react'
+import React, { Fragment, useState, useEffect } from 'react'
 import PropTypes from 'prop-types';
+import idgen from '../../utils/idgen';
 import {
   NotificationWrapper,
   NotificationContent,
   NotificationIcon,
   NotificationCloseButton,
+  NotificationFooter,
 } from './style'
 
 export const Notification = ({
   open,
-  inline,
-  error,
-  warning,
-  success,
+  type,
   children,
+  actions,
+  ...rest
 }) => {
-  console.log('oioioi')
+  const [icon, setIcon] = useState('info')
+  useEffect(() => {
+    if (type === 'warning' || type === 'error') {
+      setIcon('report_problem')
+    } else if (type === 'success') {
+      setIcon('check_circle')
+    }
+  }, [type])
+
   return (open && (
-    <NotificationWrapper>
+    <NotificationWrapper type={type} {...rest}>
+      <NotificationIcon icon={icon} outlined />
       <NotificationContent>
-        <NotificationIcon icon="info" />{children}
+        {children}
+        {actions && (
+          <NotificationFooter>{actions.map((action) => (
+            <Fragment key={`notification-action-button-${idgen()}`}>{action}</Fragment>
+          ))}
+          </NotificationFooter>
+        )}
       </NotificationContent>
-      <NotificationCloseButton secondary small invert icon="close" />
+      <NotificationCloseButton secondary small icon="close" />
     </NotificationWrapper>
   ))
 }
 
-
 Notification.propTypes = {
   /** Apply notification visibility */
   open: PropTypes.bool,
-  inline: PropTypes.bool,
-  error: PropTypes.bool,
-  warning: PropTypes.bool,
-  success: PropTypes.bool,
+  type: PropTypes.oneOf(['info', 'warning', 'success', 'error']),
+  actions: PropTypes.arrayOf(PropTypes.element),
 }
 
 Notification.defaultProps = {
   open: false,
-  inline: false,
-  error: false,
-  warning: false,
-  success: false,
+  type: 'info',
+  actions: null,
 }

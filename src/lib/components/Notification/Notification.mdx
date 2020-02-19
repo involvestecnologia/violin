@@ -14,11 +14,68 @@ import { Button } from '../Button';
 <Playground>
     <State initial={{ open: false }}>
         {({ state, setState }) => (
-            <>
-                <Notification open>
-                    <b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry.
+            <div>
+                <Notification
+                    open
+                    actions={[
+                        <Button onClick={() => setState({open: false})} small>Dismiss</Button>,
+                        <Button onClick={() => setState({open: false})} small>Cancel</Button>,
+                    ]}
+                >
+                    <b>Lorem Ipsum.</b> <a href="#void">Click here to continue</a>
                 </Notification>
-            </>
+            </div>
+        )}
+    </State>
+    <br />  
+    <State initial={{ open: false }}>
+        {({ state, setState }) => (
+            <div>
+                <Notification
+                    open
+                    type="warning"
+                    actions={[
+                        <Button onClick={() => setState({open: false})} small>Dismiss</Button>,
+                        <Button onClick={() => setState({open: false})} small>Cancel</Button>,
+                    ]}
+                >
+                    <b>Lorem Ipsum.</b> <a href="#void">Click here to continue</a>
+                </Notification>
+            </div>
+        )}
+    </State>
+    <br />
+    <State initial={{ open: false }}>
+        {({ state, setState }) => (
+            <div>
+                <Notification
+                    open
+                    type="success"
+                    actions={[
+                        <Button onClick={() => setState({open: false})} small>Dismiss</Button>,
+                        <Button onClick={() => setState({open: false})} small>Cancel</Button>,
+                    ]}
+                >
+                    <b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry. <a href="#void">Click here to continue</a>
+                </Notification>
+            </div>
+        )}
+    </State>
+    <br />
+    <State initial={{ open: false }}>
+        {({ state, setState }) => (
+            <div>
+                <Notification
+                    open
+                    type="error"
+                    actions={[
+                        <Button onClick={() => setState({open: false})} small>Dismiss</Button>,
+                        <Button onClick={() => setState({open: false})} small>Cancel</Button>,
+                    ]}
+                >
+                    <b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                </Notification>
+            </div>
         )}
     </State>
 </Playground>
