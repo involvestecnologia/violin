@@ -96,23 +96,23 @@ export const NotificationWrapper = styled.div`
   box-sizing: border-box;
   display: grid;
   grid-template-columns: 48px auto 62px;
+  /* min-height: 52px; */
 
-  visibility: hidden;
   opacity: 0;
-  height: 0;
-  min-height: 0;
-
-  transition: all 0.2s ease;
+  max-height: 0;
   
   ${(props) => props.type === 'info' && info}
   ${(props) => props.type === 'warning' && warning}
   ${(props) => props.type === 'success' && success}
   ${(props) => props.type === 'error' && error}
   ${(props) => props.fadeIn && css`
-    visibility: visible;
-    opacity: 1;
-    height: auto;
-    min-height: 52px;
+
+    animation: Abrir .2s ease-in-out forwards;
+    @keyframes Abrir {
+      0% { opacity: 0; max-height: 0; }
+      50% { opacity: 0; max-height: 100vh; }
+      100% { opacity: 1; max-height: 100vh; }
+    } 
   `}
 `
 

@@ -19,12 +19,13 @@ import { Link } from '../Link';
                 <Button onClick={() => setState({open: !state.open})}>Abrir/Fechar</Button>
                 <Notification
                     open={state.open}
+                    onClose={() => setState({open: false})}
                     actions={[
                         <Button onClick={() => setState({open: false})} small>Dismiss</Button>,
                         <Button onClick={() => setState({open: false})} small>Cancel</Button>,
                     ]}
                 >
-                    <b>Lorem Ipsum.</b> <Link href="#void">Click here to continue</Link>
+                    <b>Lorem Ipsum.</b> <Link href="#void">Click here to continue</Link><b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry.<b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry.<b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry.<b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry.<b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry.<b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry.
                 </Notification>
             </div>
         )}

@@ -15,6 +15,7 @@ export const Notification = ({
   type,
   children,
   actions,
+  onClose,
   ...rest
 }) => {
   const timerShow = useRef(null);
@@ -55,7 +56,7 @@ export const Notification = ({
           </NotificationFooter>
         )}
       </NotificationContent>
-      <NotificationCloseButton secondary icon="close" />
+      <NotificationCloseButton secondary icon="close" onClick={onClose} />
     </NotificationWrapper>
   ))
 }
@@ -65,10 +66,12 @@ Notification.propTypes = {
   open: PropTypes.bool,
   type: PropTypes.oneOf(['info', 'warning', 'success', 'error']),
   actions: PropTypes.arrayOf(PropTypes.element),
+  onClose: PropTypes.func,
 }
 
 Notification.defaultProps = {
   open: false,
   type: 'info',
   actions: null,
+  onClose: null,
 }
