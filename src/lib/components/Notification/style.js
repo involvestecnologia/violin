@@ -96,7 +96,7 @@ export const NotificationWrapper = styled.div`
   box-sizing: border-box;
   display: grid;
   grid-template-columns: 48px auto 62px;
-  /* min-height: 52px; */
+  min-height: 0;
 
   opacity: 0;
   max-height: 0;
@@ -109,9 +109,9 @@ export const NotificationWrapper = styled.div`
 
     animation: Abrir .2s ease-in-out forwards;
     @keyframes Abrir {
-      0% { opacity: 0; max-height: 0; }
-      50% { opacity: 0; max-height: 100vh; }
-      100% { opacity: 1; max-height: 100vh; }
+      0% { opacity: 0; max-height: 0; min-height: 0; }
+      50% { opacity: 0; max-height: 100vh; min-height: 52px; }
+      100% { opacity: 1; max-height: 100vh; min-height: 52px; }
     } 
   `}
 `
