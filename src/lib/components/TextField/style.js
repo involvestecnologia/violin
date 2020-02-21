@@ -13,7 +13,7 @@ const errorStyle = css`
   }
 `;
 
-export const Input = styled.input`
+export const inputStyle = css`
   display: block;
   width: 100%;
   height: ${ifProp('small', '30px', ifProp('large', '52px', '40px'))};
@@ -28,20 +28,32 @@ export const Input = styled.input`
   font-size: ${ifProp('large', getFromTheme('typography.fontSize.subtitle'), ifProp('small', getFromTheme('typography.fontSize.small'), getFromTheme('typography.fontSize.body')))};
   color: ${getFromTheme('palette.black.900')};
   box-shadow: 0 0 0 transparent;
+`;
+
+export const inputStyleFocus = css`
+  background-color: ${getFromTheme('palette.misc.white')};
+  box-shadow: 0 0 0 2px ${getFromTheme('palette.primary.500')};
+`;
+
+export const inputStyleDisabled = css`
+  background-color: ${withProp(getFromTheme('palette.misc.black'), transparentize(0.96))};
+  color: ${withProp(getFromTheme('palette.black.900'), transparentize(0.75))};
+  cursor: not-allowed;
+`;
+
+export const Input = styled.input`
+  ${inputStyle}
 
   &::placeholder {
     color: ${getFromTheme('palette.black.500')};
   }
 
   &:focus {
-    background-color: ${getFromTheme('palette.misc.white')};
-    box-shadow: 0 0 0 2px ${getFromTheme('palette.primary.500')};
+    ${inputStyleFocus}
   }
 
   &:disabled {
-    background-color: ${withProp(getFromTheme('palette.misc.black'), transparentize(0.96))};
-    color: ${withProp(getFromTheme('palette.black.900'), transparentize(0.75))};
-    cursor: not-allowed;
+    ${inputStyleDisabled}
 
     &::placeholder {
       color: ${withProp(getFromTheme('palette.black.500'), transparentize(0.75))};
