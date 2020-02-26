@@ -12,11 +12,11 @@ import { Button } from '../Button';
 # Notification
 
 <Playground>
-    <State initial={{ open: false }}>
+    <State initial={{ open: true }}>
         {({ state, setState }) => (
             <div>
                 <Notification
-                    open
+                    open={state.open}
                     actions={[
                         <Button onClick={() => setState({open: false})} small>Dismiss</Button>,
                         <Button onClick={() => setState({open: false})} small>Cancel</Button>,
@@ -28,11 +28,11 @@ import { Button } from '../Button';
         )}
     </State>
     <br />  
-    <State initial={{ open: false }}>
+    <State initial={{ open: true }}>
         {({ state, setState }) => (
             <div>
                 <Notification
-                    open
+                    open={state.open}
                     type="warning"
                     actions={[
                         <Button onClick={() => setState({open: false})} small>Dismiss</Button>,
@@ -45,11 +45,11 @@ import { Button } from '../Button';
         )}
     </State>
     <br />
-    <State initial={{ open: false }}>
+    <State initial={{ open: true }}>
         {({ state, setState }) => (
             <div>
                 <Notification
-                    open
+                    open={state.open}
                     type="success"
                     actions={[
                         <Button onClick={() => setState({open: false})} small>Dismiss</Button>,
@@ -62,11 +62,11 @@ import { Button } from '../Button';
         )}
     </State>
     <br />
-    <State initial={{ open: false }}>
+    <State initial={{ open: true }}>
         {({ state, setState }) => (
             <div>
                 <Notification
-                    open
+                    open={state.open}
                     type="error"
                     actions={[
                         <Button onClick={() => setState({open: false})} small>Dismiss</Button>,

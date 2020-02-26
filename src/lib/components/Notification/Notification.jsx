@@ -1,5 +1,6 @@
 import React, { Fragment, useState, useEffect } from 'react'
 import PropTypes from 'prop-types';
+import { Transition } from '../_common/Transition';
 import idgen from '../../utils/idgen';
 import {
   NotificationWrapper,
@@ -25,21 +26,23 @@ export const Notification = ({
     }
   }, [type])
 
-  return (open && (
-    <NotificationWrapper type={type} {...rest}>
-      <NotificationIcon icon={icon} outlined />
-      <NotificationContent>
-        {children}
-        {actions && (
-          <NotificationFooter>{actions.map((action) => (
-            <Fragment key={`notification-action-button-${idgen()}`}>{action}</Fragment>
-          ))}
-          </NotificationFooter>
-        )}
-      </NotificationContent>
-      <NotificationCloseButton secondary small icon="close" />
-    </NotificationWrapper>
-  ))
+  return (
+    <Transition show={open}>
+      <NotificationWrapper type={type} {...rest}>
+        <NotificationIcon icon={icon} outlined />
+        <NotificationContent>
+          {children}
+          {actions && (
+            <NotificationFooter>{actions.map((action) => (
+              <Fragment key={`notification-action-button-${idgen()}`}>{action}</Fragment>
+            ))}
+            </NotificationFooter>
+          )}
+        </NotificationContent>
+        <NotificationCloseButton secondary small icon="close" />
+      </NotificationWrapper>
+    </Transition>
+  )
 }
 
 Notification.propTypes = {
