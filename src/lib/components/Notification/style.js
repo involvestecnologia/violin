@@ -1,4 +1,6 @@
 import styled, { css } from 'styled-components';
+import { withProp } from 'styled-tools';
+import { transparentize } from 'polished';
 import getFromTheme from '../../utils/getFromTheme';
 import { Icon } from '../Icon';
 import { Button } from '../Button';
@@ -15,7 +17,7 @@ export const NotificationContent = styled.div`
 
 const info = css`
   background-color: ${getFromTheme('palette.blue.100')};
-  border: 1px solid rgba(102, 166, 249, 0.15);
+  border: 1px solid ${withProp(getFromTheme('palette.blue.400'), transparentize(0.85))};
   color: ${getFromTheme('palette.blue.800')};
 
   ${NotificationIcon} {
@@ -34,7 +36,7 @@ const info = css`
 
 const warning = css`
   background-color: ${getFromTheme('palette.yellow.100')};
-  border: 1px solid rgba(211, 144, 7, 0.15);
+  border: 1px solid ${withProp(getFromTheme('palette.yellow.600'), transparentize(0.85))};
   color: ${getFromTheme('palette.yellow.800')};
 
   ${NotificationIcon} {
@@ -96,10 +98,10 @@ export const NotificationWrapper = styled.div`
   box-sizing: border-box;
   display: grid;
   grid-template-columns: 48px auto 62px;
-  min-height: 0;
 
+  min-height: 0;
   opacity: 0;
-  max-height: 0;
+  height: 0;
   
   ${(props) => props.type === 'info' && info}
   ${(props) => props.type === 'warning' && warning}
@@ -109,9 +111,9 @@ export const NotificationWrapper = styled.div`
 
     animation: Abrir .2s ease-in-out forwards;
     @keyframes Abrir {
-      0% { opacity: 0; max-height: 0; min-height: 0; }
-      50% { opacity: 0; max-height: 100vh; min-height: 52px; }
-      100% { opacity: 1; max-height: 100vh; min-height: 52px; }
+      0% { opacity: 0; height: 0; min-height: 0; }
+      50% { opacity: 0; height: fit-content; min-height: 52px; }
+      100% { opacity: 1; height: fit-content; min-height: 52px; }
     } 
   `}
 `
