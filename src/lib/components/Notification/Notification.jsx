@@ -58,7 +58,7 @@ export const Notification = ({
             </NotificationFooter>
           )}
         </NotificationContent>
-        <NotificationCloseButton secondary icon="close" onClick={onClose} />
+        {onClose && <NotificationCloseButton secondary icon="close" onClick={onClose} />}
       </NotificationWrapper>
     </Transition>
   )

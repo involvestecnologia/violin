@@ -16,7 +16,7 @@ import { Link } from '../Link';
     <State initial={{ open: true }}>
         {({ state, setState }) => (
             <div>
-                <Button onClick={() => setState({open: !state.open})}>Abrir/Fechar</Button>
+                <Button onClick={() => setState({open: !state.open})} style={{ marginBottom: '5px' }}>Open/Close</Button>
                 <Notification
                     open={state.open}
                     onClose={() => setState({open: false})}
@@ -25,58 +25,83 @@ import { Link } from '../Link';
                         <Button onClick={() => setState({open: false})} small>Cancel</Button>,
                     ]}
                 >
+                    <b>Lorem Ipsum.</b> is simply dummy text of the printing and typesetting industry. <Link href="#void">Click here to continue.</Link>
+                </Notification>
+            </div>
+        )}
+    </State>
+</Playground>
+
+## Props
+
+<Props of={Notification} />
+
+## open
+
+<Playground>
+    <Notification open={true}>
+        <b>Lorem Ipsum.</b> is simply dummy text of the printing and typesetting industry. <Link href="#void">Click here to continue.</Link>
+    </Notification>
+</Playground>
+
+## type: info
+
+<Playground>
+    <Notification open={true} type="info">
+        <b>Lorem Ipsum.</b> is simply dummy text of the printing and typesetting industry. <Link href="#void">Click here to continue.</Link>
+    </Notification>
+</Playground>
+
+## type: warning
+
+<Playground>
+    <Notification open={true} type="warning">
+        <b>Lorem Ipsum.</b> is simply dummy text of the printing and typesetting industry. <Link href="#void">Click here to continue.</Link>
+    </Notification>
+</Playground>
+
+## type: success
+
+<Playground>
+    <Notification open={true} type="success">
+        <b>Lorem Ipsum.</b> is simply dummy text of the printing and typesetting industry. <Link href="#void">Click here to continue.</Link>
+    </Notification>
+</Playground>
+
+## type: error
+
+<Playground>
+    <Notification open={true} type="error">
+        <b>Lorem Ipsum.</b> is simply dummy text of the printing and typesetting industry. <Link href="#void">Click here to continue.</Link>
+    </Notification>
+</Playground>
+
+## actions
+
+<Playground>
+    <Notification
+        open={true}
+        actions={[
+            <Button onClick={() => alert('Dismissed')} small>Dismiss</Button>,
+            <Button onClick={() => alert('Canceled')} small>Cancel</Button>,
+        ]}
+    >
+        <b>Lorem Ipsum.</b> is simply dummy text of the printing and typesetting industry. <Link href="#void">Click here to continue.</Link>
+    </Notification>
+</Playground>
+
+## onClose
+
+<Playground>
+    <State initial={{ open: true }}>
+        {({ state, setState }) => (
+            <div>
+                <Button onClick={() => setState({open: !state.open})} style={{ marginBottom: '5px' }}>Open/Close</Button>
+                <Notification
+                    open={state.open}
+                    onClose={() => setState({open: false})}
+                >
                     <b>Lorem Ipsum.</b> <Link href="#void">Click here to continue</Link><b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry.<b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry.<b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry.<b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry.<b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry.<b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry.
-                </Notification>
-            </div>
-        )}
-    </State>
-    <br />  
-    <State initial={{ open: true }}>
-        {({ state, setState }) => (
-            <div>
-                <Notification
-                    open={state.open}
-                    type="warning"
-                    actions={[
-                        <Button onClick={() => setState({open: false})} small>Dismiss</Button>,
-                        <Button onClick={() => setState({open: false})} small>Cancel</Button>,
-                    ]}
-                >
-                    <b>Lorem Ipsum.</b> <Link href="#void">Click here to continue</Link>
-                </Notification>
-            </div>
-        )}
-    </State>
-    <br />
-    <State initial={{ open: true }}>
-        {({ state, setState }) => (
-            <div>
-                <Notification
-                    open={state.open}
-                    type="success"
-                    actions={[
-                        <Button onClick={() => setState({open: false})} small>Dismiss</Button>,
-                        <Button onClick={() => setState({open: false})} small>Cancel</Button>,
-                    ]}
-                >
-                    <b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry. <Link href="#void">Click here to continue</Link>
-                </Notification>
-            </div>
-        )}
-    </State>
-    <br />
-    <State initial={{ open: true }}>
-        {({ state, setState }) => (
-            <div>
-                <Notification
-                    open={state.open}
-                    type="error"
-                    actions={[
-                        <Button onClick={() => setState({open: false})} small>Dismiss</Button>,
-                        <Button onClick={() => setState({open: false})} small>Cancel</Button>,
-                    ]}
-                >
-                    <b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. <Link href="#void">Click here to continue</Link>
                 </Notification>
             </div>
         )}
