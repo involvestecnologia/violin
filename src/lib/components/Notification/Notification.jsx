@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect, useRef } from 'react'
+import React, { Fragment, useState, useEffect } from 'react'
 import PropTypes from 'prop-types';
 import { Transition } from '../_common/Transition';
 import idgen from '../../utils/idgen';
@@ -19,23 +19,7 @@ export const Notification = ({
   onClose,
   ...rest
 }) => {
-  const timerShow = useRef(null);
-  const [fadeIn, setFadeIn] = useState(false);
   const [icon, setIcon] = useState('info')
-
-  const enableFadeIn = () => {
-    timerShow.current = setTimeout(() => setFadeIn(true), 50);
-  }
-
-  const disableFadeIn = () => {
-    clearTimeout(timerShow.current);
-    setFadeIn(false);
-  }
-
-  useEffect(() => {
-    if (open) enableFadeIn()
-    return () => disableFadeIn()
-  }, [open])
 
   useEffect(() => {
     if (type === 'warning' || type === 'error') {
@@ -47,7 +31,7 @@ export const Notification = ({
 
   return (
     <Transition show={open}>
-      <NotificationWrapper type={type} fadeIn={fadeIn} {...rest}>
+      <NotificationWrapper type={type} {...rest}>
         <NotificationIcon icon={icon} outlined />
         <NotificationContent>
           <Text>{children}</Text>
@@ -58,7 +42,7 @@ export const Notification = ({
             </NotificationFooter>
           )}
         </NotificationContent>
-        {onClose && <NotificationCloseButton secondary icon="close" onClick={onClose} />}
+        {onClose && <NotificationCloseButton secondary icon="close" onClick={onClose} data-testid="notification-close-button" />}
       </NotificationWrapper>
     </Transition>
   )
@@ -67,8 +51,11 @@ export const Notification = ({
 Notification.propTypes = {
   /** Apply notification visibility */
   open: PropTypes.bool,
+  /** Apply colors depending on type chosen */
   type: PropTypes.oneOf(['info', 'warning', 'success', 'error']),
+  /** Apply actions to modal footer */
   actions: PropTypes.arrayOf(PropTypes.element),
+  /** Updates modal state */
   onClose: PropTypes.func,
 }
 
