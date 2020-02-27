@@ -1,11 +1,14 @@
 import styled, { css } from 'styled-components';
-import { ifProp } from 'styled-tools';
+import { ifProp, withProp } from 'styled-tools';
+import { transparentize } from 'polished';
 import { inputStyle, inputStyleFocus, inputStyleDisabled } from '../TextField/style';
 import { Icon } from '../Icon';
 import getFromTheme from '../../utils/getFromTheme';
+import { ListItem } from '../_common';
 
 export const StyledSelect = styled.div`
   ${inputStyle}
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -68,4 +71,26 @@ export const ArrowDropdown = styled(Icon)`
   padding: 0 10px;
   color: ${getFromTheme('palette.black.600')};
   cursor: default;
+`;
+
+export const SelectMenu = styled.div`
+  position: absolute;
+  z-index: ${getFromTheme('zIndex.z8')};
+  top: 100%;
+  left: 0;
+  margin-top: 2px;
+  width: 100%;
+  background-color: ${getFromTheme('palette.misc.white')};
+  border-radius: 4px;
+  padding: 8px 0;
+  box-shadow: 0 5px 10px ${withProp(getFromTheme('palette.black.900'), transparentize(0.8))};
+`;
+
+export const SelectMenuItem = styled(ListItem)`
+  width: 100%;
+  background-color: ${ifProp(
+    'highlight',
+    withProp(getFromTheme('palette.black.900'), transparentize(0.95)),
+    'none'
+  )};
 `;

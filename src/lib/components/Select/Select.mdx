@@ -11,8 +11,16 @@ import { Playground, Props } from "docz";
 
 <Playground>
   <input type="checkbox" />
-  <div style={{ width: 300 }}>
-    <Select placeholder="Selecione" />
+  <div style={{ width: 500 }}>
+    <Select
+      placeholder="Selecione"
+      options={[
+        {value: "blue", label: "Blue"},
+        {value: "red", label: "Red"},
+        {value: "green", label: "Green"},
+        {value: "orange", label: "Orange"}
+      ]}
+    />
   </div>
   <input type="checkbox" />
 </Playground>
