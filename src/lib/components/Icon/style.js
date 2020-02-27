@@ -3,7 +3,7 @@ import { ifProp } from 'styled-tools';
 import getFromTheme from '../../utils/getFromTheme';
 
 export const WrapperIcon = styled.i`
-  font-family: 'Material Icons Round', sans-serif;
+  font-family: ${ifProp('outlined', 'Material Icons Outlined', 'Material Icons Round')}, sans-serif;
   font-weight: normal;
   font-style: normal;
   line-height: 1;

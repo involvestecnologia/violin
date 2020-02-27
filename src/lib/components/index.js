@@ -6,6 +6,7 @@ export { Title } from './Title';
 export { Icon } from './Icon';
 export { Link } from './Link';
 export { Modal } from './Modal';
+export { Notification } from './Notification';
 export { FormGroup } from './FormGroup';
 export { RadioButton } from './RadioButton';
 export { Subtitle } from './Subtitle';

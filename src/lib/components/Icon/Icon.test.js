@@ -14,4 +14,11 @@ describe('Icon', () => {
     const { getByTestId } = render(<Icon data-testid="icon" icon="favorite" />);
     expect(getByTestId('icon')).toHaveTextContent('favorite');
   });
+
+  test('should render correct outlined icon', () => {
+    const { getByTestId } = render(<Icon data-testid="icon" outlined icon="face" />);
+    expect(getByTestId('icon')).toHaveStyle(`
+      font-family: Material Icons Outlined,sans-serif;
+    `);
+  })
 });
