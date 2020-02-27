@@ -58,7 +58,7 @@ export const Notification = ({
             </NotificationFooter>
           )}
         </NotificationContent>
-        {onClose && <NotificationCloseButton secondary icon="close" onClick={onClose} />}
+        {onClose && <NotificationCloseButton secondary icon="close" onClick={onClose} data-testid="notification-close-button" />}
       </NotificationWrapper>
     </Transition>
   )
@@ -67,8 +67,11 @@ export const Notification = ({
 Notification.propTypes = {
   /** Apply notification visibility */
   open: PropTypes.bool,
+  /** Apply colors depending on type chosen */
   type: PropTypes.oneOf(['info', 'warning', 'success', 'error']),
+  /** Apply actions to modal footer */
   actions: PropTypes.arrayOf(PropTypes.element),
+  /** Updates modal state */
   onClose: PropTypes.func,
 }
 
