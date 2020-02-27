@@ -55,7 +55,7 @@ const warning = css`
 
 const success = css`
   background-color: ${getFromTheme('palette.green.100')};
-  border: 1px solid rgba(46, 167, 95, 0.15);
+  border: 1px solid ${withProp(getFromTheme('palette.green.700'), transparentize(0.85))};
   color: ${getFromTheme('palette.green.800')};
 
   ${NotificationIcon} {
@@ -74,7 +74,7 @@ const success = css`
 
 const error = css`
   background-color: ${getFromTheme('palette.red.100')};
-  border: 1px solid rgba(253, 105, 105, 0.15);
+  border: 1px solid ${withProp(getFromTheme('palette.red.500'), transparentize(0.85))};
   color: ${getFromTheme('palette.red.700')};
 
   ${NotificationIcon} {
