@@ -1,47 +1,40 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import { Transition as Animate } from 'react-transition-group';
 
-export const Transition = ({ animation, show, duration, children }) => {
-  let defaultStyle;
-  let transitionStyles;
+export const Transition = ({ show, duration, children }) => {
+  const contentRef = useRef({});
 
-  switch (animation) {
-    case 'fadeDown':
-      defaultStyle = {
-        transition: `all ${duration}ms ease-in-out`,
-        opacity: 0,
-        maxHeight: 0,
-        visibility: 'hidden'
-      };
+  const defaultStyle = {
+    transition: `all ${duration}ms ease-in-out`,
+    opacity: 0,
+    maxHeight: 0,
+  };
 
-      transitionStyles = {
-        entering: { opacity: 1, maxHeight: 900, visibility: 'visible' },
-        entered: { opacity: 1, maxHeight: 900, visibility: 'visible' },
-        exiting: { opacity: 0, maxHeight: 0, visibility: 'hidden' },
-        exited: { opacity: 0, maxHeight: 0, visibility: 'hidden' },
-      };
-      break;
-    default:
-      // FadeIn
-      defaultStyle = {
-        transition: `all ${duration}ms ease-in-out`,
-        opacity: 0
-      }
-
-      transitionStyles = {
-        entering: { opacity: 1 },
-        entered: { opacity: 1 },
-        exiting: { opacity: 0 },
-        exited: { opacity: 0 },
-      };
-      break;
-  }
+  const transitionStyles = {
+    entering: { opacity: 0, maxHeight: 0 },
+    entered: { opacity: 1, maxHeight: 1000 },
+    exiting: { opacity: 0, maxHeight: 0 }
+  };
 
   return (
-    <Animate in={show} timeout={duration}>
+    <Animate
+      in={show}
+      timeout={{
+        enter: 0,
+        exit: duration
+      }}
+      mountOnEnter
+      unmountOnExit
+    >
       {(state) => (
-        <div style={{ ...defaultStyle, ...transitionStyles[state] }}>
+        <div
+          ref={contentRef}
+          style={{
+            ...defaultStyle,
+            ...transitionStyles[state]
+          }}
+        >
           {children}
         </div>
       )}
@@ -50,13 +43,11 @@ export const Transition = ({ animation, show, duration, children }) => {
 };
 
 Transition.propTypes = {
-  animation: PropTypes.string,
   show: PropTypes.bool,
   duration: PropTypes.number
 };
 
 Transition.defaultProps = {
-  animation: 'fadeDown',
   show: false,
   duration: 300
 };
