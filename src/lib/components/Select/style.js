@@ -1,17 +1,17 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { ifProp } from 'styled-tools';
 import { inputStyle, inputStyleFocus, inputStyleDisabled } from '../TextField/style';
 import { Icon } from '../Icon';
 import getFromTheme from '../../utils/getFromTheme';
 
-export const Container = styled.div`
+export const StyledSelect = styled.div`
   ${inputStyle}
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0;
 
-  ${({ isActive }) => isActive && inputStyleFocus}
+  ${({ isFocused }) => isFocused && inputStyleFocus}
 `;
 
 export const Filter = styled.div`
@@ -32,19 +32,28 @@ export const Input = styled.input`
   outline: none;
 `;
 
-export const Value = styled.div`
+const styledValue = css`
   position: absolute;
   left: 10px;
   top: 50%;
   transform: translateY(-50%);
   font-size: ${getFromTheme('typography.fontSize.body')};
-  color: ${getFromTheme('palette.black.400')};
   max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   cursor: default;
   box-sizing: border-box;
+`;
+
+export const Value = styled.div`
+  ${styledValue}
+  color: ${getFromTheme('palette.black.900')};
+`;
+
+export const Placeholder = styled.div`
+  ${styledValue}
+  color: ${getFromTheme('palette.black.400')};
 `;
 
 export const Controls = styled.div`

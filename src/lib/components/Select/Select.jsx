@@ -1,79 +1,63 @@
 import React, { useRef, useState, useEffect } from 'react';
 import {
-  Container,
+  StyledSelect,
   Filter,
   Value,
+  Placeholder,
   Controls,
   ArrowDropdown,
   Input
 } from './style';
 
 export const Select = ({ placeholder, ...props }) => {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [active, setActive] = useState(false);
-  const [inputFocus, setInputFocus] = useState(false);
-  const containerRef = useRef(null);
+  const [value, setValue] = useState('');
+  const [focused, setFocused] = useState(false);
+  const selectRef = useRef(null);
   const inputRef = useRef(null);
 
-
+  const focusSelect = (e) => {
+    e.preventDefault();
+    setFocused(true);
+    inputRef.current.focus();
+  }
+  const blurSelect = () => {
+    setFocused(false);
+  }
 
   useEffect(() => {
-    containerRef.current.addEventListener('mousedown', (e) => {
-      e.stopPropagation();
-      setActive(true);
-      inputRef.current.focus();
-    });
-
-    document.addEventListener('mousedown', (e) => {
-      if (!containerRef.current.contains(e.target)) {
-        setActive(false);
+    const closeOnOut = (e) => {
+      if (!selectRef.current.contains(e.target)) {
+        blurSelect();
       }
-    });
+    };
 
-    inputRef.current.addEventListener('focus', (e) => {
-      setActive(true);
-      inputRef.current.focus();
-    });
-
-    inputRef.current.addEventListener('blur', (e) => {
-      e.stopPropagation();
-      setActive(false);
-    });
-
-    // containerRef.current.addEventListener('focusin', e => {
-    //   const enteringParent = !containerRef.current.contains(e.relatedTarget);
-
-    //   if (enteringParent) {
-    //     setActive(true);
-    //   }
-    // });
-
-    // containerRef.current.addEventListener('focusout', e => {
-    //   const leavingParent = !containerRef.current.contains(e.relatedTarget);
-
-    //   if (leavingParent) {
-    //     setActive(false);
-    //   }
-    // });
-  }, []);
+    document.addEventListener('click', closeOnOut);
+    return () => {
+      document.removeEventListener('click', closeOnOut);
+    }
+  }, [focused]);
 
   return (
-    <Container
-      ref={containerRef}
-      isActive={active}
+    <StyledSelect
+      ref={selectRef}
+      isFocused={focused}
+      onMouseDown={focusSelect}
     >
       <Filter>
         <Input
           type="text"
           ref={inputRef}
+          onFocus={focusSelect}
+          onBlur={blurSelect}
           readOnly
-          tabindex="0"
         />
-        <Value>{placeholder}</Value>
+        {!!value && <Value>{value}</Value>}
+        {(!value && !!placeholder) && <Placeholder>{placeholder}</Placeholder>}
       </Filter>
       <Controls>
         <ArrowDropdown icon="arrow_drop_down" />
       </Controls>
-    </Container>
+      <input type="hidden" value={value} />
+    </StyledSelect>
   )
 };
