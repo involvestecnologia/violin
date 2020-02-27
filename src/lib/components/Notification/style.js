@@ -6,7 +6,7 @@ import { Icon } from '../Icon';
 import { Button } from '../Button';
 
 export const NotificationIcon = styled(Icon)`
-  font-size: 24px;
+  font-size: ${getFromTheme('typography.fontSize.h4')};
   padding: 14px 10px 14px 14px;
 `
 
@@ -25,7 +25,7 @@ const info = css`
   }
 
   a {
-    font-weight: bold;
+    font-weight: ${getFromTheme('typography.fontWeight.bold')};
     text-decoration: underline;
     color: ${getFromTheme('palette.blue.800')};
     &:hover {
@@ -44,7 +44,7 @@ const warning = css`
   }
 
   a {
-    font-weight: bold;
+    font-weight: ${getFromTheme('typography.fontWeight.bold')};
     text-decoration: underline;
     color: ${getFromTheme('palette.yellow.800')};
     &:hover {
@@ -63,7 +63,7 @@ const success = css`
   }
 
   a {
-    font-weight: bold;
+    font-weight: ${getFromTheme('typography.fontWeight.bold')};
     text-decoration: underline;
     color: ${getFromTheme('palette.green.800')};
     &:hover {
@@ -82,7 +82,7 @@ const error = css`
   }
 
   a {
-    font-weight: bold;
+    font-weight: ${getFromTheme('typography.fontWeight.bold')};
     text-decoration: underline;
     color: ${getFromTheme('palette.red.800')};
     &:hover {
