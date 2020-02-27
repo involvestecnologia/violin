@@ -1,12 +1,12 @@
 import styled, { css } from 'styled-components';
 import { withProp } from 'styled-tools';
-import { transparentize } from 'polished';
+import { transparentize, rem } from 'polished';
 import getFromTheme from '../../utils/getFromTheme';
 import { Icon } from '../Icon';
 import { Button } from '../Button';
 
 export const NotificationIcon = styled(Icon)`
-  font-size: ${getFromTheme('typography.fontSize.h4')};
+  font-size: ${rem(24)};
   padding: 14px 10px 14px 14px;
 `
 
