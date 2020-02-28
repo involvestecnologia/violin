@@ -80,6 +80,8 @@ export const SelectMenu = styled.div`
   left: 0;
   margin-top: 2px;
   width: 100%;
+  max-height: 256px;
+  overflow: auto;
   background-color: ${getFromTheme('palette.misc.white')};
   border-radius: 4px;
   padding: 8px 0;
@@ -90,7 +92,14 @@ export const SelectMenuItem = styled(ListItem)`
   width: 100%;
   background-color: ${ifProp(
     'highlight',
-    withProp(getFromTheme('palette.black.900'), transparentize(0.95)),
+    withProp(getFromTheme('palette.black.900'), transparentize(0.92)),
     'none'
   )};
+  &:hover {
+    ${ifProp(
+      'highlight',
+      withProp(getFromTheme('palette.black.900'), transparentize(0.92)),
+      'none'
+    )};
+  }
 `;

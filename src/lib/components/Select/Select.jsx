@@ -19,6 +19,8 @@ export const Select = ({ placeholder, options: list, ...props }) => {
   const [options, setOptions] = useState({})
   const selectRef = useRef(null);
   const inputRef = useRef(null);
+  const highlightRef = useRef(null);
+  const menuRef = useRef(null);
 
   useEffect(() => {
     // Apply highlight at first option item
@@ -44,36 +46,32 @@ export const Select = ({ placeholder, options: list, ...props }) => {
         if (focused && !menuOpen) setMenuOpen(true);
         if (menuOpen) {
           const currentHighlight = options.indexOf(options.find((item) => item.highlight));
-          // Down
-          if (e.keyCode === 38) {
-            const updatedList = options.map((item, i) => {
-              const option = item;
-              if (currentHighlight === 0 && i === options.length - 1) {
-                option.highlight = true;
-              } else if (i === (currentHighlight - 1)) {
-                option.highlight = true;
-              } else {
-                option.highlight = false;
-              }
-              return option;
-            });
-            setOptions(updatedList);
-          }
-          // Up
-          if (e.keyCode === 40) {
-            const updatedList = options.map((item, i) => {
-              const option = item;
-              if (currentHighlight + 1 === options.length && i === 0) {
-                option.highlight = true;
-              } else if (i === (currentHighlight + 1)) {
-                option.highlight = true;
-              } else {
-                option.highlight = false;
-              }
-              return option;
-            });
-            setOptions(updatedList);
-          }
+          const updatedList = options.map((item, i) => {
+            const option = item;
+            if (
+              (e.keyCode === 38 && currentHighlight === 0 && i === options.length - 1)
+              || (e.keyCode === 40 && currentHighlight + 1 === options.length && i === 0)
+            ) {
+              option.highlight = true;
+            } else if (
+              (e.keyCode === 38 && i === (currentHighlight - 1))
+              || (e.keyCode === 40 && i === (currentHighlight + 1))
+            ) {
+              option.highlight = true;
+            } else {
+              option.highlight = false;
+            }
+            return option;
+          });
+          setOptions(updatedList);
+
+          const positionHighlight = highlightRef.current.offsetTop
+            + highlightRef.current.clientHeight;
+          const menuHeight = menuRef.current.clientHeight;
+          console.dir(menuRef.current)
+          // if (positionHighlight > menuHeight) {
+          //   menuRef.current.scroll(0, positionHighlight - menuHeight);
+          // }
         }
       }
     };
@@ -114,6 +112,20 @@ export const Select = ({ placeholder, options: list, ...props }) => {
     }
   }, [focused]);
 
+  const onMouseEnterOption = (optionValue) => {
+    const target = options.indexOf(options.find((item) => item.value === optionValue));
+    const updatedList = options.map((item, i) => {
+      const option = item;
+      if (i === target) {
+        option.highlight = true;
+      } else {
+        option.highlight = false;
+      }
+      return option;
+    });
+    setOptions(updatedList);
+  };
+
   return (
     <StyledSelect
       ref={selectRef}
@@ -135,11 +147,13 @@ export const Select = ({ placeholder, options: list, ...props }) => {
         <ArrowDropdown icon="arrow_drop_down" />
       </Controls>
       {menuOpen && (
-        <SelectMenu>
+        <SelectMenu ref={menuRef}>
           {options.map((option) => (
             <SelectMenuItem
               highlight={option.highlight}
               key={option.value}
+              onMouseEnter={() => onMouseEnterOption(option.value)}
+              deepRef={option.highlight ? highlightRef : null}
             >
               {option.label}
             </SelectMenuItem>
