@@ -6,6 +6,10 @@ import { Icon } from '../Icon';
 import getFromTheme from '../../utils/getFromTheme';
 import { ListItem } from '../_common';
 
+export const Container = styled.div`
+  position: relative;
+`;
+
 export const StyledSelect = styled.div`
   ${inputStyle}
   position: relative;
@@ -96,10 +100,10 @@ export const SelectMenuItem = styled(ListItem)`
     'none'
   )};
   &:hover {
-    ${ifProp(
+    background-color: ${ifProp(
       'highlight',
       withProp(getFromTheme('palette.black.900'), transparentize(0.92)),
-      'none'
+      'transparent'
     )};
   }
 `;

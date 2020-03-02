@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import {
+  Container,
   StyledSelect,
   Filter,
   Value,
@@ -12,11 +13,26 @@ import {
   SelectMenuItem
 } from './style';
 
-export const Select = ({ placeholder, options: list, ...props }) => {
-  const [value, setValue] = useState('');
+const setScrollMenu = (menu, menuItem) => {
+  const bottomHighlight = menuItem.offsetTop
+    + menuItem.clientHeight;
+  const topHighlight = menuItem.offsetTop;
+  const menuHeight = menu.clientHeight;
+  const menuScroll = menu.scrollTop;
+
+  if (bottomHighlight > menuHeight + menuScroll) {
+    menu.scroll(0, bottomHighlight - menuHeight);
+  }
+  if (topHighlight < menuScroll) {
+    menu.scroll(0, topHighlight);
+  }
+}
+
+export const Select = ({ placeholder, options: list, name, ...props }) => {
+  const [options, setOptions] = useState({})
+  const [selected, setSelected] = useState({});
   const [focused, setFocused] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [options, setOptions] = useState({})
   const selectRef = useRef(null);
   const inputRef = useRef(null);
   const highlightRef = useRef(null);
@@ -65,13 +81,8 @@ export const Select = ({ placeholder, options: list, ...props }) => {
           });
           setOptions(updatedList);
 
-          const positionHighlight = highlightRef.current.offsetTop
-            + highlightRef.current.clientHeight;
-          const menuHeight = menuRef.current.clientHeight;
-          console.dir(menuRef.current)
-          // if (positionHighlight > menuHeight) {
-          //   menuRef.current.scroll(0, positionHighlight - menuHeight);
-          // }
+          // Position menu item
+          setScrollMenu(menuRef.current, highlightRef.current);
         }
       }
     };
@@ -83,9 +94,8 @@ export const Select = ({ placeholder, options: list, ...props }) => {
     }
   }, [focused, menuOpen]);
 
-  const focusSelect = (e) => {
-    e.preventDefault();
-    if (inputRef.current) inputRef.current.focus();
+  const focusSelect = () => {
+    inputRef.current.focus();
     setFocused(true);
   };
 
@@ -95,13 +105,16 @@ export const Select = ({ placeholder, options: list, ...props }) => {
   };
 
   const onMouseDown = (e) => {
-    focusSelect(e);
+    e.preventDefault();
+    focusSelect();
     setMenuOpen(!menuOpen);
   };
 
   useEffect(() => {
-    const closeOnOut = (e) => {
-      if (!selectRef.current.contains(e.target)) {
+    const closeOnOut = (event) => {
+      const isClickedOut = !selectRef.current.contains(event.target);
+      const isClickedMenu = menuRef.current && menuRef.current.contains(event.target);
+      if (isClickedOut && !isClickedMenu) {
         blurSelect();
       }
     };
@@ -112,11 +125,10 @@ export const Select = ({ placeholder, options: list, ...props }) => {
     }
   }, [focused]);
 
-  const onMouseEnterOption = (optionValue) => {
-    const target = options.indexOf(options.find((item) => item.value === optionValue));
-    const updatedList = options.map((item, i) => {
+  const onMouseEnterOption = (optionItem) => {
+    const updatedList = options.map((item) => {
       const option = item;
-      if (i === target) {
+      if (option.value === optionItem.value) {
         option.highlight = true;
       } else {
         option.highlight = false;
@@ -126,33 +138,50 @@ export const Select = ({ placeholder, options: list, ...props }) => {
     setOptions(updatedList);
   };
 
+  const selectOption = (option) => {
+    setSelected(option);
+    const updateSelected = options.map((itemList) => {
+      const item = itemList;
+      if (item.value === option.value) {
+        item.selected = true;
+      } else {
+        item.selected = false;
+      }
+      return item;
+    });
+    setOptions(updateSelected);
+    setMenuOpen(false);
+  };
+
   return (
-    <StyledSelect
-      ref={selectRef}
-      isFocused={focused}
-      onMouseDown={onMouseDown}
-    >
-      <Filter>
-        <Input
-          type="text"
-          ref={inputRef}
-          onFocus={focusSelect}
-          onBlur={blurSelect}
-          readOnly
-        />
-        {!!value && <Value>{value}</Value>}
-        {(!value && !!placeholder) && <Placeholder>{placeholder}</Placeholder>}
-      </Filter>
-      <Controls>
-        <ArrowDropdown icon="arrow_drop_down" />
-      </Controls>
+    <Container>
+      <StyledSelect
+        ref={selectRef}
+        isFocused={focused}
+        onMouseDown={onMouseDown}
+      >
+        <Filter>
+          <Input
+            type="text"
+            ref={inputRef}
+            tabIndex="0"
+            readOnly
+          />
+          {!!selected.value && <Value>{selected.label}</Value>}
+          {(!selected.value && !!placeholder) && <Placeholder>{placeholder}</Placeholder>}
+        </Filter>
+        <Controls>
+          <ArrowDropdown icon="arrow_drop_down" />
+        </Controls>
+      </StyledSelect>
       {menuOpen && (
         <SelectMenu ref={menuRef}>
           {options.map((option) => (
             <SelectMenuItem
               highlight={option.highlight}
               key={option.value}
-              onMouseEnter={() => onMouseEnterOption(option.value)}
+              onMouseEnter={() => onMouseEnterOption(option)}
+              onClick={() => selectOption(option)}
               deepRef={option.highlight ? highlightRef : null}
             >
               {option.label}
@@ -160,8 +189,8 @@ export const Select = ({ placeholder, options: list, ...props }) => {
           ))}
         </SelectMenu>
       )}
-      <input type="hidden" value={value} />
-    </StyledSelect>
+      <input type="hidden" name={name} value={selected.value || ''} />
+    </Container>
   )
 };
 
