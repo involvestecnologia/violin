@@ -38,6 +38,39 @@ export const Select = ({ placeholder, options: list, name, ...props }) => {
   const highlightRef = useRef(null);
   const menuRef = useRef(null);
 
+  const focusSelect = () => {
+    inputRef.current.focus();
+    setFocused(true);
+  };
+
+  const blurSelect = () => {
+    setFocused(false);
+    setMenuOpen(false);
+  };
+
+  const focusAndToggleMenu = (e) => {
+    if (e) e.preventDefault();
+    focusSelect();
+    setMenuOpen(!menuOpen);
+  };
+
+  const selectOption = (option) => {
+    setSelected(option);
+    const updateSelected = options.map((itemList) => {
+      const item = itemList;
+      if (item.value === option.value) {
+        item.selected = true;
+      } else {
+        item.selected = false;
+      }
+      return item;
+    });
+    setOptions(updateSelected);
+    setTimeout(() => {
+      setMenuOpen(false);
+    }, 50);
+  };
+
   useEffect(() => {
     // Apply highlight at first option item
     const menuList = list.map(
@@ -85,6 +118,15 @@ export const Select = ({ placeholder, options: list, name, ...props }) => {
           setScrollMenu(menuRef.current, highlightRef.current);
         }
       }
+
+      if (focused && e.keyCode === 9) {
+        blurSelect();
+      }
+
+      if (menuOpen && e.keyCode === 13) {
+        const selected = options.filter((item) => item.highlight);
+        selectOption(selected[0]);
+      }
     };
     document.addEventListener('keydown', navigateMenuKeyboard);
 
@@ -94,28 +136,13 @@ export const Select = ({ placeholder, options: list, name, ...props }) => {
     }
   }, [focused, menuOpen]);
 
-  const focusSelect = () => {
-    inputRef.current.focus();
-    setFocused(true);
-  };
-
-  const blurSelect = () => {
-    setFocused(false);
-    setMenuOpen(false);
-  };
-
-  const onMouseDown = (e) => {
-    e.preventDefault();
-    focusSelect();
-    setMenuOpen(!menuOpen);
-  };
-
   useEffect(() => {
     const closeOnOut = (event) => {
-      const isClickedOut = !selectRef.current.contains(event.target);
-      const isClickedMenu = menuRef.current && menuRef.current.contains(event.target);
-      if (isClickedOut && !isClickedMenu) {
-        blurSelect();
+      if (focused) {
+        const isClickedOut = !selectRef.current.contains(event.target);
+        if (isClickedOut) {
+          blurSelect();
+        }
       }
     };
 
@@ -138,33 +165,17 @@ export const Select = ({ placeholder, options: list, name, ...props }) => {
     setOptions(updatedList);
   };
 
-  const selectOption = (option) => {
-    setSelected(option);
-    const updateSelected = options.map((itemList) => {
-      const item = itemList;
-      if (item.value === option.value) {
-        item.selected = true;
-      } else {
-        item.selected = false;
-      }
-      return item;
-    });
-    setOptions(updateSelected);
-    setMenuOpen(false);
-  };
-
   return (
-    <Container>
+    <Container ref={selectRef}>
       <StyledSelect
-        ref={selectRef}
         isFocused={focused}
-        onMouseDown={onMouseDown}
+        onMouseDown={focusAndToggleMenu}
       >
         <Filter>
           <Input
             type="text"
             ref={inputRef}
-            tabIndex="0"
+            onFocus={focusSelect}
             readOnly
           />
           {!!selected.value && <Value>{selected.label}</Value>}
