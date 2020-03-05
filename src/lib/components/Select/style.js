@@ -94,16 +94,31 @@ export const SelectMenu = styled.div`
 
 export const SelectMenuItem = styled(ListItem)`
   width: 100%;
-  background-color: ${ifProp(
-    'highlight',
-    withProp(getFromTheme('palette.black.900'), transparentize(0.92)),
-    'none'
-  )};
+  background: ${({ selected, highlight }) => {
+    if (selected && !highlight) {
+      return getFromTheme('palette.primary.100');
+    }
+    if (highlight && !selected) {
+      return withProp(getFromTheme('palette.black.900'), transparentize(0.92));
+    }
+    if (selected && highlight) {
+      return getFromTheme('palette.primary.200');
+    }
+    return 'none';
+  }};
+
   &:hover {
-    background-color: ${ifProp(
-      'highlight',
-      withProp(getFromTheme('palette.black.900'), transparentize(0.92)),
-      'transparent'
-    )};
+    background: ${({ selected, highlight }) => {
+      if (selected && !highlight) {
+        return getFromTheme('palette.primary.100');
+      }
+      if (highlight && !selected) {
+        return withProp(getFromTheme('palette.black.900'), transparentize(0.92));
+      }
+      if (selected && highlight) {
+        return getFromTheme('palette.primary.200');
+      }
+      return 'none';
+    }};
   }
 `;

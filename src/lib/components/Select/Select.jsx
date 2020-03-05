@@ -1,42 +1,16 @@
 import React, { useRef, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import {
-  Container,
-  StyledSelect,
-  Filter,
-  Value,
-  Placeholder,
-  Controls,
-  ArrowDropdown,
-  Input,
-  SelectMenu,
-  SelectMenuItem
-} from './style';
+import InputSelect from './InputSelect';
+import { Container } from './style';
+import DropdownSelect from './DropdownSelect';
 
-const setScrollMenu = (menu, menuItem) => {
-  const bottomHighlight = menuItem.offsetTop
-    + menuItem.clientHeight;
-  const topHighlight = menuItem.offsetTop;
-  const menuHeight = menu.clientHeight;
-  const menuScroll = menu.scrollTop;
-
-  if (bottomHighlight > menuHeight + menuScroll) {
-    menu.scroll(0, bottomHighlight - menuHeight);
-  }
-  if (topHighlight < menuScroll) {
-    menu.scroll(0, topHighlight);
-  }
-}
-
-export const Select = ({ placeholder, options: list, name, ...props }) => {
-  const [options, setOptions] = useState({})
+export const Select = ({ placeholder, options: optionsList, name }) => {
+  const [options, setOptions] = useState(optionsList);
   const [selected, setSelected] = useState({});
   const [focused, setFocused] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const selectRef = useRef(null);
   const inputRef = useRef(null);
-  const highlightRef = useRef(null);
-  const menuRef = useRef(null);
 
   const focusSelect = () => {
     inputRef.current.focus();
@@ -54,85 +28,38 @@ export const Select = ({ placeholder, options: list, name, ...props }) => {
     setMenuOpen(!menuOpen);
   };
 
-  const selectOption = (option) => {
-    setSelected(option);
-    const updateSelected = options.map((itemList) => {
-      const item = itemList;
-      if (item.value === option.value) {
-        item.selected = true;
-      } else {
-        item.selected = false;
-      }
-      return item;
-    });
+  const selectOption = (optionValue) => {
+    setSelected(options.find((item) => item.value === optionValue));
+    const updateSelected = options.map((item) => ({
+      ...item,
+      selected: item.value === optionValue
+    }));
     setOptions(updateSelected);
     setTimeout(() => {
       setMenuOpen(false);
-    }, 50);
+    }, 50); // Delay to remove menu from DOM to avoid null of menuRef
   };
 
   useEffect(() => {
-    // Apply highlight at first option item
-    const menuList = list.map(
-      (item, index) => (index === 0
-        ? { ...item, highlight: true }
-        : { ...item, highlight: false })
-    );
-    setOptions(menuList);
-
     // Toggle menu when space key is pressed
     const openMenuKeyboard = (e) => {
-      if (focused && e.keyCode === 32) {
-        e.preventDefault();
-        setMenuOpen(!menuOpen);
+      if (focused) {
+        if (
+          (e.keyCode === 32) || ((!menuOpen && e.keyCode === 38) || (!menuOpen && e.keyCode === 40))
+        ) {
+          e.preventDefault();
+          setMenuOpen(!menuOpen);
+        }
+
+        if (e.keyCode === 9) {
+          blurSelect();
+        }
       }
     };
     document.addEventListener('keydown', openMenuKeyboard);
 
-    const navigateMenuKeyboard = (e) => {
-      if (e.keyCode === 38 || e.keyCode === 40) {
-        e.preventDefault();
-        if (focused && !menuOpen) setMenuOpen(true);
-        if (menuOpen) {
-          const currentHighlight = options.indexOf(options.find((item) => item.highlight));
-          const updatedList = options.map((item, i) => {
-            const option = item;
-            if (
-              (e.keyCode === 38 && currentHighlight === 0 && i === options.length - 1)
-              || (e.keyCode === 40 && currentHighlight + 1 === options.length && i === 0)
-            ) {
-              option.highlight = true;
-            } else if (
-              (e.keyCode === 38 && i === (currentHighlight - 1))
-              || (e.keyCode === 40 && i === (currentHighlight + 1))
-            ) {
-              option.highlight = true;
-            } else {
-              option.highlight = false;
-            }
-            return option;
-          });
-          setOptions(updatedList);
-
-          // Position menu item
-          setScrollMenu(menuRef.current, highlightRef.current);
-        }
-      }
-
-      if (focused && e.keyCode === 9) {
-        blurSelect();
-      }
-
-      if (menuOpen && e.keyCode === 13) {
-        const selected = options.filter((item) => item.highlight);
-        selectOption(selected[0]);
-      }
-    };
-    document.addEventListener('keydown', navigateMenuKeyboard);
-
     return () => {
       document.removeEventListener('keydown', openMenuKeyboard);
-      document.removeEventListener('keydown', navigateMenuKeyboard);
     }
   }, [focused, menuOpen]);
 
@@ -152,53 +79,21 @@ export const Select = ({ placeholder, options: list, name, ...props }) => {
     }
   }, [focused]);
 
-  const onMouseEnterOption = (optionItem) => {
-    const updatedList = options.map((item) => {
-      const option = item;
-      if (option.value === optionItem.value) {
-        option.highlight = true;
-      } else {
-        option.highlight = false;
-      }
-      return option;
-    });
-    setOptions(updatedList);
-  };
-
   return (
     <Container ref={selectRef}>
-      <StyledSelect
-        isFocused={focused}
+      <InputSelect
+        focused={focused}
         onMouseDown={focusAndToggleMenu}
-      >
-        <Filter>
-          <Input
-            type="text"
-            ref={inputRef}
-            onFocus={focusSelect}
-            readOnly
-          />
-          {!!selected.value && <Value>{selected.label}</Value>}
-          {(!selected.value && !!placeholder) && <Placeholder>{placeholder}</Placeholder>}
-        </Filter>
-        <Controls>
-          <ArrowDropdown icon="arrow_drop_down" />
-        </Controls>
-      </StyledSelect>
+        inputRef={inputRef}
+        onFocus={focusSelect}
+        selected={selected}
+        placeholder={placeholder}
+      />
       {menuOpen && (
-        <SelectMenu ref={menuRef}>
-          {options.map((option) => (
-            <SelectMenuItem
-              highlight={option.highlight}
-              key={option.value}
-              onMouseEnter={() => onMouseEnterOption(option)}
-              onClick={() => selectOption(option)}
-              deepRef={option.highlight ? highlightRef : null}
-            >
-              {option.label}
-            </SelectMenuItem>
-          ))}
-        </SelectMenu>
+        <DropdownSelect
+          options={options}
+          onSelect={selectOption}
+        />
       )}
       <input type="hidden" name={name} value={selected.value || ''} />
     </Container>
@@ -212,9 +107,11 @@ Select.propTypes = {
       value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
       label: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
     })
-  ).isRequired
+  ).isRequired,
+  name: PropTypes.string
 };
 
 Select.defaultProps = {
-  placeholder: null
+  placeholder: null,
+  name: null
 };
