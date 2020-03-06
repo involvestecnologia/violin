@@ -10,6 +10,33 @@ import { Playground, Props } from "docz";
 # Select
 
 <Playground>
+  <div style={{ width: 300 }}>
+    <Select
+      placeholder="Selecione"
+      options={[
+        {value: "other", label: "Other"},
+        {
+          title: "Colors",
+          group: [
+            {value: "blue", label: "Blue"},
+            {value: "red", label: "Red"},
+            {value: "green", label: "Green"}
+          ]
+        },
+        {
+          title: "Country",
+          group: [
+            {value: "br", label: "Brazil"},
+            {value: "pt", label: "Portugal"},
+            {value: "us", label: "United States"}
+          ]
+        }
+      ]}
+    />
+  </div>
+</Playground>
+
+<Playground>
   <input type="checkbox" />
   <div style={{ width: 300 }}>
     <Select

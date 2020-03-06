@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { SelectMenu, SelectMenuItem } from './style';
 import scrollToElement from '../../utils/scrollToElement';
+import idgen from '../../utils/idgen';
 
 const DropdownSelect = ({ options, onSelect }) => {
   const [highlightItem, setHighlightItem] = useState(0);
@@ -11,6 +12,10 @@ const DropdownSelect = ({ options, onSelect }) => {
   const selectOption = (optionValue) => {
     onSelect(optionValue);
   };
+
+  useEffect(() => {
+    console.log(options);
+  }, []);
 
   useEffect(() => {
     const navigateMenuKeyboard = (e) => {
@@ -50,7 +55,7 @@ const DropdownSelect = ({ options, onSelect }) => {
       {options.map((option, i) => (
         <SelectMenuItem
           highlight={highlightItem === i}
-          key={option.value}
+          key={idgen()}
           onMouseEnter={() => setHighlightItem(i)}
           onClick={() => selectOption(option.value)}
           deepRef={highlightItem === i ? highlightRef : null}

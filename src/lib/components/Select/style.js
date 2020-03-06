@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
-import { ifProp, withProp } from 'styled-tools';
-import { transparentize } from 'polished';
+import { ifProp, withProp, theme } from 'styled-tools';
+import { transparentize, rem } from 'polished';
 import { inputStyle, inputStyleFocus, inputStyleDisabled } from '../TextField/style';
 import { Icon } from '../Icon';
 import getFromTheme from '../../utils/getFromTheme';
@@ -121,4 +121,11 @@ export const SelectMenuItem = styled(ListItem)`
       return 'none';
     }};
   }
+`;
+
+export const SelectMenuTitle = styled.h6`
+  font-size: ${rem(11)};
+  text-transform: uppercase;
+  color: ${theme('palette.black.400')};
+  padding: 12px 16px 0;
 `;
