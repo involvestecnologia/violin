@@ -35,25 +35,23 @@ export const Select = ({ placeholder, options: optionsList, name }) => {
       selected: item.value === optionValue
     }));
     setOptions(updateSelected);
-    setTimeout(() => {
-      setMenuOpen(false);
-    }, 50); // Delay to remove menu from DOM to avoid null of menuRef
+    setMenuOpen(false);
   };
 
   useEffect(() => {
-    // Toggle menu when space key is pressed
     const openMenuKeyboard = (e) => {
-      if (focused) {
-        if (
-          (e.keyCode === 32) || ((!menuOpen && e.keyCode === 38) || (!menuOpen && e.keyCode === 40))
-        ) {
-          e.preventDefault();
-          setMenuOpen(!menuOpen);
-        }
+      const spaceKey = focused && e.keyCode === 32;
+      const upKey = focused && e.keyCode === 38;
+      const downKey = focused && e.keyCode === 40;
+      const tabKey = focused && e.keyCode === 9;
 
-        if (e.keyCode === 9) {
-          blurSelect();
-        }
+      if (spaceKey || (!menuOpen && upKey) || (!menuOpen && downKey)) {
+        e.preventDefault();
+        setMenuOpen(!menuOpen);
+      }
+
+      if (tabKey) {
+        blurSelect();
       }
     };
     document.addEventListener('keydown', openMenuKeyboard);
