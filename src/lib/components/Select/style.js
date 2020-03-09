@@ -126,6 +126,7 @@ export const SelectMenuItem = styled(ListItem)`
 export const SelectMenuTitle = styled.h6`
   font-size: ${rem(11)};
   text-transform: uppercase;
-  color: ${theme('palette.black.400')};
-  padding: 12px 16px 0;
+  color: ${getFromTheme('palette.black.400')};
+  padding: 10px 16px 4px 16px;
+  margin: 0;
 `;

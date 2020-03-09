@@ -1,11 +1,12 @@
 import React, { useRef, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { SelectMenu, SelectMenuItem } from './style';
 import scrollToElement from '../../utils/scrollToElement';
 import idgen from '../../utils/idgen';
+import { SelectMenu, SelectMenuItem, SelectMenuTitle } from './style';
 
 const DropdownSelect = ({ options, onSelect }) => {
   const [highlightItem, setHighlightItem] = useState(0);
+  const [customOptions, setCustomOptions] = useState([]);
   const menuRef = useRef(null);
   const highlightRef = useRef(null);
 
@@ -14,8 +15,19 @@ const DropdownSelect = ({ options, onSelect }) => {
   };
 
   useEffect(() => {
-    console.log(options);
-  }, []);
+    const opts = [];
+    options.forEach((item) => {
+      if (item.options) {
+        opts.push({ title: item.label });
+        item.options.forEach((sub) => {
+          opts.push(sub);
+        })
+      } else {
+        opts.push(item);
+      }
+    });
+    setCustomOptions(opts);
+  }, [options]);
 
   useEffect(() => {
     const navigateMenuKeyboard = (e) => {
@@ -28,19 +40,27 @@ const DropdownSelect = ({ options, onSelect }) => {
       }
 
       if (upKey && highlightItem > 0) {
-        setHighlightItem(highlightItem - 1);
-      } else if (downKey && highlightItem < options.length - 1) {
-        setHighlightItem(highlightItem + 1);
+        let prev = highlightItem - 1;
+        if (customOptions[highlightItem - 1].title) {
+          prev = highlightItem - 2;
+        }
+        setHighlightItem(prev);
+      } else if (downKey && (highlightItem < customOptions.length - 1)) {
+        let next = highlightItem + 1;
+        if (customOptions[highlightItem + 1].title) {
+          next = highlightItem + 2;
+        }
+        setHighlightItem(next);
       } else if (upKey && highlightItem === 0) {
-        setHighlightItem(options.length - 1);
-      } else if (downKey && highlightItem === options.length - 1) {
+        setHighlightItem(customOptions.length - 1);
+      } else if (downKey && highlightItem === customOptions.length - 1) {
         setHighlightItem(0);
       }
 
       scrollToElement(menuRef.current, highlightRef.current);
 
       if (enterKey) {
-        selectOption(options[highlightItem].value);
+        selectOption(customOptions[highlightItem].value);
       }
     };
     document.addEventListener('keydown', navigateMenuKeyboard);
@@ -48,22 +68,28 @@ const DropdownSelect = ({ options, onSelect }) => {
     return () => {
       document.removeEventListener('keydown', navigateMenuKeyboard);
     }
-  }, [highlightItem]);
+  }, [highlightItem, customOptions]);
 
   return (
     <SelectMenu ref={menuRef}>
-      {options.map((option, i) => (
-        <SelectMenuItem
-          highlight={highlightItem === i}
-          key={idgen()}
-          onMouseEnter={() => setHighlightItem(i)}
-          onClick={() => selectOption(option.value)}
-          deepRef={highlightItem === i ? highlightRef : null}
-          selected={option.selected}
-        >
-          {option.label}
-        </SelectMenuItem>
-      ))}
+      {customOptions.map((option, i) => {
+        if (option.title) {
+          return <SelectMenuTitle key={idgen()}>{option.title}</SelectMenuTitle>
+        } else {
+          return (
+            <SelectMenuItem
+              highlight={highlightItem === i}
+              key={idgen()}
+              onMouseEnter={() => setHighlightItem(i)}
+              onClick={() => selectOption(option.value)}
+              deepRef={highlightItem === i ? highlightRef : null}
+              selected={option.selected}
+            >
+              {option.label}
+            </SelectMenuItem>
+          )
+        }
+      })}
     </SelectMenu>
   );
 };

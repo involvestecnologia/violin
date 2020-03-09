@@ -5,7 +5,7 @@ import { Container } from './style';
 import DropdownSelect from './DropdownSelect';
 
 export const Select = ({ placeholder, options: optionsList, name }) => {
-  const [options, setOptions] = useState(optionsList);
+  const [options, setOptions] = useState(Array.from(optionsList));
   const [selected, setSelected] = useState({});
   const [focused, setFocused] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -29,11 +29,27 @@ export const Select = ({ placeholder, options: optionsList, name }) => {
   };
 
   const selectOption = (optionValue) => {
-    setSelected(options.find((item) => item.value === optionValue));
-    const updateSelected = options.map((item) => ({
-      ...item,
-      selected: item.value === optionValue
-    }));
+    const updateSelected = options.map((item) => {
+      if (item.value) {
+        if (item.value === optionValue) {
+          item.selected = true;
+          setSelected(item);
+        } else {
+          delete item.selected
+        }
+      } else if (item.options) {
+        item.options.map((subItem) => {
+          if (subItem.value === optionValue) {
+            subItem.selected = true;
+            setSelected(subItem);
+          } else {
+            delete subItem.selected;
+          }
+          return subItem;
+        })
+      }
+      return item;
+    });
     setOptions(updateSelected);
     setMenuOpen(false);
   };

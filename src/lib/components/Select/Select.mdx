@@ -14,34 +14,6 @@ import { Playground, Props } from "docz";
     <Select
       placeholder="Selecione"
       options={[
-        {value: "other", label: "Other"},
-        {
-          title: "Colors",
-          group: [
-            {value: "blue", label: "Blue"},
-            {value: "red", label: "Red"},
-            {value: "green", label: "Green"}
-          ]
-        },
-        {
-          title: "Country",
-          group: [
-            {value: "br", label: "Brazil"},
-            {value: "pt", label: "Portugal"},
-            {value: "us", label: "United States"}
-          ]
-        }
-      ]}
-    />
-  </div>
-</Playground>
-
-<Playground>
-  <input type="checkbox" />
-  <div style={{ width: 300 }}>
-    <Select
-      placeholder="Selecione"
-      options={[
         {value: "blue", label: "Blue"},
         {value: "red", label: "Red"},
         {value: "green", label: "Green"},
@@ -54,9 +26,35 @@ import { Playground, Props } from "docz";
       ]}
     />
   </div>
-  <input type="checkbox" />
 </Playground>
 
 ## Props
 
 <Props of={Select} />
+
+## Grouped options
+
+<Playground>
+  <div style={{ width: 300 }}>
+    <Select
+      placeholder="Selecione"
+      options={[
+        {
+          label: "Colors",
+          options: [
+            {value: "blue", label: "Blue"},
+            {value: "red", label: "Red"},
+            {value: "green", label: "Green"}
+          ]
+        },{
+          label: "Country",
+          options: [
+            {value: "br", label: "Brazil"},
+            {value: "pt", label: "Portugal"},
+            {value: "us", label: "United States"}
+          ]
+        }
+      ]}
+    />
+  </div>
+</Playground>
