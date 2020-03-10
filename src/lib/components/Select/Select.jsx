@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import InputSelect from './InputSelect';
 import { Container } from './style';
 import DropdownSelect from './DropdownSelect';
+import { setSelectOption } from './Select.utils';
 
 export const Select = ({ placeholder, options: optionsList, name }) => {
   const [options, setOptions] = useState(Array.from(optionsList));
@@ -29,29 +30,7 @@ export const Select = ({ placeholder, options: optionsList, name }) => {
   };
 
   const selectOption = (optionValue) => {
-    const updateSelected = options.map((opt) => {
-      const item = opt;
-      if (item.value) {
-        if (item.value === optionValue) {
-          item.selected = true;
-          setSelected(item);
-        } else {
-          delete item.selected
-        }
-      } else if (item.options) {
-        item.options.map((sub) => {
-          const subItem = sub;
-          if (subItem.value === optionValue) {
-            subItem.selected = true;
-            setSelected(subItem);
-          } else {
-            delete subItem.selected;
-          }
-          return subItem;
-        })
-      }
-      return item;
-    });
+    const updateSelected = setSelectOption(options, optionValue, setSelected);
     setOptions(updateSelected);
     setMenuOpen(false);
   };
@@ -68,9 +47,7 @@ export const Select = ({ placeholder, options: optionsList, name }) => {
         setMenuOpen(!menuOpen);
       }
 
-      if (tabKey) {
-        blurSelect();
-      }
+      if (tabKey) blurSelect();
     };
     document.addEventListener('keydown', openMenuKeyboard);
 
@@ -83,9 +60,7 @@ export const Select = ({ placeholder, options: optionsList, name }) => {
     const closeOnOut = (event) => {
       if (focused) {
         const isClickedOut = !selectRef.current.contains(event.target);
-        if (isClickedOut) {
-          blurSelect();
-        }
+        if (isClickedOut) blurSelect();
       }
     };
 

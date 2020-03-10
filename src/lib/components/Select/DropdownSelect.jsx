@@ -2,17 +2,8 @@ import React, { useRef, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import scrollToElement from '../../utils/scrollToElement';
 import idgen from '../../utils/idgen';
-import { setHighlightNavigation } from './Select.utils';
+import { setHighlightNavigation, setFirstHighlight } from './Select.utils';
 import { SelectMenu, SelectMenuItem, SelectMenuTitle } from './style';
-
-const setFirstItemHighlight = (arr, callback) => {
-  for (let i = 0; i < arr.length; i += 1) {
-    if (arr[i].value) {
-      callback(i);
-      break;
-    }
-  }
-};
 
 const DropdownSelect = ({ options, onSelect }) => {
   const [highlightItem, setHighlightItem] = useState(0);
@@ -37,8 +28,7 @@ const DropdownSelect = ({ options, onSelect }) => {
       }
     });
 
-    setFirstItemHighlight(opts, setHighlightItem);
-
+    setFirstHighlight(opts, setHighlightItem);
     setCustomOptions(opts);
   }, [options]);
 

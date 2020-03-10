@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { ifProp, withProp, theme } from 'styled-tools';
+import { withProp } from 'styled-tools';
 import { transparentize, rem } from 'polished';
 import { inputStyle, inputStyleFocus, inputStyleDisabled } from '../TextField/style';
 import { Icon } from '../Icon';
@@ -106,6 +106,7 @@ export const SelectMenuItem = styled(ListItem)`
     }
     return 'none';
   }};
+  user-select: none;
 
   &:hover {
     background: ${({ selected, highlight }) => {
@@ -129,4 +130,6 @@ export const SelectMenuTitle = styled.h6`
   color: ${getFromTheme('palette.black.400')};
   padding: 10px 16px 4px 16px;
   margin: 0;
+  cursor: default;
+  user-select: none;
 `;
