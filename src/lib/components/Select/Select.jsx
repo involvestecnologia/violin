@@ -29,7 +29,8 @@ export const Select = ({ placeholder, options: optionsList, name }) => {
   };
 
   const selectOption = (optionValue) => {
-    const updateSelected = options.map((item) => {
+    const updateSelected = options.map((opt) => {
+      const item = opt;
       if (item.value) {
         if (item.value === optionValue) {
           item.selected = true;
@@ -38,7 +39,8 @@ export const Select = ({ placeholder, options: optionsList, name }) => {
           delete item.selected
         }
       } else if (item.options) {
-        item.options.map((subItem) => {
+        item.options.map((sub) => {
+          const subItem = sub;
           if (subItem.value === optionValue) {
             subItem.selected = true;
             setSelected(subItem);
