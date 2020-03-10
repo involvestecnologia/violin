@@ -60,3 +60,21 @@ import { Playground, Props } from "docz";
     />
   </div>
 </Playground>
+
+## defaultValue
+
+<Playground>
+  <div style={{ width: 300 }}>
+    <Select
+      placeholder="Selecione"
+      name="colors"
+      defaultValue="purple"
+      options={[
+        {value: "blue", label: "Blue"},
+        {value: "orange", label: "Orange"},
+        {value: "purple", label: "Purple"},
+        {value: "yellow", label: "Yellow"}
+      ]}
+    />
+  </div>
+</Playground>

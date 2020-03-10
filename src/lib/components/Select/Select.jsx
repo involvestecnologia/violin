@@ -5,7 +5,7 @@ import { Container } from './style';
 import DropdownSelect from './DropdownSelect';
 import { setSelectOption } from './Select.utils';
 
-export const Select = ({ placeholder, options: optionsList, name }) => {
+export const Select = ({ placeholder, options: optionsList, name, defaultValue }) => {
   const [options, setOptions] = useState(Array.from(optionsList));
   const [selected, setSelected] = useState({});
   const [focused, setFocused] = useState(false);
@@ -36,16 +36,25 @@ export const Select = ({ placeholder, options: optionsList, name }) => {
   };
 
   useEffect(() => {
+    const updateSelected = setSelectOption(options, defaultValue, setSelected);
+    setOptions(updateSelected);
+  }, [defaultValue]);
+
+  useEffect(() => {
     const openMenuKeyboard = (e) => {
       const spaceKey = focused && e.keyCode === 32;
       const upKey = focused && e.keyCode === 38;
       const downKey = focused && e.keyCode === 40;
       const tabKey = focused && e.keyCode === 9;
+      const escKey = focused && e.keyCode === 27;
+      const enterKey = focused && e.keyCode === 13;
 
-      if (spaceKey || (!menuOpen && upKey) || (!menuOpen && downKey)) {
+      if (spaceKey || (!menuOpen && upKey) || (!menuOpen && downKey) || (!menuOpen && enterKey)) {
         e.preventDefault();
         setMenuOpen(!menuOpen);
       }
+
+      if (menuOpen && escKey) setMenuOpen(!menuOpen);
 
       if (tabKey) blurSelect();
     };
@@ -99,10 +108,12 @@ Select.propTypes = {
       label: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
     })
   ).isRequired,
-  name: PropTypes.string
+  name: PropTypes.string,
+  defaultValue: PropTypes.string
 };
 
 Select.defaultProps = {
   placeholder: null,
-  name: null
+  name: null,
+  defaultValue: null
 };
