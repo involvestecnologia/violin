@@ -104,6 +104,21 @@ export const SelectMenu = styled.div`
   padding: 8px 0;
   box-shadow: 0 5px 10px ${withProp(getFromTheme('palette.black.900'), transparentize(0.8))};
   overscroll-behavior: contain;
+
+  scrollbar-color: ${withProp(getFromTheme('palette.black.900'), transparentize(0.9))} white;
+  scrollbar-width: 10px;
+  
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: none;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background-color: ${withProp(getFromTheme('palette.black.900'), transparentize(0.9))};
+  }
 `;
 
 export const SelectMenuItem = styled(ListItem)`
