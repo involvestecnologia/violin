@@ -5,7 +5,13 @@ import { Container } from './style';
 import DropdownSelect from './DropdownSelect';
 import { setSelectOption } from './Select.utils';
 
-export const Select = ({ placeholder, options: optionsList, name, defaultValue }) => {
+export const Select = ({
+  placeholder,
+  options: optionsList,
+  name,
+  defaultValue,
+  disabled
+}) => {
   const [options, setOptions] = useState(Array.from(optionsList));
   const [selected, setSelected] = useState({});
   const [focused, setFocused] = useState(false);
@@ -13,26 +19,34 @@ export const Select = ({ placeholder, options: optionsList, name, defaultValue }
   const selectRef = useRef(null);
   const inputRef = useRef(null);
 
+  const handleMenuOpen = (open) => {
+    if (!disabled) setMenuOpen(open);
+  }
+
+  const handleFocused = (focus) => {
+    if (!disabled) setFocused(focus);
+  }
+
   const focusSelect = () => {
     inputRef.current.focus();
-    setFocused(true);
+    handleFocused(true);
   };
 
   const blurSelect = () => {
-    setFocused(false);
-    setMenuOpen(false);
+    handleFocused(false);
+    handleMenuOpen(false);
   };
 
   const focusAndToggleMenu = (e) => {
     if (e) e.preventDefault();
     focusSelect();
-    setMenuOpen(!menuOpen);
+    handleMenuOpen(!menuOpen);
   };
 
   const selectOption = (optionValue) => {
     const updateSelected = setSelectOption(options, optionValue, setSelected);
     setOptions(updateSelected);
-    setMenuOpen(false);
+    handleMenuOpen(false);
   };
 
   useEffect(() => {
@@ -51,10 +65,10 @@ export const Select = ({ placeholder, options: optionsList, name, defaultValue }
 
       if (spaceKey || (!menuOpen && upKey) || (!menuOpen && downKey) || (!menuOpen && enterKey)) {
         e.preventDefault();
-        setMenuOpen(!menuOpen);
+        handleMenuOpen(!menuOpen);
       }
 
-      if (menuOpen && escKey) setMenuOpen(!menuOpen);
+      if (menuOpen && escKey) handleMenuOpen(!menuOpen);
 
       if (tabKey) blurSelect();
     };
@@ -88,6 +102,7 @@ export const Select = ({ placeholder, options: optionsList, name, defaultValue }
         onFocus={focusSelect}
         selected={selected}
         placeholder={placeholder}
+        disabled={disabled}
       />
       {menuOpen && (
         <DropdownSelect
@@ -95,7 +110,7 @@ export const Select = ({ placeholder, options: optionsList, name, defaultValue }
           onSelect={selectOption}
         />
       )}
-      <input type="hidden" name={name} value={selected.value || ''} />
+      <input type="hidden" name={name} value={selected.value || ''} disabled={disabled} />
     </Container>
   )
 };
@@ -109,11 +124,13 @@ Select.propTypes = {
     })
   ).isRequired,
   name: PropTypes.string,
-  defaultValue: PropTypes.string
+  defaultValue: PropTypes.string,
+  disabled: PropTypes.bool
 };
 
 Select.defaultProps = {
   placeholder: null,
   name: null,
-  defaultValue: null
+  defaultValue: null,
+  disabled: false
 };

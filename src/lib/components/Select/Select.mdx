@@ -78,3 +78,21 @@ import { Playground, Props } from "docz";
     />
   </div>
 </Playground>
+
+## disabled 
+
+<Playground>
+  <div style={{ width: 300 }}>
+    <Select
+      placeholder="Selecione"
+      name="sizes"
+      disabled
+      defaultValue="medium"
+      options={[
+        {value: "small", label: "Small"},
+        {value: "medium", label: "Medium"},
+        {value: "large", label: "Large"}
+      ]}
+    />
+  </div>
+</Playground>

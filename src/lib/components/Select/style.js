@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { withProp } from 'styled-tools';
+import { withProp, ifProp } from 'styled-tools';
 import { transparentize, rem } from 'polished';
 import { inputStyle, inputStyleFocus, inputStyleDisabled } from '../TextField/style';
 import { Icon } from '../Icon';
@@ -19,6 +19,12 @@ export const StyledSelect = styled.div`
   padding: 0;
 
   ${({ isFocused }) => isFocused && inputStyleFocus}
+  ${({ isDisabled }) => isDisabled && inputStyleDisabled}
+  ${({ isDisabled }) => isDisabled && `
+    * {
+      cursor: not-allowed !important;
+    }
+  `}
 `;
 
 export const Filter = styled.div`
@@ -53,14 +59,20 @@ const styledValue = css`
   box-sizing: border-box;
 `;
 
+export const textDisabled = css`
+  color: ${withProp(getFromTheme('palette.black.900'), transparentize(0.75))};
+`;
+
 export const Value = styled.div`
   ${styledValue}
   color: ${getFromTheme('palette.black.900')};
+  ${({ isDisabled }) => isDisabled && textDisabled}
 `;
 
 export const Placeholder = styled.div`
   ${styledValue}
   color: ${getFromTheme('palette.black.400')};
+  ${({ isDisabled }) => isDisabled && textDisabled}
 `;
 
 export const Controls = styled.div`
@@ -68,12 +80,13 @@ export const Controls = styled.div`
   align-items: center;
   flex-shrink: 0;
   align-self: stretch;
+  color: ${getFromTheme('palette.black.600')};
+  ${({ isDisabled }) => isDisabled && textDisabled}
 `;
 
 export const ArrowDropdown = styled(Icon)`
   font-size: 24px;
   padding: 0 10px;
-  color: ${getFromTheme('palette.black.600')};
   cursor: default;
 `;
 
