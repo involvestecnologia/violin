@@ -49,6 +49,11 @@ export const Select = ({
     handleMenuOpen(false);
   };
 
+  const clearSelect = () => {
+    setSelected({});
+    selectOption(null);
+  }
+
   useEffect(() => {
     const updateSelected = setSelectOption(options, defaultValue, setSelected);
     setOptions(updateSelected);
@@ -102,6 +107,7 @@ export const Select = ({
         onFocus={focusSelect}
         selected={selected}
         placeholder={placeholder}
+        clearSelect={clearSelect}
         disabled={disabled}
       />
       {menuOpen && (

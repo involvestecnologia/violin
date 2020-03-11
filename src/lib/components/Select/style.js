@@ -80,13 +80,14 @@ export const Controls = styled.div`
   align-items: center;
   flex-shrink: 0;
   align-self: stretch;
+  margin-right: 5px;
   color: ${getFromTheme('palette.black.600')};
   ${({ isDisabled }) => isDisabled && textDisabled}
 `;
 
 export const ArrowDropdown = styled(Icon)`
   font-size: 24px;
-  padding: 0 10px;
+  padding: 0 3px;
   cursor: default;
 `;
 
