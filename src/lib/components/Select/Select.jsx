@@ -10,6 +10,7 @@ export const Select = ({
   options: optionsList,
   name,
   defaultValue,
+  searchable,
   disabled
 }) => {
   const [options, setOptions] = useState(Array.from(optionsList));
@@ -108,6 +109,7 @@ export const Select = ({
         selected={selected}
         placeholder={placeholder}
         clearSelect={clearSelect}
+        searchable={searchable}
         disabled={disabled}
       />
       {menuOpen && (
@@ -131,6 +133,7 @@ Select.propTypes = {
   ).isRequired,
   name: PropTypes.string,
   defaultValue: PropTypes.string,
+  searchable: PropTypes.bool,
   disabled: PropTypes.bool
 };
 
@@ -138,5 +141,6 @@ Select.defaultProps = {
   placeholder: null,
   name: null,
   defaultValue: null,
+  searchable: false,
   disabled: false
 };

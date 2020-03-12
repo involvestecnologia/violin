@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { withProp, ifProp } from 'styled-tools';
+import { withProp, ifProp, prop } from 'styled-tools';
 import { transparentize, rem } from 'polished';
 import { inputStyle, inputStyleFocus, inputStyleDisabled } from '../TextField/style';
 import { Icon } from '../Icon';
@@ -29,14 +29,17 @@ export const StyledSelect = styled.div`
 
 export const Filter = styled.div`
   position: relative;
+  flex-grow: 0;
   display: flex;
   flex-wrap: wrap;
   flex: 1 1 0%;
   padding-left: 10px;
+  overflow: hidden;
 `;
 
 export const Input = styled.input`
-  width: 1px;
+  width: ${prop('widthInput')}px;
+  max-width: 100%;
   background: transparent;
   border: none;
   font-size: ${getFromTheme('typography.fontSize.body')};

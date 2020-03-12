@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Button } from '../Button';
 import {
@@ -13,12 +13,25 @@ const InputSelect = ({
   selected,
   clearSelect,
   placeholder,
+  searchable,
   disabled
 }) => {
+  const [value, setValue] = useState('');
+  const [widthInput, setWidthInput] = useState(1);
+  
   const handleClear = (e) => {
     e.stopPropagation();
     clearSelect();
   };
+
+  const resetInput = () => {
+    setWidthInput(1);
+    setValue('');
+  }
+
+  useEffect(() => {
+    setWidthInput(inputRef.current.scrollWidth);
+  }, [value]);
 
   return (
     <StyledSelect
@@ -32,10 +45,14 @@ const InputSelect = ({
           ref={inputRef}
           onFocus={onFocus}
           disabled={disabled}
-          readOnly
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          onBlur={resetInput}
+          readOnly={!searchable}
+          widthInput={widthInput}
         />
-        {!!selected.value && <Value isDisabled={disabled}>{selected.label}</Value>}
-        {(!selected.value && !!placeholder)
+        {!!selected.value && !value.length && <Value isDisabled={disabled}>{selected.label}</Value>}
+        {(!selected.value && !!placeholder && !value.length)
           && <Placeholder isDisabled={disabled}>{placeholder}</Placeholder>}
       </Filter>
       <Controls isDisabled={disabled}>
