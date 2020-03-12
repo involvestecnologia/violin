@@ -36,10 +36,27 @@ const DropdownSelect = ({ options, onSelect, menuRef, filter }) => {
   }, [options]);
 
   useEffect(() => {
+    setFirstHighlight(customOptions, setHighlightItem);
+  }, [customOptions]);
+
+  useEffect(() => {
     const mounted = mountOptions();
 
     if (filter.length > 0) {
-      const filtered = mounted.filter((item) => item.label.toLowerCase().includes(filter));
+      const filtered = mounted.filter((item) => {
+        if (item.title) {
+          const isMatchedGroup = options.filter(
+            (opt) => opt.label === item.title
+          )[0].options.filter(
+            (opt) => opt.label.toLowerCase().includes(filter)
+          );
+
+          if (isMatchedGroup.length > 0) {
+            return item;
+          }
+        }
+        return item.label && item.label.toLowerCase().includes(filter)
+      });
       setCustomOptions(filtered);
     } else {
       setCustomOptions(mounted);

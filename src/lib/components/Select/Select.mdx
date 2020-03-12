@@ -14,7 +14,6 @@ import { Playground, Props } from "docz";
     <Select
       placeholder="Selecione"
       name="colors"
-      searchable
       options={[
         {value: "blue", label: "Blue"},
         {value: "red", label: "Red"},
@@ -41,6 +40,35 @@ import { Playground, Props } from "docz";
     <Select
       placeholder="Selecione"
       name="options-group"
+      options={[
+        {
+          label: "Colors",
+          options: [
+            {value: "blue", label: "Blue"},
+            {value: "red", label: "Red"},
+            {value: "green", label: "Green"}
+          ]
+        },{
+          label: "Country",
+          options: [
+            {value: "br", label: "Brazil"},
+            {value: "pt", label: "Portugal"},
+            {value: "us", label: "United States"}
+          ]
+        }
+      ]}
+    />
+  </div>
+</Playground>
+
+## searchable
+
+<Playground>
+  <div style={{ width: 300 }}>
+    <Select
+      placeholder="Selecione"
+      name="options-group-searchable"
+      searchable
       options={[
         {
           label: "Colors",

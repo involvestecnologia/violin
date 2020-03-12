@@ -55,7 +55,11 @@ const InputSelect = ({
 
   useEffect(() => {
     resetInput();
-  }, [isFocused, selected, isMenuOpen]);
+  }, [isFocused, selected]);
+
+  useEffect(() => {
+    if (!isMenuOpen) resetInput();
+  }, [isMenuOpen]);
 
   useEffect(() => {
     setShowPlaceholder(!selected.value && !!placeholder && !valueFilter.length);
