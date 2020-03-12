@@ -14,7 +14,7 @@ const InputSelect = ({
   clearSelect,
   placeholder,
   isSearchable,
-  isTyping,
+  onTyping,
   disabled
 }) => {
   const [value, setValue] = useState('');
@@ -42,7 +42,7 @@ const InputSelect = ({
   useEffect(() => {
     if (value.length > 0) {
       setWidthInput(inputRef.current.scrollWidth);
-      isTyping();
+      onTyping();
     }
   }, [value]);
 
@@ -53,6 +53,24 @@ const InputSelect = ({
   useEffect(() => {
     if (!isFocused) resetInput();
   }, [isFocused]);
+
+  useEffect(() => {
+    const handleKeydownInput = (e) => {
+      const escKey = e.keyCode === 27;
+      const spaceKey = e.keyCode === 32;
+
+      if (escKey) resetInput();
+
+      if (spaceKey && value.trim().length > 0) {
+        e.stopPropagation();
+      }
+    };
+    inputRef.current.addEventListener('keydown', handleKeydownInput);
+
+    return () => {
+      inputRef.current.removeEventListener('keydown', handleKeydownInput);
+    };
+  }, [value]);
 
   return (
     <StyledSelect
@@ -104,7 +122,7 @@ InputSelect.propTypes = {
   disabled: PropTypes.bool.isRequired,
   clearSelect: PropTypes.func.isRequired,
   isSearchable: PropTypes.bool.isRequired,
-  isTyping: PropTypes.func.isRequired
+  onTyping: PropTypes.func.isRequired
 };
 
 export default InputSelect;

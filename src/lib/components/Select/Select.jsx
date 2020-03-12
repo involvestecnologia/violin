@@ -57,7 +57,7 @@ export const Select = ({
     selectOption(null);
   }
 
-  const isTyping = () => {
+  const onTyping = () => {
     if (!menuOpen) setMenuOpen(true);
   }
 
@@ -123,7 +123,7 @@ export const Select = ({
         placeholder={placeholder}
         clearSelect={clearSelect}
         isSearchable={searchable}
-        isTyping={isTyping}
+        onTyping={onTyping}
         disabled={disabled}
       />
       {menuOpen && (
