@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { withProp, ifProp, prop } from 'styled-tools';
+import { withProp, prop } from 'styled-tools';
 import { transparentize, rem } from 'polished';
 import { inputStyle, inputStyleFocus, inputStyleDisabled } from '../TextField/style';
 import { Icon } from '../Icon';
@@ -44,6 +44,7 @@ export const Input = styled.input`
   background: transparent;
   border: none;
   font-size: ${getFromTheme('typography.fontSize.body')};
+  line-height: 1;
   color: ${getFromTheme('palette.black.900')};
   padding: 0;
   outline: none;

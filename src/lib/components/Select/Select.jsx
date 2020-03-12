@@ -17,6 +17,7 @@ export const Select = ({
   const [selected, setSelected] = useState({});
   const [focused, setFocused] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [filterValue, setFilterValue] = useState('');
   const selectRef = useRef(null);
   const inputRef = useRef(null);
   const menuRef = useRef(null);
@@ -57,8 +58,9 @@ export const Select = ({
     selectOption(null);
   }
 
-  const onTyping = () => {
-    if (!menuOpen) setMenuOpen(true);
+  const onTyping = (value) => {
+    if (!menuOpen && value.length > 0) setMenuOpen(true);
+    setFilterValue(value);
   }
 
   useEffect(() => {
@@ -124,6 +126,7 @@ export const Select = ({
         clearSelect={clearSelect}
         isSearchable={searchable}
         onTyping={onTyping}
+        isMenuOpen={menuOpen}
         disabled={disabled}
       />
       {menuOpen && (
@@ -131,6 +134,7 @@ export const Select = ({
           options={options}
           onSelect={selectOption}
           menuRef={menuRef}
+          filter={filterValue}
         />
       )}
       <input type="hidden" name={name} value={selected.value || ''} disabled={disabled} />

@@ -5,7 +5,7 @@ import idgen from '../../utils/idgen';
 import { setHighlightNavigation, setFirstHighlight } from './Select.utils';
 import { SelectMenu, SelectMenuItem, SelectMenuTitle } from './style';
 
-const DropdownSelect = ({ options, onSelect, menuRef }) => {
+const DropdownSelect = ({ options, onSelect, menuRef, filter }) => {
   const [highlightItem, setHighlightItem] = useState(0);
   const [customOptions, setCustomOptions] = useState([]);
   const highlightRef = useRef(null);
@@ -14,28 +14,44 @@ const DropdownSelect = ({ options, onSelect, menuRef }) => {
     onSelect(optionValue);
   };
 
-  useEffect(() => {
-    const opts = [];
+  const mountOptions = () => {
+    const formatedOptions = [];
     options.forEach((item) => {
       if (item.options) {
-        opts.push({ title: item.label });
+        formatedOptions.push({ title: item.label });
         item.options.forEach((sub) => {
-          opts.push(sub);
+          formatedOptions.push(sub);
         })
       } else {
-        opts.push(item);
+        formatedOptions.push(item);
       }
     });
+    return formatedOptions;
+  }
 
-    setFirstHighlight(opts, setHighlightItem);
-    setCustomOptions(opts);
+  useEffect(() => {
+    const mounted = mountOptions();
+    setFirstHighlight(mounted, setHighlightItem);
+    setCustomOptions(mounted);
   }, [options]);
+
+  useEffect(() => {
+    const mounted = mountOptions();
+
+    if (filter.length > 0) {
+      const filtered = mounted.filter((item) => item.label.toLowerCase().includes(filter));
+      setCustomOptions(filtered);
+    } else {
+      setCustomOptions(mounted);
+    }
+  }, [filter]);
 
   useEffect(() => {
     const navigateMenuKeyboard = (e) => {
       const upKey = e.keyCode === 38;
       const downKey = e.keyCode === 40;
       const enterKey = e.keyCode === 13;
+      const hasOptions = customOptions.length > 0;
 
       const direction = (upKey && 'UP') || (downKey && 'DOWN');
 
@@ -43,10 +59,12 @@ const DropdownSelect = ({ options, onSelect, menuRef }) => {
         e.preventDefault();
       }
 
-      setHighlightNavigation(customOptions, direction, highlightItem, setHighlightItem);
-      scrollToElement(menuRef.current, highlightRef.current);
+      if (hasOptions) {
+        setHighlightNavigation(customOptions, direction, highlightItem, setHighlightItem);
+        scrollToElement(menuRef.current, highlightRef.current);
+      }
 
-      if (enterKey) {
+      if (hasOptions && enterKey) {
         selectOption(customOptions[highlightItem].value);
       }
     };
@@ -83,7 +101,8 @@ const DropdownSelect = ({ options, onSelect, menuRef }) => {
 DropdownSelect.propTypes = {
   options: PropTypes.oneOfType([PropTypes.array]).isRequired,
   onSelect: PropTypes.func.isRequired,
-  menuRef: PropTypes.oneOfType([PropTypes.object]).isRequired
+  menuRef: PropTypes.oneOfType([PropTypes.object]).isRequired,
+  filter: PropTypes.string.isRequired
 };
 
 export default DropdownSelect;

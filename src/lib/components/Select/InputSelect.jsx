@@ -14,24 +14,33 @@ const InputSelect = ({
   clearSelect,
   placeholder,
   isSearchable,
+  isMenuOpen,
   onTyping,
   disabled
 }) => {
-  const [value, setValue] = useState('');
+  const [valueFilter, setValueFilter] = useState('');
   const [widthInput, setWidthInput] = useState(1);
-
-  const handleClear = (e) => {
-    e.stopPropagation();
-    clearSelect();
-  };
+  const [showClearButton, setShowClearButton] = useState(false);
+  const [showPlaceholder, setShowPlaceholder] = useState(true);
+  const [showValue, setShowValue] = useState(false);
 
   const resetInput = () => {
     setWidthInput(1);
-    setValue('');
+    setValueFilter('');
+  };
+
+  const handleClear = (e) => {
+    e.stopPropagation();
+    if (valueFilter.length > 0) {
+      resetInput();
+      inputRef.current.focus();
+    } else {
+      clearSelect();
+    }
   };
 
   const handleChange = (e) => {
-    setValue(e.target.value);
+    setValueFilter(e.target.value);
   };
 
   const handleMouseDown = (e) => {
@@ -40,28 +49,25 @@ const InputSelect = ({
   };
 
   useEffect(() => {
-    if (value.length > 0) {
-      setWidthInput(inputRef.current.scrollWidth);
-      onTyping();
-    }
-  }, [value]);
+    setWidthInput(inputRef.current.scrollWidth);
+    onTyping(valueFilter);
+  }, [valueFilter]);
 
   useEffect(() => {
     resetInput();
-  }, [selected]);
+  }, [isFocused, selected, isMenuOpen]);
 
   useEffect(() => {
-    if (!isFocused) resetInput();
-  }, [isFocused]);
+    setShowPlaceholder(!selected.value && !!placeholder && !valueFilter.length);
+    setShowValue(!!selected.value && !valueFilter.length);
+    setShowClearButton(selected.value || valueFilter.length > 0);
+  }, [selected, valueFilter, placeholder]);
 
   useEffect(() => {
     const handleKeydownInput = (e) => {
-      const escKey = e.keyCode === 27;
       const spaceKey = e.keyCode === 32;
 
-      if (escKey) resetInput();
-
-      if (spaceKey && value.trim().length > 0) {
+      if (spaceKey && valueFilter.trim().length > 0) {
         e.stopPropagation();
       }
     };
@@ -70,7 +76,7 @@ const InputSelect = ({
     return () => {
       inputRef.current.removeEventListener('keydown', handleKeydownInput);
     };
-  }, [value]);
+  }, [valueFilter]);
 
   return (
     <StyledSelect
@@ -84,19 +90,18 @@ const InputSelect = ({
           ref={inputRef}
           onFocus={onFocus}
           disabled={disabled}
-          value={value}
+          value={valueFilter}
           onChange={handleChange}
           onMouseDown={(e) => e.stopPropagation()}
           readOnly={!isSearchable}
           widthInput={widthInput}
         />
-        {!!selected.value && !value.length && <Value isDisabled={disabled}>{selected.label}</Value>}
-        {(!selected.value && !!placeholder && !value.length)
-          && <Placeholder isDisabled={disabled}>{placeholder}</Placeholder>}
+        {showValue && <Value isDisabled={disabled}>{selected.label}</Value>}
+        {showPlaceholder && <Placeholder isDisabled={disabled}>{placeholder}</Placeholder>}
       </Filter>
       <Controls isDisabled={disabled}>
-        {!selected.value && <ArrowDropdown icon="arrow_drop_down" />}
-        {selected.value && (
+        {!showClearButton && <ArrowDropdown icon="arrow_drop_down" />}
+        {showClearButton && (
           <Button
             small
             secondary
@@ -122,7 +127,8 @@ InputSelect.propTypes = {
   disabled: PropTypes.bool.isRequired,
   clearSelect: PropTypes.func.isRequired,
   isSearchable: PropTypes.bool.isRequired,
-  onTyping: PropTypes.func.isRequired
+  onTyping: PropTypes.func.isRequired,
+  isMenuOpen: PropTypes.bool.isRequired
 };
 
 export default InputSelect;
