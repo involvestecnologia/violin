@@ -143,6 +143,10 @@ export const SelectMenuItem = styled(ListItem)`
   }};
   user-select: none;
 
+  span {
+    text-decoration: underline;
+  }
+
   &:hover {
     background: ${({ selected, highlight }) => {
       if (selected && !highlight) {

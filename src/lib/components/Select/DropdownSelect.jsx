@@ -92,6 +92,11 @@ const DropdownSelect = ({ options, onSelect, menuRef, filter }) => {
     }
   }, [highlightItem, customOptions]);
 
+  const underlineMatchFilter = (str) => {
+    str.replace(filter, `<span>${filter}</span>`);
+    return str;
+  };
+
   return (
     <SelectMenu ref={menuRef}>
       {customOptions.map((option, i) => {
@@ -106,9 +111,8 @@ const DropdownSelect = ({ options, onSelect, menuRef, filter }) => {
             onClick={() => selectOption(option.value)}
             deepRef={highlightItem === i ? highlightRef : null}
             selected={option.selected}
-          >
-            {option.label}
-          </SelectMenuItem>
+            dangerouslySetInnerHTML={{ __html: underlineMatchFilter(option.label) }}
+          />
         )
       })}
     </SelectMenu>
