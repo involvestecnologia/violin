@@ -115,14 +115,14 @@ export const Select = ({
   return (
     <Container ref={selectRef}>
       <InputSelect
-        focused={focused}
+        isFocused={focused}
         onMouseDown={focusAndToggleMenu}
         inputRef={inputRef}
         onFocus={focusSelect}
         selected={selected}
         placeholder={placeholder}
         clearSelect={clearSelect}
-        searchable={searchable}
+        isSearchable={searchable}
         isTyping={isTyping}
         disabled={disabled}
       />

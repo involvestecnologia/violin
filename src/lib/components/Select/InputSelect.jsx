@@ -6,14 +6,14 @@ import {
 } from './style';
 
 const InputSelect = ({
-  focused,
+  isFocused,
   onMouseDown,
   inputRef,
   onFocus,
   selected,
   clearSelect,
   placeholder,
-  searchable,
+  isSearchable,
   isTyping,
   disabled
 }) => {
@@ -30,6 +30,15 @@ const InputSelect = ({
     setValue('');
   };
 
+  const handleChange = (e) => {
+    setValue(e.target.value);
+  };
+
+  const handleMouseDown = (e) => {
+    onMouseDown(e);
+    resetInput();
+  };
+
   useEffect(() => {
     if (value.length > 0) {
       setWidthInput(inputRef.current.scrollWidth);
@@ -41,10 +50,14 @@ const InputSelect = ({
     resetInput();
   }, [selected]);
 
+  useEffect(() => {
+    if (!isFocused) resetInput();
+  }, [isFocused]);
+
   return (
     <StyledSelect
-      isFocused={focused}
-      onMouseDown={onMouseDown}
+      isFocused={isFocused}
+      onMouseDown={handleMouseDown}
       isDisabled={disabled}
     >
       <Filter>
@@ -54,8 +67,9 @@ const InputSelect = ({
           onFocus={onFocus}
           disabled={disabled}
           value={value}
-          onChange={(e) => setValue(e.target.value)}
-          readOnly={!searchable}
+          onChange={handleChange}
+          onMouseDown={(e) => e.stopPropagation()}
+          readOnly={!isSearchable}
           widthInput={widthInput}
         />
         {!!selected.value && !value.length && <Value isDisabled={disabled}>{selected.label}</Value>}
@@ -81,7 +95,7 @@ const InputSelect = ({
 };
 
 InputSelect.propTypes = {
-  focused: PropTypes.bool.isRequired,
+  isFocused: PropTypes.bool.isRequired,
   onMouseDown: PropTypes.func.isRequired,
   inputRef: PropTypes.oneOfType([PropTypes.object]).isRequired,
   onFocus: PropTypes.func.isRequired,
@@ -89,7 +103,7 @@ InputSelect.propTypes = {
   placeholder: PropTypes.string.isRequired,
   disabled: PropTypes.bool.isRequired,
   clearSelect: PropTypes.func.isRequired,
-  searchable: PropTypes.bool.isRequired,
+  isSearchable: PropTypes.bool.isRequired,
   isTyping: PropTypes.func.isRequired
 };
 
