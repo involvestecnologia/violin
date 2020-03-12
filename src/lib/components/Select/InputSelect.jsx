@@ -14,11 +14,12 @@ const InputSelect = ({
   clearSelect,
   placeholder,
   searchable,
+  isTyping,
   disabled
 }) => {
   const [value, setValue] = useState('');
   const [widthInput, setWidthInput] = useState(1);
-  
+
   const handleClear = (e) => {
     e.stopPropagation();
     clearSelect();
@@ -27,11 +28,18 @@ const InputSelect = ({
   const resetInput = () => {
     setWidthInput(1);
     setValue('');
-  }
+  };
 
   useEffect(() => {
-    setWidthInput(inputRef.current.scrollWidth);
+    if (value.length > 0) {
+      setWidthInput(inputRef.current.scrollWidth);
+      isTyping();
+    }
   }, [value]);
+
+  useEffect(() => {
+    resetInput();
+  }, [selected]);
 
   return (
     <StyledSelect
@@ -47,7 +55,6 @@ const InputSelect = ({
           disabled={disabled}
           value={value}
           onChange={(e) => setValue(e.target.value)}
-          onBlur={resetInput}
           readOnly={!searchable}
           widthInput={widthInput}
         />
@@ -65,6 +72,7 @@ const InputSelect = ({
             onMouseDown={(e) => e.stopPropagation()}
             onClick={handleClear}
             disabled={disabled}
+            tabIndex="-1"
           />
         )}
       </Controls>
@@ -77,15 +85,12 @@ InputSelect.propTypes = {
   onMouseDown: PropTypes.func.isRequired,
   inputRef: PropTypes.oneOfType([PropTypes.object]).isRequired,
   onFocus: PropTypes.func.isRequired,
-  selected: PropTypes.oneOfType([PropTypes.object]),
-  placeholder: PropTypes.string,
-  disabled: PropTypes.bool
+  selected: PropTypes.oneOfType([PropTypes.object]).isRequired,
+  placeholder: PropTypes.string.isRequired,
+  disabled: PropTypes.bool.isRequired,
+  clearSelect: PropTypes.func.isRequired,
+  searchable: PropTypes.bool.isRequired,
+  isTyping: PropTypes.func.isRequired
 };
-
-InputSelect.defaultProps = {
-  selected: null,
-  placeholder: null,
-  disabled: false
-}
 
 export default InputSelect;

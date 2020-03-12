@@ -5,10 +5,9 @@ import idgen from '../../utils/idgen';
 import { setHighlightNavigation, setFirstHighlight } from './Select.utils';
 import { SelectMenu, SelectMenuItem, SelectMenuTitle } from './style';
 
-const DropdownSelect = ({ options, onSelect }) => {
+const DropdownSelect = ({ options, onSelect, menuRef }) => {
   const [highlightItem, setHighlightItem] = useState(0);
   const [customOptions, setCustomOptions] = useState([]);
-  const menuRef = useRef(null);
   const highlightRef = useRef(null);
 
   const selectOption = (optionValue) => {
@@ -83,7 +82,8 @@ const DropdownSelect = ({ options, onSelect }) => {
 
 DropdownSelect.propTypes = {
   options: PropTypes.oneOfType([PropTypes.array]).isRequired,
-  onSelect: PropTypes.func.isRequired
+  onSelect: PropTypes.func.isRequired,
+  menuRef: PropTypes.oneOfType([PropTypes.object]).isRequired
 };
 
 export default DropdownSelect;

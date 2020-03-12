@@ -19,6 +19,7 @@ export const Select = ({
   const [menuOpen, setMenuOpen] = useState(false);
   const selectRef = useRef(null);
   const inputRef = useRef(null);
+  const menuRef = useRef(null);
 
   const handleMenuOpen = (open) => {
     if (!disabled) setMenuOpen(open);
@@ -40,19 +41,24 @@ export const Select = ({
 
   const focusAndToggleMenu = (e) => {
     if (e) e.preventDefault();
-    focusSelect();
     handleMenuOpen(!menuOpen);
+    focusSelect();
   };
 
   const selectOption = (optionValue) => {
     const updateSelected = setSelectOption(options, optionValue, setSelected);
     setOptions(updateSelected);
     handleMenuOpen(false);
+    focusSelect();
   };
 
   const clearSelect = () => {
     setSelected({});
     selectOption(null);
+  }
+
+  const isTyping = () => {
+    if (!menuOpen) setMenuOpen(true);
   }
 
   useEffect(() => {
@@ -86,16 +92,23 @@ export const Select = ({
   }, [focused, menuOpen]);
 
   useEffect(() => {
-    const closeOnOut = (event) => {
+    const closeOnClickOut = (event) => {
       if (focused) {
-        const isClickedOut = !selectRef.current.contains(event.target);
-        if (isClickedOut) blurSelect();
+        const hasMenu = menuRef.current;
+        const clickedSelect = selectRef.current.contains(event.target);
+        const clickedMenu = hasMenu && menuRef.current.contains(event.target);
+
+        const isClickedOut = (hasMenu && (!clickedSelect && !clickedMenu)) || !clickedSelect;
+
+        if (isClickedOut) {
+          blurSelect();
+        }
       }
     };
 
-    document.addEventListener('click', closeOnOut);
+    document.addEventListener('click', closeOnClickOut, true);
     return () => {
-      document.removeEventListener('click', closeOnOut);
+      document.removeEventListener('click', closeOnClickOut, true);
     }
   }, [focused]);
 
@@ -110,12 +123,14 @@ export const Select = ({
         placeholder={placeholder}
         clearSelect={clearSelect}
         searchable={searchable}
+        isTyping={isTyping}
         disabled={disabled}
       />
       {menuOpen && (
         <DropdownSelect
           options={options}
           onSelect={selectOption}
+          menuRef={menuRef}
         />
       )}
       <input type="hidden" name={name} value={selected.value || ''} disabled={disabled} />

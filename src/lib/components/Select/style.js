@@ -33,6 +33,7 @@ export const Filter = styled.div`
   display: flex;
   flex-wrap: wrap;
   flex: 1 1 0%;
+  height: 100%;
   padding-left: 10px;
   overflow: hidden;
 `;
