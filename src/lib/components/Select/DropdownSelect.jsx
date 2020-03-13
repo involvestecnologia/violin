@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import scrollToElement from '../../utils/scrollToElement';
 import idgen from '../../utils/idgen';
 import { setHighlightNavigation, setFirstHighlight } from './Select.utils';
-import { SelectMenu, SelectMenuItem, SelectMenuTitle } from './style';
+import { SelectMenu, SelectMenuItem, SelectMenuTitle, EmptyFilter } from './style';
 
 const DropdownSelect = ({ options, onSelect, menuRef, filter }) => {
   const [highlightItem, setHighlightItem] = useState(0);
@@ -119,6 +119,9 @@ const DropdownSelect = ({ options, onSelect, menuRef, filter }) => {
           </SelectMenuItem>
         )
       })}
+      {customOptions.length < 1 && (
+        <EmptyFilter>Nada encontrado</EmptyFilter>
+      )}
     </SelectMenu>
   );
 };

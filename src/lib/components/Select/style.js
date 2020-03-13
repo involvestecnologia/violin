@@ -188,3 +188,10 @@ export const SelectMenuTitle = styled.h6`
   cursor: default;
   user-select: none;
 `;
+
+export const EmptyFilter = styled.div`
+  text-align: center;
+  padding: 10px 0;
+  font-size: ${getFromTheme('typography.fontSize.small')};
+  color: ${getFromTheme('palette.black.500')};
+`;
