@@ -3,10 +3,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { StyledItem, StyledIcon } from './style';
 
-export const ListItem = ({ children, icon, deepRef, dangerouslySetInnerHTML, ...props }) => (
+export const ListItem = ({ children, icon, deepRef, ...props }) => (
   <StyledItem ref={deepRef} {...props}>
     {icon && <StyledIcon icon={icon} />}
-    {children || dangerouslySetInnerHTML.__html}
+    {children}
   </StyledItem>
 );
 
@@ -15,13 +15,11 @@ ListItem.propTypes = {
   icon: PropTypes.string,
   /** Change style to disabled */
   disabled: PropTypes.bool,
-  deepRef: PropTypes.oneOfType([PropTypes.object]),
-  dangerouslySetInnerHTML: PropTypes.oneOfType([PropTypes.object])
+  deepRef: PropTypes.oneOfType([PropTypes.object])
 };
 
 ListItem.defaultProps = {
   icon: null,
   disabled: false,
-  deepRef: null,
-  dangerouslySetInnerHTML: null
+  deepRef: null
 };

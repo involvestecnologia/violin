@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Button } from '../Button';
 import {
-  StyledSelect, Filter, Input, Value, Placeholder, Controls, ArrowDropdown
+  StyledSelect, Filter, Input, Value, Placeholder, Controls, ArrowDropdown, SearchIcon
 } from './style';
 
 const InputSelect = ({
@@ -89,6 +89,7 @@ const InputSelect = ({
       isDisabled={disabled}
     >
       <Filter>
+        {isSearchable && <SearchIcon isFocused={isFocused} icon="search" />}
         <Input
           type="text"
           ref={inputRef}
@@ -100,8 +101,24 @@ const InputSelect = ({
           readOnly={!isSearchable}
           widthInput={widthInput}
         />
-        {showValue && <Value isDisabled={disabled}>{selected.label}</Value>}
-        {showPlaceholder && <Placeholder isDisabled={disabled}>{placeholder}</Placeholder>}
+        {showValue && (
+          <Value
+            isFocused={isFocused}
+            isSearchable={isSearchable}
+            isDisabled={disabled}
+          >
+            {selected.label}
+          </Value>
+        )}
+        {showPlaceholder && (
+          <Placeholder
+            isFocused={isFocused}
+            isSearchable={isSearchable}
+            isDisabled={disabled}
+          >
+            {placeholder}
+          </Placeholder>
+        )}
       </Filter>
       <Controls isDisabled={disabled}>
         {!showClearButton && <ArrowDropdown icon="arrow_drop_down" />}

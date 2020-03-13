@@ -1,3 +1,4 @@
+/* eslint-disable react/no-danger */
 import React, { useRef, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import scrollToElement from '../../utils/scrollToElement';
@@ -48,14 +49,14 @@ const DropdownSelect = ({ options, onSelect, menuRef, filter }) => {
           const isMatchedGroup = options.filter(
             (opt) => opt.label === item.title
           )[0].options.filter(
-            (opt) => opt.label.toLowerCase().includes(filter)
+            (opt) => opt.label.toLowerCase().includes(filter.toLowerCase())
           );
 
           if (isMatchedGroup.length > 0) {
             return item;
           }
         }
-        return item.label && item.label.toLowerCase().includes(filter)
+        return item.label && item.label.toLowerCase().includes(filter.toLowerCase())
       });
       setCustomOptions(filtered);
     } else {
@@ -93,7 +94,9 @@ const DropdownSelect = ({ options, onSelect, menuRef, filter }) => {
   }, [highlightItem, customOptions]);
 
   const underlineMatchFilter = (str) => {
-    str.replace(filter, `<span>${filter}</span>`);
+    if (filter.length > 0) {
+      return str.replace(filter, `<mark>${filter}</mark>`);
+    }
     return str;
   };
 
@@ -111,8 +114,9 @@ const DropdownSelect = ({ options, onSelect, menuRef, filter }) => {
             onClick={() => selectOption(option.value)}
             deepRef={highlightItem === i ? highlightRef : null}
             selected={option.selected}
-            dangerouslySetInnerHTML={{ __html: underlineMatchFilter(option.label) }}
-          />
+          >
+            <span dangerouslySetInnerHTML={{ __html: underlineMatchFilter(option.label) }} />
+          </SelectMenuItem>
         )
       })}
     </SelectMenu>

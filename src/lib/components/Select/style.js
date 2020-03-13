@@ -1,5 +1,5 @@
-import styled, { css } from 'styled-components';
-import { withProp, prop } from 'styled-tools';
+import styled, { css, keyframes } from 'styled-components';
+import { withProp, prop, ifProp } from 'styled-tools';
 import { transparentize, rem } from 'polished';
 import { inputStyle, inputStyleFocus, inputStyleDisabled } from '../TextField/style';
 import { Icon } from '../Icon';
@@ -62,6 +62,8 @@ const styledValue = css`
   white-space: nowrap;
   cursor: default;
   box-sizing: border-box;
+  margin-left: ${ifProp('isFocused', ifProp('isSearchable', rem(24), '0'))};
+  transition: ${getFromTheme('common.transition')};
 `;
 
 export const textDisabled = css`
@@ -96,6 +98,18 @@ export const ArrowDropdown = styled(Icon)`
   cursor: default;
 `;
 
+export const SearchIcon = styled(Icon)`
+  display: flex;
+  align-items: center;
+  font-size: ${rem(24)};
+  width: ${ifProp('isFocused', rem(24), '0')};
+  color: ${getFromTheme('palette.black.600')};
+  opacity: ${ifProp('isFocused', '1', '0')};
+  transition: ${getFromTheme('transition')};
+  overflow: hidden;
+  cursor: default;
+`;
+
 export const SelectMenu = styled.div`
   position: absolute;
   z-index: ${getFromTheme('zIndex.z8')};
@@ -119,7 +133,7 @@ export const SelectMenu = styled.div`
   }
   
   &::-webkit-scrollbar-track {
-    -webkit-box-shadow: none;
+    box-shadow: none;
   }
   
   &::-webkit-scrollbar-thumb {
@@ -143,8 +157,10 @@ export const SelectMenuItem = styled(ListItem)`
   }};
   user-select: none;
 
-  span {
+  mark {
     text-decoration: underline;
+    background: none;
+    color: inherit;
   }
 
   &:hover {
