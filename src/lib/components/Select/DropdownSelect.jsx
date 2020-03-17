@@ -3,7 +3,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import scrollToElement from '../../utils/scrollToElement';
 import idgen from '../../utils/idgen';
-import { setHighlightNavigation, setFirstHighlight } from './Select.utils';
+import { setHighlightNavigation, setFirstHighlight, highlightText } from './Select.utils';
 import { SelectMenu, SelectMenuItem, SelectMenuTitle, EmptyFilter } from './style';
 
 const DropdownSelect = ({ options, onSelect, menuRef, filter }) => {
@@ -93,13 +93,6 @@ const DropdownSelect = ({ options, onSelect, menuRef, filter }) => {
     }
   }, [highlightItem, customOptions]);
 
-  const underlineMatchFilter = (str) => {
-    if (filter.length > 0) {
-      return str.replace(filter, `<mark>${filter}</mark>`);
-    }
-    return str;
-  };
-
   return (
     <SelectMenu ref={menuRef}>
       {customOptions.map((option, i) => {
@@ -115,7 +108,7 @@ const DropdownSelect = ({ options, onSelect, menuRef, filter }) => {
             deepRef={highlightItem === i ? highlightRef : null}
             selected={option.selected}
           >
-            <span dangerouslySetInnerHTML={{ __html: underlineMatchFilter(option.label) }} />
+            <span dangerouslySetInnerHTML={{ __html: highlightText(option.label, filter) }} />
           </SelectMenuItem>
         )
       })}
