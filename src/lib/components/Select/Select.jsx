@@ -3,17 +3,20 @@ import PropTypes from 'prop-types';
 import InputSelect from './InputSelect';
 import { Container } from './style';
 import DropdownSelect from './DropdownSelect';
-import { setSelectOption } from './Select.utils';
+import { selectOption, formatOptionsList, filterOptions } from './Select.utils';
 
 export const Select = ({
   placeholder,
-  options: optionsList,
+  options: originalOptions,
   name,
   defaultValue,
   searchable,
+  error,
+  emptyMessage,
+  async,
   disabled
 }) => {
-  const [options, setOptions] = useState(Array.from(optionsList));
+  const [options, setOptions] = useState([]);
   const [selected, setSelected] = useState({});
   const [focused, setFocused] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -46,8 +49,8 @@ export const Select = ({
     focusSelect();
   };
 
-  const selectOption = (optionValue) => {
-    const updateSelected = setSelectOption(options, optionValue, setSelected);
+  const onSelectOption = (optionValue) => {
+    const updateSelected = selectOption(options, optionValue, setSelected);
     setOptions(updateSelected);
     handleMenuOpen(false);
     focusSelect();
@@ -55,7 +58,7 @@ export const Select = ({
 
   const clearSelect = () => {
     setSelected({});
-    selectOption(null);
+    onSelectOption(null);
   }
 
   const onTyping = (value) => {
@@ -64,9 +67,20 @@ export const Select = ({
   }
 
   useEffect(() => {
-    const updateSelected = setSelectOption(options, defaultValue, setSelected);
-    setOptions(updateSelected);
+    const formatedList = formatOptionsList(originalOptions);
+    setOptions(formatedList);
+  }, [originalOptions]);
+
+  useEffect(() => {
+    if (defaultValue) {
+      const updateSelected = selectOption(options, defaultValue, setSelected);
+      setOptions(updateSelected);
+    }
   }, [defaultValue]);
+
+  useEffect(() => {
+    filterOptions(originalOptions, filterValue, setOptions)
+  }, [filterValue]);
 
   useEffect(() => {
     const openMenuKeyboard = (e) => {
@@ -123,18 +137,22 @@ export const Select = ({
         onFocus={focusSelect}
         selected={selected}
         placeholder={placeholder}
+        emptyMessage={emptyMessage}
         clearSelect={clearSelect}
         isSearchable={searchable}
         onTyping={onTyping}
         isMenuOpen={menuOpen}
+        error={error}
         disabled={disabled}
       />
       {menuOpen && (
         <DropdownSelect
           options={options}
-          onSelect={selectOption}
+          onSelect={onSelectOption}
           menuRef={menuRef}
           filter={filterValue}
+          async={async}
+          onClick={focusSelect}
         />
       )}
       <input type="hidden" name={name} value={selected.value || ''} disabled={disabled} />
@@ -143,17 +161,29 @@ export const Select = ({
 };
 
 Select.propTypes = {
+  /** Add a placeholder */
   placeholder: PropTypes.string,
+  /** Array of options */
   options: PropTypes.arrayOf(
     PropTypes.shape({
       value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
       label: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
     })
   ).isRequired,
+  /** Name input form */
   name: PropTypes.string,
+  /** Set a value to auto select an item */
   defaultValue: PropTypes.string,
+  /** Allow serach items and filter */
   searchable: PropTypes.bool,
-  disabled: PropTypes.bool
+  /** Disable select */
+  disabled: PropTypes.bool,
+  /** Apply erro style */
+  error: PropTypes.bool,
+  /** Show message when result search is empty */
+  emptyMessage: PropTypes.string,
+  /** Load options from a remote source. */
+  async: PropTypes.bool
 };
 
 Select.defaultProps = {
@@ -161,5 +191,8 @@ Select.defaultProps = {
   name: null,
   defaultValue: null,
   searchable: false,
-  disabled: false
+  disabled: false,
+  error: false,
+  emptyMessage: 'Nada encontrado',
+  async: false
 };

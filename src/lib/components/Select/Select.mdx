@@ -6,6 +6,7 @@ route: /components/Select
 
 import { Select } from './Select';
 import { Playground, Props } from "docz";
+import { State } from 'react-powerplug';
 
 # Select
 
@@ -88,6 +89,26 @@ import { Playground, Props } from "docz";
       ]}
     />
   </div>
+</Playground>
+
+## Async
+
+<Playground>
+  <State initial={{ options: [] }}>
+    {({ state, setState }) => (
+      <>
+        <div style={{ width: 300 }}>
+          <Select
+            placeholder="Selecione"
+            name="colors"
+            async
+            searchable
+            options={state.options}
+          />
+        </div>
+      </>
+    )}
+  </State>
 </Playground>
 
 ## defaultValue

@@ -29,7 +29,22 @@ export const setHighlightNavigation = (array, direction, current, callback) => {
   }
 };
 
-export const setFirstHighlight = (array, callback) => {
+export const scrollToElement = (container, element) => {
+  const bottomElement = element.offsetTop
+    + element.clientHeight;
+  const topElement = element.offsetTop;
+  const menuContainer = container.clientHeight;
+  const containerScroll = container.scrollTop;
+
+  if (bottomElement > menuContainer + containerScroll) {
+    container.scroll(0, bottomElement - menuContainer);
+  }
+  if (topElement < containerScroll) {
+    container.scroll(0, topElement);
+  }
+};
+
+export const highlightFirstItemList = (array, callback) => {
   for (let i = 0; i < array.length; i++) {
     if (array[i].value) {
       callback(i);
@@ -38,7 +53,7 @@ export const setFirstHighlight = (array, callback) => {
   }
 };
 
-export const setSelectOption = (array, value, setSelected) => (
+export const selectOption = (array, value, setSelected) => (
   array.map((opt) => {
     const item = opt;
     if (item.value) {
@@ -67,4 +82,43 @@ export const setSelectOption = (array, value, setSelected) => (
 export const highlightText = (text, filter) => {
   const index = text.toLowerCase().indexOf(filter.toLowerCase());
   return `${text.substring(0, index)}<mark>${text.substring(index, index + filter.length)}</mark>${text.substring(index + filter.length)}`;
+};
+
+export const formatOptionsList = (options) => {
+  const formatedOptions = [];
+  options.forEach((item) => {
+    if (item.options) {
+      formatedOptions.push({ title: item.label });
+      item.options.forEach((sub) => {
+        formatedOptions.push(sub);
+      })
+    } else {
+      formatedOptions.push(item);
+    }
+  });
+  return formatedOptions;
+}
+
+export const filterOptions = (options, filter, setOptions) => {
+  const formatedOptions = formatOptionsList(options);
+
+  if (filter.length > 0) {
+    const filtered = formatedOptions.filter((item) => {
+      if (item.title) {
+        const isMatchedGroup = options.filter(
+          (opt) => opt.label === item.title
+        )[0].options.filter(
+          (opt) => opt.label.toLowerCase().includes(filter.toLowerCase())
+        );
+
+        if (isMatchedGroup.length > 0) {
+          return item;
+        }
+      }
+      return item.label && item.label.toLowerCase().includes(filter.toLowerCase())
+    });
+    setOptions(filtered);
+  } else {
+    setOptions(formatedOptions);
+  }
 };

@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { withProp, prop, ifProp } from 'styled-tools';
 import { transparentize, rem } from 'polished';
-import { inputStyle, inputStyleFocus, inputStyleDisabled } from '../TextField/style';
+import { inputStyle, inputStyleFocus, inputStyleDisabled, errorStyle } from '../TextField/style';
 import { Icon } from '../Icon';
 import getFromTheme from '../../utils/getFromTheme';
 import { ListItem } from '../_common';
@@ -18,6 +18,10 @@ export const StyledSelect = styled.div`
   justify-content: space-between;
   padding: 0;
 
+  * {
+    cursor: pointer;
+  }
+
   ${({ isFocused }) => isFocused && inputStyleFocus}
   ${({ isDisabled }) => isDisabled && inputStyleDisabled}
   ${({ isDisabled }) => isDisabled && `
@@ -25,6 +29,8 @@ export const StyledSelect = styled.div`
       cursor: not-allowed !important;
     }
   `}
+
+  ${({ error }) => error && errorStyle}
 `;
 
 export const Filter = styled.div`
@@ -60,7 +66,6 @@ const styledValue = css`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  cursor: default;
   box-sizing: border-box;
   margin-left: ${ifProp('isFocused', ifProp('isSearchable', rem(24), '0'))};
   transition: ${getFromTheme('common.transition')};
@@ -95,7 +100,6 @@ export const Controls = styled.div`
 export const ArrowDropdown = styled(Icon)`
   font-size: 24px;
   padding: 0 3px;
-  cursor: default;
 `;
 
 export const SearchIcon = styled(Icon)`
@@ -107,7 +111,6 @@ export const SearchIcon = styled(Icon)`
   opacity: ${ifProp('isFocused', '1', '0')};
   transition: ${getFromTheme('transition')};
   overflow: hidden;
-  cursor: default;
 `;
 
 export const SelectMenu = styled.div`

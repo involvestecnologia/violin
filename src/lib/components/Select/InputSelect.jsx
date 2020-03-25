@@ -16,6 +16,7 @@ const InputSelect = ({
   isSearchable,
   isMenuOpen,
   onTyping,
+  error,
   disabled
 }) => {
   const [valueFilter, setValueFilter] = useState('');
@@ -87,6 +88,7 @@ const InputSelect = ({
       isFocused={isFocused}
       onMouseDown={handleMouseDown}
       isDisabled={disabled}
+      error={error}
     >
       <Filter>
         {isSearchable && <SearchIcon isFocused={isFocused} icon="search" />}
@@ -149,7 +151,8 @@ InputSelect.propTypes = {
   clearSelect: PropTypes.func.isRequired,
   isSearchable: PropTypes.bool.isRequired,
   onTyping: PropTypes.func.isRequired,
-  isMenuOpen: PropTypes.bool.isRequired
+  isMenuOpen: PropTypes.bool.isRequired,
+  error: PropTypes.bool.isRequired
 };
 
 export default InputSelect;

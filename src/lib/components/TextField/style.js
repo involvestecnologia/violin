@@ -3,7 +3,7 @@ import { ifProp, withProp } from 'styled-tools';
 import { transparentize } from 'polished';
 import getFromTheme from '../../utils/getFromTheme';
 
-const errorStyle = css`
+export const errorStyle = css`
   box-shadow: 0 0 0 2px ${getFromTheme('palette.red.600')};
   background-color: ${withProp(getFromTheme('palette.red.100'), transparentize(0.2))};
 
