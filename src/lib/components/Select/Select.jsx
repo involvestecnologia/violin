@@ -14,6 +14,8 @@ export const Select = ({
   error,
   emptyMessage,
   async,
+  loadOptions,
+  debounce,
   disabled
 }) => {
   const [options, setOptions] = useState([]);
@@ -21,12 +23,15 @@ export const Select = ({
   const [focused, setFocused] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [filterValue, setFilterValue] = useState('');
+  const [loadSearching, setLoadingSearching] = useState(false);
   const selectRef = useRef(null);
   const inputRef = useRef(null);
   const menuRef = useRef(null);
+  const timerRef = useRef(null);
 
   const handleMenuOpen = (open) => {
-    if (!disabled) setMenuOpen(open);
+    if (disabled) return;
+    setMenuOpen(open);
   }
 
   const handleFocused = (focus) => {
@@ -61,14 +66,18 @@ export const Select = ({
     onSelectOption(null);
   }
 
+  const formatAndSetOptions = (array) => {
+    const formatedList = formatOptionsList(array);
+    setOptions(formatedList);
+  };
+
   const onTyping = (value) => {
-    if (!menuOpen && value.length > 0) setMenuOpen(true);
+    if (!menuOpen && value.length > 0) handleMenuOpen(true);
     setFilterValue(value);
   }
 
   useEffect(() => {
-    const formatedList = formatOptionsList(originalOptions);
-    setOptions(formatedList);
+    formatAndSetOptions(originalOptions);
   }, [originalOptions]);
 
   useEffect(() => {
@@ -79,7 +88,22 @@ export const Select = ({
   }, [defaultValue]);
 
   useEffect(() => {
-    filterOptions(originalOptions, filterValue, setOptions)
+    filterOptions(originalOptions, filterValue, setOptions);
+
+    if (filterValue.length > 0 && async && loadOptions) {
+      clearTimeout(timerRef.current);
+      setLoadingSearching(true);
+      timerRef.current = setTimeout(() => {
+        loadOptions(filterValue).then((res) => {
+          setLoadingSearching(false);
+          formatAndSetOptions(res);
+        });
+      }, debounce)
+    } else if (filterValue.length === 0 && async && loadOptions) {
+      clearTimeout(timerRef.current);
+      setLoadingSearching(false);
+      setOptions([]);
+    }
   }, [filterValue]);
 
   useEffect(() => {
@@ -139,7 +163,7 @@ export const Select = ({
         placeholder={placeholder}
         emptyMessage={emptyMessage}
         clearSelect={clearSelect}
-        isSearchable={searchable}
+        isSearchable={searchable || async}
         onTyping={onTyping}
         isMenuOpen={menuOpen}
         error={error}
@@ -153,6 +177,7 @@ export const Select = ({
           filter={filterValue}
           async={async}
           onClick={focusSelect}
+          loading={loadSearching}
         />
       )}
       <input type="hidden" name={name} value={selected.value || ''} disabled={disabled} />
@@ -169,7 +194,7 @@ Select.propTypes = {
       value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
       label: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
     })
-  ).isRequired,
+  ),
   /** Name input form */
   name: PropTypes.string,
   /** Set a value to auto select an item */
@@ -182,17 +207,24 @@ Select.propTypes = {
   error: PropTypes.bool,
   /** Show message when result search is empty */
   emptyMessage: PropTypes.string,
-  /** Load options from a remote source. */
-  async: PropTypes.bool
+  /** Allow to load options asynchronous */
+  async: PropTypes.bool,
+  /** Load options from a promisse */
+  loadOptions: PropTypes.func,
+  /** Set a time delay to call a request */
+  debounce: PropTypes.number
 };
 
 Select.defaultProps = {
   placeholder: null,
+  options: [],
   name: null,
   defaultValue: null,
   searchable: false,
   disabled: false,
   error: false,
   emptyMessage: 'Nada encontrado',
-  async: false
+  async: false,
+  loadOptions: null,
+  debounce: 500
 };

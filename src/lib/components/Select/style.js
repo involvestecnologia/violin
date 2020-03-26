@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import { withProp, prop, ifProp } from 'styled-tools';
 import { transparentize, rem } from 'polished';
 import { inputStyle, inputStyleFocus, inputStyleDisabled, errorStyle } from '../TextField/style';
@@ -54,6 +54,7 @@ export const Input = styled.input`
   color: ${getFromTheme('palette.black.900')};
   padding: 0;
   outline: none;
+  cursor: text;
 `;
 
 const styledValue = css`
@@ -197,4 +198,26 @@ export const EmptyFilter = styled.div`
   padding: 10px 0;
   font-size: ${getFromTheme('typography.fontSize.small')};
   color: ${getFromTheme('palette.black.500')};
+`;
+
+const rotate = keyframes`
+  0% { transform: rotate(0); }
+  100% { transform: rotate(360deg); }
+`;
+
+export const Loading = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+
+  &::before {
+    content: "";
+    height: 16px;
+    width: 16px;
+    border: 3px solid ${withProp(getFromTheme('palette.primary.500'), transparentize(0.4))};
+    border-top-color: transparent;
+    border-radius: 100%;
+    animation: ${rotate} .25s linear infinite;
+  }
 `;

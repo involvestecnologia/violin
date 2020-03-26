@@ -3,9 +3,9 @@ import React, { useRef, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import idgen from '../../utils/idgen';
 import { setHighlightNavigation, highlightFirstItemList, highlightText, scrollToElement } from './Select.utils';
-import { SelectMenu, SelectMenuItem, SelectMenuTitle, EmptyFilter } from './style';
+import { SelectMenu, SelectMenuItem, SelectMenuTitle, EmptyFilter, Loading } from './style';
 
-const DropdownSelect = ({ options, onSelect, menuRef, filter, ...props }) => {
+const DropdownSelect = ({ options, onSelect, menuRef, filter, loading, ...props }) => {
   const [highlightItem, setHighlightItem] = useState(0);
   const highlightRef = useRef(null);
 
@@ -65,9 +65,10 @@ const DropdownSelect = ({ options, onSelect, menuRef, filter, ...props }) => {
           </SelectMenuItem>
         )
       })}
-      {options.length < 1 && (
+      {!loading && options.length < 1 && (
         <EmptyFilter>Nada encontrado</EmptyFilter>
       )}
+      {loading && <Loading />}
     </SelectMenu>
   );
 };
@@ -76,7 +77,8 @@ DropdownSelect.propTypes = {
   options: PropTypes.oneOfType([PropTypes.array]).isRequired,
   onSelect: PropTypes.func.isRequired,
   menuRef: PropTypes.oneOfType([PropTypes.object]).isRequired,
-  filter: PropTypes.string.isRequired
+  filter: PropTypes.string.isRequired,
+  loading: PropTypes.bool.isRequired
 };
 
 export default DropdownSelect;
