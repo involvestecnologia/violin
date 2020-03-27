@@ -94,7 +94,7 @@ import { State } from 'react-powerplug';
 ## async
 
 <Playground>
-  <State initial={{ options: [] }}>
+  <State initial={{ selected: {} }}>
     {({ state, setState }) => {
       const colourOptions = [
         {value: "blue", label: "Blue"},
@@ -127,8 +127,10 @@ import { State } from 'react-powerplug';
               name="async-select"
               async
               loadOptions={loadOptions}
+              onSelect={(selected) => setState({ selected })}
             />
           </div>
+          <code>{state.selected.value}</code>
         </>
       )
     }}

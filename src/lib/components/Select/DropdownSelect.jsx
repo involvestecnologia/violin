@@ -9,8 +9,8 @@ const DropdownSelect = ({ options, onSelect, menuRef, filter, loading, ...props 
   const [highlightItem, setHighlightItem] = useState(0);
   const highlightRef = useRef(null);
 
-  const selectOption = (optionValue) => {
-    onSelect(optionValue);
+  const selectOption = (option) => {
+    onSelect(option);
   };
 
   useEffect(() => {
@@ -36,7 +36,7 @@ const DropdownSelect = ({ options, onSelect, menuRef, filter, loading, ...props 
       }
 
       if (hasOptions && enterKey) {
-        selectOption(options[highlightItem].value);
+        selectOption(options[highlightItem]);
       }
     };
     document.addEventListener('keydown', navigateMenuKeyboard);
@@ -58,7 +58,7 @@ const DropdownSelect = ({ options, onSelect, menuRef, filter, loading, ...props 
             highlight={highlightItem === i}
             key={idgen()}
             onMouseEnter={() => setHighlightItem(i)}
-            onClick={() => selectOption(option.value)}
+            onClick={() => selectOption(option)}
             deepRef={highlightItem === i ? highlightRef : null}
             selected={option.selected}
           >

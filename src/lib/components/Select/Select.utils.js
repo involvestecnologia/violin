@@ -54,22 +54,22 @@ export const highlightFirstItemList = (array, callback) => {
   }
 };
 
-export const selectOption = (array, value, setSelected) => (
+export const selectOption = (array, selected, setSelected) => (
   array.map((opt) => {
     const item = opt;
     if (item.value) {
-      if (item.value === value) {
+      if (item.value === selected.value) {
         item.selected = true;
-        setSelected(item);
+        if (setSelected) setSelected(item);
       } else {
         delete item.selected
       }
     } else if (item.options) {
       item.options.map((sub) => {
         const subItem = sub;
-        if (subItem.value === value) {
+        if (subItem.value === selected.value) {
           subItem.selected = true;
-          setSelected(subItem);
+          if (setSelected) setSelected(subItem);
         } else {
           delete subItem.selected;
         }

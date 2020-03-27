@@ -16,6 +16,7 @@ export const Select = ({
   async,
   loadOptions,
   debounce,
+  onSelect,
   disabled
 }) => {
   const [options, setOptions] = useState([]);
@@ -53,26 +54,23 @@ export const Select = ({
     focusInputAndSelect();
   };
 
-  const onSelectOption = (optionValue) => {
-    const updateSelected = selectOption(options, optionValue, setSelected);
-    setOptions(updateSelected);
+  const onSelectOption = (value) => {
+    setSelected(value || {});
     handleMenuOpen(false);
     focusInputAndSelect();
   };
 
   const clearSelect = () => {
-    setSelected({});
     onSelectOption(null);
-  }
+  };
 
-  const formatAndSetOptions = (array) => {
-    const formatedList = formatOptionsList(array);
-    setOptions(formatedList);
+  const updateOptionsWithSelected = (list) => {
+    const optionsWithSelected = selectOption(list, selected);
+    setOptions(formatOptionsList(optionsWithSelected));
   };
 
   const clearSearch = () => {
     clearTimeout(searchTimerRef.current);
-    // setOptions([]);
     setIsLoadingSearch(false);
   };
 
@@ -89,7 +87,7 @@ export const Select = ({
         loadOptions(searchTerm).then((res) => {
           setIsLoadingSearch(false);
           if (searchTerm) {
-            formatAndSetOptions(res);
+            updateOptionsWithSelected(res);
           } else {
             clearSearch();
           }
@@ -101,15 +99,20 @@ export const Select = ({
   };
 
   useEffect(() => {
-    formatAndSetOptions(originalOptions);
+    updateOptionsWithSelected(originalOptions);
   }, [originalOptions]);
 
   useEffect(() => {
     if (defaultValue) {
-      const updateSelected = selectOption(originalOptions, defaultValue, setSelected);
+      const updateSelected = selectOption(originalOptions, { value: defaultValue }, setSelected);
       setOptions(updateSelected);
     }
   }, [defaultValue]);
+
+  useEffect(() => {
+    updateOptionsWithSelected(async ? options : originalOptions);
+    if (onSelect) onSelect(selected);
+  }, [selected]);
 
   useEffect(() => {
     if (!async && !loadOptions) filterOptions(originalOptions, searchTerm, setOptions);
@@ -193,7 +196,12 @@ export const Select = ({
           loading={isLoadingSearch}
         />
       )}
-      <input type="hidden" name={name} value={selected.value || ''} disabled={disabled} />
+      <input
+        type="hidden"
+        name={name}
+        value={selected.value || ''}
+        disabled={disabled}
+      />
     </Container>
   )
 };
@@ -224,8 +232,10 @@ Select.propTypes = {
   async: PropTypes.bool,
   /** Load options from a promisse */
   loadOptions: PropTypes.func,
-  /** Set a time delay to call a request */
-  debounce: PropTypes.number
+  /** Set a time delay to call a request when async prop is true */
+  debounce: PropTypes.number,
+  /** Pass to function the option selected */
+  onSelect: PropTypes.func
 };
 
 Select.defaultProps = {
@@ -239,5 +249,6 @@ Select.defaultProps = {
   emptyMessage: 'Nada encontrado',
   async: false,
   loadOptions: null,
-  debounce: 500
+  debounce: 500,
+  onSelect: null
 };
