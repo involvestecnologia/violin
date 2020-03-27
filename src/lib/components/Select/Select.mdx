@@ -112,12 +112,13 @@ import { State } from 'react-powerplug';
           i.label.toLowerCase().includes(inputValue.toLowerCase())
         );
       };
-      const loadOptions = inputValue =>
-        new Promise(resolve => {
+      const loadOptions = (inputValue) => {
+        return new Promise(resolve => {
           setTimeout(() => {
             resolve(filterColors(inputValue));
-          }, 1000);
+          }, 300);
         });
+      }
       return (
         <>
           <div style={{ width: 300 }}>

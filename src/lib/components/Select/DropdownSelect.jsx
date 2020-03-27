@@ -49,6 +49,7 @@ const DropdownSelect = ({ options, onSelect, menuRef, filter, loading, ...props 
   return (
     <SelectMenu ref={menuRef} {...props}>
       {options.map((option, i) => {
+        if (loading) return null;
         if (option.title) {
           return <SelectMenuTitle key={idgen()}>{option.title}</SelectMenuTitle>
         }

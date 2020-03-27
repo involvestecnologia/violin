@@ -20,45 +20,44 @@ export const Select = ({
 }) => {
   const [options, setOptions] = useState([]);
   const [selected, setSelected] = useState({});
-  const [focused, setFocused] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [filterValue, setFilterValue] = useState('');
-  const [loadSearching, setLoadingSearching] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [isLoadingSearch, setIsLoadingSearch] = useState(false);
   const selectRef = useRef(null);
   const inputRef = useRef(null);
   const menuRef = useRef(null);
-  const timerRef = useRef(null);
+  const searchTimerRef = useRef(null);
 
   const handleMenuOpen = (open) => {
-    if (disabled) return;
-    setMenuOpen(open);
+    if (!disabled) setIsMenuOpen(open);
   }
 
-  const handleFocused = (focus) => {
-    if (!disabled) setFocused(focus);
+  const handleFocusSelect = (focus) => {
+    if (!disabled) setIsFocused(focus);
   }
 
-  const focusSelect = () => {
+  const focusInputAndSelect = () => {
     inputRef.current.focus();
-    handleFocused(true);
+    handleFocusSelect(true);
   };
 
   const blurSelect = () => {
-    handleFocused(false);
+    handleFocusSelect(false);
     handleMenuOpen(false);
   };
 
   const focusAndToggleMenu = (e) => {
     if (e) e.preventDefault();
-    handleMenuOpen(!menuOpen);
-    focusSelect();
+    if (!async || (async && options.length > 0)) handleMenuOpen(!isMenuOpen);
+    focusInputAndSelect();
   };
 
   const onSelectOption = (optionValue) => {
     const updateSelected = selectOption(options, optionValue, setSelected);
     setOptions(updateSelected);
     handleMenuOpen(false);
-    focusSelect();
+    focusInputAndSelect();
   };
 
   const clearSelect = () => {
@@ -71,10 +70,35 @@ export const Select = ({
     setOptions(formatedList);
   };
 
+  const clearSearch = () => {
+    clearTimeout(searchTimerRef.current);
+    // setOptions([]);
+    setIsLoadingSearch(false);
+  };
+
   const onTyping = (value) => {
-    if (!menuOpen && value.length > 0) handleMenuOpen(true);
-    setFilterValue(value);
-  }
+    if (!isMenuOpen && value.length > 0) handleMenuOpen(true);
+    setSearchTerm(value);
+  };
+
+  const callLoadOptions = () => {
+    if (isFocused) {
+      clearSearch();
+      setIsLoadingSearch(true);
+      searchTimerRef.current = setTimeout(() => {
+        loadOptions(searchTerm).then((res) => {
+          setIsLoadingSearch(false);
+          if (searchTerm) {
+            formatAndSetOptions(res);
+          } else {
+            clearSearch();
+          }
+        });
+      }, debounce)
+    } else {
+      clearSearch();
+    }
+  };
 
   useEffect(() => {
     formatAndSetOptions(originalOptions);
@@ -82,46 +106,37 @@ export const Select = ({
 
   useEffect(() => {
     if (defaultValue) {
-      const updateSelected = selectOption(options, defaultValue, setSelected);
+      const updateSelected = selectOption(originalOptions, defaultValue, setSelected);
       setOptions(updateSelected);
     }
   }, [defaultValue]);
 
   useEffect(() => {
-    filterOptions(originalOptions, filterValue, setOptions);
-
-    if (filterValue.length > 0 && async && loadOptions) {
-      clearTimeout(timerRef.current);
-      setLoadingSearching(true);
-      timerRef.current = setTimeout(() => {
-        loadOptions(filterValue).then((res) => {
-          setLoadingSearching(false);
-          formatAndSetOptions(res);
-        });
-      }, debounce)
-    } else if (filterValue.length === 0 && async && loadOptions) {
-      clearTimeout(timerRef.current);
-      setLoadingSearching(false);
-      setOptions([]);
-    }
-  }, [filterValue]);
+    if (!async && !loadOptions) filterOptions(originalOptions, searchTerm, setOptions);
+    if (async && loadOptions) callLoadOptions();
+    if (async && searchTerm.length === 0) handleMenuOpen(false);
+  }, [searchTerm, originalOptions]);
 
   useEffect(() => {
     const openMenuKeyboard = (e) => {
-      const spaceKey = focused && e.keyCode === 32;
-      const upKey = focused && e.keyCode === 38;
-      const downKey = focused && e.keyCode === 40;
-      const tabKey = focused && e.keyCode === 9;
-      const escKey = focused && e.keyCode === 27;
-      const enterKey = focused && e.keyCode === 13;
+      const spaceKey = isFocused && e.keyCode === 32;
+      const upKey = isFocused && e.keyCode === 38;
+      const downKey = isFocused && e.keyCode === 40;
+      const tabKey = isFocused && e.keyCode === 9;
+      const escKey = isFocused && e.keyCode === 27;
+      const enterKey = isFocused && e.keyCode === 13;
 
-      if (spaceKey || (!menuOpen && upKey) || (!menuOpen && downKey) || (!menuOpen && enterKey)) {
+      if (
+        spaceKey
+        || (!isMenuOpen && upKey)
+        || (!isMenuOpen && downKey)
+        || (!isMenuOpen && enterKey)
+      ) {
         e.preventDefault();
-        handleMenuOpen(!menuOpen);
+        if (!async || (async && options.length > 0)) handleMenuOpen(!isMenuOpen);
       }
 
-      if (menuOpen && escKey) handleMenuOpen(!menuOpen);
-
+      if (isMenuOpen && escKey) handleMenuOpen(!isMenuOpen);
       if (tabKey) blurSelect();
     };
     document.addEventListener('keydown', openMenuKeyboard);
@@ -129,20 +144,18 @@ export const Select = ({
     return () => {
       document.removeEventListener('keydown', openMenuKeyboard);
     }
-  }, [focused, menuOpen]);
+  }, [isFocused, isMenuOpen]);
 
   useEffect(() => {
     const closeOnClickOut = (event) => {
-      if (focused) {
+      if (isFocused) {
         const hasMenu = menuRef.current;
         const clickedSelect = selectRef.current.contains(event.target);
         const clickedMenu = hasMenu && menuRef.current.contains(event.target);
 
         const isClickedOut = (hasMenu && (!clickedSelect && !clickedMenu)) || !clickedSelect;
 
-        if (isClickedOut) {
-          blurSelect();
-        }
+        if (isClickedOut) blurSelect();
       }
     };
 
@@ -150,34 +163,34 @@ export const Select = ({
     return () => {
       document.removeEventListener('click', closeOnClickOut, true);
     }
-  }, [focused]);
+  }, [isFocused]);
 
   return (
     <Container ref={selectRef}>
       <InputSelect
-        isFocused={focused}
+        isFocused={isFocused}
         onMouseDown={focusAndToggleMenu}
         inputRef={inputRef}
-        onFocus={focusSelect}
+        onFocus={focusInputAndSelect}
         selected={selected}
         placeholder={placeholder}
         emptyMessage={emptyMessage}
         clearSelect={clearSelect}
         isSearchable={searchable || async}
         onTyping={onTyping}
-        isMenuOpen={menuOpen}
+        isMenuOpen={isMenuOpen}
         error={error}
         disabled={disabled}
       />
-      {menuOpen && (
+      {isMenuOpen && (
         <DropdownSelect
           options={options}
           onSelect={onSelectOption}
           menuRef={menuRef}
-          filter={filterValue}
+          filter={searchTerm}
           async={async}
-          onClick={focusSelect}
-          loading={loadSearching}
+          onClick={focusInputAndSelect}
+          loading={isLoadingSearch}
         />
       )}
       <input type="hidden" name={name} value={selected.value || ''} disabled={disabled} />

@@ -19,7 +19,7 @@ const InputSelect = ({
   error,
   disabled
 }) => {
-  const [valueFilter, setValueFilter] = useState('');
+  const [searchTerm, setSearchTerm] = useState('');
   const [widthInput, setWidthInput] = useState(1);
   const [showClearButton, setShowClearButton] = useState(false);
   const [showPlaceholder, setShowPlaceholder] = useState(true);
@@ -27,12 +27,12 @@ const InputSelect = ({
 
   const resetInput = () => {
     setWidthInput(1);
-    setValueFilter('');
+    setSearchTerm('');
   };
 
   const handleClear = (e) => {
     e.stopPropagation();
-    if (valueFilter.length > 0) {
+    if (searchTerm.length > 0) {
       resetInput();
       inputRef.current.focus();
     } else {
@@ -41,7 +41,7 @@ const InputSelect = ({
   };
 
   const handleChange = (e) => {
-    setValueFilter(e.target.value);
+    setSearchTerm(e.target.value);
   };
 
   const handleMouseDown = (e) => {
@@ -51,8 +51,8 @@ const InputSelect = ({
 
   useEffect(() => {
     setWidthInput(inputRef.current.scrollWidth);
-    onTyping(valueFilter);
-  }, [valueFilter]);
+    onTyping(searchTerm);
+  }, [searchTerm]);
 
   useEffect(() => {
     resetInput();
@@ -63,16 +63,16 @@ const InputSelect = ({
   }, [isMenuOpen]);
 
   useEffect(() => {
-    setShowPlaceholder(!selected.value && !!placeholder && !valueFilter.length);
-    setShowValue(!!selected.value && !valueFilter.length);
-    setShowClearButton(selected.value || valueFilter.length > 0);
-  }, [selected, valueFilter, placeholder]);
+    setShowPlaceholder(!selected.value && !!placeholder && !searchTerm.length);
+    setShowValue(!!selected.value && !searchTerm.length);
+    setShowClearButton((selected.value || searchTerm.length > 0) && isMenuOpen);
+  }, [selected, searchTerm, placeholder, isMenuOpen]);
 
   useEffect(() => {
     const handleKeydownInput = (e) => {
       const spaceKey = e.keyCode === 32;
 
-      if (spaceKey && valueFilter.trim().length > 0) {
+      if (spaceKey && searchTerm.trim().length > 0) {
         e.stopPropagation();
       }
     };
@@ -81,7 +81,7 @@ const InputSelect = ({
     return () => {
       inputRef.current.removeEventListener('keydown', handleKeydownInput);
     };
-  }, [valueFilter]);
+  }, [searchTerm]);
 
   return (
     <StyledSelect
@@ -97,7 +97,7 @@ const InputSelect = ({
           ref={inputRef}
           onFocus={onFocus}
           disabled={disabled}
-          value={valueFilter}
+          value={searchTerm}
           onChange={handleChange}
           onMouseDown={(e) => e.stopPropagation()}
           readOnly={!isSearchable}
