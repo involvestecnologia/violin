@@ -6,6 +6,7 @@ import {
 } from './style';
 
 const InputSelect = ({
+  id,
   isFocused,
   onMouseDown,
   inputRef,
@@ -65,8 +66,8 @@ const InputSelect = ({
   useEffect(() => {
     setShowPlaceholder(!selected.value && !!placeholder && !searchTerm.length);
     setShowValue(!!selected.value && !searchTerm.length);
-    setShowClearButton((selected.value || searchTerm.length > 0) && isMenuOpen);
-  }, [selected, searchTerm, placeholder, isMenuOpen]);
+    setShowClearButton((selected.value || searchTerm.length > 0) && isFocused);
+  }, [selected, searchTerm, placeholder, isFocused]);
 
   useEffect(() => {
     const handleKeydownInput = (e) => {
@@ -94,6 +95,7 @@ const InputSelect = ({
         {isSearchable && <SearchIcon isFocused={isFocused} icon="search" />}
         <Input
           type="text"
+          id={id}
           ref={inputRef}
           onFocus={onFocus}
           disabled={disabled}
@@ -141,6 +143,7 @@ const InputSelect = ({
 };
 
 InputSelect.propTypes = {
+  id: PropTypes.string,
   isFocused: PropTypes.bool.isRequired,
   onMouseDown: PropTypes.func.isRequired,
   inputRef: PropTypes.oneOfType([PropTypes.object]).isRequired,
@@ -154,5 +157,9 @@ InputSelect.propTypes = {
   isMenuOpen: PropTypes.bool.isRequired,
   error: PropTypes.bool.isRequired
 };
+
+InputSelect.defaultProps = {
+  id: null
+}
 
 export default InputSelect;

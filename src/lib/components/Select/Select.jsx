@@ -9,6 +9,9 @@ export const Select = ({
   placeholder,
   options: originalOptions,
   name,
+  id,
+  className,
+  style,
   defaultValue,
   searchable,
   error,
@@ -83,18 +86,16 @@ export const Select = ({
     if (isFocused) {
       clearSearch();
       setIsLoadingSearch(true);
-      searchTimerRef.current = setTimeout(() => {
-        loadOptions(searchTerm).then((res) => {
-          setIsLoadingSearch(false);
-          if (searchTerm) {
+      if (searchTerm) {
+        searchTimerRef.current = setTimeout(() => {
+          loadOptions(searchTerm).then((res) => {
             updateOptionsWithSelected(res);
-          } else {
-            clearSearch();
-          }
-        });
-      }, debounce)
-    } else {
-      clearSearch();
+            setIsLoadingSearch(false);
+          });
+        }, debounce)
+      } else {
+        clearSearch();
+      }
     }
   };
 
@@ -117,7 +118,7 @@ export const Select = ({
   useEffect(() => {
     if (!async && !loadOptions) filterOptions(originalOptions, searchTerm, setOptions);
     if (async && loadOptions) callLoadOptions();
-    if (async && searchTerm.length === 0) handleMenuOpen(false);
+    // if (async && searchTerm.length === 0) handleMenuOpen(false);
   }, [searchTerm, originalOptions]);
 
   useEffect(() => {
@@ -169,8 +170,13 @@ export const Select = ({
   }, [isFocused]);
 
   return (
-    <Container ref={selectRef}>
+    <Container
+      ref={selectRef}
+      style={style}
+      className={className}
+    >
       <InputSelect
+        id={id}
         isFocused={isFocused}
         onMouseDown={focusAndToggleMenu}
         inputRef={inputRef}
@@ -218,6 +224,12 @@ Select.propTypes = {
   ),
   /** Name input form */
   name: PropTypes.string,
+  /** Set id to input */
+  id: PropTypes.string,
+  /** Add class to container */
+  className: PropTypes.string,
+  /** Add style to container */
+  style: PropTypes.string,
   /** Set a value to auto select an item */
   defaultValue: PropTypes.string,
   /** Allow serach items and filter */
@@ -242,6 +254,9 @@ Select.defaultProps = {
   placeholder: null,
   options: [],
   name: null,
+  id: null,
+  className: null,
+  style: null,
   defaultValue: null,
   searchable: false,
   disabled: false,
