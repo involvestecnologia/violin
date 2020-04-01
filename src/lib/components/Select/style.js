@@ -35,10 +35,10 @@ export const StyledSelect = styled.div`
 
 export const Filter = styled.div`
   position: relative;
-  flex-grow: 0;
   display: flex;
   flex-wrap: wrap;
   flex: 1 1 0%;
+  flex-grow: 0;
   height: 100%;
   padding-left: 10px;
   overflow: hidden;
