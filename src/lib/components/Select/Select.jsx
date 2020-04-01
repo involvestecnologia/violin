@@ -20,7 +20,8 @@ export const Select = ({
   loadOptions,
   debounce,
   onSelect,
-  disabled
+  disabled,
+  ...props
 }) => {
   const [options, setOptions] = useState([]);
   const [selected, setSelected] = useState({});
@@ -87,12 +88,10 @@ export const Select = ({
       clearSearch();
       setIsLoadingSearch(true);
       if (searchTerm) {
-        searchTimerRef.current = setTimeout(() => {
-          loadOptions(searchTerm).then((res) => {
-            updateOptionsWithSelected(res);
-            setIsLoadingSearch(false);
-          });
-        }, debounce)
+        loadOptions(searchTerm).then((res) => {
+          updateOptionsWithSelected(res);
+          setIsLoadingSearch(false);
+        });
       } else {
         clearSearch();
       }
@@ -118,7 +117,6 @@ export const Select = ({
   useEffect(() => {
     if (!async && !loadOptions) filterOptions(originalOptions, searchTerm, setOptions);
     if (async && loadOptions) callLoadOptions();
-    // if (async && searchTerm.length === 0) handleMenuOpen(false);
   }, [searchTerm, originalOptions]);
 
   useEffect(() => {
@@ -174,6 +172,8 @@ export const Select = ({
       ref={selectRef}
       style={style}
       className={className}
+      data-testid="select"
+      {...props}
     >
       <InputSelect
         id={id}
@@ -207,6 +207,7 @@ export const Select = ({
         name={name}
         value={selected.value || ''}
         disabled={disabled}
+        data-testid="select-input-value"
       />
     </Container>
   )
@@ -251,11 +252,11 @@ Select.propTypes = {
 };
 
 Select.defaultProps = {
-  placeholder: null,
+  placeholder: '',
   options: [],
-  name: null,
+  name: '',
   id: null,
-  className: null,
+  className: '',
   style: null,
   defaultValue: null,
   searchable: false,

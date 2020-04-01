@@ -90,6 +90,7 @@ const InputSelect = ({
       onMouseDown={handleMouseDown}
       isDisabled={disabled}
       error={error}
+      data-testid="select-input"
     >
       <Filter>
         {isSearchable && <SearchIcon isFocused={isFocused} icon="search" />}
@@ -104,6 +105,7 @@ const InputSelect = ({
           onMouseDown={(e) => e.stopPropagation()}
           readOnly={!isSearchable}
           widthInput={widthInput}
+          data-testid="input-select-filter"
         />
         {showValue && (
           <Value
@@ -135,6 +137,7 @@ const InputSelect = ({
             onClick={handleClear}
             disabled={disabled}
             tabIndex="-1"
+            data-testid="input-select-clear"
           />
         )}
       </Controls>

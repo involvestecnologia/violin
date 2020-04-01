@@ -47,11 +47,15 @@ const DropdownSelect = ({ options, onSelect, menuRef, filter, loading, ...props 
   }, [highlightItem, options]);
 
   return (
-    <SelectMenu ref={menuRef} {...props}>
+    <SelectMenu
+      ref={menuRef}
+      data-testid="select-menu"
+      {...props}
+    >
       {options.map((option, i) => {
         if (loading) return null;
         if (option.title) {
-          return <SelectMenuTitle key={idgen()}>{option.title}</SelectMenuTitle>
+          return <SelectMenuTitle key={idgen()} data-testid="select-menu-item">{option.title}</SelectMenuTitle>
         }
         return (
           <SelectMenuItem
@@ -61,15 +65,16 @@ const DropdownSelect = ({ options, onSelect, menuRef, filter, loading, ...props 
             onClick={() => selectOption(option)}
             deepRef={highlightItem === i ? highlightRef : null}
             selected={option.selected}
+            data-testid="select-menu-item"
           >
             <span dangerouslySetInnerHTML={{ __html: highlightText(option.label, filter) }} />
           </SelectMenuItem>
         )
       })}
       {!loading && options.length < 1 && (
-        <EmptyFilter>Nada encontrado</EmptyFilter>
+        <EmptyFilter data-testid="select-menu-empty">Nada encontrado</EmptyFilter>
       )}
-      {loading && <Loading />}
+      {loading && <Loading data-testid="select-menu-loading" />}
     </SelectMenu>
   );
 };
