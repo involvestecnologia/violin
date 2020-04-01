@@ -7,9 +7,12 @@ export const TextField = (
     id,
     error,
     disabled,
+    deepRef,
     ...props
   }
-) => <Input id={id} error={error} disabled={disabled} {...props} />;
+) => (
+  <Input {...{ ...props, id, error, disabled, ref: deepRef }} />
+);
 
 TextField.propTypes = {
   placeholder: PropTypes.string,
@@ -24,7 +27,9 @@ TextField.propTypes = {
   /** Set error style */
   error: PropTypes.bool,
   /** Add a native attribute disabled and set disabled style */
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
+  /**  */
+  deepRef: PropTypes.oneOfType([PropTypes.object])
 };
 
 TextField.defaultProps = {
@@ -34,5 +39,6 @@ TextField.defaultProps = {
   large: false,
   id: null,
   error: false,
-  disabled: false
+  disabled: false,
+  deepRef: undefined
 };
