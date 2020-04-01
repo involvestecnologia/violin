@@ -36,9 +36,7 @@ export const StyledSelect = styled.div`
 export const Filter = styled.div`
   position: relative;
   display: flex;
-  flex-wrap: wrap;
   flex: 1 1 0%;
-  flex-grow: 0;
   height: 100%;
   padding-left: 10px;
   overflow: hidden;
@@ -105,6 +103,7 @@ export const ArrowDropdown = styled(Icon)`
 
 export const SearchIcon = styled(Icon)`
   display: flex;
+  flex-shrink: 0;
   align-items: center;
   font-size: ${rem(24)};
   width: ${ifProp('isFocused', rem(24), '0')};

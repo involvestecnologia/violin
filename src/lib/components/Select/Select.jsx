@@ -88,10 +88,12 @@ export const Select = ({
       clearSearch();
       setIsLoadingSearch(true);
       if (searchTerm) {
-        loadOptions(searchTerm).then((res) => {
-          updateOptionsWithSelected(res);
-          setIsLoadingSearch(false);
-        });
+        searchTimerRef.current = setTimeout(() => {
+          loadOptions(searchTerm).then((res) => {
+            updateOptionsWithSelected(res);
+            setIsLoadingSearch(false);
+          });
+        }, debounce)
       } else {
         clearSearch();
       }
