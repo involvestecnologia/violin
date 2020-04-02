@@ -1,6 +1,7 @@
 export { Button } from './Button';
 export { Card } from './Card';
 export { Checkbox } from './Checkbox';
+export { Flex } from './Flex';
 export { Dropdown, DropdownItem, DropdownDivider } from './Dropdown';
 export { Title } from './Title';
 export { Icon } from './Icon';
@@ -9,6 +10,7 @@ export { Modal } from './Modal';
 export { Notification } from './Notification';
 export { FormGroup } from './FormGroup';
 export { RadioButton } from './RadioButton';
+export { Select } from './Select';
 export { Subtitle } from './Subtitle';
 export { Text } from './Text';
 export { TextField } from './TextField';

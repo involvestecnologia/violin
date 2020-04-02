@@ -1,0 +1,215 @@
+---
+name: Flex
+menu: Components
+route: /components/Flex
+---
+
+import { Flex } from './Flex';
+import { Div } from './style';
+import { Playground, Props } from "docz";
+
+# Flex
+
+<Playground>
+  <Flex>
+    <Div>Item 1</Div>
+    <Div>Item 2</Div>
+    <Div>Item 3</Div>
+  </Flex>
+</Playground>
+
+## Props
+
+<Props of={Flex} />
+
+## display
+
+<Playground>
+  <Flex display="flex">
+    <Div>Display flex</Div>
+  </Flex>
+  <Flex display="inline-flex">
+    <Div>Display inline-flex</Div>
+  </Flex>
+  <Flex display="inline-flex">
+    <Div>Display inline-flex</Div>
+  </Flex>
+</Playground>
+
+## flexDirection
+
+<Playground>
+  <Flex flexDirection="row">
+    <Div>Item 1</Div>
+    <Div>Item 2</Div>
+    <Div>Item 3</Div>
+  </Flex>
+</Playground>
+
+<br />
+
+<Playground>
+  <Flex flexDirection="row-reverse">
+    <Div>Item 1</Div>
+    <Div>Item 2</Div>
+    <Div>Item 3</Div>
+  </Flex>
+</Playground>
+
+<br />
+
+<Playground>
+  <Flex flexDirection="column">
+    <Div>Item 1</Div>
+    <Div>Item 2</Div>
+    <Div>Item 3</Div>
+  </Flex>
+</Playground>
+
+## flexWrap
+
+<Playground>
+  <Flex flexWrap="nowrap">
+    <Div>Lorem ipsum dolor sit amet</Div>
+    <Div>Lorem ipsum dolor sit amet</Div>
+    <Div>Lorem ipsum dolor sit amet</Div>
+    <Div>Lorem ipsum dolor sit amet</Div>
+    <Div>Lorem ipsum dolor sit amet</Div>
+    <Div>Lorem ipsum dolor sit amet</Div>
+  </Flex>
+</Playground>
+
+<br />
+
+<Playground>
+  <Flex flexWrap="wrap">
+    <Div>Lorem ipsum dolor sit amet</Div>
+    <Div>Lorem ipsum dolor sit amet</Div>
+    <Div>Lorem ipsum dolor sit amet</Div>
+    <Div>Lorem ipsum dolor sit amet</Div>
+    <Div>Lorem ipsum dolor sit amet</Div>
+    <Div>Lorem ipsum dolor sit amet</Div>
+  </Flex>
+</Playground>
+
+## justifyContent
+
+<Playground>
+  <Flex justifyContent="flex-start">
+    <Div>Item 1</Div>
+    <Div>Item 2</Div>
+    <Div>Item 3</Div>
+  </Flex>
+</Playground>
+
+<br />
+
+<Playground>
+  <Flex justifyContent="center">
+    <Div>Item 1</Div>
+    <Div>Item 2</Div>
+    <Div>Item 3</Div>
+  </Flex>
+</Playground>
+
+<br />
+
+<Playground>
+  <Flex justifyContent="flex-end">
+    <Div>Item 1</Div>
+    <Div>Item 2</Div>
+    <Div>Item 3</Div>
+  </Flex>
+</Playground>
+
+<br />
+
+<Playground>
+  <Flex justifyContent="space-between">
+    <Div>Item 1</Div>
+    <Div>Item 2</Div>
+    <Div>Item 3</Div>
+  </Flex>
+</Playground>
+
+<br />
+
+<Playground>
+  <Flex justifyContent="space-around">
+    <Div>Item 1</Div>
+    <Div>Item 2</Div>
+    <Div>Item 3</Div>
+  </Flex>
+</Playground>
+
+## alignItems
+
+<Playground>
+  <Flex alignItems="stretch">
+    <Div>Lorem ipsum</Div>
+    <Div>Lorem ipsum <br /> folor sit amet</Div>
+    <Div>Lorem ipsuim dolor sit amet</Div>
+  </Flex>
+</Playground>
+
+<br />
+
+<Playground>
+  <Flex alignItems="flex-start">
+    <Div>Lorem ipsum</Div>
+    <Div>Lorem ipsum <br /> folor sit amet</Div>
+    <Div>Lorem ipsuim dolor sit amet</Div>
+  </Flex>
+</Playground>
+
+<br />
+
+<Playground>
+  <Flex alignItems="flex-end">
+    <Div>Lorem ipsum</Div>
+    <Div>Lorem ipsum <br /> folor sit amet</Div>
+    <Div>Lorem ipsuim dolor sit amet</Div>
+  </Flex>
+</Playground>
+
+<br />
+
+<Playground>
+  <Flex alignItems="center">
+    <Div>Lorem ipsum</Div>
+    <Div>Lorem ipsum <br /> folor sit amet</Div>
+    <Div>Lorem ipsuim dolor sit amet</Div>
+  </Flex>
+</Playground>
+
+## order
+
+<Playground>
+  <Flex>
+    <Flex order={2}>
+      <Div>Item 1</Div>
+    </Flex>
+    <Flex order={3}>
+      <Div>Item 2</Div>
+    </Flex>
+    <Flex order={1}>
+      <Div>Item 3</Div>
+    </Flex>
+  </Flex>
+</Playground>
+
+## flexGrow
+
+<Playground>
+  <Flex>
+    <Flex flexGrow={1}>
+      <Div>Item 1</Div>
+    </Flex>
+    <Flex>
+      <Div>Item 2</Div>
+    </Flex>
+    <Flex>
+      <Div>Item 3</Div>
+    </Flex>
+  </Flex>
+</Playground>
