@@ -6,9 +6,15 @@ route: /components/Flex
 
 import { Flex } from './Flex';
 import { Div } from './style';
+import { DemoControl } from '../../../docs/utils/Democontrol';
+import { State } from 'react-powerplug';
 import { Playground, Props } from "docz";
 
 # Flex
+
+Quickly manage the layout, alignment, and sizing of grid columns, navigation, components, and more with a full suite of responsive flexbox utilities.
+
+> If you are new to or unfamiliar with flexbox, we encourage you to read this [CSS-Tricks flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) guide.
 
 <Playground>
   <Flex>
@@ -39,147 +45,117 @@ import { Playground, Props } from "docz";
 ## flexDirection
 
 <Playground>
-  <Flex flexDirection="row">
-    <Div>Item 1</Div>
-    <Div>Item 2</Div>
-    <Div>Item 3</Div>
-  </Flex>
-</Playground>
-
-<br />
-
-<Playground>
-  <Flex flexDirection="row-reverse">
-    <Div>Item 1</Div>
-    <Div>Item 2</Div>
-    <Div>Item 3</Div>
-  </Flex>
-</Playground>
-
-<br />
-
-<Playground>
-  <Flex flexDirection="column">
-    <Div>Item 1</Div>
-    <Div>Item 2</Div>
-    <Div>Item 3</Div>
-  </Flex>
+  <State initial={{ checked: 'row' }}>
+    {({ state, setState }) => {
+      return (
+        <>
+          <DemoControl name="flexDirection" options={['row', 'row-reverse', 'column', 'column-reverse']} state={state.checked} onChange={(value) => setState({ checked: value })} />
+          <Flex flexDirection={state.checked}>
+            <Div>Item 1</Div>
+            <Div>Item 2</Div>
+            <Div>Item 3</Div>
+          </Flex>
+        </>
+      )
+    }}
+  </State>
 </Playground>
 
 ## flexWrap
 
 <Playground>
-  <Flex flexWrap="nowrap">
-    <Div>Lorem ipsum dolor sit amet</Div>
-    <Div>Lorem ipsum dolor sit amet</Div>
-    <Div>Lorem ipsum dolor sit amet</Div>
-    <Div>Lorem ipsum dolor sit amet</Div>
-    <Div>Lorem ipsum dolor sit amet</Div>
-    <Div>Lorem ipsum dolor sit amet</Div>
-  </Flex>
-</Playground>
-
-<br />
-
-<Playground>
-  <Flex flexWrap="wrap">
-    <Div>Lorem ipsum dolor sit amet</Div>
-    <Div>Lorem ipsum dolor sit amet</Div>
-    <Div>Lorem ipsum dolor sit amet</Div>
-    <Div>Lorem ipsum dolor sit amet</Div>
-    <Div>Lorem ipsum dolor sit amet</Div>
-    <Div>Lorem ipsum dolor sit amet</Div>
-  </Flex>
+  <State initial={{ checked: 'nowrap' }}>
+    {({ state, setState }) => {
+      return (
+        <>
+          <DemoControl name="flexWrap" options={['wrap', 'nowrap', 'wrap-reverse']} state={state.checked} onChange={(value) => setState({ checked: value })} />
+          <Flex flexWrap={state.checked}>
+            <Div>Lorem ipsum dolor sit amet</Div>
+            <Div>Lorem ipsum dolor sit amet</Div>
+            <Div>Lorem ipsum dolor sit amet</Div>
+            <Div>Lorem ipsum dolor sit amet</Div>
+            <Div>Lorem ipsum dolor sit amet</Div>
+            <Div>Lorem ipsum dolor sit amet</Div>
+          </Flex>
+        </>
+      )
+    }}
+  </State>
 </Playground>
 
 ## justifyContent
 
 <Playground>
-  <Flex justifyContent="flex-start">
-    <Div>Item 1</Div>
-    <Div>Item 2</Div>
-    <Div>Item 3</Div>
-  </Flex>
-</Playground>
-
-<br />
-
-<Playground>
-  <Flex justifyContent="center">
-    <Div>Item 1</Div>
-    <Div>Item 2</Div>
-    <Div>Item 3</Div>
-  </Flex>
-</Playground>
-
-<br />
-
-<Playground>
-  <Flex justifyContent="flex-end">
-    <Div>Item 1</Div>
-    <Div>Item 2</Div>
-    <Div>Item 3</Div>
-  </Flex>
-</Playground>
-
-<br />
-
-<Playground>
-  <Flex justifyContent="space-between">
-    <Div>Item 1</Div>
-    <Div>Item 2</Div>
-    <Div>Item 3</Div>
-  </Flex>
-</Playground>
-
-<br />
-
-<Playground>
-  <Flex justifyContent="space-around">
-    <Div>Item 1</Div>
-    <Div>Item 2</Div>
-    <Div>Item 3</Div>
-  </Flex>
+  <State initial={{ checked: 'flex-start' }}>
+    {({ state, setState }) => {
+      return (
+        <>
+          <DemoControl
+            name="justifyContent"
+            options={['flex-start', 'flex-end', 'center', 'space-between', 'space-around']}
+            state={state.checked}
+            onChange={(value) => setState({ checked: value })}
+          />
+          <Flex justifyContent={state.checked}>
+            <Div>Item 1</Div>
+            <Div>Item 2</Div>
+            <Div>Item 3</Div>
+          </Flex>
+        </>
+      )
+    }}
+  </State>
 </Playground>
 
 ## alignItems
 
 <Playground>
-  <Flex alignItems="stretch">
-    <Div>Lorem ipsum</Div>
-    <Div>Lorem ipsum <br /> folor sit amet</Div>
-    <Div>Lorem ipsuim dolor sit amet</Div>
-  </Flex>
+  <State initial={{ checked: 'stretch' }}>
+    {({ state, setState }) => {
+      return (
+        <>
+          <DemoControl
+            name="alignItems"
+            options={['stretch', 'flex-start', 'flex-end', 'center', 'baseline']}
+            state={state.checked}
+            onChange={(value) => setState({ checked: value })}
+          />
+          <Flex alignItems={state.checked}>
+            <Div>Lorem ipsum</Div>
+            <Div>Lorem ipsum <br /> folor sit amet</Div>
+            <Div>Lorem ipsuim dolor sit amet</Div>
+          </Flex>
+        </>
+      )
+    }}
+  </State>
 </Playground>
 
-<br />
+## alignContent
 
 <Playground>
-  <Flex alignItems="flex-start">
-    <Div>Lorem ipsum</Div>
-    <Div>Lorem ipsum <br /> folor sit amet</Div>
-    <Div>Lorem ipsuim dolor sit amet</Div>
-  </Flex>
-</Playground>
-
-<br />
-
-<Playground>
-  <Flex alignItems="flex-end">
-    <Div>Lorem ipsum</Div>
-    <Div>Lorem ipsum <br /> folor sit amet</Div>
-    <Div>Lorem ipsuim dolor sit amet</Div>
-  </Flex>
-</Playground>
-
-<br />
-
-<Playground>
-  <Flex alignItems="center">
-    <Div>Lorem ipsum</Div>
-    <Div>Lorem ipsum <br /> folor sit amet</Div>
-    <Div>Lorem ipsuim dolor sit amet</Div>
-  </Flex>
+  <State initial={{ checked: 'stretch' }}>
+    {({ state, setState }) => {
+      return (
+        <>
+          <DemoControl
+            name="alignContent"
+            options={['stretch', 'flex-start', 'flex-end', 'center', 'space-between', 'space-around']}
+            state={state.checked}
+            onChange={(value) => setState({ checked: value })}
+          />
+          <Flex alignContent={state.checked} flexWrap="wrap" style={{ height: 200 }}>
+            <Div>Lorem ipsum dolor sit amet</Div>
+            <Div>Lorem ipsum dolor sit amet</Div>
+            <Div>Lorem ipsum dolor sit amet</Div>
+            <Div>Lorem ipsum dolor sit amet</Div>
+            <Div>Lorem ipsum dolor sit amet</Div>
+            <Div>Lorem ipsum dolor sit amet</Div>
+          </Flex>
+        </>
+      )
+    }}
+  </State>
 </Playground>
 
 ## order
@@ -203,13 +179,45 @@ import { Playground, Props } from "docz";
 <Playground>
   <Flex>
     <Flex flexGrow={1}>
-      <Div>Item 1</Div>
+      <Div style={{ width: '100%' }}>Item 1</Div>
     </Flex>
     <Flex>
-      <Div>Item 2</Div>
+      <Div style={{ width: '100%' }}>Item 2</Div>
     </Flex>
     <Flex>
-      <Div>Item 3</Div>
+      <Div style={{ width: '100%' }}>Item 3</Div>
+    </Flex>
+  </Flex>
+</Playground>
+
+## flexShrink
+
+<Playground>
+  <Flex>
+    <Flex style={{ width: '100%' }}>
+      <Div style={{ width: '100%' }}>Lorem ipsum dolor sit amet</Div>
+    </Flex>
+    <Flex flexShrink={1}>
+      <Div style={{ width: '100%' }}>Lorem ipsum dolor sit amet</Div>
+    </Flex>
+    <Flex flexShrink={0}>
+      <Div style={{ width: '100%' }}>Lorem ipsum dolor sit amet</Div>
+    </Flex>
+  </Flex>
+</Playground>
+
+## alignSelf
+
+<Playground>
+  <Flex alignItems="flex-start" style={{ minHeight: 200 }}>
+    <Flex>
+      <Div>Lorem ipsum dolor sit amet</Div>
+    </Flex>
+    <Flex alignSelf="flex-end">
+      <Div>Lorem ipsum dolor sit amet</Div>
+    </Flex>
+    <Flex>
+      <Div>Lorem ipsum dolor sit amet</Div>
     </Flex>
   </Flex>
 </Playground>
