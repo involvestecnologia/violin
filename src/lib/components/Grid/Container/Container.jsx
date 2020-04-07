@@ -7,6 +7,7 @@ export const Container = (props) => (
 );
 
 Container.propTypes = {
+  /** Set with 100% */
   fluid: PropTypes.bool
 };
 

@@ -6,15 +6,25 @@ export const Row = (props) => (
   <StyledRow {...props} />
 );
 
+const breakpoints = ['xs', 'sm', 'md', 'lg', 'xl'];
+
 Row.propTypes = {
+  /** Change columns order */
   reverse: PropTypes.bool,
-  start: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
-  end: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
-  top: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
-  middle: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
-  bottom: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
-  around: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
-  between: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl'])
+  /** Align columns to left */
+  start: PropTypes.oneOf(breakpoints),
+  /** Align columns to right */
+  end: PropTypes.oneOf(breakpoints),
+  /** Align columns to top */
+  top: PropTypes.oneOf(breakpoints),
+  /** Align columns to middle */
+  middle: PropTypes.oneOf(breakpoints),
+  /** Align columns to bottom */
+  bottom: PropTypes.oneOf(breakpoints),
+  /** Distribute columns with same aside margin */
+  around: PropTypes.oneOf(breakpoints),
+  /** Distribute columns to corner */
+  between: PropTypes.oneOf(breakpoints)
 };
 
 Row.defaultProps = {

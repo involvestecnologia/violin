@@ -19,7 +19,9 @@ Col.propTypes = {
   smOffset: PropTypes.oneOf(arrayOffset),
   mdOffset: PropTypes.oneOf(arrayOffset),
   lgOffset: PropTypes.oneOf(arrayOffset),
-  xlOffset: PropTypes.oneOf(arrayOffset)
+  xlOffset: PropTypes.oneOf(arrayOffset),
+  first: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
+  last: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
 };
 
 Col.defaultProps = {
@@ -32,5 +34,7 @@ Col.defaultProps = {
   smOffset: null,
   mdOffset: null,
   lgOffset: null,
-  xlOffset: null
+  xlOffset: null,
+  first: null,
+  last: null,
 };

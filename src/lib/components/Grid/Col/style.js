@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
-import getFromTheme from '../../../utils/getFromTheme';
 import { ifProp } from 'styled-tools';
+import getFromTheme from '../../../utils/getFromTheme';
 
 const createColStyle = (breakpoint, value) => {
   if (typeof value === 'boolean' && value === true) {
@@ -100,17 +100,8 @@ export const StyledCol = styled.div`
   ${({ lgOffset }) => lgOffset && createOffsetStyle('lg', lgOffset)}
   ${({ xlOffset }) => xlOffset && createOffsetStyle('xl', xlOffset)}
 
-  ${({ firstXs }) => firstXs && createOrderStyle('xs', 'order: -1;')}
-  ${({ firstSm }) => firstSm && createOrderStyle('sm', 'order: -1;')}
-  ${({ firstMd }) => firstMd && createOrderStyle('md', 'order: -1;')}
-  ${({ firstLg }) => firstLg && createOrderStyle('lg', 'order: -1;')}
-  ${({ firstXl }) => firstXl && createOrderStyle('xl', 'order: -1;')}
-
-  ${({ lastXs }) => lastXs && createOrderStyle('xs', 'order: 1;')}
-  ${({ lastSm }) => lastSm && createOrderStyle('sm', 'order: 1;')}
-  ${({ lastMd }) => lastMd && createOrderStyle('md', 'order: 1;')}
-  ${({ lastLg }) => lastLg && createOrderStyle('lg', 'order: 1;')}
-  ${({ lastXl }) => lastXl && createOrderStyle('xl', 'order: 1;')}
+  ${({ first }) => first && createOrderStyle(first, 'order: -1;')}
+  ${({ last }) => last && createOrderStyle(last, 'order: 1;')}
 `;
 
 export const Box = styled.div`
@@ -121,4 +112,6 @@ export const Box = styled.div`
   outline: 1px solid ${ifProp('container', getFromTheme('palette.primary.200'), getFromTheme('palette.primary.600'))};
   margin-bottom: 15px;
   padding: ${ifProp('container', '16px 16px 0', '0')};
+  color: white;
+  text-align: center;
 `;

@@ -1,16 +1,16 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import getFromTheme from '../../../utils/getFromTheme';
 
 export const StyledContainer = styled.div`
   width: auto;
   margin-right: auto;
   margin-left: auto;
-  ${({ fluid }) => fluid && `
+  ${({ fluid }) => fluid && css`
     padding-right: ${getFromTheme('grid.outerMargin')};
     padding-left: ${getFromTheme('grid.outerMargin')};
   `}
 
-  ${({ fluid }) => !fluid && `
+  ${({ fluid }) => !fluid && css`
     @media(min-width: ${getFromTheme('breakpoints.sm')}) {
       width: ${getFromTheme('grid.container.sm')};
     }
