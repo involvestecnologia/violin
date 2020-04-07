@@ -1,0 +1,83 @@
+---
+name: Grid
+menu: Components
+route: /components/Grid
+---
+
+import { Container } from './Container';
+import { Row } from './Row';
+import { Col } from './Col';
+import { Box } from './Col/style';
+import { Playground, Props } from "docz";
+
+# Grid
+
+Responsive modifiers enable specifying different column sizes, offsets, alignment and distribution at xs, sm, md, lg & xl viewport widths.
+
+<Playground>
+  <Container fluid>
+    <Row>
+      <Col xs={12} sm={2} md={3} lg={5} xl={4}><Box /></Col>
+      <Col xs={12} sm={8} md={6} lg={2} xl={4}><Box /></Col>
+      <Col xs={12} sm={2} md={3} lg={5} xl={4}><Box /></Col>
+    </Row>
+    <Row>
+      <Col xs={6}><Box /></Col>
+      <Col xs={6}><Box /></Col>
+    </Row>
+    <Row>
+      <Col xs><Box /></Col>
+      <Col xs><Box /></Col>
+      <Col xs><Box /></Col>
+    </Row>
+  </Container>
+</Playground>
+
+## Auto width
+
+Add any number of auto sizing columns to a row. Let the grid figure it out.
+
+<Playground>
+  <Row>
+    <Col xs><Box /></Col>
+    <Col xs><Box /></Col>
+  </Row>
+  <Row>
+    <Col xs><Box /></Col>
+    <Col xs><Box /></Col>
+    <Col xs><Box /></Col>
+  </Row>
+  <Row>
+    <Col xs><Box /></Col>
+    <Col xs><Box /></Col>
+    <Col xs><Box /></Col>
+    <Col xs><Box /></Col>
+  </Row>
+</Playground>
+
+## Alignment
+
+Add props to align elements to the start or end of row as well as the top, bottom, or center of a column.
+
+`start`
+
+<Playground>
+  <Box container>
+    <Row start="xs">
+      <Col xs={6}><Box /></Col>
+    </Row>
+  </Box>
+</Playground>
+
+### Container props
+
+<Props of={Container} />
+
+### Row props
+
+<Props of={Row} />
+
+### Col props
+
+<Props of={Col} />
+
