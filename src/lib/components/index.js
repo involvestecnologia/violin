@@ -4,6 +4,7 @@ export { Checkbox } from './Checkbox';
 export { Dropdown, DropdownItem, DropdownDivider } from './Dropdown';
 export { Flex } from './Flex';
 export { FormGroup } from './FormGroup';
+export { Container, Row, Col } from './Grid';
 export { Icon } from './Icon';
 export { Link } from './Link';
 export { Modal } from './Modal';

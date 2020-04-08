@@ -25,10 +25,22 @@ const typography = {
   lineHeight: '1.4'
 }
 
-const breakpoint = {
-  sm: '@media(min-width: 768px)',
-  md: '@media(min-width: 992px)',
-  lg: '@media(min-width: 1200px)'
+const breakpoints = {
+  sm: '576px',
+  md: '768px',
+  lg: '992px',
+  xl: '1200px'
+}
+
+const grid = {
+  container: {
+    sm: '540px',
+    md: '720px',
+    lg: '960px',
+    xl: '1140px'
+  },
+  gutterWidth: '16px',
+  outerMargin: '32px'
 }
 
 const zIndex = {
@@ -176,7 +188,8 @@ const colors = {
 
 const involves = {
   typography,
-  breakpoint,
+  breakpoints,
+  grid,
   zIndex,
   common,
   palette: {
