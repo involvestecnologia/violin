@@ -1,0 +1,253 @@
+---
+name: Grid
+menu: Components
+route: /components/Grid
+---
+
+import { Container } from './Container';
+import { Row } from './Row';
+import { Col } from './Col';
+import { Box } from './Col/style';
+import { Playground, Props } from "docz";
+
+# Grid
+
+Responsive modifiers enable specifying different column sizes, offsets, alignment and distribution at xs, sm, md, lg & xl viewport widths.
+
+<Playground>
+  <Container fluid>
+    <Row>
+      <Col xs={12} sm={2} md={3} lg={5} xl={4}><Box /></Col>
+      <Col xs={12} sm={8} md={6} lg={2} xl={4}><Box /></Col>
+      <Col xs={12} sm={2} md={3} lg={5} xl={4}><Box /></Col>
+    </Row>
+    <Row>
+      <Col xs={6}><Box /></Col>
+      <Col xs={6}><Box /></Col>
+    </Row>
+    <Row>
+      <Col xs><Box /></Col>
+      <Col xs><Box /></Col>
+      <Col xs><Box /></Col>
+    </Row>
+  </Container>
+</Playground>
+
+## Auto width
+
+Add any number of auto sizing columns to a row. Let the grid figure it out.
+
+<Playground>
+  <Row>
+    <Col xs><Box /></Col>
+    <Col xs><Box /></Col>
+  </Row>
+  <Row>
+    <Col xs><Box /></Col>
+    <Col xs><Box /></Col>
+    <Col xs><Box /></Col>
+  </Row>
+  <Row>
+    <Col xs><Box /></Col>
+    <Col xs><Box /></Col>
+    <Col xs><Box /></Col>
+    <Col xs><Box /></Col>
+  </Row>
+</Playground>
+
+## Alignment
+
+Add props to align elements to the start or end of row as well as the top, bottom, or center of a column.
+
+### start
+
+<Playground>
+  <Box container>
+    <Row start="xs">
+      <Col xs={6}><Box /></Col>
+    </Row>
+  </Box>
+</Playground>
+
+### center
+
+<Playground>
+  <Box container>
+    <Row center="xs">
+      <Col xs={6}><Box /></Col>
+    </Row>
+  </Box>
+</Playground>
+
+### end
+
+<Playground>
+  <Box container>
+    <Row end="xs">
+      <Col xs={6}><Box /></Col>
+    </Row>
+  </Box>
+</Playground>
+
+### top
+
+<Playground>
+  <Box container>
+    <Row top="xs">
+      <Col xs={6}><Box /></Col>
+      <Col xs={6}><Box style={{ height: 100 }} /></Col>
+    </Row>
+  </Box>
+</Playground>
+
+### middle
+
+<Playground>
+  <Box container>
+    <Row middle="xs">
+      <Col xs={6}><Box /></Col>
+      <Col xs={6}><Box style={{ height: 100 }} /></Col>
+    </Row>
+  </Box>
+</Playground>
+
+### bottom
+
+<Playground>
+  <Box container>
+    <Row bottom="xs">
+      <Col xs={6}><Box /></Col>
+      <Col xs={6}><Box style={{ height: 100 }} /></Col>
+    </Row>
+  </Box>
+</Playground>
+
+## Distribution
+
+Add props to distribute the contents of a row or column.
+
+### around
+
+<Playground>
+  <Box container>
+    <Row around="xs">
+      <Col xs={2}><Box /></Col>
+      <Col xs={2}><Box /></Col>
+      <Col xs={2}><Box /></Col>
+    </Row>
+  </Box>
+</Playground>
+
+### between
+
+<Playground>
+  <Box container>
+    <Row between="xs">
+      <Col xs={2}><Box /></Col>
+      <Col xs={2}><Box /></Col>
+      <Col xs={2}><Box /></Col>
+    </Row>
+  </Box>
+</Playground>
+
+## Reordering
+
+Add props to reorder columns.
+
+### first
+
+<Playground>
+  <Box container>
+    <Row>
+      <Col xs={2}><Box>1</Box></Col>
+      <Col xs={2}><Box>2</Box></Col>
+      <Col xs={2}><Box>3</Box></Col>
+      <Col xs={2}><Box>4</Box></Col>
+      <Col xs={2}><Box>5</Box></Col>
+      <Col xs={2} first="xs"><Box>6</Box></Col>
+    </Row>
+  </Box>
+</Playground>
+
+### last
+
+<Playground>
+  <Box container>
+    <Row>
+      <Col xs={2} last="xs"><Box>1</Box></Col>
+      <Col xs={2}><Box>2</Box></Col>
+      <Col xs={2}><Box>3</Box></Col>
+      <Col xs={2}><Box>4</Box></Col>
+      <Col xs={2}><Box>5</Box></Col>
+      <Col xs={2}><Box>6</Box></Col>
+    </Row>
+  </Box>
+</Playground>
+
+## Reversing
+
+<Playground>
+  <Box container>
+    <Row reverse>
+      <Col xs={2}><Box>1</Box></Col>
+      <Col xs={2}><Box>2</Box></Col>
+      <Col xs={2}><Box>3</Box></Col>
+      <Col xs={2}><Box>4</Box></Col>
+      <Col xs={2}><Box>5</Box></Col>
+      <Col xs={2}><Box>6</Box></Col>
+    </Row>
+  </Box>
+</Playground>
+
+## Offsets
+
+<Playground>
+  <Row>
+    <Col xs={1} xsOffset={11}><Box /></Col>
+  </Row>
+  <Row>
+    <Col xs={2} xsOffset={10}><Box /></Col>
+  </Row>
+  <Row>
+    <Col xs={3} xsOffset={9}><Box /></Col>
+  </Row>
+  <Row>
+    <Col xs={4} xsOffset={8}><Box /></Col>
+  </Row>
+  <Row>
+    <Col xs={5} xsOffset={7}><Box /></Col>
+  </Row>
+  <Row>
+    <Col xs={6} xsOffset={6}><Box /></Col>
+  </Row>
+  <Row>
+    <Col xs={7} xsOffset={5}><Box /></Col>
+  </Row>
+  <Row>
+    <Col xs={8} xsOffset={4}><Box /></Col>
+  </Row>
+  <Row>
+    <Col xs={9} xsOffset={3}><Box /></Col>
+  </Row>
+  <Row>
+    <Col xs={10} xsOffset={2}><Box /></Col>
+  </Row>
+  <Row>
+    <Col xs={11} xsOffset={1}><Box /></Col>
+  </Row>
+</Playground>
+
+## Props
+
+### Container props
+
+<Props of={Container} />
+
+### Row props
+
+<Props of={Row} />
+
+### Col props
+
+<Props of={Col} />
+
