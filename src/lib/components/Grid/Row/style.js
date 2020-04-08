@@ -25,9 +25,9 @@ export const StyledRow = styled.div`
   margin-right: calc(${getFromTheme('grid.gutterWidth')} / 2 * -1);
   margin-left: calc(${getFromTheme('grid.gutterWidth')} / 2 * -1);
 
-  ${({ start }) => start && createRowStyle(start, 'justify-content: flex-start; text-align: start;')}
-  ${({ center }) => center && createRowStyle(center, 'justify-content: center; text-align: center;')}
-  ${({ end }) => end && createRowStyle(end, 'justify-content: flex-end; text-align: end;')}
+  ${({ start }) => start && createRowStyle(start, 'justify-content: flex-start;')}
+  ${({ center }) => center && createRowStyle(center, 'justify-content: center;')}
+  ${({ end }) => end && createRowStyle(end, 'justify-content: flex-end;')}
   ${({ top }) => top && createRowStyle(top, 'align-items: flex-start;')}
   ${({ middle }) => middle && createRowStyle(middle, 'align-items: center;')}
   ${({ bottom }) => bottom && createRowStyle(bottom, 'align-items: flex-end;')}
