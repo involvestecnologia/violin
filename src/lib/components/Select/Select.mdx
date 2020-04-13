@@ -137,14 +137,14 @@ import { State } from 'react-powerplug';
   </State>
 </Playground>
 
-## defaultValue
+## value with options
 
 <Playground>
   <div style={{ width: 300 }}>
     <Select
       placeholder="Selecione"
       name="colors"
-      defaultValue="purple"
+      value={{value: "purple", label: "Purple"}}
       options={[
         {value: "blue", label: "Blue"},
         {value: "orange", label: "Orange"},
@@ -155,7 +155,19 @@ import { State } from 'react-powerplug';
   </div>
 </Playground>
 
-## disabled 
+## value without options
+
+<Playground>
+  <div style={{ width: 300 }}>
+    <Select
+      placeholder="Selecione"
+      name="colors"
+      value={{value: "purple", label: "Purple"}}
+    />
+  </div>
+</Playground>
+
+## disabled
 
 <Playground>
   <div style={{ width: 300 }}>
@@ -163,7 +175,7 @@ import { State } from 'react-powerplug';
       placeholder="Selecione"
       name="sizes"
       disabled
-      defaultValue="medium"
+      value={{value: "medium", label: "Medium"}}
       options={[
         {value: "small", label: "Small"},
         {value: "medium", label: "Medium"},

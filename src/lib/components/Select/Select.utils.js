@@ -54,11 +54,16 @@ export const highlightFirstItemList = (array, callback) => {
   }
 };
 
-export const selectOption = (array, selected, setSelected) => (
-  array.map((opt) => {
+export const selectOption = (array = [], selected, setSelected) => {
+  const selectedValue = selected || {}
+
+  if (array.length === 0 && !!selectedValue.value) array.push(selectedValue)
+  if (array.length === 0) return [];
+
+  return array.map((opt) => {
     const item = opt;
     if (item.value) {
-      if (item.value === selected.value) {
+      if (item.value === selectedValue.value) {
         item.selected = true;
         if (setSelected) setSelected(item);
       } else {
@@ -67,7 +72,7 @@ export const selectOption = (array, selected, setSelected) => (
     } else if (item.options) {
       item.options.map((sub) => {
         const subItem = sub;
-        if (subItem.value === selected.value) {
+        if (subItem.value === selectedValue.value) {
           subItem.selected = true;
           if (setSelected) setSelected(subItem);
         } else {
@@ -76,16 +81,17 @@ export const selectOption = (array, selected, setSelected) => (
         return subItem;
       })
     }
+
     return item;
   })
-);
+};
 
 export const highlightText = (text, filter) => {
   const index = text.toLowerCase().indexOf(filter.toLowerCase());
   return `${text.substring(0, index)}<mark>${text.substring(index, index + filter.length)}</mark>${text.substring(index + filter.length)}`;
 };
 
-export const formatOptionsList = (options) => {
+export const formatOptionsList = (options = []) => {
   const formatedOptions = [];
   options.forEach((item) => {
     if (item.options) {
