@@ -10,9 +10,31 @@ import { Playground, Props } from "docz";
 # Breadcrumb
 
 <Playground>
-
+  <Breadcrumb
+    paths={[
+      { to: () => alert('redirect to level one'), label: 'Level One' },
+      { to: () => alert('redirect to level two'), label: 'Level Two' },
+      { to: () => alert('redirect to level trhee'), label: 'Level Trhee' },
+      { to: () => alert('redirect to level Four'), label: 'Level Four' },
+      { label: 'Current level' }
+    ]}
+  />
 </Playground>
 
 ## Props
 
 <Props of={Breadcrumb} />
+
+## breakpoint
+
+Change breakpoint to change view style.
+
+<Playground>
+  <Breadcrumb
+    paths={[
+      { to: () => alert('redirect to level one'), label: 'Level One' },
+      { label: 'Current level' }
+    ]}
+    breakpoint={800}
+  />
+</Playground>
