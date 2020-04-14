@@ -48,8 +48,8 @@ describe('Select', () => {
     expect(getByTestId('select-menu')).toBeInTheDocument();
   });
 
-  test('should auto select option item from defaultValue prop', () => {
-    const { getByTestId } = render(<Select options={colorOptions} defaultValue="red" />);
+  test('should auto select option item from value prop', () => {
+    const { getByTestId } = render(<Select options={colorOptions} value={{ value: 'red' }} />);
     expect(getByTestId('select-input-value')).toHaveValue('red');
   });
 

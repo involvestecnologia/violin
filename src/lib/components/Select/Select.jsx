@@ -12,7 +12,7 @@ export const Select = ({
   id,
   className,
   style,
-  defaultValue,
+  value: defaultValue,
   searchable,
   error,
   emptyMessage,
@@ -68,8 +68,8 @@ export const Select = ({
     onSelectOption(null);
   };
 
-  const updateOptionsWithSelected = (list) => {
-    const optionsWithSelected = selectOption(list, selected);
+  const updateOptionsWithSelected = (list, selectedValue, setSelectedFunction) => {
+    const optionsWithSelected = selectOption(list, selectedValue || selected, setSelectedFunction);
     setOptions(formatOptionsList(optionsWithSelected));
   };
 
@@ -78,9 +78,9 @@ export const Select = ({
     setIsLoadingSearch(false);
   };
 
-  const onTyping = (value) => {
-    if (!isMenuOpen && value.length > 0) handleMenuOpen(true);
-    setSearchTerm(value);
+  const onTyping = (text) => {
+    if (!isMenuOpen && text.length > 0) handleMenuOpen(true);
+    setSearchTerm(text);
   };
 
   const callLoadOptions = () => {
@@ -101,15 +101,8 @@ export const Select = ({
   };
 
   useEffect(() => {
-    updateOptionsWithSelected(originalOptions);
-  }, [originalOptions]);
-
-  useEffect(() => {
-    if (defaultValue) {
-      const updateSelected = selectOption(originalOptions, { value: defaultValue }, setSelected);
-      setOptions(updateSelected);
-    }
-  }, [defaultValue]);
+    updateOptionsWithSelected(originalOptions, defaultValue, setSelected)
+  }, [originalOptions, defaultValue]);
 
   useEffect(() => {
     updateOptionsWithSelected(async ? options : originalOptions);
@@ -119,7 +112,7 @@ export const Select = ({
   useEffect(() => {
     if (!async && !loadOptions) filterOptions(originalOptions, searchTerm, setOptions);
     if (async && loadOptions) callLoadOptions();
-  }, [searchTerm, originalOptions]);
+  }, [searchTerm]);
 
   useEffect(() => {
     const openMenuKeyboard = (e) => {
@@ -234,7 +227,10 @@ Select.propTypes = {
   /** Add style to container */
   style: PropTypes.string,
   /** Set a value to auto select an item */
-  defaultValue: PropTypes.string,
+  value: PropTypes.shape({
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    label: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+  }),
   /** Allow serach items and filter */
   searchable: PropTypes.bool,
   /** Disable select */
@@ -260,7 +256,7 @@ Select.defaultProps = {
   id: null,
   className: '',
   style: null,
-  defaultValue: null,
+  value: null,
   searchable: false,
   disabled: false,
   error: false,
