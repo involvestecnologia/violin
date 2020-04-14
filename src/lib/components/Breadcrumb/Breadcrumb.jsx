@@ -8,14 +8,14 @@ export const Breadcrumb = ({ paths, breakpoint, ...props }) => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const checkResponible = () => {
+    const checkResponsible = () => {
       setIsMobile(window.innerWidth <= breakpoint);
     };
 
-    checkResponible();
-    window.addEventListener('resize', checkResponible);
+    checkResponsible();
+    window.addEventListener('resize', checkResponsible);
     return () => {
-      window.removeEventListener('resize', checkResponible);
+      window.removeEventListener('resize', checkResponsible);
     };
   }, []);
 
@@ -43,10 +43,10 @@ export const Breadcrumb = ({ paths, breakpoint, ...props }) => {
   const renderItems = () => {
     const visibleItems = paths.slice(-2, -1).concat(paths.slice(-1));
     const elipsisItem = paths.slice(-3, -2);
-    const dropdownItems = paths.filter((item) => !visibleItems.concat(elipsisItem).includes(item));
+    const dropdownItems = paths.filter((item) => !visibleItems.includes(item));
     return (
       <>
-        {dropdownItems.length > 0 && (
+        {dropdownItems.length > 1 && (
           <>
             <Dropdown
               trigger={(
@@ -62,7 +62,7 @@ export const Breadcrumb = ({ paths, breakpoint, ...props }) => {
             <Separator icon="arrow_forward_ios" />
           </>
         )}
-        {dropdownItems.length === 0 && elipsisItem.length === 1 && (
+        {dropdownItems.length <= 1 && elipsisItem.length === 1 && (
           <>
             <ItemButton
               elipsis
