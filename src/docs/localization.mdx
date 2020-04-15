@@ -1,0 +1,61 @@
+---
+name: Localization
+route: /localization
+---
+
+# Localization
+
+Violin has a simple localization module. It was built with React Context and it is as easy to use as any other React Context implementation.
+
+```javascript
+import { LocalizationContext } from "@involves/violin";
+
+const App = () => {
+  return (
+    <>
+      <GlobalStyle />
+      <LocalizationContext value={customLocale}>
+        { /** Violin components goes down here in the tree */ }
+      </LocalizationContext>
+    </>
+  )
+}
+```
+
+## Locale Object
+
+You can find the default locale object [here!](https://github.com/involvestecnologia/violin/blob/asyncawait/innovation/localization/src/lib/localization/defaultLocale.js)
+
+
+As for now it is really simple:
+
+```javascript
+const defaultLocale = {
+  Select: {
+    noOptionsText: 'Sem opções',
+  }
+}
+```
+
+And you can use it like this:
+
+```javascript
+import { LocalizationContext } from "@involves/violin";
+
+const customLocale = {
+  Select: {
+    noOptionsText: 'Custom message',
+  }
+}
+
+const App = () => {
+  return (
+    <>
+      <GlobalStyle />
+      <LocalizationContext value={customLocale}>
+        { /** Violin components goes down here in the tree */ }
+      </LocalizationContext>
+    </>
+  )
+}
+```
