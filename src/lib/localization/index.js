@@ -1,5 +1,1 @@
-import { LocalizationContext } from './LocalizationContext'
-
-export {
-  LocalizationContext,
-}
+export { LocalizationContext } from './LocalizationContext'

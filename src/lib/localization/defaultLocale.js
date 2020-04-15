@@ -1,6 +1,6 @@
 const defaultLocale = {
   Select: {
-    noOptionsText: 'Sem opções',
+    noOptionsText: 'Nada encontrado',
   }
 }
 
