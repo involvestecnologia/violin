@@ -2,6 +2,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import idgen from '../../utils/idgen';
+import useTerm from '../../localization/useTerm'
 import { setHighlightNavigation, highlightFirstItemList, highlightText, scrollToElement } from './Select.utils';
 import { SelectMenu, SelectMenuItem, SelectMenuTitle, EmptyFilter, Loading } from './style';
 
@@ -72,7 +73,7 @@ const DropdownSelect = ({ options, onSelect, menuRef, filter, loading, ...props 
         )
       })}
       {!loading && options.length < 1 && (
-        <EmptyFilter data-testid="select-menu-empty">Nada encontrado</EmptyFilter>
+        <EmptyFilter data-testid="select-menu-empty">{useTerm('Select.noOptionsText')}</EmptyFilter>
       )}
       {loading && <Loading data-testid="select-menu-loading" />}
     </SelectMenu>
