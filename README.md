@@ -43,7 +43,7 @@ import { Button } from '@involves/violin';
 function App() {
   return (
     <Button primary>
-      Hello World
+      Hello World!
     </Button>
   );
 }
