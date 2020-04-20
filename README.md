@@ -55,7 +55,7 @@ Yes, it's really all you need to get started.
 
 ## Documentation
 
-Check out our [documentation website](https://violin-ui.netlify.com/).
+Check out our [documentation website](https://violin-ui.netlify.app/).
 
 ## License
 
