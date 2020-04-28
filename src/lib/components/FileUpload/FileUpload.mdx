@@ -1,0 +1,48 @@
+---
+name: FileUpload
+menu: Components
+route: /components/FileUpload
+---
+
+import { FileUpload } from './FileUpload';
+import { Playground, Props } from "docz";
+
+# FileUpload
+
+<Playground>
+  <FileUpload />
+</Playground>
+
+## Props
+
+<Props of={FileUpload} />
+
+## accept
+
+This is native attribute. Specify what file types the user can pick from the file input dialog box. [See more details](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file).
+
+<Playground>
+  <FileUpload accept=".pdf,.txt" />
+</Playground>
+
+## multiple
+
+Select multiple files.
+
+<Playground>
+  <FileUpload multiple />
+</Playground>
+
+## disabled
+
+<Playground>
+  <FileUpload disabled />
+</Playground>
+
+## onLoadFiles
+
+See the result on the console.
+
+<Playground>
+  <FileUpload multiple onLoadFiles={files => console.log(files) } />
+</Playground>
