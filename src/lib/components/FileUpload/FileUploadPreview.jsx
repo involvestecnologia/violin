@@ -16,18 +16,18 @@ export const FileUploadPreview = ({ files, onRemove }) => {
     <>
       <PreviewFigure>
         {type.split('/')[0] === 'image' ? (
-          <img src={preview} alt={name} />
+          <img src={preview} alt={name} data-testid="fileUploadPreviewImage" />
         ) : (
-          <Icon icon="insert_drive_file" />
+          <Icon icon="insert_drive_file" data-testid="fileUploadPreviewIcon" />
         )}
       </PreviewFigure>
 
-      <FileInfo>
+      <FileInfo data-testid="fileUploadPreviewInfo">
         <FileInfoName>{name}</FileInfoName>
         <FileInfoSize>({Math.floor(size / 1024)}kb)</FileInfoSize>
       </FileInfo>
 
-      <Button type="button" secondary small onClick={handleRemove}>Remover</Button>
+      <Button type="button" secondary small onClick={handleRemove} data-testid="fileUploadPreviewRemove">Remover</Button>
     </>
   )
 };

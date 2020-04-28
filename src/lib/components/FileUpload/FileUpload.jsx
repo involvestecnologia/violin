@@ -72,7 +72,7 @@ export const FileUpload = ({ className, style, disabled, multiple, onLoadFiles, 
         </WrapperAction>
       )}
 
-      <input {...getInputProps()} />
+      <input {...getInputProps()} data-testid="fileUploadInput" />
     </DropArea>
   )
 };

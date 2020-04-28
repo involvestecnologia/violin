@@ -3,6 +3,7 @@ export { Button } from './Button';
 export { Card } from './Card';
 export { Checkbox } from './Checkbox';
 export { Dropdown, DropdownItem, DropdownDivider } from './Dropdown';
+export { FileUpload } from './FileUpload';
 export { Flex } from './Flex';
 export { FormGroup } from './FormGroup';
 export { Container, Row, Col } from './Grid';

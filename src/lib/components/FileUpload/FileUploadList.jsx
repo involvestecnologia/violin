@@ -10,9 +10,9 @@ export const FileUploadList = ({ files, onRemove }) => {
   };
 
   return (
-    <WrapperList onClick={(e) => e.stopPropagation()}>
+    <WrapperList onClick={(e) => e.stopPropagation()} data-testid="fileUploadList">
       {files.map((item) => (
-        <FileItem key={item.name}>
+        <FileItem key={item.name} data-testid="fileUploadListItem">
           <FileInfo isList>
             <FileInfoName>{item.name}</FileInfoName>
             <FileInfoSize>({Math.floor(item.size / 1024)}kb)</FileInfoSize>
@@ -24,6 +24,7 @@ export const FileUploadList = ({ files, onRemove }) => {
             small
             icon="close"
             onClick={(e) => handleRemove(e, item)}
+            data-testid="fileUploadListRemove"
             style={{ flexShrink: 0 }}
           />
         </FileItem>
