@@ -1,6 +1,7 @@
 import React, { useCallback, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useDropzone } from 'react-dropzone';
+import Term from '../../localization/Term'
 import { DropArea, WrapperAction, ScrollView } from './style';
 import { FileUploadPreview } from './FileUploadPreview';
 import { FileUploadList } from './FileUploadList';
@@ -68,7 +69,7 @@ export const FileUpload = ({ className, style, disabled, multiple, onLoadFiles, 
 
       {((!multiple && files.length === 0) || multiple) && (
         <WrapperAction small={multiple && !!files.length}>
-          Arraste arquivos pra cá ou <span>clique para procurar</span>
+          <Term>FileUpload.placeholder</Term> <span><Term>FileUpload.placeholderLink</Term></span>
         </WrapperAction>
       )}
 

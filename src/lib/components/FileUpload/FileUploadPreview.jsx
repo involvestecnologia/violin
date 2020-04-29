@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Button } from '../Button';
 import { Icon } from '../Icon';
+import Term from '../../localization/Term'
 import { PreviewFigure, FileInfo, FileInfoName, FileInfoSize } from './style';
 
 export const FileUploadPreview = ({ files, onRemove }) => {
@@ -27,7 +28,9 @@ export const FileUploadPreview = ({ files, onRemove }) => {
         <FileInfoSize>({Math.floor(size / 1024)}kb)</FileInfoSize>
       </FileInfo>
 
-      <Button type="button" secondary small onClick={handleRemove} data-testid="fileUploadPreviewRemove">Remover</Button>
+      <Button type="button" secondary small onClick={handleRemove} data-testid="fileUploadPreviewRemove">
+        <Term>FileUpload.removeButton</Term>
+      </Button>
     </>
   )
 };
