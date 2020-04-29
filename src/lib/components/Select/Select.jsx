@@ -102,7 +102,7 @@ export const Select = ({
 
   useEffect(() => {
     updateOptionsWithSelected(originalOptions, defaultValue, setSelected)
-  }, [originalOptions, defaultValue]);
+  }, []);
 
   useEffect(() => {
     updateOptionsWithSelected(async ? options : originalOptions);
