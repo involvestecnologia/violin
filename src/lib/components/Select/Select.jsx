@@ -21,6 +21,7 @@ export const Select = ({
   debounce,
   onSelect,
   disabled,
+  autoFocus,
   ...props
 }) => {
   const [options, setOptions] = useState([]);
@@ -101,6 +102,7 @@ export const Select = ({
   };
 
   useEffect(() => {
+    if (autoFocus) focusInputAndSelect()
     updateOptionsWithSelected(originalOptions, defaultValue, setSelected)
   }, []);
 
@@ -246,7 +248,9 @@ Select.propTypes = {
   /** Set a time delay to call a request when async prop is true */
   debounce: PropTypes.number,
   /** Pass to function the option selected */
-  onSelect: PropTypes.func
+  onSelect: PropTypes.func,
+  /** Apply autofocus */
+  autoFocus: PropTypes.bool
 };
 
 Select.defaultProps = {
@@ -264,5 +268,6 @@ Select.defaultProps = {
   async: false,
   loadOptions: null,
   debounce: 500,
-  onSelect: null
+  onSelect: null,
+  autoFocus: null
 };
