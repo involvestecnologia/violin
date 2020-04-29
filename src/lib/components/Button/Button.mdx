@@ -10,7 +10,7 @@ import { Playground, Props } from "docz";
 # Button
 
 <Playground>
-    <Button onClick={() => alert('Clicked!')} style={{ margin: 5 }}>Default</Button>
+    <Button onClick={() => alert('Clicked!')} style={{ margin: 5 }} autoFocus>Default</Button>
     <Button primary onClick={() => alert('Clicked!')} style={{ margin: 5 }}>Primary</Button>
     <Button secondary onClick={() => alert('Clicked!')} style={{ margin: 5 }}>Secondary</Button>
     <Button danger onClick={() => alert('Clicked!')} style={{ margin: 5 }}>Danger</Button>
@@ -46,7 +46,7 @@ Change color style for dark background.
 
 ## size
 
-Change style size (height). 
+Change style size (height).
 
 <Playground>
     <Button primary small style={{ margin: 5 }}>Small</Button>
@@ -91,7 +91,7 @@ Add a icon to right button.
 
 ## dropdownIcon
 
-Look like `iconRight`, this add a arrow icon to right for dropdown trigger. 
+Look like `iconRight`, this add a arrow icon to right for dropdown trigger.
 
 <Playground>
     <Button primary dropdownIcon style={{ margin: 5 }}>Dropdown</Button>
