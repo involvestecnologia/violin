@@ -133,6 +133,7 @@ const InputSelect = ({
             small
             secondary
             icon="clear"
+            type="button"
             onMouseDown={(e) => e.stopPropagation()}
             onClick={handleClear}
             disabled={disabled}
