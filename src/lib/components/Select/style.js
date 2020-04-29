@@ -130,15 +130,15 @@ export const SelectMenu = styled.div`
 
   scrollbar-color: ${withProp(getFromTheme('palette.black.900'), transparentize(0.9))} white;
   scrollbar-width: 10px;
-  
+
   &::-webkit-scrollbar {
     width: 10px;
   }
-  
+
   &::-webkit-scrollbar-track {
     box-shadow: none;
   }
-  
+
   &::-webkit-scrollbar-thumb {
     background-color: ${withProp(getFromTheme('palette.black.900'), transparentize(0.9))};
   }
@@ -164,6 +164,7 @@ export const SelectMenuItem = styled(ListItem)`
     text-decoration: underline;
     background: none;
     color: inherit;
+    padding: 0;
   }
 
   &:hover {
