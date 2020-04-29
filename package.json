@@ -1,6 +1,6 @@
 {
   "name": "@involves/violin",
-  "version": "1.0.0-alpha.2.1",
+  "version": "1.0.0-alpha.2.2",
   "description": "React components for faster and easier web development",
   "main": "lib/index.js",
   "module": "lib/es/index.js",
@@ -20,9 +20,9 @@
     "test": "jest",
     "lint": "eslint './src/**/*.jsx' './src/**/*.js'",
     "lint:css": "stylelint './src/**/*.js'",
-    "test:watch": "jest --watchAll"
+    "test:watch": "jest --watchAll",
+    "prepublish": "rm -rf ./lib && yarn build:cjs && yarn build:es"
   },
-  "prepublish": "rm -rf ./lib && yarn build:cjs && yarn build:es",
   "dependencies": {
     "polished": "^3.4.4",
     "prop-types": "^15.7.2",
