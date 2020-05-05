@@ -11,7 +11,7 @@ export const Wrapper = styled.label`
 
 export const Svg = styled.svg`
   position: relative;
-  width: 44px;
+  width: 48px;
   height: 24px;
   flex-shrink: 0;
   cursor: pointer;
@@ -38,13 +38,32 @@ export const LabelText = styled.span`
 
 export const InputHidden = styled.input`
   opacity: 0;
-  visibility: hidden;
+  display: hidden;
   position: absolute;
 
   &:checked ~ ${Svg} {
     ${Circle} {
       fill: ${getFromTheme('palette.primary.500')};
       cx: 34;
+    }
+  }
+
+  &:focus ~ ${Svg} {
+    transition: ${getFromTheme('common.transition')};
+    ${Circle} {
+      stroke-width: 8;
+    }
+  }
+
+  &:focus:checked ~ ${Svg} {
+    ${Circle} {
+      stroke: ${withProp(getFromTheme('palette.primary.500'), transparentize(0.8))};
+    }
+  }
+
+  &:focus:not(:checked) ~ ${Svg} {
+    ${Circle} {
+      stroke: ${withProp(getFromTheme('palette.black.300'), transparentize(0.8))};
     }
   }
 
@@ -57,7 +76,7 @@ export const InputHidden = styled.input`
       fill: ${getFromTheme('palette.black.100')};
     }
   }
-  
+
   &:disabled ~ ${LabelText} {
     opacity: 0.3;
     cursor: not-allowed;

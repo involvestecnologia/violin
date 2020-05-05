@@ -17,7 +17,7 @@ ToggleSwitch is as a checkbox component.
 	<State initial={{ check: false }}>
 		{({ state, setState }) => (
 			<form>
-				<ToggleSwitch label={state.check ? 'Activated' : 'Deactivated'} checked={state.check} onChange={e => setState({ check: e.target.checked })} />
+				<ToggleSwitch autoFocus label={state.check ? 'Activated' : 'Deactivated'} checked={state.check} onChange={e => setState({ check: e.target.checked })} />
 			</form>
 		)}
 	</State>
