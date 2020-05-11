@@ -1,0 +1,19 @@
+---
+name: Toast
+menu: Components
+route: /components/Toast
+---
+
+import { Button } from '../Button';
+import ToastContainer from './ToastContainer';
+import toast from './toast';
+import { Playground, Props } from "docz";
+
+# Button
+
+<Playground>
+  <Button onClick={() => toast.show('You have successfully seen the toast notification.', { timeout: 10000 })}>Show toast</Button>
+  <ToastContainer />
+</Playground>
+
+## Props
