@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Transition as Animate } from 'react-transition-group';
 
-export const Transition = ({ show, immediately, closeAfter, duration, children }) => {
+export const Transition = ({ show, immediately, duration, children }) => {
   const contentRef = useRef({});
   const [showImmediately, setShowImmediately] = useState(false);
 
