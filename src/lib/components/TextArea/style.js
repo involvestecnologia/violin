@@ -13,8 +13,8 @@ export const padding = 10
 
 export const StyledTextArea = styled.textarea`
   resize: none;
-  line-height: ${css`${rowHeight}px`};
-  min-height: ${css`${rowHeight}px`};
+  line-height: ${rowHeight}px;
+  min-height: ${rowHeight}px;
   width: 100%;
   box-sizing: border-box;
   border: none;
