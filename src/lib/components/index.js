@@ -15,6 +15,7 @@ export { RadioButton } from './RadioButton';
 export { Select } from './Select';
 export { Subtitle } from './Subtitle';
 export { Text } from './Text';
+export { TextArea } from './TextArea';
 export { TextField } from './TextField';
 export { Title } from './Title';
 export { ToggleSwitch } from './ToggleSwitch';
