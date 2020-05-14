@@ -1,2 +1,4 @@
-export { default as toast } from './toast';
-export { default as ToastContainer } from './ToastContainer';
+import withToastProvider from './withToastProvider';
+import useToast from './useToast';
+
+export { withToastProvider, useToast };

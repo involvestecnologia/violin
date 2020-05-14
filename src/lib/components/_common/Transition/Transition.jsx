@@ -1,21 +1,9 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import { Transition as Animate } from 'react-transition-group';
 
-export const Transition = ({ show, immediately, duration, children }) => {
+export const Transition = ({ show, duration, children }) => {
   const contentRef = useRef({});
-  const [showImmediately, setShowImmediately] = useState(false);
-
-  useEffect(() => {
-    if (immediately) {
-      setTimeout(() => {
-        setShowImmediately(true)
-      }, 100);
-      setTimeout(() => {
-        setShowImmediately(false)
-      }, (duration - 300));
-    }
-  }, []);
 
   const defaultStyle = {
     transition: `all ${duration}ms ease-in-out`,
@@ -31,7 +19,7 @@ export const Transition = ({ show, immediately, duration, children }) => {
 
   return (
     <Animate
-      in={immediately ? showImmediately : show}
+      in={show}
       timeout={{
         enter: 0,
         exit: duration

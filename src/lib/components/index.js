@@ -17,6 +17,7 @@ export { Subtitle } from './Subtitle';
 export { Text } from './Text';
 export { TextField } from './TextField';
 export { Title } from './Title';
+export { withToastProvider, useToast } from './Toast';
 export { ToggleSwitch } from './ToggleSwitch';
 export { ToggleButton } from './ToggleButton';
 export { Tooltip } from './Tooltip';

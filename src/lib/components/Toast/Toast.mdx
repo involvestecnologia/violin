@@ -5,15 +5,70 @@ route: /components/Toast
 ---
 
 import { Button } from '../Button';
-import ToastContainer from './ToastContainer';
-import toast from './toast';
+import useToast from './useToast';
+import withToastProvider from './withToastProvider';
 import { Playground, Props } from "docz";
 
-# Button
+# Toast
+
+Toast component works with a hook.
 
 <Playground>
-  <Button onClick={() => toast.show('You have successfully seen the toast notification.', { timeout: 3000 })}>Show toast</Button>
-  <ToastContainer />
+  {() => {
+    const toast = useToast();
+    return (
+      <Button onClick={() => toast.add('Lorem ipsum dolor sit amet, consectetur adipiscing elit.')}>Open toast</Button>
+    )
+  }}
 </Playground>
 
-## Props
+## Usage
+
+Add the provider in your root or App.js file:
+
+```javascript
+import { withToastProvider } from '@involves/violin'
+
+const App = () => {
+  ...
+}
+
+export default withToastProvider(App);
+```
+
+Import the hook to use in anywhere of your project.
+
+```javascript
+import { useToast } from '@involves/violin'
+
+const MyComponent = () => {
+  const toast = useToast();
+  render (
+    <Button onClick={() => toast.add('My notify message')}>Click to open toast</Button>
+  )
+}
+```
+
+## options
+
+<Playground>
+  {() => {
+    const toast = useToast();
+    return (
+      <Button
+        onClick={() => toast.add(
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+          {
+            timeout: 3000,
+            action: {
+              label: 'Action',
+              fn: () => alert('This is action from Toast!')
+            }
+          }
+        )}
+      >
+        Open toast
+      </Button>
+    )
+  }}
+</Playground>
