@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Button } from '../Button';
+import { Button } from '../../Button';
 import {
   StyledSelect, Filter, Input, Value, Placeholder, Controls, ArrowDropdown, SearchIcon
 } from './style';
 
-const InputSelect = ({
+const SelectInput = ({
   id,
   isFocused,
   onMouseDown,
@@ -146,7 +146,7 @@ const InputSelect = ({
   );
 };
 
-InputSelect.propTypes = {
+SelectInput.propTypes = {
   id: PropTypes.string,
   isFocused: PropTypes.bool.isRequired,
   onMouseDown: PropTypes.func.isRequired,
@@ -162,8 +162,8 @@ InputSelect.propTypes = {
   error: PropTypes.bool.isRequired
 };
 
-InputSelect.defaultProps = {
+SelectInput.defaultProps = {
   id: null
 }
 
-export default InputSelect;
+export default SelectInput;

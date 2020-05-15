@@ -86,9 +86,10 @@ export const selectOption = (array = [], selected, setSelected) => {
   })
 };
 
-export const highlightText = (text, filter) => {
+export const highlightText = (text = '', filter = '') => {
   const index = text.toLowerCase().indexOf(filter.toLowerCase());
-  return `${text.substring(0, index)}<mark>${text.substring(index, index + filter.length)}</mark>${text.substring(index + filter.length)}`;
+  const response = `${text.substring(0, index)}<mark>${text.substring(index, index + filter.length)}</mark>${text.substring(index + filter.length)}`;
+  return response
 };
 
 export const formatOptionsList = (options = []) => {

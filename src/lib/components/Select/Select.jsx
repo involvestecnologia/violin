@@ -1,8 +1,8 @@
 import React, { useRef, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import InputSelect from './InputSelect';
 import { Container } from './style';
-import DropdownSelect from './DropdownSelect';
+import SelectInput from './SelectInput';
+import SelectMenu from './SelectMenu';
 import { selectOption, formatOptionsList, filterOptions } from './Select.utils';
 
 export const Select = ({
@@ -172,7 +172,7 @@ export const Select = ({
       data-testid="select"
       {...props}
     >
-      <InputSelect
+      <SelectInput
         id={id}
         isFocused={isFocused}
         onMouseDown={focusAndToggleMenu}
@@ -189,7 +189,7 @@ export const Select = ({
         disabled={disabled}
       />
       {isMenuOpen && (
-        <DropdownSelect
+        <SelectMenu
           options={options}
           onSelect={onSelectOption}
           menuRef={menuRef}
