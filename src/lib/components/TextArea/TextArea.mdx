@@ -1,0 +1,125 @@
+---
+name: TextArea
+menu: Components
+route: /components/TextArea
+---
+
+import { State, Toggle } from "react-powerplug";
+import { TextArea } from "./TextArea";
+import { FormGroup } from "../FormGroup";
+import { Playground, Props } from "docz";
+
+# TextArea
+
+<Playground>
+  <State initial={{ 
+      content: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.`}}>
+    {({ state, setState }) => (
+      <div>
+        <FormGroup
+          htmlFor="field1"
+          label="Label"
+          helpLabel="help label"
+          tooltip="Lorem ipsum"
+          helpText="Lorem ipsum dolor sit amet"
+        >
+          <TextArea
+            value={state.content}
+            autoHeight={true}
+            maxRow={8}
+            rows={8}
+            placeholder={'Where does it come from?'}
+            onChange={(event) => setState({ content: event.target.value })}
+        />
+        </FormGroup>
+      </div>
+    )}
+  </State>
+</Playground>
+
+## Props
+
+<Props of={TextArea} />
+
+## rows
+
+<Playground>
+  <State initial={{ content: ``}}>
+    {({ state, setState }) => (
+      <div>
+          <TextArea
+            value={state.content}
+            rows={1}
+            placeholder={'Where does it come from?'}
+            onChange={(event) => setState({ content: event.target.value })}
+        />
+      </div>
+    )}
+  </State>
+</Playground>
+
+## autoHeight
+
+<Playground>
+  <State initial={{ content: ``}}>
+    {({ state, setState }) => (
+      <div>
+          <TextArea
+            value={state.content}
+            rows={3}
+            autoHeight={true}
+            placeholder={'Where does it come from?'}
+            onChange={(event) => setState({ content: event.target.value })}
+        />
+      </div>
+    )}
+  </State>
+</Playground>
+
+## autoHeight and maxRow
+
+<Playground>
+  <State initial={{ content: ``}}>
+    {({ state, setState }) => (
+      <div>
+          <TextArea
+            value={state.content}
+            rows={3}
+            autoHeight={true}
+            maxRow={8}
+            placeholder={'Where does it come from?'}
+            onChange={(event) => setState({ content: event.target.value })}
+        />
+      </div>
+    )}
+  </State>
+</Playground>
+
+## error
+
+<Playground>
+  <State initial={{ content: ``}}>
+    {({ state, setState }) => (
+      <div>
+          <TextArea
+            error
+            value={state.content}
+            placeholder={'Where does it come from?'}
+            onChange={(event) => setState({ content: event.target.value })}
+        />
+      </div>
+    )}
+  </State>
+</Playground>
+
+## disabled
+
+<Playground>
+  <TextArea disabled>This is a disable style.</TextArea>
+  <TextArea error disabled>
+    This is a disable error style.
+  </TextArea>
+  <TextArea caption disabled>
+    This is a disable caption style.
+  </TextArea>
+</Playground>
