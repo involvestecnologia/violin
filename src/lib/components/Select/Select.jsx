@@ -1,9 +1,13 @@
 import React, { useRef, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import idgen from '../../utils/idgen';
+import { useEventListener, TextHighLight } from '../_common';
 import { Container } from './style';
 import SelectInput from './SelectInput';
 import SelectMenu from './SelectMenu';
-import { selectOption, formatOptionsList, filterOptions } from './Select.utils';
+import SelectMenuItem from './SelectMenu/SelectMenuItem';
+import { Checkbox } from '../Checkbox';
+import { selectOption, formatOptionsList, filterOptions, setHighlightNavigation, highlightFirstItemList, scrollToElement } from './Select.utils';
 
 export const Select = ({
   placeholder,
@@ -30,10 +34,16 @@ export const Select = ({
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [isLoadingSearch, setIsLoadingSearch] = useState(false);
+  const [highlightItem, setHighlightItem] = useState(0);
   const selectRef = useRef(null);
   const inputRef = useRef(null);
   const menuRef = useRef(null);
   const searchTimerRef = useRef(null);
+  const highlightRef = useRef(null);
+
+  useEffect(() => {
+    highlightFirstItemList(options, setHighlightItem);
+  }, [options]);
 
   const handleMenuOpen = (open) => {
     if (!disabled) setIsMenuOpen(open);
@@ -164,6 +174,30 @@ export const Select = ({
     }
   }, [isFocused]);
 
+  useEventListener('keydown', (e) => {
+    if (!isMenuOpen) return
+
+    const upKey = e.keyCode === 38;
+    const downKey = e.keyCode === 40;
+    const enterKey = e.keyCode === 13;
+    const hasOptions = options.length > 0;
+
+    const direction = (upKey && 'UP') || (downKey && 'DOWN');
+
+    if (upKey || downKey || enterKey) {
+      e.preventDefault();
+    }
+
+    if (hasOptions) {
+      setHighlightNavigation(options, direction, highlightItem, setHighlightItem);
+      scrollToElement(menuRef.current, highlightRef.current);
+    }
+
+    if (hasOptions && enterKey) {
+      onSelectOption(options[highlightItem]);
+    }
+  })
+
   return (
     <Container
       ref={selectRef}
@@ -191,13 +225,28 @@ export const Select = ({
       {isMenuOpen && (
         <SelectMenu
           options={options}
-          onSelect={onSelectOption}
           menuRef={menuRef}
-          filter={searchTerm}
           async={async}
           onClick={focusInputAndSelect}
           loading={isLoadingSearch}
-        />
+        >
+          {options.map((option, i) => (
+            <SelectMenuItem
+              data-testid="select-menu-item"
+              key={idgen()}
+              title={option.title}
+              selected={option.selected}
+              filter={searchTerm}
+              highlight={highlightItem === i}
+              deepRef={highlightItem === i ? highlightRef : null}
+              onMouseEnter={() => setHighlightItem(i)}
+              onClick={() => onSelectOption(option)}
+            >
+              <Checkbox />
+              <TextHighLight filter={searchTerm}>{option.label}</TextHighLight>
+            </SelectMenuItem>
+          ))}
+        </SelectMenu>
       )}
       <input
         type="hidden"

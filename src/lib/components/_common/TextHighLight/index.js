@@ -1,0 +1,1 @@
+export { TextHighLight } from './TextHighLight'
