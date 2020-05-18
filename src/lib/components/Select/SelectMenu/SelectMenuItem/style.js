@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import { withProp } from 'styled-tools';
-import { transparentize, rem } from 'polished';
+import { transparentize } from 'polished';
 import getFromTheme from '../../../../utils/getFromTheme';
 import { ListItem } from '../../../_common';
 
-export const SelectMenuItemContainer = styled(ListItem)`
+export const Container = styled(ListItem)`
   width: 100%;
   background: ${({ selected, highlight }) => {
     if (selected && !highlight) {
@@ -41,14 +41,4 @@ export const SelectMenuItemContainer = styled(ListItem)`
       return 'none';
     }};
   }
-`;
-
-export const SelectMenuTitle = styled.h6`
-  font-size: ${rem(11)};
-  text-transform: uppercase;
-  color: ${getFromTheme('palette.black.400')};
-  padding: 10px 16px 4px 16px;
-  margin: 0;
-  cursor: default;
-  user-select: none;
 `;

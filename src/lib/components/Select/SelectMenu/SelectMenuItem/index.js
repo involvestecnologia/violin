@@ -1,3 +1,1 @@
-import SelectMenuItem from './SelectMenuItem'
-
-export default SelectMenuItem
+export { SelectMenuItem } from './SelectMenuItem'

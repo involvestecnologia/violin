@@ -1,42 +1,33 @@
 import React from 'react'
 import PropTypes from 'prop-types';
-import { SelectMenuItemContainer, SelectMenuTitle } from './style';
+import { Container } from './style';
 
-const SelectMenuItem = ({
-  title,
+export const SelectMenuItem = ({
   selected,
   highlight,
   children,
   ...props
 }) => (
-  <>
-    {title && <SelectMenuTitle data-testid="select-menu-item">{title}</SelectMenuTitle>}
-    {!title && (
-      <SelectMenuItemContainer
-        {...props}
-        highlight={highlight}
-        selected={selected}
-      >
-        {children}
-      </SelectMenuItemContainer>
-    )}
-  </>
+  <Container
+    data-testid="select-menu-item"
+    {...props}
+    highlight={highlight}
+    selected={selected}
+  >
+    {children}
+  </Container>
 )
 
 SelectMenuItem.propTypes = {
-  title: PropTypes.string,
   children: PropTypes.oneOfType([
-    PropTypes.element,
-    PropTypes.arrayOf(PropTypes.element)
+    PropTypes.node,
+    PropTypes.arrayOf(PropTypes.node)
   ]).isRequired,
   selected: PropTypes.bool,
   highlight: PropTypes.bool,
 }
 
 SelectMenuItem.defaultProps = {
-  title: '',
   highlight: false,
   selected: false,
 }
-
-export default SelectMenuItem
