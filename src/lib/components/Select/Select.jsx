@@ -6,7 +6,6 @@ import { Container } from './style';
 import SelectInput from './SelectInput';
 import SelectMenu from './SelectMenu';
 import SelectMenuItem from './SelectMenu/SelectMenuItem';
-import { Checkbox } from '../Checkbox';
 import { selectOption, formatOptionsList, filterOptions, setHighlightNavigation, highlightFirstItemList, scrollToElement } from './Select.utils';
 
 export const Select = ({
@@ -242,7 +241,6 @@ export const Select = ({
               onMouseEnter={() => setHighlightItem(i)}
               onClick={() => onSelectOption(option)}
             >
-              <Checkbox />
               <TextHighLight filter={searchTerm}>{option.label}</TextHighLight>
             </SelectMenuItem>
           ))}

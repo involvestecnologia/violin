@@ -21,7 +21,7 @@ SelectMenu.propTypes = {
   options: PropTypes.oneOfType([PropTypes.array]).isRequired,
   menuRef: PropTypes.oneOfType([PropTypes.object]).isRequired,
   loading: PropTypes.bool.isRequired,
-  children: PropTypes.arrayOf(PropTypes.element)
+  children: PropTypes.arrayOf(PropTypes.node)
 };
 
 SelectMenu.defaultProps = {

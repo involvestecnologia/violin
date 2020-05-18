@@ -25,14 +25,16 @@ const SelectMenuItem = ({
 
 SelectMenuItem.propTypes = {
   title: PropTypes.string,
-  children: PropTypes.arrayOf(PropTypes.element),
+  children: PropTypes.oneOfType([
+    PropTypes.element,
+    PropTypes.arrayOf(PropTypes.element)
+  ]).isRequired,
   selected: PropTypes.bool,
   highlight: PropTypes.bool,
 }
 
 SelectMenuItem.defaultProps = {
   title: '',
-  children: [],
   highlight: false,
   selected: false,
 }
