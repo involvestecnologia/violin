@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { rem } from 'polished';
-import { ifProp, prop } from 'styled-tools';
+import { ifProp } from 'styled-tools';
 import getFromTheme from '../../utils/getFromTheme';
 
 const EDGE = 24;
