@@ -32,7 +32,6 @@ export const ToastItem = styled.div`
   font-size: ${rem(14)};
   font-weight: ${getFromTheme('typography.fontWeight.semiBold')};
   box-sizing: border-box;
-  box-sizing: border-box;
   overflow: hidden;
   opacity: ${ifProp('show', '1', '0')};
   max-height: ${ifProp('show', '500px', '0')};
