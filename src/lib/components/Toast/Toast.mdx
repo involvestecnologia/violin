@@ -5,8 +5,8 @@ route: /components/Toast
 ---
 
 import { Button } from '../Button';
-import useToast from './useToast';
-import withToastProvider from './withToastProvider';
+import { useToast } from './useToast';
+import { withToastProvider } from './withToastProvider';
 import { Playground, Props } from "docz";
 
 # Toast
@@ -62,8 +62,9 @@ const MyComponent = () => {
             timeout: 3000,
             action: {
               label: 'Action',
-              fn: () => alert('This is action from Toast!')
-            }
+              method: () => alert('This is action from Toast!')
+            },
+            closeButton: true
           }
         )}
       >
@@ -72,3 +73,19 @@ const MyComponent = () => {
     )
   }}
 </Playground>
+
+### default options schema
+
+```javascript
+...
+toast.add('string', {
+  timeout: 2000, // number milliseconds
+  action: {
+    label: null, // string
+    method: null // function
+  },
+  customAction: null, // component/node
+  closeButton: false // boolean
+}
+...
+```

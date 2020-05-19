@@ -5,7 +5,7 @@ import Toast from './Toast';
 import idgen from '../../utils/idgen';
 import { StyledContainer } from './style';
 
-const withToastProvider = (Component) => {
+export const withToastProvider = (Component) => {
   const provider = (props) => {
     const [toasts, setToasts] = useState([]);
 
@@ -40,5 +40,3 @@ const withToastProvider = (Component) => {
 
   return provider;
 }
-
-export default withToastProvider;
