@@ -32,7 +32,7 @@ export const withToastProvider = (Component) => {
               </Toast>
             ))}
           </StyledContainer>,
-          document.body
+          document.querySelector('body')
         )}
       </ToastContext.Provider>
     );
