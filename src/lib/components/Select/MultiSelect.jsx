@@ -3,8 +3,7 @@ import PropTypes from 'prop-types'
 import idgen from '../../utils/idgen'
 import { TextHighLight } from '../_common'
 import { Select } from './Select'
-import SelectMenuItem from './SelectMenu/SelectMenuItem'
-import { SelectMenuTitle } from './style'
+import { SelectMenuItem, SelectMenuTitle } from './SelectMenu'
 
 export const MultiSelect = ({
   autoFocus,

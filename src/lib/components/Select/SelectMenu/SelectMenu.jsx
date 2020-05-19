@@ -5,7 +5,7 @@ import { useEventListener } from '../../_common';
 import { setHighlightNavigation, highlightFirstItemList, scrollToElement } from '../Select.utils';
 import { SelectMenuContainer, EmptyFilter, Loading } from './style';
 
-const SelectMenu = ({ options, menuRef, loading, children, onSelectOption, ...props }) => {
+export const SelectMenu = ({ options, menuRef, loading, children, onSelectOption, ...props }) => {
   const [highlightItem, setHighlightItem] = useState(0);
   const highlightRef = useRef(null);
 
@@ -48,7 +48,7 @@ const SelectMenu = ({ options, menuRef, loading, children, onSelectOption, ...pr
         onMouseEnter: () => setHighlightItem(i),
       }))}
 
-      {!loading && options.length < 1 && (
+      {!loading && !children && (
         <EmptyFilter data-testid="select-menu-empty"><Term>Select.noOptionsText</Term></EmptyFilter>
       )}
       {loading && <Loading data-testid="select-menu-loading" />}
@@ -57,14 +57,14 @@ const SelectMenu = ({ options, menuRef, loading, children, onSelectOption, ...pr
 }
 
 SelectMenu.propTypes = {
-  options: PropTypes.oneOfType([PropTypes.array]).isRequired,
+  options: PropTypes.oneOfType([PropTypes.array]),
   menuRef: PropTypes.oneOfType([PropTypes.object]).isRequired,
   loading: PropTypes.bool.isRequired,
-  children: PropTypes.arrayOf(PropTypes.node)
+  children: PropTypes.arrayOf(PropTypes.node),
+  onSelectOption: PropTypes.func.isRequired,
 };
 
 SelectMenu.defaultProps = {
-  children: []
+  options: [],
+  children: [],
 }
-
-export default SelectMenu;

@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Container } from './style';
 import SelectInput from './SelectInput';
-import SelectMenu from './SelectMenu';
+import { SelectMenu } from './SelectMenu';
 import { selectOption, formatOptionsList, filterOptions } from './Select.utils';
 
 export const Select = ({
