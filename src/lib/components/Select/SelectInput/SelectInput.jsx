@@ -5,7 +5,7 @@ import {
   StyledSelect, Filter, Input, Value, Placeholder, Controls, ArrowDropdown, SearchIcon
 } from './style';
 
-const SelectInput = ({
+export const SelectInput = ({
   id,
   isFocused,
   onMouseDown,
@@ -93,7 +93,13 @@ const SelectInput = ({
       data-testid="select-input"
     >
       <Filter>
-        {isSearchable && <SearchIcon isFocused={isFocused} icon="search" />}
+        {isSearchable && (
+          <SearchIcon
+            isFocused={isFocused}
+            icon="search"
+            data-testid="select-input-search-icon"
+          />
+        )}
         <Input
           type="text"
           id={id}
@@ -112,6 +118,7 @@ const SelectInput = ({
             isFocused={isFocused}
             isSearchable={isSearchable}
             isDisabled={disabled}
+            data-testid="select-input-value"
           >
             {selected.label}
           </Value>
@@ -121,13 +128,19 @@ const SelectInput = ({
             isFocused={isFocused}
             isSearchable={isSearchable}
             isDisabled={disabled}
+            data-testid="select-input-placeholder"
           >
             {placeholder}
           </Placeholder>
         )}
       </Filter>
       <Controls isDisabled={disabled}>
-        {!showClearButton && <ArrowDropdown icon="arrow_drop_down" />}
+        {!showClearButton && (
+          <ArrowDropdown
+            icon="arrow_drop_down"
+            data-testid="select-input-arrow-icon"
+          />
+        )}
         {showClearButton && (
           <Button
             small
@@ -165,5 +178,3 @@ SelectInput.propTypes = {
 SelectInput.defaultProps = {
   id: null
 }
-
-export default SelectInput;

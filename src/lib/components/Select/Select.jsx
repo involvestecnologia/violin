@@ -18,8 +18,8 @@ export const Select = ({
   return (
     <SelectBase
       {...props}
-      autoFocus
       name={name}
+      autoFocus={autoFocus}
       placeholder={placeholder}
       originalOptions={originalOptions}
       options={clonedOptions}
@@ -59,5 +59,5 @@ Select.defaultProps = {
   placeholder: '',
   options: [],
   name: '',
-  autoFocus: null
+  autoFocus: false
 };
