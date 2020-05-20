@@ -31,8 +31,7 @@ export const setHighlightNavigation = (array, direction, current, callback) => {
 
 export const scrollToElement = (container, element) => {
   if (!element) return;
-  const bottomElement = element.offsetTop
-    + element.clientHeight;
+  const bottomElement = element.offsetTop + element.clientHeight;
   const topElement = element.offsetTop;
   const menuContainer = container.clientHeight;
   const containerScroll = container.scrollTop;

@@ -1,37 +1,50 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import Term from '../../../localization/Term';
 import { useEventListener } from '../../_common';
-import { setHighlightNavigation, highlightFirstItemList, scrollToElement } from '../Select.utils';
+import { scrollToElement } from '../Select.utils';
 import { SelectMenuContainer, EmptyFilter, Loading } from './style';
 
 export const SelectMenu = ({ options, menuRef, loading, children, onSelectOption, ...props }) => {
   const [highlightItem, setHighlightItem] = useState(0);
   const highlightRef = useRef(null);
 
-  useEffect(() => {
-    highlightFirstItemList(options, setHighlightItem);
-  }, [options]);
-
   useEventListener('keydown', (e) => {
     const upKey = e.keyCode === 38;
     const downKey = e.keyCode === 40;
     const enterKey = e.keyCode === 13;
-    const hasOptions = options.length > 0;
-
-    const direction = (upKey && 'UP') || (downKey && 'DOWN');
 
     if (upKey || downKey || enterKey) {
       e.preventDefault();
     }
 
-    if (hasOptions) {
-      setHighlightNavigation(options, direction, highlightItem, setHighlightItem);
+    if (!children || !children.length) return
+
+    const updateHighLightedItem = (itemIndex) => {
+      setHighlightItem(itemIndex)
       scrollToElement(menuRef.current, highlightRef.current);
     }
 
-    if (hasOptions && enterKey) {
-      onSelectOption(options[highlightItem]);
+    if (upKey) {
+      if (highlightItem === 0) {
+        updateHighLightedItem(children.length - 1)
+      } else if (highlightItem - 1 > 0 || highlightItem === 1) {
+        updateHighLightedItem(highlightItem - 1)
+      }
+      return
+    }
+
+    if (downKey) {
+      if (highlightItem === children.length - 1) {
+        updateHighLightedItem(0)
+      } else if (highlightItem < children.length - 1) {
+        updateHighLightedItem(highlightItem + 1)
+      }
+      return
+    }
+
+    if (enterKey) {
+      onSelectOption(children[highlightItem].props.value);
     }
   })
 
