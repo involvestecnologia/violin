@@ -46,9 +46,10 @@ export const SelectMenu = ({ options, menuRef, loading, children, onSelectOption
         highlight: highlightItem === i,
         deepRef: highlightItem === i ? highlightRef : null,
         onMouseEnter: () => setHighlightItem(i),
+        onClick: () => onSelectOption(options[i])
       }))}
 
-      {!loading && !children && (
+      {!loading && (!children || children.length === 0) && (
         <EmptyFilter data-testid="select-menu-empty"><Term>Select.noOptionsText</Term></EmptyFilter>
       )}
       {loading && <Loading data-testid="select-menu-loading" />}

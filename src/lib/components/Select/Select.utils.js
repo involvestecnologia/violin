@@ -126,7 +126,9 @@ export const filterOptions = (options, filter, setOptions) => {
       return item.label && item.label.toLowerCase().includes(filter.toLowerCase())
     });
     setOptions(filtered);
+    return filtered
   } else {
     setOptions(formatedOptions);
+    return formatedOptions
   }
 };

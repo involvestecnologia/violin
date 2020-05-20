@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import idgen from '../../utils/idgen'
 import { TextHighLight } from '../_common'
-import { Select } from './Select'
+import { SelectBase } from './SelectBase'
 import { SelectMenuItem, SelectMenuTitle } from './SelectMenu'
 
 export const MultiSelect = ({
@@ -12,15 +12,18 @@ export const MultiSelect = ({
   options,
   ...props
 }) => {
-  const [clonedOptions] = useState([...options])
+  const [originalOptions] = useState([...options])
+  const [clonedOptions, setClonedOptions] = useState([...options])
 
   return (
-    <Select
+    <SelectBase
       {...props}
       autoFocus
       name={name}
       placeholder={placeholder}
+      originalOptions={originalOptions}
       options={clonedOptions}
+      setOptions={setClonedOptions}
     >
       {clonedOptions.map((option) => (
         <SelectMenuItem
@@ -35,7 +38,7 @@ export const MultiSelect = ({
           }
         </SelectMenuItem>
       ))}
-    </Select>
+    </SelectBase>
   )
 }
 

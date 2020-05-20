@@ -5,7 +5,6 @@ route: /components/Select
 ---
 
 import { Select } from './Select';
-import { MultiSelect } from './MultiSelect';
 import { Playground, Props } from "docz";
 import { State } from 'react-powerplug';
 
@@ -13,8 +12,9 @@ import { State } from 'react-powerplug';
 
 <Playground>
   <div style={{ width: 300 }}>
-    <MultiSelect
+    <Select
       autoFocus
+      multiselect
       placeholder="Selecione"
       name="colors"
       options={[
@@ -85,7 +85,7 @@ import { State } from 'react-powerplug';
 
 <Playground>
   <div style={{ width: 300 }}>
-    <MultiSelect
+    <Select
       placeholder="Selecione"
       name="options-group-searchable"
       searchable
