@@ -118,7 +118,7 @@ export const SelectInput = ({
             isFocused={isFocused}
             isSearchable={isSearchable}
             isDisabled={disabled}
-            data-testid="select-input-value"
+            data-testid="select-input-value-container"
           >
             {selected.label}
           </Value>

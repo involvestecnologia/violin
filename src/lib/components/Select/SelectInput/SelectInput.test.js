@@ -186,7 +186,7 @@ describe('SelectInput', () => {
   describe('Value', () => {
     test('should render Value when input is empty and there is an item selected', () => {
       const { getByTestId } = render(<Wrapper selected={{ label: 'lorem', value: 'ipsum' }} />);
-      expect(getByTestId('select-input-value')).toBeInTheDocument();
+      expect(getByTestId('select-input-value-container')).toBeInTheDocument();
     })
   })
 
