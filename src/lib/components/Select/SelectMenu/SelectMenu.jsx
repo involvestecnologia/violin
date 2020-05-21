@@ -55,12 +55,17 @@ export const SelectMenu = ({ options, menuRef, loading, children, onSelectOption
       {...props}
     >
 
-      {React.Children.map(children, (child, i) => React.cloneElement(child, {
-        highlight: highlightItem === i,
-        deepRef: highlightItem === i ? highlightRef : null,
-        onMouseEnter: () => setHighlightItem(i),
-        onClick: () => onSelectOption(options[i])
-      }))}
+      {React.Children.map(children, (child, i) => {
+        if (child.type.name === 'SelectMenuTitle') {
+          return React.cloneElement(child)
+        }
+        return React.cloneElement(child, {
+          highlight: highlightItem === i,
+          deepRef: highlightItem === i ? highlightRef : null,
+          onMouseEnter: () => setHighlightItem(i),
+          onClick: () => onSelectOption(options[i])
+        })
+      })}
 
       {!loading && (!children || children.length === 0) && (
         <EmptyFilter data-testid="select-menu-empty"><Term>Select.noOptionsText</Term></EmptyFilter>

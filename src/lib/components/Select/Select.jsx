@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import idgen from '../../utils/idgen'
 import { TextHighLight } from '../_common'
+import { formatOptionsList } from './Select.utils'
 import { SelectBase } from './SelectBase'
 import { SelectMenuItem, SelectMenuTitle } from './SelectMenu'
 
@@ -10,10 +11,11 @@ export const Select = ({
   placeholder,
   name,
   options,
+  value: defaultValue,
   ...props
 }) => {
   const [originalOptions] = useState([...options])
-  const [clonedOptions, setClonedOptions] = useState([...options])
+  const [clonedOptions, setClonedOptions] = useState(formatOptionsList([...options]))
 
   return (
     <SelectBase
@@ -21,24 +23,26 @@ export const Select = ({
       name={name}
       autoFocus={autoFocus}
       placeholder={placeholder}
-      originalOptions={originalOptions}
       options={clonedOptions}
+      originalOptions={originalOptions}
+      value={defaultValue}
       setOptions={setClonedOptions}
     >
-      {clonedOptions.map((option) => (
-        <SelectMenuItem
-          data-testid="select-menu-item"
-          key={idgen()}
-          selected={option.selected}
-          value={{ label: option.label, value: option.value }}
-        >
-          {
-            option.title
-              ? <SelectMenuTitle>{option.title}</SelectMenuTitle>
-              : <TextHighLight>{option.label}</TextHighLight>
-          }
-        </SelectMenuItem>
-      ))}
+      {clonedOptions.map((option) => {
+        if (option.title) {
+          return <SelectMenuTitle key={idgen()} data-testid="select-menu-item">{option.title}</SelectMenuTitle>
+        }
+        return (
+          <SelectMenuItem
+            data-testid="select-menu-item"
+            key={idgen()}
+            selected={option.selected}
+            value={{ label: option.label, value: option.value }}
+          >
+            <TextHighLight>{option.label}</TextHighLight>
+          </SelectMenuItem>
+        )
+      })}
     </SelectBase>
   )
 }
@@ -52,12 +56,17 @@ Select.propTypes = {
     })
   ),
   name: PropTypes.string,
-  autoFocus: PropTypes.bool
+  autoFocus: PropTypes.bool,
+  value: PropTypes.shape({
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    label: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+  }),
 };
 
 Select.defaultProps = {
   placeholder: '',
   options: [],
   name: '',
-  autoFocus: false
+  autoFocus: false,
+  value: null,
 };
