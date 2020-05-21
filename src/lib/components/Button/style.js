@@ -80,7 +80,7 @@ const defaultStyle = css`
 `;
 
 const secondaryStyle = css`
-  color: ${ifProp('iconOnly', ifProp('invert', getFromTheme('palette.misc.white'), withProp(getFromTheme('palette.black.900'), transparentize(0.3))), ifProp('invert', getFromTheme('palette.misc.white'), getFromTheme('palette.primary.500')))};
+  color: ${ifProp('iconOnly', ifProp('invert', getFromTheme('palette.misc.white'), withProp(getFromTheme('palette.black.900'), transparentize(0.3))), ifProp('invert', getFromTheme('palette.primary.300'), getFromTheme('palette.primary.500')))};
   background-color: transparent;
   border: none;
   ${(props) => props.iconOnly && 'border-radius: 50%;'}

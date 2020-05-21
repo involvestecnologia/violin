@@ -6,12 +6,14 @@ route: /components/Toast
 
 import { Button } from '../Button';
 import { useToast } from './useToast';
+import Toast from './Toast';
 import { withToastProvider } from './withToastProvider';
 import { Playground, Props } from "docz";
+import { State, Toggle } from 'react-powerplug'
 
 # Toast
 
-Toast component works with a hook.
+This component works with the hook `useToast`.
 
 <Playground>
   {() => {
@@ -22,34 +24,24 @@ Toast component works with a hook.
   }}
 </Playground>
 
-## Usage
+<br />
 
-Add the provider in your root or App.js file:
-
-```javascript
-import { withToastProvider } from '@involves/violin'
-
-const App = () => {
-  ...
-}
-
-export default withToastProvider(App);
-```
-
-Import the hook to use in anywhere of your project.
+Add the provider in your component (or oyur root App.js) file and use hook to create Toast.
 
 ```javascript
-import { useToast } from '@involves/violin'
+import { withToastProvider, useToast } from '@involves/violin'
 
 const MyComponent = () => {
-  const toast = useToast();
+  const toast = useToast()
   render (
     <Button onClick={() => toast.add('My notify message')}>Click to open toast</Button>
   )
 }
+
+export default withToastProvider(MyComponent)
 ```
 
-## options
+### options
 
 <Playground>
   {() => {
@@ -89,3 +81,30 @@ toast.add('string', {
 }
 ...
 ```
+
+## Stateless
+
+You can use Toast with your own state.
+
+<Playground>
+  <Toggle initial={false}>
+		{({ on, toggle }) => (
+      <>
+        <Button onClick={toggle}>Toggle Toast</Button>
+        <Toast
+          show={on}
+          hide={toggle}
+          action={{
+            label: 'Click me',
+            method: () => alert('Lorem ipsum')
+          }}
+          closeButton
+        >
+          Lorem ipsum dolor sit
+        </Toast>
+      </>
+    )}
+	</Toggle>
+</Playground> 
+
+<Props of={Toast} />
