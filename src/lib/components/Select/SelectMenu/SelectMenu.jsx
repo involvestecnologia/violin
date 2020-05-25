@@ -2,10 +2,10 @@ import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import Term from '../../../localization/Term';
 import { useEventListener } from '../../_common';
-import { scrollToElement } from '../Select.utils';
+import { scrollToElement, setHighlightNavigation } from '../Select.utils';
 import { SelectMenuContainer, EmptyFilter, Loading } from './style';
 
-export const SelectMenu = ({ options, menuRef, loading, children, onSelectOption, ...props }) => {
+export const SelectMenu = ({ menuRef, loading, children, onSelectOption, ...props }) => {
   const [highlightItem, setHighlightItem] = useState(0);
   const highlightRef = useRef(null);
 
@@ -13,6 +13,9 @@ export const SelectMenu = ({ options, menuRef, loading, children, onSelectOption
     const upKey = e.keyCode === 38;
     const downKey = e.keyCode === 40;
     const enterKey = e.keyCode === 13;
+    const hasOptions = children.length > 0;
+
+    const direction = (upKey && 'UP') || (downKey && 'DOWN');
 
     if (upKey || downKey || enterKey) {
       e.preventDefault();
@@ -20,27 +23,9 @@ export const SelectMenu = ({ options, menuRef, loading, children, onSelectOption
 
     if (!children || !children.length) return
 
-    const updateHighLightedItem = (itemIndex) => {
-      setHighlightItem(itemIndex)
+    if (hasOptions) {
+      setHighlightNavigation(children, direction, highlightItem, setHighlightItem);
       scrollToElement(menuRef.current, highlightRef.current);
-    }
-
-    if (upKey) {
-      if (highlightItem === 0) {
-        updateHighLightedItem(children.length - 1)
-      } else if (highlightItem - 1 > 0 || highlightItem === 1) {
-        updateHighLightedItem(highlightItem - 1)
-      }
-      return
-    }
-
-    if (downKey) {
-      if (highlightItem === children.length - 1) {
-        updateHighLightedItem(0)
-      } else if (highlightItem < children.length - 1) {
-        updateHighLightedItem(highlightItem + 1)
-      }
-      return
     }
 
     if (enterKey) {
@@ -63,7 +48,7 @@ export const SelectMenu = ({ options, menuRef, loading, children, onSelectOption
           highlight: highlightItem === i,
           deepRef: highlightItem === i ? highlightRef : null,
           onMouseEnter: () => setHighlightItem(i),
-          onClick: () => onSelectOption(options[i])
+          onClick: () => onSelectOption(children[i].props.value)
         })
       })}
 
@@ -76,7 +61,6 @@ export const SelectMenu = ({ options, menuRef, loading, children, onSelectOption
 }
 
 SelectMenu.propTypes = {
-  options: PropTypes.oneOfType([PropTypes.array]),
   menuRef: PropTypes.oneOfType([PropTypes.object]).isRequired,
   loading: PropTypes.bool.isRequired,
   children: PropTypes.arrayOf(PropTypes.node),
@@ -84,6 +68,5 @@ SelectMenu.propTypes = {
 };
 
 SelectMenu.defaultProps = {
-  options: [],
   children: [],
 }

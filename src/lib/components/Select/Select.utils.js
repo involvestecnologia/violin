@@ -13,7 +13,7 @@ export const setHighlightNavigation = (array, direction, current, callback) => {
       setHighlightNavigation(array, 'DOWN', -1, callback);
       break;
     }
-    if (down && array[i + 1].value) {
+    if (down && array[i + 1].props.value) {
       callback(i + 1);
       break;
     }
@@ -22,7 +22,7 @@ export const setHighlightNavigation = (array, direction, current, callback) => {
       setHighlightNavigation(array, 'UP', array.length, callback);
       break;
     }
-    if (up && array[i - 1].value) {
+    if (up && array[i - 1].props.value) {
       callback(i - 1);
       break;
     }

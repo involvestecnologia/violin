@@ -193,7 +193,6 @@ export const SelectBase = ({
       {isMenuOpen && (
         <SelectMenu
           async={async}
-          options={options}
           menuRef={menuRef}
           loading={isLoadingSearch}
           onClick={focusInputAndSelect}
