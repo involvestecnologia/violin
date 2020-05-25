@@ -4,7 +4,7 @@ menu: Components
 route: /components/Select
 ---
 
-import { Select } from './Select';
+import { SelectWrapper as Select } from './SelectWrapper';
 import { Playground, Props } from "docz";
 import { State } from 'react-powerplug';
 
@@ -60,6 +60,7 @@ import { State } from 'react-powerplug';
     <Select
       placeholder="Selecione"
       name="options-group"
+      multiselect
       options={[
         {
           label: "Colors",
