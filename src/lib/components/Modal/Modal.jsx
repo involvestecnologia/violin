@@ -106,13 +106,14 @@ const ModalWithPortal = ({
   );
 
   // eslint-disable-next-line valid-typeof
-  return typeof window !== undefined && ReactDOM.createPortal(component, targetElement);
+  return ReactDOM.createPortal(component, targetElement);
 }
 
 // this was necessary because docz doesn't understand
 // the props of a component from ReactDOM.createPortal
 // Ref: https://github.com/doczjs/docz/issues/942
-export const Modal = (props) => <ModalWithPortal {...props} />
+// eslint-disable-next-line valid-typeof
+export const Modal = (props) => typeof window !== undefined && <ModalWithPortal {...props} />
 
 Modal.propTypes = {
   /** Makes modal visibile/hidden */
