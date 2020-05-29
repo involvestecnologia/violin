@@ -2,16 +2,15 @@ import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import Toast from './Toast';
 
-const ToastItem = ({ children, remove, options }) => {
+const ToastWrapper = ({ children, remove, options }) => {
   const [show, setShow] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const removeRef = useRef(null);
   const removeTimerRef = useRef(null);
   const startAnimateRef = useRef(null);
   const endAnimateRef = useRef(null);
-  removeRef.current = remove;
 
-  const defaultOptions = {
+  const mergedOptions = {
     timeout: 2000,
     action: null,
     customAction: null,
@@ -19,7 +18,7 @@ const ToastItem = ({ children, remove, options }) => {
     ...options
   };
 
-  const { timeout, ...restOptions } = defaultOptions;
+  const { timeout, ...restOptions } = mergedOptions;
 
   useEffect(() => {
     startAnimateRef.current = setTimeout(() => setShow(true), 0);
@@ -27,6 +26,10 @@ const ToastItem = ({ children, remove, options }) => {
       clearTimeout(startAnimateRef.current);
     }
   }, []);
+
+  useEffect(() => {
+    removeRef.current = remove;
+  }, [remove]);
 
   useEffect(() => {
     if (isHovered) {
@@ -64,7 +67,7 @@ const ToastItem = ({ children, remove, options }) => {
       show={show}
       onMouseEnter={onHover}
       onMouseLeave={onLeave}
-      hide={onCloseToast}
+      onHide={onCloseToast}
       {...restOptions}
     >
       {children}
@@ -72,9 +75,9 @@ const ToastItem = ({ children, remove, options }) => {
   );
 }
 
-export default ToastItem;
+export default ToastWrapper;
 
-ToastItem.propTypes = {
+ToastWrapper.propTypes = {
   remove: PropTypes.func,
   options: PropTypes.shape({
     timeout: PropTypes.number,
@@ -83,16 +86,16 @@ ToastItem.propTypes = {
       method: PropTypes.func
     }),
     customAction: PropTypes.node,
-    closeButton: PropTypes.bool
+    closable: PropTypes.bool
   })
 }
 
-ToastItem.defaultProps = {
+ToastWrapper.defaultProps = {
   remove: null,
   options: {
     timeout: 2000,
     action: null,
     customAction: null,
-    closeButton: false
+    closable: false
   },
 }

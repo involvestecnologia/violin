@@ -56,7 +56,29 @@ export default withToastProvider(MyComponent)
               label: 'Action',
               method: () => alert('This is action from Toast!')
             },
-            closeButton: true
+            closable: true
+          }
+        )}
+      >
+        Open toast
+      </Button>
+    )
+  }}
+</Playground>
+
+
+### customAction
+
+<Playground>
+  {() => {
+    const toast = useToast();
+    return (
+      <Button
+        onClick={() => toast.add(
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+          {
+            timeout: 3000,
+            customAction: <Button danger small onClick={() => alert('This is action from Toast!')}>Alert</Button>,
           }
         )}
       >
@@ -77,7 +99,7 @@ toast.add('string', {
     method: null // function
   },
   customAction: null, // component/node
-  closeButton: false // boolean
+  closable: false // boolean
 }
 ...
 ```
@@ -98,7 +120,7 @@ You can use Toast with your own state.
             label: 'Click me',
             method: () => alert('Lorem ipsum')
           }}
-          closeButton
+          closable
         >
           Lorem ipsum dolor sit
         </Toast>

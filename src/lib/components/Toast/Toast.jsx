@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button } from '../Button';
-import { ToastItem as ToastItemStyled, ToastContent, ToastAction } from './style';
+import { StyledToast, ToastContent, ToastAction } from './style';
 
-const Toast = ({ children, show, hide, action, customAction, closeButton, ...props }) => (
-  <ToastItemStyled show={show} {...props}>
+const Toast = ({ children, show, onHide, action, customAction, closable, ...props }) => (
+  <StyledToast show={show} {...props}>
     <ToastContent>
       { children }
     </ToastContent>
@@ -18,12 +18,12 @@ const Toast = ({ children, show, hide, action, customAction, closeButton, ...pro
         <Button type="button" invert secondary small onClick={action.method} data-testid="toast-action-button">{action.label}</Button>
       </ToastAction>
     )}
-    {closeButton && (
+    {closable && (
       <ToastAction>
-        <Button type="button" invert secondary small icon="close" onClick={hide} data-testid="toast-close-button" />
+        <Button type="button" invert secondary small icon="close" onClick={onHide} data-testid="toast-close-button" />
       </ToastAction>
     )}
-  </ToastItemStyled>
+  </StyledToast>
 );
 
 export default Toast;
@@ -32,7 +32,7 @@ Toast.propTypes = {
   /** Show component if is true */
   show: PropTypes.bool,
   /** Hide component function */
-  hide: PropTypes.func,
+  onHide: PropTypes.func,
   /** Set label and function to action button */
   action: PropTypes.shape({
     label: PropTypes.string,
@@ -41,13 +41,13 @@ Toast.propTypes = {
   /** Set a custom component instead of the action */
   customAction: PropTypes.node,
   /** Show close button */
-  closeButton: PropTypes.bool
+  closable: PropTypes.bool
 }
 
 Toast.defaultProps = {
   show: false,
-  hide: null,
+  onHide: null,
   action: null,
   customAction: null,
-  closeButton: false
+  closable: false
 }

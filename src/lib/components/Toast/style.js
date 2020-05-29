@@ -21,7 +21,7 @@ export const StyledContainer = styled.div`
   }
 `;
 
-export const ToastItem = styled.div`
+export const StyledToast = styled.div`
   display: flex;
   align-items: center;
   padding: 0 16px;

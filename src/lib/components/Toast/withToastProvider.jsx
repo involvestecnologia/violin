@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { createPortal } from 'react-dom';
 import ToastContext from './context';
-import ToastItem from './ToastItem';
+import ToastWrapper from './ToastWrapper';
 import idgen from '../../utils/idgen';
 import { StyledContainer } from './style';
 
@@ -27,9 +27,9 @@ export const withToastProvider = (Component) => {
         {typeof window !== 'undefined' && createPortal(
           <StyledContainer show={toasts.length > 0}>
             {toasts.map((t) => (
-              <ToastItem key={t.id} options={t.options} remove={() => remove(t.id)}>
+              <ToastWrapper key={t.id} options={t.options} remove={() => remove(t.id)}>
                 {t.content}
-              </ToastItem>
+              </ToastWrapper>
             ))}
           </StyledContainer>,
           document.querySelector('body')
