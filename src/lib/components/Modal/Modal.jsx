@@ -105,7 +105,8 @@ const ModalWithPortal = ({
     </ModalWrapper>
   );
 
-  return ReactDOM.createPortal(component, targetElement);
+  // eslint-disable-next-line valid-typeof
+  return typeof window !== undefined && ReactDOM.createPortal(component, targetElement);
 }
 
 // this was necessary because docz doesn't understand
