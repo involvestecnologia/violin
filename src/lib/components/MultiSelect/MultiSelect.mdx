@@ -4,7 +4,7 @@ menu: Components
 route: /components/MultiSelect
 ---
 
-import { MultiSelect as Select } from './MultiSelect';
+import { MultiSelect } from './MultiSelect';
 import idgen from '../../utils/idgen';
 import { Playground, Props } from "docz";
 import { State } from 'react-powerplug';
@@ -13,7 +13,7 @@ import { State } from 'react-powerplug';
 
 <Playground>
   <div style={{ width: 300 }}>
-    <Select
+    <MultiSelect
       autoFocus
       placeholder="Selecione"
       name="colors"
@@ -34,13 +34,13 @@ import { State } from 'react-powerplug';
 
 ## Props
 
-<Props of={Select} />
+<Props of={MultiSelect} />
 
 ## Grouped options
 
 <Playground>
   <div style={{ width: 300 }}>
-    <Select
+    <MultiSelect
       placeholder="Selecione"
       name="options-group"
       options={[
@@ -68,7 +68,7 @@ import { State } from 'react-powerplug';
 
 <Playground>
   <div style={{ width: 300 }}>
-    <Select
+    <MultiSelect
       placeholder="Selecione"
       name="options-group-searchable"
       searchable
@@ -124,7 +124,7 @@ import { State } from 'react-powerplug';
       return (
         <>
           <div style={{ width: 300 }}>
-            <Select
+            <MultiSelect
               placeholder="Pesquisar"
               name="async-select"
               async
@@ -152,7 +152,7 @@ import { State } from 'react-powerplug';
 
 <Playground>
   <div style={{ width: 300 }}>
-    <Select
+    <MultiSelect
       placeholder="Selecione"
       name="colors"
       value={[{value: "purple", label: "Purple"}]}
@@ -170,7 +170,7 @@ import { State } from 'react-powerplug';
 
 <Playground>
   <div style={{ width: 300 }}>
-    <Select
+    <MultiSelect
       placeholder="Selecione"
       name="colors"
       value={[{value: "purple", label: "Purple"}]}
@@ -182,7 +182,7 @@ import { State } from 'react-powerplug';
 
 <Playground>
   <div style={{ width: 300 }}>
-    <Select
+    <MultiSelect
       placeholder="Selecione"
       name="sizes"
       disabled
