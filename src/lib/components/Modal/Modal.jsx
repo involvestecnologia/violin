@@ -29,7 +29,7 @@ const ModalWithPortal = ({
   const modalWrapperElement = useRef(null);
   const modalCardElement = useRef(null);
   const timerShow = useRef(null);
-  const targetElement = useMemo(() => document.querySelector('body'));
+  const targetElement = useMemo(() => (document ? document.querySelector('body') : null));
   const [triggerElement, setTriggerElement] = useState(null);
   const [fadeIn, setFadeIn] = useState(false);
 
