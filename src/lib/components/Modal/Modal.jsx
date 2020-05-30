@@ -29,7 +29,7 @@ const ModalWithPortal = ({
   const modalWrapperElement = useRef(null);
   const modalCardElement = useRef(null);
   const timerShow = useRef(null);
-  const targetElement = useMemo(() => (typeof window !== 'undefined' ? window.document.querySelector('body') : null));
+  const targetElement = useMemo(() => document.querySelector('body'));
   const [triggerElement, setTriggerElement] = useState(null);
   const [fadeIn, setFadeIn] = useState(false);
 
@@ -105,15 +105,13 @@ const ModalWithPortal = ({
     </ModalWrapper>
   );
 
-  // eslint-disable-next-line valid-typeof
   return ReactDOM.createPortal(component, targetElement);
 }
 
 // this was necessary because docz doesn't understand
 // the props of a component from ReactDOM.createPortal
 // Ref: https://github.com/doczjs/docz/issues/942
-// eslint-disable-next-line valid-typeof
-export const Modal = (props) => typeof window !== undefined && <ModalWithPortal {...props} />
+export const Modal = (props) => <ModalWithPortal {...props} />
 
 Modal.propTypes = {
   /** Makes modal visibile/hidden */
