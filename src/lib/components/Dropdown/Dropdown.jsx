@@ -127,5 +127,5 @@ const DropdownCard = ({ closeDropdown, triggerPosition, placement, ...props }) =
       {...props}
     />
   );
-  return ReactDOM.createPortal(component, document.querySelector('body'));
+  return ReactDOM.createPortal(component, typeof document !== 'undefined' && document.querySelector('body'));
 };

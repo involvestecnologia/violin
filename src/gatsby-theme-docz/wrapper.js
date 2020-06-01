@@ -1,6 +1,6 @@
 import React from 'react';
 // eslint-disable-next-line import/no-unresolved
-import { GlobalStyle } from 'lib';
+import { GlobalStyle, withToastProvider } from 'lib';
 import { createGlobalStyle } from 'styled-components';
 import { Helmet } from 'react-helmet';
 
@@ -18,7 +18,7 @@ const GlobalGatsbyStyle = createGlobalStyle`
   }
 `
 
-export default ({ children }) => (
+const Wrapper = ({ children }) => (
   <>
     <Helmet>
       <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap" />
@@ -29,3 +29,5 @@ export default ({ children }) => (
     {children}
   </>
 )
+
+export default withToastProvider(Wrapper);

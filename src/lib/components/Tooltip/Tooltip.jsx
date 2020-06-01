@@ -242,5 +242,5 @@ const Tip = ({ placement, ...props }) => {
     <Balloon ref={tooltipElement} fade={fade} placement={dynamicPlacement} {...props} />
   );
 
-  return ReactDOM.createPortal(component, document.querySelector('body'));
+  return ReactDOM.createPortal(component, typeof document !== 'undefined' && document.querySelector('body'));
 };
