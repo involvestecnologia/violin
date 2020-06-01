@@ -29,8 +29,11 @@ const ModalWithPortal = ({
   const modalWrapperElement = useRef(null);
   const modalCardElement = useRef(null);
   const timerShow = useRef(null);
+  let targetElement
   // eslint-disable-next-line valid-typeof
-  const targetElement = useMemo(() => typeof window !== undefined && window.document.querySelector('body'));
+  if (typeof window !== undefined) {
+    targetElement = useMemo(() => window.document.querySelector('body'));
+  }
   const [triggerElement, setTriggerElement] = useState(null);
   const [fadeIn, setFadeIn] = useState(false);
 
