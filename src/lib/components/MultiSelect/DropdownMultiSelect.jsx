@@ -14,6 +14,7 @@ const DropdownMultiSelect = ({
   menuRef,
   filter,
   loading,
+  showSelectAll,
   ...props
 }) => {
   const [highlightItem, setHighlightItem] = useState(0);
@@ -66,7 +67,7 @@ const DropdownMultiSelect = ({
       data-testid="select-menu"
       {...props}
     >
-      {options && options.length > 0 && (
+      {showSelectAll && options && options.length > 0 && (
         <StyledSelectMenuItem
           onClick={() => selectAll()}
           data-testid="select-menu-item"
@@ -109,7 +110,12 @@ DropdownMultiSelect.propTypes = {
   selected: PropTypes.oneOfType([PropTypes.array]).isRequired,
   menuRef: PropTypes.oneOfType([PropTypes.object]).isRequired,
   filter: PropTypes.string.isRequired,
-  loading: PropTypes.bool.isRequired
+  loading: PropTypes.bool.isRequired,
+  showSelectAll: PropTypes.bool,
 };
+
+DropdownMultiSelect.defaultProps = {
+  showSelectAll: false,
+}
 
 export default DropdownMultiSelect;

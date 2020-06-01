@@ -26,6 +26,7 @@ export const MultiSelect = ({
   ...props
 }) => {
   const [options, setOptions] = useState([]);
+  const [formattedOriginalOptions, setFormattedOriginalOptions] = useState([]);
   const [selected, setSelected] = useState([]);
   const [selectedValues, setSelectedValues] = useState([]);
   const [isFocused, setIsFocused] = useState(false);
@@ -87,11 +88,20 @@ export const MultiSelect = ({
   };
 
   const onSelectAll = () => {
-    const shouldSelectAll = !(selected.length === options.length)
-    const updatedOptions = options.map((option) => ({ ...option, selected: shouldSelectAll }))
+    const tempOptions = formattedOriginalOptions.filter((formattedOption) => !formattedOption.title)
+    const shouldSelectAll = !(selected.length === tempOptions.length)
+    const updatedOptions = formattedOriginalOptions.map((formattedOption) => {
+      if (formattedOption.title) {
+        return { ...formattedOption }
+      }
+      return { ...formattedOption, selected: shouldSelectAll }
+    })
     setOptions(updatedOptions)
     if (shouldSelectAll) {
-      setSelected([...updatedOptions])
+      const selectedOptions = updatedOptions
+        .filter((updatedOption) => !updatedOption.title)
+        .map((updatedOption) => ({ ...updatedOption }))
+      setSelected(selectedOptions)
     } else {
       setSelected([])
     }
@@ -150,6 +160,7 @@ export const MultiSelect = ({
         return [...accumulator, { ...current }]
       }, [])
     setOptions(formattedOptions)
+    setFormattedOriginalOptions(formattedOptions)
     setDefaultValueSyncronized(false)
   }, [originalOptions])
 
@@ -299,6 +310,7 @@ export const MultiSelect = ({
           async={async}
           onClick={focusInputAndSelect}
           loading={isLoadingSearch}
+          showSelectAll={!searchTerm || searchTerm.length === 0}
         />
       )}
       {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
