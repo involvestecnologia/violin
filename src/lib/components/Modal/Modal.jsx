@@ -29,7 +29,7 @@ const ModalWithPortal = ({
   const modalWrapperElement = useRef(null);
   const modalCardElement = useRef(null);
   const timerShow = useRef(null);
-  const targetElement = useMemo(() => (typeof document !== 'undefined' ? document.querySelector('body') : null));
+  const targetElement = useMemo(() => typeof window !== 'undefined' && window.document.querySelector('body'));
   const [triggerElement, setTriggerElement] = useState(null);
   const [fadeIn, setFadeIn] = useState(false);
 
@@ -105,7 +105,7 @@ const ModalWithPortal = ({
     </ModalWrapper>
   );
 
-  return ReactDOM.createPortal(component, targetElement);
+  return typeof window !== 'undefined' && ReactDOM.createPortal(component, targetElement);
 }
 
 // this was necessary because docz doesn't understand
