@@ -1,9 +1,9 @@
-import React from 'react';
 import styled, { css, keyframes } from 'styled-components';
 import { withProp, prop, ifProp } from 'styled-tools';
 import { transparentize, rem } from 'polished';
 import { inputStyle, inputStyleFocus, inputStyleDisabled, errorStyle } from '../TextField/style';
-import { Checkbox, Icon } from '..'
+import { Checkbox } from '../Checkbox'
+import { Icon } from '../Icon'
 import getFromTheme from '../../utils/getFromTheme';
 import { ListItem } from '../_common';
 
@@ -229,6 +229,6 @@ export const Loading = styled.div`
   }
 `;
 
-export const StyledCheckbox = styled((props) => <Checkbox {...props} />)`
+export const StyledCheckbox = styled(Checkbox)`
   margin-right: 9px;
 `
