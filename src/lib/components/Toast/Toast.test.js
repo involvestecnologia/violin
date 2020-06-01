@@ -5,6 +5,7 @@ import { withToastProvider } from './withToastProvider';
 import { useToast } from './useToast';
 import ToastContext from './context';
 import { Button } from '../Button';
+import Toast from './Toast';
 
 afterEach(cleanup);
 jest.useFakeTimers();
@@ -38,7 +39,7 @@ describe('Title', () => {
     const Tree = withToastProvider(() => {
       const toast = useToast();
       return (
-        <Button onClick={() => toast.add('Lorem ipsum', { closeButton: true })}>Open Toast</Button>
+        <Button onClick={() => toast.add('Lorem ipsum', { closable: true })}>Open Toast</Button>
       )
     })
     const { getByText, getByTestId, queryAllByText } = render(<Tree />);
@@ -73,5 +74,47 @@ describe('Title', () => {
     fireEvent.click(getByTestId('toast-action-button'));
 
     expect(fn).toHaveBeenCalled();
+  });
+
+  test('should render custom action correctly', () => {
+    const Tree = withToastProvider(() => {
+      const toast = useToast();
+      return (
+        <Button onClick={() => toast.add('Lorem ipsum', { customAction: <button type="button">Custom action button</button> })}>Open Toast</Button>
+      )
+    })
+    const { getByText } = render(<Tree />);
+
+    fireEvent.click(getByText('Open Toast'))
+    expect(getByText('Custom action button')).toBeInTheDocument();
+  });
+
+  test('should render Toast component correctly', () => {
+    let showToast = false;
+    const onHideToast = jest.fn();
+    const actionMethod = jest.fn();
+
+    const ToastComponent = () => (
+      <Toast
+        show={showToast}
+        onHide={onHideToast}
+        action={{
+          label: 'Click me',
+          method: actionMethod
+        }}
+        closable
+      >
+        Lorem ipsum
+      </Toast>
+    )
+
+    const { getByText, rerender } = render(<ToastComponent />);
+
+    expect(getByText('Lorem ipsum')).not.toBeVisible();
+
+    showToast = true;
+    rerender(<ToastComponent />);
+
+    expect(getByText('Lorem ipsum')).toBeVisible();
   });
 });
