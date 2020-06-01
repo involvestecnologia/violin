@@ -115,7 +115,7 @@ You can use Toast with your own state.
         <Button onClick={toggle}>Toggle Toast</Button>
         <Toast
           show={on}
-          hide={toggle}
+          onHide={toggle}
           action={{
             label: 'Click me',
             method: () => alert('Lorem ipsum')

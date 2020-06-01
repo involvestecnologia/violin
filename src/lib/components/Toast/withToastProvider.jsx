@@ -24,7 +24,7 @@ export const withToastProvider = (Component) => {
       <ToastContext.Provider value={providerValue}>
         <Component {...props} />
 
-        {typeof window !== 'undefined' && createPortal(
+        {typeof document !== 'undefined' && createPortal(
           <StyledContainer show={toasts.length > 0}>
             {toasts.map((t) => (
               <ToastWrapper key={t.id} options={t.options} remove={() => remove(t.id)}>
