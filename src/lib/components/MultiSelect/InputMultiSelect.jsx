@@ -57,7 +57,7 @@ const InputMultiSelect = ({
 
   useEffect(() => {
     resetInput();
-  }, [isFocused, selected]);
+  }, [isFocused]);
 
   useEffect(() => {
     if (!isMenuOpen) resetInput();

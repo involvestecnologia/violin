@@ -143,7 +143,8 @@ export const MultiSelect = ({
     const formattedOptions = originalOptions
       .reduce((accumulator, current) => {
         if (current.options) {
-          accumulator.push(...current.options)
+          const clonedOptions = current.options.map((option) => ({ ...option }))
+          accumulator.push(...clonedOptions)
           return [...accumulator, { title: current.label }]
         }
         return [...accumulator, { ...current }]
@@ -185,13 +186,32 @@ export const MultiSelect = ({
   }, []);
 
   useEffect(() => {
+    const shouldUpdate = options
+      .filter((option) => !option.selected)
+      .some((option) => selected.find((selectedOption) => selectedOption.label === option.label))
+
+    if (!shouldUpdate) return
+
+    const updatedOptions = [...options]
+    selected.forEach((selectedOption) => {
+      const optionFound = updatedOptions
+        .find((option) => option.label === selectedOption.label)
+      if (optionFound) {
+        optionFound.selected = true
+      }
+    })
+    setOptions(updatedOptions)
+  }, [options, selected])
+
+  useEffect(() => {
     setSelectedValues(selected.map(({ value }) => value))
     if (onSelect) onSelect(selected);
   }, [selected]);
 
   useEffect(() => {
     if (!async && !loadOptions) {
-      filterOptions(originalOptions, searchTerm, setOptions);
+      const filteredOptions = filterOptions(originalOptions, searchTerm, setOptions);
+      setOptions(filteredOptions)
     }
     if (async && loadOptions) callLoadOptions();
   }, [searchTerm]);

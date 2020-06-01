@@ -97,16 +97,16 @@ export const formatOptionsList = (options = []) => {
     if (item.options) {
       formatedOptions.push({ title: item.label });
       item.options.forEach((sub) => {
-        formatedOptions.push(sub);
+        formatedOptions.push({ ...sub });
       })
     } else {
-      formatedOptions.push(item);
+      formatedOptions.push({ ...item });
     }
   });
   return formatedOptions;
 }
 
-export const filterOptions = (options, filter, setOptions) => {
+export const filterOptions = (options, filter) => {
   const formatedOptions = formatOptionsList(options);
 
   if (filter.length > 0) {
@@ -124,9 +124,7 @@ export const filterOptions = (options, filter, setOptions) => {
       }
       return item.label && item.label.toLowerCase().includes(filter.toLowerCase())
     });
-    setOptions(filtered);
     return filtered
   }
-  setOptions(formatedOptions);
   return formatedOptions
 };
