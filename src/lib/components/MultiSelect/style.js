@@ -1,3 +1,4 @@
+import React from 'react';
 import styled, { css, keyframes } from 'styled-components';
 import { withProp, prop, ifProp } from 'styled-tools';
 import { transparentize, rem } from 'polished';
@@ -228,6 +229,6 @@ export const Loading = styled.div`
   }
 `;
 
-export const StyledCheckbox = styled(Checkbox)`
+export const StyledCheckbox = styled((props) => <Checkbox {...props} />)`
   margin-right: 9px;
 `
