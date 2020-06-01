@@ -10,7 +10,6 @@ export { Container, Row, Col } from './Grid';
 export { Icon } from './Icon';
 export { Link } from './Link';
 export { Modal } from './Modal';
-export { MultiSelect } from './MultiSelect';
 export { Notification } from './Notification';
 export { RadioButton } from './RadioButton';
 export { Select } from './Select';
