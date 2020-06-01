@@ -1,0 +1,132 @@
+---
+name: Toast
+menu: Components
+route: /components/Toast
+---
+
+import { Button } from '../Button';
+import { useToast } from './useToast';
+import Toast from './Toast';
+import { withToastProvider } from './withToastProvider';
+import { Playground, Props } from "docz";
+import { State, Toggle } from 'react-powerplug'
+
+# Toast
+
+This component works with the hook `useToast`.
+
+<Playground>
+  {() => {
+    const toast = useToast();
+    return (
+      <Button onClick={() => toast.add('Lorem ipsum dolor sit amet, consectetur adipiscing elit.')}>Open toast</Button>
+    )
+  }}
+</Playground>
+
+<br />
+
+Add the provider in your component (or oyur root App.js) file and use hook to create Toast.
+
+```javascript
+import { withToastProvider, useToast } from '@involves/violin'
+
+const MyComponent = () => {
+  const toast = useToast()
+  render (
+    <Button onClick={() => toast.add('My notify message')}>Click to open toast</Button>
+  )
+}
+
+export default withToastProvider(MyComponent)
+```
+
+### options
+
+<Playground>
+  {() => {
+    const toast = useToast();
+    return (
+      <Button
+        onClick={() => toast.add(
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+          {
+            timeout: 3000,
+            action: {
+              label: 'Action',
+              method: () => alert('This is action from Toast!')
+            },
+            closable: true
+          }
+        )}
+      >
+        Open toast
+      </Button>
+    )
+  }}
+</Playground>
+
+
+### customAction
+
+<Playground>
+  {() => {
+    const toast = useToast();
+    return (
+      <Button
+        onClick={() => toast.add(
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+          {
+            timeout: 3000,
+            customAction: <Button danger small onClick={() => alert('This is action from Toast!')}>Alert</Button>,
+          }
+        )}
+      >
+        Open toast
+      </Button>
+    )
+  }}
+</Playground>
+
+### default options schema
+
+```javascript
+...
+toast.add('string', {
+  timeout: 2000, // number milliseconds
+  action: {
+    label: null, // string
+    method: null // function
+  },
+  customAction: null, // component/node
+  closable: false // boolean
+}
+...
+```
+
+## Stateless
+
+You can use Toast with your own state.
+
+<Playground>
+  <Toggle initial={false}>
+		{({ on, toggle }) => (
+      <>
+        <Button onClick={toggle}>Toggle Toast</Button>
+        <Toast
+          show={on}
+          onHide={toggle}
+          action={{
+            label: 'Click me',
+            method: () => alert('Lorem ipsum')
+          }}
+          closable
+        >
+          Lorem ipsum dolor sit
+        </Toast>
+      </>
+    )}
+	</Toggle>
+</Playground> 
+
+<Props of={Toast} />

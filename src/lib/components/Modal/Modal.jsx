@@ -105,7 +105,6 @@ const ModalWithPortal = ({
     </ModalWrapper>
   );
 
-  // eslint-disable-next-line valid-typeof
   return typeof window !== 'undefined' && ReactDOM.createPortal(component, targetElement);
 }
 

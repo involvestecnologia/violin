@@ -19,6 +19,7 @@ export { Text } from './Text';
 export { TextArea } from './TextArea';
 export { TextField } from './TextField';
 export { Title } from './Title';
+export { Toast, withToastProvider, useToast } from './Toast';
 export { ToggleSwitch } from './ToggleSwitch';
 export { ToggleButton } from './ToggleButton';
 export { Tooltip } from './Tooltip';
