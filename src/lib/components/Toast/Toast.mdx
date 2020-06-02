@@ -104,6 +104,28 @@ toast.add('string', {
 ...
 ```
 
+## Passing props to toast container
+
+```javascript
+import { withToastProvider, useToast } from '@involves/violin'
+
+const containerProps = {
+  id: "violin-toast-container",
+  style: {
+    zIndex: 900
+  }
+}
+
+const MyComponent = () => {
+  const toast = useToast()
+  render (
+    <Button onClick={() => toast.add('My notify message')}>Click to open toast</Button>
+  )
+}
+
+export default withToastProvider(MyComponent, containerProps)
+```
+
 ## Stateless
 
 You can use Toast with your own state.
