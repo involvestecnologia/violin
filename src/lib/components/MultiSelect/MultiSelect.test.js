@@ -91,9 +91,8 @@ describe('Select', () => {
     const { queryAllByTestId, getByTestId } = render(<Select options={colorOptions} searchable />);
 
     fireEvent.input(getByTestId('input-select-filter'), { target: { value: 'r' } });
-    expect(queryAllByTestId('select-menu-item')[0]).toHaveTextContent('Selecionar todos');
-    expect(queryAllByTestId('select-menu-item')[1]).toHaveTextContent('Red');
-    expect(queryAllByTestId('select-menu-item')[2]).toHaveTextContent('Green');
+    expect(queryAllByTestId('select-menu-item')[0]).toHaveTextContent('Red');
+    expect(queryAllByTestId('select-menu-item')[1]).toHaveTextContent('Green');
   });
 
   test('should render empty message when filter no match', () => {
