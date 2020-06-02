@@ -89,6 +89,19 @@ describe('Title', () => {
     expect(getByText('Custom action button')).toBeInTheDocument();
   });
 
+  test('should pass props to container toast', () => {
+    const Tree = withToastProvider(() => {
+      const toast = useToast();
+      return (
+        <Button onClick={() => toast.add('Lorem ipsum', { customAction: <button type="button">Custom action button</button> })}>Open Toast</Button>
+      )
+    }, { role: 'violin-toast-container' })
+    const { getByText, getByRole } = render(<Tree />);
+
+    fireEvent.click(getByText('Open Toast'))
+    expect(getByRole('violin-toast-container')).toBeInTheDocument();
+  });
+
   test('should render Toast component correctly', () => {
     let showToast = false;
     const onHideToast = jest.fn();

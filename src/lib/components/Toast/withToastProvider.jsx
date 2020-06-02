@@ -5,7 +5,7 @@ import ToastWrapper from './ToastWrapper';
 import idgen from '../../utils/idgen';
 import { StyledContainer } from './style';
 
-export const withToastProvider = (Component) => {
+export const withToastProvider = (Component, containerProps) => {
   const provider = (props) => {
     const [toasts, setToasts] = useState([]);
 
@@ -25,7 +25,7 @@ export const withToastProvider = (Component) => {
         <Component {...props} />
 
         {typeof document !== 'undefined' && createPortal(
-          <StyledContainer show={toasts.length > 0} id="violin-toast-container">
+          <StyledContainer show={toasts.length > 0} {...containerProps}>
             {toasts.map((t) => (
               <ToastWrapper key={t.id} options={t.options} remove={() => remove(t.id)}>
                 {t.content}
