@@ -25,7 +25,7 @@ export const withToastProvider = (Component) => {
         <Component {...props} />
 
         {typeof document !== 'undefined' && createPortal(
-          <StyledContainer show={toasts.length > 0}>
+          <StyledContainer show={toasts.length > 0} id="violin-toast-container">
             {toasts.map((t) => (
               <ToastWrapper key={t.id} options={t.options} remove={() => remove(t.id)}>
                 {t.content}
