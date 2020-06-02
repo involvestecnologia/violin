@@ -15,6 +15,7 @@ const DropdownMultiSelect = ({
   filter,
   loading,
   showSelectAll,
+  isAllSelected,
   ...props
 }) => {
   const [highlightItem, setHighlightItem] = useState(0);
@@ -72,7 +73,7 @@ const DropdownMultiSelect = ({
           onClick={() => selectAll()}
           data-testid="select-menu-item"
         >
-          {options.length === selected.length ? 'Desmarcar todos' : 'Selecionar todos'}
+          {isAllSelected ? 'Desmarcar todos' : 'Selecionar todos'}
         </StyledSelectMenuItem>
       )}
       {options.map((option, i) => {
@@ -112,6 +113,7 @@ DropdownMultiSelect.propTypes = {
   filter: PropTypes.string.isRequired,
   loading: PropTypes.bool.isRequired,
   showSelectAll: PropTypes.bool,
+  isAllSelected: PropTypes.bool.isRequired,
 };
 
 DropdownMultiSelect.defaultProps = {
