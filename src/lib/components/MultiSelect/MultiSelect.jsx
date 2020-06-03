@@ -26,8 +26,9 @@ export const MultiSelect = ({
   ...props
 }) => {
   const [options, setOptions] = useState([]);
+  const [clonedOriginalOptions, setClonedOriginalOptions] = useState([]);
   const [formattedOriginalOptions, setFormattedOriginalOptions] = useState([]);
-  const [titlelessOriginalOptions, setTitlelessOriginalOptions] = useState([])
+  const [titlelessOriginalOptions, setTitlelessOriginalOptions] = useState([]);
   const [selected, setSelected] = useState([]);
   const [selectedValues, setSelectedValues] = useState([]);
   const [isFocused, setIsFocused] = useState(false);
@@ -161,6 +162,7 @@ export const MultiSelect = ({
         return [...accumulator, { ...current }]
       }, [])
     setOptions(formattedOptions)
+    setClonedOriginalOptions(formattedOptions)
     setFormattedOriginalOptions(formattedOptions)
     setTitlelessOriginalOptions(formattedOptions.filter(({ title }) => !title))
     setDefaultValueSyncronized(false)
@@ -169,6 +171,7 @@ export const MultiSelect = ({
   useEffect(() => {
     if (defaultValueSyncronized) return
     if (!defaultValue || defaultValue.length === 0) return
+    if (!clonedOriginalOptions || clonedOriginalOptions.length === 0) return
 
     const updatedOptions = [...options]
     defaultValue.forEach((defaultOption) => {
@@ -312,7 +315,7 @@ export const MultiSelect = ({
           async={async}
           onClick={focusInputAndSelect}
           loading={isLoadingSearch}
-          showSelectAll={!searchTerm || searchTerm.length === 0}
+          showSelectAll={async ? false : (!searchTerm || searchTerm.length === 0)}
           isAllSelected={selected.length === titlelessOriginalOptions.length}
         />
       )}
