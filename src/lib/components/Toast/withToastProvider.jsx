@@ -22,7 +22,7 @@ export const withToastProvider = (Component, containerProps) => {
 
     return (
       <ToastContext.Provider value={providerValue}>
-        <Component {...props} />
+        {useMemo(() => <Component {...props} />, [props])}
 
         {typeof document !== 'undefined' && createPortal(
           <StyledContainer show={toasts.length > 0} {...containerProps}>
