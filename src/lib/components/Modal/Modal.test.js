@@ -65,4 +65,11 @@ describe('Modal', () => {
     const { getByTestId } = render(<Modal open />);
     expect(getByTestId('modal-card')).toEqual(document.activeElement)
   })
+
+  test('should render passed styles', () => {
+    const { getByTestId } = render(<Modal open style={{ width: '500px' }} />);
+    expect(getByTestId('modal-card')).toHaveStyle(`
+      width: 500px;
+    `);
+  })
 });
