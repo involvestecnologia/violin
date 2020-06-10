@@ -25,7 +25,7 @@ export const Select = ({
   ...props
 }) => {
   const [options, setOptions] = useState([]);
-  const [selected, setSelected] = useState(defaultValue || {});
+  const [selected, setSelected] = useState({});
   const [isFocused, setIsFocused] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
@@ -105,6 +105,10 @@ export const Select = ({
     if (autoFocus) focusInputAndSelect()
     updateOptionsWithSelected(originalOptions, defaultValue, setSelected)
   }, []);
+
+  useEffect(() => {
+    if (defaultValue && defaultValue.value) setSelected(defaultValue)
+  }, [defaultValue])
 
   useEffect(() => {
     updateOptionsWithSelected(async ? options : originalOptions);
