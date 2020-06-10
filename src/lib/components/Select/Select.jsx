@@ -25,7 +25,7 @@ export const Select = ({
   ...props
 }) => {
   const [options, setOptions] = useState([]);
-  const [selected, setSelected] = useState({});
+  const [selected, setSelected] = useState(defaultValue || {});
   const [isFocused, setIsFocused] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
@@ -69,8 +69,8 @@ export const Select = ({
     onSelectOption(null);
   };
 
-  const updateOptionsWithSelected = (list, selectedValue, setSelectedFunction) => {
-    const optionsWithSelected = selectOption(list, selectedValue || selected, setSelectedFunction);
+  const updateOptionsWithSelected = (list) => {
+    const optionsWithSelected = selectOption(list, selected, setSelected);
     setOptions(formatOptionsList(optionsWithSelected));
   };
 
