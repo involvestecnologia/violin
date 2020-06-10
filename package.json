@@ -1,6 +1,6 @@
 {
   "name": "@involves/violin",
-  "version": "1.0.0-alpha.2.8",
+  "version": "1.0.0-alpha.2.9",
   "description": "React components for faster and easier web development",
   "main": "lib/index.js",
   "module": "lib/es/index.js",
