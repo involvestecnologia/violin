@@ -57,7 +57,6 @@ export const highlightFirstItemList = (array, callback) => {
 export const selectOption = (array = [], selected, setSelected) => {
   const selectedValue = selected || {}
 
-  if (array.length === 0 && !!selectedValue.value) array.push(selectedValue)
   if (array.length === 0) return [];
 
   return array.map((opt) => {
