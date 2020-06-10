@@ -24,7 +24,8 @@ const ModalWithPortal = ({
   title,
   disableBackdropClick,
   disableEscapeKeyDown,
-  zindex
+  zindex,
+  ...props
 }) => {
   const modalWrapperElement = useRef(null);
   const modalCardElement = useRef(null);
@@ -82,7 +83,7 @@ const ModalWithPortal = ({
         disableBackdropClick={disableBackdropClick}
         data-testid="modal-backdrop"
       />
-      <ModalCard ref={modalCardElement} tabIndex="0" data-testid="modal-card">
+      <ModalCard ref={modalCardElement} tabIndex="0" data-testid="modal-card" {...props}>
         {title && (
           <ModalHeader>
             <ModalTitle size="h6">{title}</ModalTitle>
