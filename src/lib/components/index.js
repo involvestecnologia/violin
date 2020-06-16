@@ -11,6 +11,7 @@ export { Icon } from './Icon';
 export { Link } from './Link';
 export { Modal } from './Modal';
 export { Notification } from './Notification';
+export { ProgressBar } from './ProgressBar';
 export { RadioButton } from './RadioButton';
 export { Select } from './Select';
 export { Subtitle } from './Subtitle';

@@ -1,0 +1,49 @@
+---
+name: ProgressBar
+menu: Components
+route: /components/ProgressBar
+---
+
+import { ProgressBar } from './ProgressBar';
+import { Playground, Props } from "docz";
+import { DemoControl } from '../../../docs/utils/DemoControl';
+import { Toggle } from 'react-powerplug';
+import { Button } from '../Button'
+
+# ProgressBar
+
+This component show a indeterminate progress bar.
+
+<Playground>
+  <Toggle initial={true}>
+    {({ on, toggle }) => {
+      return (
+        <>
+          <Button onClick={toggle} style={{ marginBottom: 20 }}>Toggle show</Button>
+          <ProgressBar show={on} />
+        </>
+      )
+    }}
+  </Toggle>
+</Playground>
+
+## Props
+
+<Props of={ProgressBar} />
+
+## fixed
+
+Position and fix the component on the top screen.
+
+<Playground>
+  <Toggle initial={false}>
+    {({ on, toggle }) => {
+      return (
+        <>
+          <Button onClick={toggle} style={{ marginBottom: 20 }}>Toggle show</Button>
+          <ProgressBar show={on} fixed />
+        </>
+      )
+    }}
+  </Toggle>
+</Playground>
