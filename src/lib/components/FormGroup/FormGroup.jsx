@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import { Tooltip } from '../Tooltip';
 import { Wrapper, LabelContainer, StyledLabel, LabelText, HelpLabel, InfoIcon, HelpText } from './style';
@@ -27,7 +27,12 @@ export const FormGroup = ({
         </Tooltip>
       )}
     </LabelContainer>
-    {children}
+    {(children && typeof children === 'string') && children}
+    {(children && typeof children !== 'string') && (
+      Children.count(children) > 1
+        ? Children.map(children, (child) => cloneElement(child, { disabled, error }))
+        : cloneElement(children, { disabled, error })
+    )}
     {helpText && <HelpText error={error} data-testid="help-text">{helpText}</HelpText>}
   </Wrapper>
 );
