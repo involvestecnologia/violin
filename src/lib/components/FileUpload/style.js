@@ -17,7 +17,7 @@ export const DropArea = styled.div`
   min-height: 120px;
   border: 2px dashed ${withProp(getFromTheme('palette.primary.900'), transparentize(0.7))};
   border-radius: 8px;
-  padding: ${ifProp('isMultiple', '20px 0', '20px')} 20px;
+  padding: 20px;
   outline: none;
   transition: ${getFromTheme('common.transition')};
   box-sizing: border-box;
@@ -70,6 +70,8 @@ export const PreviewFigure = styled.div`
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  margin-bottom: 12px;
+
 
   > i {
     font-size: 40px;
@@ -109,7 +111,7 @@ export const FileInfo = styled.div`
   display: flex;
   align-items: center;
   justify-content: ${ifProp('isList', 'flex-start', 'center')};
-  margin: ${ifProp('isList', '0', '12px 0 4px')};
+  margin: ${ifProp('isList', '0', '0 0 4px')};
   width: 100%;
   max-width: ${ifProp('isList', 'calc(320px)', '360px')};
 `;

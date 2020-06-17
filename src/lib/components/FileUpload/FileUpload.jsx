@@ -1,12 +1,21 @@
 import React, { useCallback, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useDropzone } from 'react-dropzone';
-import Term from '../../localization/Term'
+import Term from '../../localization/Term';
 import { DropArea, WrapperAction, ScrollView } from './style';
 import { FileUploadPreview } from './FileUploadPreview';
 import { FileUploadList } from './FileUploadList';
 
-export const FileUpload = ({ className, style, disabled, multiple, onLoadFiles, ...props }) => {
+export const FileUpload = ({
+  className,
+  style,
+  disabled,
+  multiple,
+  onLoadFiles,
+  defaultValue,
+  onRemoveDefaultValue,
+  ...props
+}) => {
   const [files, setFiles] = useState([]);
 
   const removeFile = (file) => {
@@ -17,6 +26,7 @@ export const FileUpload = ({ className, style, disabled, multiple, onLoadFiles, 
     } else {
       setFiles([]);
     }
+    if (defaultValue && onRemoveDefaultValue) onRemoveDefaultValue();
   };
 
   const onDrop = useCallback((acceptedFiles) => {
@@ -50,9 +60,10 @@ export const FileUpload = ({ className, style, disabled, multiple, onLoadFiles, 
       isMultiple={multiple}
       data-testid="fileUpload"
     >
-      {!multiple && !!files.length && (
+      {!multiple && (!!files.length || defaultValue) && (
         <FileUploadPreview
           files={files}
+          defaultValue={!defaultValue ? null : defaultValue}
           isMultiple={multiple}
           onRemove={removeFile}
         />
@@ -67,7 +78,7 @@ export const FileUpload = ({ className, style, disabled, multiple, onLoadFiles, 
         </ScrollView>
       )}
 
-      {((!multiple && files.length === 0) || multiple) && (
+      {((!multiple && files.length === 0) || multiple) && !defaultValue && (
         <WrapperAction small={multiple && !!files.length}>
           <Term>FileUpload.placeholder</Term> <span><Term>FileUpload.placeholderLink</Term></span>
         </WrapperAction>
@@ -86,12 +97,23 @@ FileUpload.propTypes = {
   /** Disable input */
   disabled: PropTypes.bool,
   /** Return a function with array files */
-  onLoadFiles: PropTypes.func
+  onLoadFiles: PropTypes.func,
+  /** Show an exist data from form */
+  defaultValue: PropTypes.shape({
+    name: PropTypes.string,
+    type: PropTypes.string,
+    preview: PropTypes.string,
+    size: PropTypes.string,
+  }),
+  /** Call function when remove button is clicked (defaultValue is required to use this) */
+  onRemoveDefaultValue: PropTypes.func
 };
 
 FileUpload.defaultProps = {
   accept: null,
   multiple: false,
   disabled: false,
-  onLoadFiles: null
+  onLoadFiles: null,
+  defaultValue: null,
+  onRemoveDefaultValue: null
 }
