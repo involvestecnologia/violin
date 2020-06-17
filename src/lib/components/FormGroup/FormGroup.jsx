@@ -33,7 +33,7 @@ export const FormGroup = ({
         ? Children.map(children, (child) => cloneElement(child, { disabled, error }))
         : cloneElement(children, { disabled, error })
     )}
-    {helpText && <HelpText error={error} data-testid="help-text">{helpText}</HelpText>}
+    {helpText && <HelpText error={error} isDisabled={disabled} data-testid="help-text">{helpText}</HelpText>}
   </Wrapper>
 );
 
