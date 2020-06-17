@@ -41,6 +41,7 @@ export const InfoIcon = styled(Icon)`
 
 export const HelpText = styled.div`
   font-size: ${getFromTheme('typography.fontSize.small')};
+  opacity: ${(props) => props.isDisabled && 0.25};
   color: ${ifProp('error', getFromTheme('palette.red.700'), getFromTheme('palette.black.500'))};
   font-weight: ${ifProp('error', getFromTheme('typography.fontWeight.semiBold'), getFromTheme('typography.fontWeight.regular'))};
   margin-top: 6px;
