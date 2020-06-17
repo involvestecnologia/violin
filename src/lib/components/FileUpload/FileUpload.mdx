@@ -6,6 +6,7 @@ route: /components/FileUpload
 
 import { FileUpload } from './FileUpload';
 import { Playground, Props } from "docz";
+import { State } from 'react-powerplug';
 
 # FileUpload
 
@@ -45,4 +46,18 @@ See the result on the console.
 
 <Playground>
   <FileUpload multiple onLoadFiles={files => console.log(files) } />
+</Playground>
+
+## defaultValue
+
+<Playground>
+  <State initial={{
+    type: 'image',
+    preview: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRgEfRiRq0EDmarakvqkbkvtwMX7Gr0h7_b8LO8HXGLFr5lfVks&usqp=CAU'
+  }}>
+    {({ state, setState }) => {
+      return (
+        <FileUpload defaultValue={state.preview ? state : null} onRemoveDefaultValue={() => setState({ type: null, preview: null })} />
+    )}}
+  </State>
 </Playground>

@@ -88,4 +88,27 @@ describe('FileUpload', () => {
 
     expect(queryAllByTestId('fileUploadListItem')).toHaveLength(1);
   });
+
+  test('should load component with defaultValue', async () => {
+    const valueImage = { type: 'image', preview: 'image.jpg' };
+    const { queryByTestId } = render(<FileUpload defaultValue={valueImage} />);
+
+    expect(queryByTestId('fileUploadPreviewFigure')).toBeInTheDocument();
+  });
+
+  test('should remove defaultValue data', async () => {
+    const valueImage = { type: 'image', preview: 'image.jpg' };
+    const onClearDefaultValue = jest.fn();
+    const { getByTestId } = render(
+      <FileUpload defaultValue={valueImage} onRemoveDefaultValue={onClearDefaultValue} />
+    );
+
+    const removeButton = getByTestId('fileUploadPreviewRemove');
+
+    await act(async () => {
+      fireEvent.click(removeButton);
+    });
+
+    expect(onClearDefaultValue).toHaveBeenCalled();
+  });
 });
