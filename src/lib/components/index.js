@@ -9,6 +9,7 @@ export { FormGroup } from './FormGroup';
 export { Container, Row, Col } from './Grid';
 export { Icon } from './Icon';
 export { Link } from './Link';
+export { List, ListItem, ListItemGrouper } from './List';
 export { Modal } from './Modal';
 export { MultiSelect } from './MultiSelect';
 export { Notification } from './Notification';

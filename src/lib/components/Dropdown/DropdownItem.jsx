@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ListItem } from '../_common';
+import { ListItem } from '../List';
 
 export const DropdownItem = (props) => <ListItem {...props} />;
 
