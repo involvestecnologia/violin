@@ -5,7 +5,7 @@ import { inputStyle, inputStyleFocus, inputStyleDisabled, errorStyle } from '../
 import { Checkbox } from '../Checkbox'
 import { Icon } from '../Icon'
 import getFromTheme from '../../utils/getFromTheme';
-import { ListItem } from '../_common';
+import { ListItem } from '../List';
 
 export const Container = styled.div`
   position: relative;

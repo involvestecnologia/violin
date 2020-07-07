@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom';
 import React, { useState, useEffect, useRef } from 'react';
-import { List } from '../_common/List'
+import { List } from '../List'
 
 export const DropdownCard = ({ closeDropdown, triggerPosition, placement, ...props }) => {
   const [fadeIn, setFadeIn] = useState(false);

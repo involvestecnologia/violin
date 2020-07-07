@@ -4,7 +4,7 @@ import { transparentize, rem } from 'polished';
 import { inputStyle, inputStyleFocus, inputStyleDisabled, errorStyle } from '../TextField/style';
 import { Icon } from '../Icon';
 import getFromTheme from '../../utils/getFromTheme';
-import { ListItem } from '../_common';
+import { ListItem } from '../List';
 
 export const Container = styled.div`
   position: relative;
