@@ -1,43 +1,6 @@
 steps:
   - label: "build"
     command:
-      - npm install
-      - npm run build
-      # - npm run build:docs
+      - docker build -e SITE_ID=$SITE_ID -e NETLIFY_AUTH=$NETLIFY_AUTH .
     agents:
-      queue: "frontend"
-
-  - wait
-
-  - label: "Deploy docs"
-    env:
-      SITE_ID: "1306e11a-4dca-46af-ac02-c92b075539d0"
-      NETLIFY_AUTH: "8rertSlTOZq-Ms_trmTFBqTcQwpQtmrZGM_QPpRWS8s"
-    command:
-      - npm install -g netlify
-      - netlify deploy --site $SITE_ID --auth $NETLIFY_AUTH --prod
-    agents:
-      queue: "node16"
-
-  # - label: "Deploy docs"
-  #   command:
-  #     - apk add --no-cache make npm
-  #     - cd docs 
-  #     - make build
-  #     - cd ..
-  #     - docker build -t 372153259551.dkr.ecr.us-east-1.amazonaws.com/maestro:$BUILDKITE_COMMIT . --no-cache
-  #     - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 372153259551.dkr.ecr.us-east-1.amazonaws.com
-  #     - docker push 372153259551.dkr.ecr.us-east-1.amazonaws.com/maestro:$BUILDKITE_COMMIT
-  #   agents:
-  #     queue: "dockerecr"
-  #   if: build.branch == "main"
-
-  # - wait
-
-  # - label: "Deploy Maestro"
-  #   command:
-  #     - aws eks update-kubeconfig --name production-kubernetes-cluster --region us-east-1
-  #     - ./deployer.sh --set-deployment production $BUILDKITE_COMMIT
-  #   agents:
-  #     queue: "eks-prod"
-  #   if: build.branch == "main"
+      queue: "docker"
