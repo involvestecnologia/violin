@@ -9,7 +9,7 @@
   "bugs": {
     "url": "https://github.com/involvestecnologia/violin/issues"
   },
-  "author": "Involves - AsyncAwait Squad <asyncawait@involves.com>",
+  "author": "Involves <dev@involves.com>",
   "license": "MIT",
   "scripts": {
     "start": "rm -rf ./.docz && docz dev",
@@ -29,7 +29,8 @@
     "react-dropzone": "^10.2.2",
     "react-helmet": "^5.2.1",
     "react-transition-group": "^4.3.0",
-    "styled-tools": "^1.7.1"
+    "styled-tools": "^1.7.1",
+    "typescript": "^3.5.3"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
