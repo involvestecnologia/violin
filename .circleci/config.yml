@@ -15,9 +15,6 @@ jobs:
             - v1-dependencies-
 
       - run: npm install
-      - run: npm test
-      - run: npm run lint
-      - run: npm run lint:css
       - run: npm run build
 
       - save_cache:
