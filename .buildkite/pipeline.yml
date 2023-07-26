@@ -3,7 +3,7 @@ steps:
     command:
       - npm install
       - npm run build
-      - npm run build:docs
+      # - npm run build:docs
     agents:
       queue: "frontend"
 
