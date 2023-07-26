@@ -4,3 +4,6 @@ yarn.lock
 /docs
 /lib
 /docs
+
+# Local Netlify folder
+.netlify

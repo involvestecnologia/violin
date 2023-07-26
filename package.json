@@ -24,6 +24,8 @@
     "prepublishOnly": "rm -rf ./lib && yarn build:cjs && yarn build:es"
   },
   "dependencies": {
+    "@emotion/core": "^10.3.1",
+    "@emotion/styled": "^11.11.0",
     "polished": "^3.4.4",
     "prop-types": "^15.7.2",
     "react-dropzone": "^10.2.2",
