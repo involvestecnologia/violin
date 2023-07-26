@@ -2,6 +2,8 @@ steps:
   - label: "build"
     command:
       - npm install
+      - npm run build
+      - npm run build:docs
     agents:
       queue: "frontend"
 
