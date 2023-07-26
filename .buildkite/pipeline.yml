@@ -1,16 +1,21 @@
 steps:
+  - label: "build"
+    command:
+      - npm install
+    agents:
+      queue: "frontend"
+
+  - wait
+
   - label: "Deploy docs"
     env:
       SITE_ID: "1306e11a-4dca-46af-ac02-c92b075539d0"
       NETLIFY_AUTH: "8rertSlTOZq-Ms_trmTFBqTcQwpQtmrZGM_QPpRWS8s"
     command:
-      - npm install
       - npm install -g netlify
       - netlify deploy --site $SITE_ID --auth $NETLIFY_AUTH --prod
     agents:
       queue: "node16"
-
-  # - wait
 
   # - label: "Deploy docs"
   #   command:
