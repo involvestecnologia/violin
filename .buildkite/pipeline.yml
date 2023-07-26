@@ -1,6 +1,6 @@
 steps:
   - label: "build"
     command:
-      - docker build -e SITE_ID=$SITE_ID -e NETLIFY_AUTH=$NETLIFY_AUTH .
+      - docker build --build-arg SITE_ID=$SITE_ID --build-arg NETLIFY_AUTH=$NETLIFY_AUTH .
     agents:
       queue: "docker"
