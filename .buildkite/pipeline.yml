@@ -1,21 +1,20 @@
 steps:
-  - label: "build"
-    command:
-      - npm install -g netlify-cli
-      - npm install
-      - npm run build:docs
-      - netlify deploy --site $SITE_ID  --auth $NETLIFY_AUTH  --prod
-      # - docker build --build-arg SITE_ID=$SITE_ID --build-arg NETLIFY_AUTH=$NETLIFY_AUTH .
-    agents:
-      queue: "node16"
+  # - label: "build"
+  #   command:
+  #     - docker build --build-arg SITE_ID=$SITE_ID --build-arg NETLIFY_AUTH=$NETLIFY_AUTH . -f deploy
+  #   agents:
+  #     queue: "docker"
   
   # - wait
   
-  # - label: "publish"
-  #   command:
-  #     - npm install
-  #     - npm run build
-  #     - npm publish
-  #   agents:
-  #     queue: "node16gp"
+  - label: "publish"
+    command:
+      - npm install
+      - npm run build
+      - npm run build:docs
+      - npm install netlify-cli -g
+      - npm publish
+      - netlify deploy --site $SITE_ID  --auth $NETLIFY_AUTH  --prod
+    agents:
+      queue: "node16"
   
