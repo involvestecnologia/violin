@@ -13,5 +13,5 @@ steps:
       - npm run build
       - npm publish
     agents:
-      queue: "node16"
+      queue: "node16gp"
   
