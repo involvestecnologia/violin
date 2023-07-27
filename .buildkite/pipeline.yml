@@ -9,7 +9,9 @@ steps:
   
   - label: "publish"
     command:
-      - npm run build && npm publish
+      - npm install
+      - npm run build
+      - npm publish
     agents:
       queue: "node16"
   
