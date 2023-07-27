@@ -4,3 +4,9 @@ steps:
       - docker build --build-arg SITE_ID=$SITE_ID --build-arg NETLIFY_AUTH=$NETLIFY_AUTH .
     agents:
       queue: "docker"
+  - label: "publish"
+    command:
+      - npm run build && npm publish
+    agents:
+      queue: "node16"
+  
