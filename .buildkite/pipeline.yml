@@ -9,7 +9,7 @@ steps:
   
   - label: "publish"
     command:
-      - npm install
+      - npm ci
       - npm run build
       - npm publish
     agents:
